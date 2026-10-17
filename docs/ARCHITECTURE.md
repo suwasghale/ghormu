@@ -20,6 +20,14 @@ Registration, verification, reset and email-change confirmation use the public B
 
 Edit `frontend/config/site.ts` and environment values for identity. The Tailwind theme in `app/globals.css` and copied UI components provide the visual foundation. Existing admin labels retain parts of the donors' French editorial UI; account flows are English.
 
+## Languages
+
+The public site is Nepali first, with English as the second language. Routes are prefixed: `/ne/...` and `/en/...`. `proxy.ts` redirects a bare `/` to the visitor's last choice (the `locale` cookie set by the language switcher), or to Nepali for everyone else. The public site has its own root layout in `app/[locale]/layout.tsx`, so `<html lang>` always matches the page's language. The account and admin screens keep theirs in `app/(app)/layout.tsx` and are English for now. `app/global-not-found.tsx` serves a bilingual 404 for URLs that match neither.
+
+- Strings live in `frontend/lib/i18n/dictionaries`. `ne.ts` is the source, and `en.ts` must have the same keys or the build fails. Server components call `getDictionary(locale)` and pass client components only the strings they render.
+- The navbar (six items) and footer columns are data in `frontend/config/navigation.ts`. Every linked page without its own route renders a `noindex` "coming soon" placeholder from `app/[locale]/[...slug]`. To build a page, add `app/[locale]/<path>/page.tsx`: it overrides the placeholder. Give it `alternatesFor(locale, path)` metadata and add its path to `indexedPaths` in `app/sitemap.ts`.
+- On the backend, translatable content uses paired columns (`title_ne`, `title_en`). `core.i18n` resolves the language from `?lang=`, then `Accept-Language`, then falls back to Nepali, and it falls back to the other column when one is empty. Profiles store `preferred_language` as `ne` or `en`, with `ne` as the default.
+
 `lib/admin/resources.ts` declares fields, columns and filters for the generic admin table/form. Add a matching backend resource endpoint and a resource definition to reuse those screens. Avoid adding a navigation entry until its route and permissions work.
 
 To add a feature:
