@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { ACCESS_COOKIE, REFRESH_COOKIE } from '@/lib/auth/cookies'
+import { defaultLocale, isLocale, LOCALE_COOKIE, localizePath } from '@/lib/i18n/config'
 
 /**
  * Route protection at the edge, before any admin page renders.
@@ -65,6 +66,15 @@ export function proxy(request: NextRequest) {
   const access = request.cookies.get(ACCESS_COOKIE)?.value
   const refresh = request.cookies.get(REFRESH_COOKIE)?.value
 
+  /* The public site lives under /ne and /en. Bare `/` goes to the language
+     the visitor last picked, or Nepali for anyone who has not picked one.
+     Temporary (307), because the answer depends on the cookie. */
+  if (pathname === '/') {
+    const preferred = request.cookies.get(LOCALE_COOKIE)?.value
+    const locale = isLocale(preferred) ? preferred : defaultLocale
+    return NextResponse.redirect(new URL(localizePath(locale, '/') + search, request.url))
+  }
+
   if ((pathname === '/admin' || pathname.startsWith('/admin/') || pathname === '/profile' || pathname.startsWith('/profile/'))) {
     if (access) return NextResponse.next()
 
@@ -103,5 +113,5 @@ export function proxy(request: NextRequest) {
 export const config = {
   /* Only the routes that need it. Matching everything would put this in front
      of all 46 static pages for no benefit. */
-  matcher: ['/admin/:path*', '/profile/:path*', '/login'],
+  matcher: ['/', '/admin/:path*', '/profile/:path*', '/login'],
 }

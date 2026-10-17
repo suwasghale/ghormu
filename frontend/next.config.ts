@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
 
   compress: true,
 
+  experimental: {
+    // Two root layouts (public site and account screens) leave no single
+    // layout for a 404; app/global-not-found.tsx renders one instead.
+    globalNotFound: true,
+  },
+
   images: {
     remotePatterns: process.env.MEDIA_HOST ? [{ protocol: 'https', hostname: process.env.MEDIA_HOST }] : [],
     formats: ['image/avif', 'image/webp'],

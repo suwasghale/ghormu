@@ -5,8 +5,8 @@ export const GENDERS = [
 ] as const
 
 export const LANGUAGES = [
+  { value: "ne", label: "नेपाली (Nepali)" },
   { value: "en", label: "English" },
-  { value: "fr", label: "French" },
 ] as const
 
 export const TIMEZONES = [

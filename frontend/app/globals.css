@@ -38,6 +38,9 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-muted: var(--brand-muted);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -80,6 +83,10 @@
   --sidebar-ring: oklch(0.708 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+  /* Ghormu forest green: the public site's one accent colour. */
+  --brand: oklch(0.43 0.09 160);
+  --brand-foreground: oklch(0.985 0 0);
+  --brand-muted: oklch(0.965 0.02 160);
 }
 
 .dark {
@@ -114,6 +121,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --brand: oklch(0.74 0.11 160);
+  --brand-foreground: oklch(0.18 0.03 160);
+  --brand-muted: oklch(0.26 0.03 160);
 }
 
 @layer base {
@@ -139,6 +149,13 @@
 :root {
   --font-geist-sans: Arial, Helvetica, sans-serif;
   --font-geist-mono: monospace;
+}
+
+/* The public site is written in Devanagari first. Mukta (loaded by
+   app/[locale]/layout.tsx) covers Devanagari and Latin with one family, so
+   Nepali and English text share the same rhythm. */
+html[data-site="public"] {
+  --font-geist-sans: var(--font-mukta), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ============================================================================

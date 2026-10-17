@@ -71,7 +71,7 @@ export default function ProfilePage() {
               nationality: user.profile?.nationality ?? "",
               phone_number: user.profile?.phone_number ?? "",
               biography: user.profile?.biography ?? "",
-              preferred_language: user.profile?.preferred_language ?? "en",
+              preferred_language: user.profile?.preferred_language ?? "ne",
               timezone: user.profile?.timezone ?? "UTC",
             }}
           />
