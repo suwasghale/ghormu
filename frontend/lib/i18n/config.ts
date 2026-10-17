@@ -49,6 +49,11 @@ export function stripLocale(pathname: string): string {
   return rest.length ? `/${rest.join("/")}` : "/"
 }
 
+/** Two-digit index in the page's own digits: ०१ in Nepali, 01 in English. */
+export function formatIndex(locale: Locale, n: number): string {
+  return new Intl.NumberFormat(locale === "ne" ? "ne-NP" : "en", { minimumIntegerDigits: 2 }).format(n)
+}
+
 /** The other language. Two locales, so there is exactly one. */
 export function otherLocale(locale: Locale): Locale {
   return locale === "ne" ? "en" : "ne"

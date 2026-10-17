@@ -216,6 +216,21 @@ html[data-site="public"] {
     animation: rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
     animation-delay: var(--rise-delay, 0ms);
   }
+
+  /* Hero layers drift at different speeds as the page scrolls: depth. */
+  @supports (animation-timeline: scroll()) {
+    .drift {
+      animation: drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translateY(var(--drift, 0px));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

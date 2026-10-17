@@ -38,6 +38,22 @@ export function Section({
   )
 }
 
+/** Small label above a heading, led by a short rule. */
+export function Eyebrow({ children, tone = "default", className }: { children: React.ReactNode; tone?: Tone; className?: string }) {
+  return (
+    <p
+      className={cn(
+        "flex items-center gap-3 text-sm font-semibold tracking-wide",
+        tone === "ink" ? "text-earth" : "text-brand",
+        className,
+      )}
+    >
+      <span aria-hidden="true" className="h-px w-8 bg-current opacity-60" />
+      {children}
+    </p>
+  )
+}
+
 export function SectionHeader({
   id,
   eyebrow,
@@ -59,9 +75,7 @@ export function SectionHeader({
 
   return (
     <div className={cn("reveal max-w-2xl", align === "center" && "mx-auto text-center", className)}>
-      {eyebrow && (
-        <p className={cn("text-sm font-semibold tracking-wide", onInk ? "text-earth" : "text-brand")}>{eyebrow}</p>
-      )}
+      {eyebrow && <Eyebrow tone={tone} className={align === "center" ? "justify-center" : undefined}>{eyebrow}</Eyebrow>}
       <h2 id={id} className="mt-3 font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl">
         {title}
       </h2>

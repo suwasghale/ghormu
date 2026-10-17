@@ -61,11 +61,28 @@ function PrayerFlags() {
   )
 }
 
+/** Wraps a layer so it drifts on scroll: further layers drift more, giving depth. */
+function Depth({ drift, delay, children }: { drift: number; delay: number; children: React.ReactNode }) {
+  return (
+    <g className={drift ? "drift" : undefined} style={{ ["--drift" as string]: `${drift}px` }}>
+      <g className="rise" style={{ ["--rise-delay" as string]: `${delay}ms` }}>
+        {children}
+      </g>
+    </g>
+  )
+}
+
 export function Landscape({
   variant = "hero",
+  id = "ls",
+  still = false,
   className,
 }: {
   variant?: "hero" | "strip"
+  /** No scroll parallax: for copies that are not at the top of the page. */
+  still?: boolean
+  /** Prefix for the SVG's gradient ids; give each copy on a page its own. */
+  id?: string
   className?: string
 }) {
   if (variant === "strip") {
@@ -82,31 +99,49 @@ export function Landscape({
   return (
     <svg viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax slice" aria-hidden="true" className={cn("block h-full w-full", className)}>
       <defs>
-        <linearGradient id="ls-sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="var(--mist)" />
-          <stop offset="0.7" stopColor="var(--snow)" />
+        <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="color-mix(in oklch, var(--mist) 85%, var(--brand))" />
+          <stop offset="0.55" stopColor="var(--mist)" />
+          <stop offset="0.8" stopColor="var(--snow)" />
         </linearGradient>
-        <radialGradient id="ls-sun" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="var(--earth)" stopOpacity="0.35" />
+        <radialGradient id={`${id}-sun`} cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="var(--earth)" stopOpacity="0.32" />
           <stop offset="1" stopColor="var(--earth)" stopOpacity="0" />
         </radialGradient>
-        <linearGradient id="ls-mist" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`${id}-mist`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="white" stopOpacity="0" />
-          <stop offset="0.5" stopColor="white" stopOpacity="0.75" />
+          <stop offset="0.5" stopColor="white" stopOpacity="0.8" />
           <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
       </defs>
 
-      <rect width="1440" height="640" fill="url(#ls-sky)" />
-      <circle cx="1090" cy="210" r="240" fill="url(#ls-sun)" />
-      <circle cx="1090" cy="210" r="56" style={{ fill: "color-mix(in oklch, var(--earth) 30%, #ffe7b8)" }} />
+      <rect width="1440" height="640" fill={`url(#${id}-sky)`} />
 
-      {/* Far snow range */}
-      <g className="rise" style={{ ["--rise-delay" as string]: "0ms" }}>
+      <Depth drift={still ? 0 : 140} delay={0}>
+        <circle cx="1090" cy="200" r="250" fill={`url(#${id}-sun)`} />
+        <circle cx="1090" cy="200" r="54" style={{ fill: "color-mix(in oklch, var(--earth) 30%, #ffe7b8)" }} />
+        {/* Birds */}
+        <g fill="none" stroke={shade(50, "black")} strokeWidth="1.6" strokeLinecap="round" opacity="0.45">
+          <path d="M880 150 q7 -7 14 0 q7 -7 14 0" />
+          <path d="M916 128 q5 -5 10 0 q5 -5 10 0" />
+          <path d="M852 176 q5 -5 10 0 q5 -5 10 0" />
+        </g>
+      </Depth>
+
+      {/* Distant range, barely there */}
+      <Depth drift={still ? 0 : 110} delay={0}>
+        <path
+          d="M0 330 L140 280 L260 300 L400 250 L540 286 L700 240 L860 272 L1020 236 L1180 270 L1320 246 L1440 268 V640 H0 Z"
+          style={{ fill: "color-mix(in oklch, var(--mist) 88%, var(--ink))" }}
+        />
+      </Depth>
+
+      {/* Snow range */}
+      <Depth drift={still ? 0 : 90} delay={60}>
         <path
           d="M0 380 L110 318 L190 344 L320 236 L410 292 L520 206 L640 284 L760 226 L880 296 L1000 214 L1130 290 L1240 238 L1350 296 L1440 262 V640 H0 Z"
           style={{ fill: "color-mix(in oklch, var(--mist) 70%, var(--ink))" }}
-          opacity="0.55"
+          opacity="0.6"
         />
         <g fill="white" opacity="0.95">
           <path d="M320 236 L296 256 L312 252 L322 262 L336 250 L348 256 Z" />
@@ -115,34 +150,34 @@ export function Landscape({
           <path d="M1000 214 L974 236 L991 231 L1003 243 L1017 230 L1030 238 Z" />
           <path d="M1240 238 L1220 254 L1233 251 L1243 260 L1254 250 L1264 255 Z" />
         </g>
-      </g>
+      </Depth>
 
-      <rect y="300" width="1440" height="120" fill="url(#ls-mist)" />
+      <Depth drift={still ? 0 : 70} delay={120}>
+        <rect y="300" width="1440" height="130" fill={`url(#${id}-mist)`} />
+      </Depth>
 
       {/* Mid hills */}
-      <path
-        className="rise"
-        style={{ fill: shade(30), ["--rise-delay" as string]: "120ms" }}
-        d="M0 420 Q160 360 320 396 T640 380 T960 392 T1280 368 T1440 380 V640 H0 Z"
-      />
+      <Depth drift={still ? 0 : 50} delay={180}>
+        <path style={{ fill: shade(30) }} d="M0 420 Q160 360 320 396 T640 380 T960 392 T1280 368 T1440 380 V640 H0 Z" />
+      </Depth>
 
       {/* Near ridge with prayer flags */}
-      <g className="rise" style={{ ["--rise-delay" as string]: "240ms" }}>
+      <Depth drift={still ? 0 : 25} delay={260}>
         <path
           style={{ fill: shade(62) }}
           d="M0 480 Q200 430 380 462 Q560 494 720 430 Q860 380 1000 410 Q1180 450 1300 430 Q1380 418 1440 428 V640 H0 Z"
         />
         <PrayerFlags />
-      </g>
+      </Depth>
 
       {/* Foreground */}
-      <g className="rise" style={{ ["--rise-delay" as string]: "360ms" }}>
+      <Depth drift={0} delay={340}>
         <path
           style={{ fill: shade(88, "black") }}
           d="M0 560 Q140 530 300 540 Q470 552 620 548 Q800 540 980 520 Q1160 500 1300 540 Q1380 560 1440 552 V640 H0 Z"
         />
         <Trees />
-      </g>
+      </Depth>
     </svg>
   )
 }

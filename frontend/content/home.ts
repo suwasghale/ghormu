@@ -16,6 +16,8 @@ export default bilingual({
       lead: "हाम्रो गाउँको इतिहास, संस्कृति र समुदायलाई एकै ठाउँमा जोगाउने र संसारसँग बाँड्ने डिजिटल घर।",
       primary: "घोर्मुको परिचय",
       secondary: "घुमफिर गर्नुहोस्",
+      index: ["परिचय", "संस्कृति", "घुमफिर", "समुदाय"],
+      indexLabel: "यस पृष्ठमा",
     },
     intro: {
       eyebrow: "घोर्मुको बारेमा",
@@ -56,6 +58,7 @@ export default bilingual({
       title: "घोर्मुलाई ३D मा हेर्नुहोस्",
       body: "गाउँ, धार्मिक स्थल, पैदल मार्ग र दृश्यस्थलहरू एउटै अन्तरक्रियात्मक नक्सामा। पहाडको उचाइ र भूगोलसहित गाउँलाई नयाँ कोणबाट चिन्नुहोस्।",
       badge: "३D नक्सा",
+      places: ["गाउँ", "धार्मिक स्थल", "पैदल मार्ग", "दृश्यस्थल"],
     },
     community: {
       eyebrow: "हाम्रो समुदाय",
@@ -64,11 +67,15 @@ export default bilingual({
       surnames: ["घले", "गुरुङ", "लोप्चन", "थिङ", "मोक्तान"],
       primary: "समुदायको परिचय",
       secondary: "समुदाय पोर्टल",
+      portal: "समुदाय पोर्टल",
+      statusFirst: "पहिलो चरणमा",
+      statusNext: "आगामी",
     },
     archive: {
       title: "घोर्मुको सम्झना जोगाउन सघाउनुहोस्",
       body: "तपाईंसँग पुराना तस्बिर, कथा वा कागजात छन्? गाउँमै हुनुहोस् वा विदेशमा, तपाईंको योगदानले आउँदा पुस्तालाई हाम्रो इतिहास चिनाउनेछ।",
       cta: "सम्पर्क गर्नुहोस्",
+      eyebrow: "डिजिटल अभिलेख",
     },
   },
   en: {
@@ -81,6 +88,8 @@ export default bilingual({
       lead: "A digital home that keeps our village's history, culture and community together, and shares them with the world.",
       primary: "About Ghormu",
       secondary: "Explore Ghormu",
+      index: ["About", "Culture", "Explore", "Community"],
+      indexLabel: "On this page",
     },
     intro: {
       eyebrow: "About Ghormu",
@@ -121,6 +130,7 @@ export default bilingual({
       title: "See Ghormu in 3D",
       body: "The village, religious sites, trails and viewpoints on one interactive map. Get to know Ghormu from a new angle, with its real terrain and elevation.",
       badge: "3D map",
+      places: ["Village", "Religious sites", "Trails", "Viewpoints"],
     },
     community: {
       eyebrow: "Our community",
@@ -129,11 +139,15 @@ export default bilingual({
       surnames: ["Ghale", "Gurung", "Lopchan", "Thing", "Moktan"],
       primary: "Community overview",
       secondary: "Community portal",
+      portal: "Community portal",
+      statusFirst: "First phase",
+      statusNext: "Coming next",
     },
     archive: {
       title: "Help preserve Ghormu's memory",
       body: "Do you have old photos, stories or documents? Whether you live in the village or abroad, your contribution will help future generations know our history.",
       cta: "Get in touch",
+      eyebrow: "Digital archive",
     },
   },
 })

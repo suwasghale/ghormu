@@ -2,30 +2,30 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import {
-  Archive,
   ArrowRight,
-  BookOpen,
-  Compass,
+  ArrowUpRight,
   Flower2,
   Footprints,
   HandHeart,
   HeartHandshake,
   Landmark,
-  MapPinned,
   Scissors,
   Sun,
   Trees,
-  Users,
 } from "lucide-react"
 
 import { JsonLd } from "@/components/site/json-ld"
 import { Landscape } from "@/components/site/landscape"
-import { ArrowLink, buttonStyles, Container, Section, SectionHeader } from "@/components/site/section"
+import { PhotoStack } from "@/components/site/photo-stack"
+import { ArrowLink, buttonStyles, Container, Eyebrow, Section, SectionHeader } from "@/components/site/section"
+import { Terrain3D } from "@/components/site/terrain-3d"
 import { TopoPattern } from "@/components/site/topo-pattern"
 import { site } from "@/config/site"
 import home from "@/content/home"
-import { getDictionary, isLocale, localizePath, locales } from "@/lib/i18n"
+import tourism from "@/content/tourism"
+import { formatIndex, getDictionary, isLocale, localizePath, locales } from "@/lib/i18n"
 import { alternatesFor } from "@/lib/i18n/metadata"
+import { cn } from "@/lib/utils"
 
 type PageProps = { params: Promise<{ locale: string }> }
 
@@ -36,12 +36,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return { description: home[locale].meta.description, alternates: alternatesFor(locale, "/") }
 }
 
-const PILLARS = [
-  { icon: BookOpen, href: "/about" },
-  { icon: Compass, href: "/explore" },
-  { icon: Users, href: "/community" },
-  { icon: Archive, href: "/about/archive" },
-]
+/** In-page anchors, in the order of the hero's section index. */
+const ANCHORS = ["intro", "culture", "explore", "community"]
+
+const PILLAR_LINKS = ["/about", "/explore", "/community", "/about/archive"]
 
 const CULTURE_ICONS = [Sun, Scissors, Flower2, HeartHandshake]
 
@@ -54,6 +52,7 @@ export default async function HomePage({ params }: PageProps) {
   const t = home[locale]
   const dict = getDictionary(locale)
   const href = (path: string) => localizePath(locale, path)
+  const bestSeasons = tourism[locale].seasons.filter((season) => season.best)
 
   return (
     <>
@@ -70,87 +69,148 @@ export default async function HomePage({ params }: PageProps) {
         }}
       />
 
-      {/* Hero */}
-      <section aria-labelledby="hero-title" className="relative isolate flex min-h-[min(calc(100svh-4rem),52rem)] flex-col overflow-hidden">
+      {/* ── Hero ─────────────────────────────────────────────── */}
+      <section aria-labelledby="hero-title" className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col overflow-hidden">
         <Landscape className="absolute inset-0 -z-10" />
         {/* Soft wash behind the text so it stays readable over the peaks. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_60%_at_15%_25%,var(--snow)_0%,color-mix(in_oklch,var(--snow)_60%,transparent)_45%,transparent_75%)]"
+          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_56%_at_6%_30%,var(--snow)_0%,color-mix(in_oklch,var(--snow)_80%,transparent)_38%,color-mix(in_oklch,var(--snow)_35%,transparent)_58%,transparent_78%)]"
         />
-        <Container className="pt-16 pb-48 sm:pt-24 sm:pb-64">
-          <div className="rise max-w-2xl">
-            <p className="text-sm font-semibold tracking-wide text-brand">{t.hero.eyebrow}</p>
-            <h1 id="hero-title" className="mt-5 font-display text-6xl leading-[1.15] font-bold tracking-tight sm:text-8xl">
+
+        <Container className="flex flex-1 flex-col pt-14 pb-[38vh] sm:pt-20 lg:pb-[32vh]">
+          <div className="rise max-w-3xl">
+            <Eyebrow>{t.hero.eyebrow}</Eyebrow>
+            <h1
+              id="hero-title"
+              className="mt-6 font-display text-7xl leading-[1.12] font-bold tracking-tight text-ink sm:text-8xl lg:text-[9rem]"
+            >
               {t.hero.title}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/75 sm:text-xl">{t.hero.lead}</p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap gap-3">
               <Link href={href("/about")} className={buttonStyles.primary}>
                 {t.hero.primary}
                 <ArrowRight aria-hidden="true" className="size-4" />
               </Link>
-              <Link href={href("/explore")} className={buttonStyles.secondary}>
+              <Link href={href("/explore")} className={cn(buttonStyles.secondary, "bg-background/70 backdrop-blur")}>
                 {t.hero.secondary}
               </Link>
             </div>
           </div>
         </Container>
+
+        {/* Index of this page, set along the foreground ridge */}
+        <nav aria-label={t.hero.indexLabel} className="absolute inset-x-0 bottom-0 hidden bg-gradient-to-t from-black/25 to-transparent sm:block">
+          <Container>
+            <ol className="grid grid-cols-4 border-t border-white/20">
+              {t.hero.index.map((label, index) => (
+                <li key={label}>
+                  <a
+                    href={`#${ANCHORS[index]}`}
+                    className="group flex items-baseline gap-3 py-5 text-white/80 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  >
+                    <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
+                    <span className="font-medium">{label}</span>
+                    <ArrowRight aria-hidden="true" className="size-3.5 -translate-x-1 opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100" />
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </Container>
+        </nav>
       </section>
 
-      {/* Introduction and what the site offers */}
-      <Section labelledBy="intro-title">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-          <SectionHeader id="intro-title" eyebrow={t.intro.eyebrow} title={t.intro.title} />
-          <div className="reveal">
-            <p className="text-lg leading-relaxed text-muted-foreground lg:mt-9">{t.intro.body}</p>
-            <ArrowLink href={href("/about")} className="mt-6">
+      {/* ── Introduction ─────────────────────────────────────── */}
+      <Section id="intro" labelledBy="intro-title" className="py-24 sm:py-32">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="reveal lg:col-span-4">
+            <Eyebrow>{t.intro.eyebrow}</Eyebrow>
+            <h2 id="intro-title" className="mt-4 font-display text-2xl leading-snug font-semibold text-balance sm:text-3xl">
+              {t.intro.title}
+            </h2>
+          </div>
+          <div className="reveal lg:col-span-8">
+            <p className="font-display text-2xl leading-[1.65] text-foreground/90 sm:text-[1.85rem]">{t.intro.body}</p>
+            <ArrowLink href={href("/about")} className="mt-8">
               {t.intro.link}
             </ArrowLink>
           </div>
         </div>
 
         <h3 className="sr-only">{t.pillars.title}</h3>
-        <ul className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {t.pillars.items.map((item, index) => {
-            const { icon: Icon, href: path } = PILLARS[index]
-            return (
-              <li key={item.title} className="reveal">
-                <Link
-                  href={href(path)}
-                  className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg hover:shadow-brand/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                >
-                  <span className="inline-flex size-11 items-center justify-center rounded-xl bg-brand-muted text-brand">
-                    <Icon aria-hidden="true" className="size-5" />
-                  </span>
-                  <span className="mt-5 flex items-center justify-between font-display text-xl font-semibold">
-                    {item.title}
-                    <ArrowRight aria-hidden="true" className="size-4 text-brand opacity-0 transition group-hover:opacity-100" />
-                  </span>
-                  <span className="mt-2 leading-relaxed text-muted-foreground">{item.body}</span>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+        <ol className="mt-20 grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
+          {t.pillars.items.map((item, index) => (
+            <li
+              key={item.title}
+              className="reveal border-b border-border sm:odd:pr-8 sm:even:border-l sm:even:pl-8 lg:border-b-0 lg:border-l lg:px-8 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0"
+            >
+              <Link
+                href={href(PILLAR_LINKS[index])}
+                className="group relative block h-full py-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+              >
+                <span aria-hidden="true" className="absolute -top-px left-0 h-0.5 w-0 bg-brand transition-all duration-500 group-hover:w-full" />
+                <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
+                <span className="mt-6 flex items-center justify-between gap-3 font-display text-2xl font-semibold">
+                  {item.title}
+                  <ArrowUpRight aria-hidden="true" className="size-5 text-brand transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
+                <span className="mt-3 block leading-relaxed text-muted-foreground">{item.body}</span>
+              </Link>
+            </li>
+          ))}
+        </ol>
       </Section>
 
-      {/* Culture */}
-      <Section tone="mist" labelledBy="culture-title" className="overflow-hidden">
-        <TopoPattern className="absolute inset-0 h-full w-full text-brand/[0.07]" />
-        <div className="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+      {/* ── Culture ──────────────────────────────────────────── */}
+      <Section id="culture" tone="mist" labelledBy="culture-title" className="overflow-hidden py-24 sm:py-32">
+        <TopoPattern className="absolute inset-0 h-full w-full text-brand/[0.06]" />
+        <div className="relative flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <SectionHeader id="culture-title" eyebrow={t.culture.eyebrow} title={t.culture.title} lead={t.culture.lead} />
           <ArrowLink href={href("/about/culture")} className="reveal shrink-0">
             {t.culture.link}
           </ArrowLink>
         </div>
-        <ul className="relative mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+        <ul className="relative mt-14 grid gap-4 lg:grid-cols-4 lg:grid-rows-2">
           {t.culture.items.map((item, index) => {
             const Icon = CULTURE_ICONS[index]
+
+            if (index === 0) {
+              return (
+                <li
+                  key={item.title}
+                  className="reveal relative isolate flex min-h-[22rem] flex-col justify-end overflow-hidden rounded-3xl bg-ink p-8 text-ink-foreground sm:p-10 lg:col-span-2 lg:row-span-2 lg:min-h-[30rem]"
+                >
+                  <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-ink-foreground/[0.08]" />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -top-4 -right-6 -z-10 font-display text-[8rem] leading-none font-bold whitespace-nowrap text-ink-foreground/[0.06] sm:text-[11rem]"
+                  >
+                    {item.title}
+                  </span>
+                  <Icon aria-hidden="true" className="size-8 text-earth" />
+                  <h3 className="mt-6 font-display text-3xl font-semibold sm:text-4xl">{item.title}</h3>
+                  <p className="mt-3 max-w-md text-lg leading-relaxed text-ink-foreground/75">{item.body}</p>
+                </li>
+              )
+            }
+
             return (
-              <li key={item.title} className="reveal rounded-2xl bg-background/80 p-6 ring-1 ring-border backdrop-blur-sm">
-                <Icon aria-hidden="true" className="size-6 text-earth" />
-                <h3 className="mt-5 font-display text-xl font-semibold">{item.title}</h3>
+              <li
+                key={item.title}
+                className={cn(
+                  "reveal flex flex-col rounded-3xl bg-background/90 p-7 ring-1 ring-border backdrop-blur-sm",
+                  index === 1 && "lg:col-span-2",
+                )}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex size-11 items-center justify-center rounded-full bg-earth/10 text-earth">
+                    <Icon aria-hidden="true" className="size-5" />
+                  </span>
+                  <span className="font-display text-sm text-muted-foreground">{formatIndex(locale, index + 1)}</span>
+                </div>
+                <h3 className="mt-auto pt-8 font-display text-2xl font-semibold">{item.title}</h3>
                 <p className="mt-2 leading-relaxed text-muted-foreground">{item.body}</p>
               </li>
             )
@@ -158,90 +218,115 @@ export default async function HomePage({ params }: PageProps) {
         </ul>
       </Section>
 
-      {/* Explore */}
-      <section aria-labelledby="explore-title" className="relative isolate overflow-hidden bg-ink text-ink-foreground">
-        <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-ink-foreground/[0.06]" />
-        <Container className="grid gap-12 py-20 sm:py-28 lg:grid-cols-2 lg:items-center">
+      {/* ── Explore ──────────────────────────────────────────── */}
+      <section id="explore" aria-labelledby="explore-title" className="relative isolate scroll-mt-20 overflow-hidden bg-ink text-ink-foreground">
+        <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-ink-foreground/[0.05]" />
+        <Container className="grid gap-16 py-24 sm:py-32 lg:grid-cols-2 lg:items-center lg:gap-20">
           <div>
             <SectionHeader id="explore-title" tone="ink" eyebrow={t.explore.eyebrow} title={t.explore.title} lead={t.explore.lead} />
-            <Link href={href("/explore")} className={`${buttonStyles.onInk} reveal mt-9`}>
+            <ul className="reveal mt-10 grid grid-cols-2 gap-x-8 border-t border-ink-foreground/15">
+              {t.explore.highlights.map((label, index) => {
+                const Icon = EXPLORE_ICONS[index]
+                return (
+                  <li key={label} className="flex items-center gap-3 border-b border-ink-foreground/15 py-4">
+                    <Icon aria-hidden="true" className="size-5 shrink-0 text-earth" />
+                    <span className="text-lg font-medium">{label}</span>
+                  </li>
+                )
+              })}
+            </ul>
+            <Link href={href("/explore")} className={cn(buttonStyles.onInk, "reveal mt-10")}>
               {t.explore.cta}
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           </div>
-          <ul className="grid grid-cols-2 gap-4">
-            {t.explore.highlights.map((label, index) => {
-              const Icon = EXPLORE_ICONS[index]
-              return (
-                <li
-                  key={label}
-                  className="reveal flex aspect-[4/3] flex-col justify-between rounded-2xl border border-ink-foreground/10 bg-ink-foreground/[0.04] p-5"
-                >
-                  <Icon aria-hidden="true" className="size-7 text-earth" />
-                  <span className="font-display text-xl font-semibold sm:text-2xl">{label}</span>
-                </li>
-              )
-            })}
-          </ul>
+
+          <div className="reveal relative pb-8">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] ring-1 ring-ink-foreground/10 sm:aspect-[5/4] lg:aspect-[4/5]">
+              <Landscape id="explore-ls" still className="absolute inset-0" />
+            </div>
+            <div className="absolute bottom-0 left-5 rounded-2xl bg-ink/85 p-5 ring-1 ring-ink-foreground/15 backdrop-blur-md sm:left-8">
+              <p className="text-sm font-semibold text-earth">{tourism[locale].recommended}</p>
+              <ul className="mt-2 flex flex-col gap-1">
+                {bestSeasons.map((season) => (
+                  <li key={season.name} className="flex items-baseline gap-3">
+                    <span className="font-display text-xl font-semibold">{season.name}</span>
+                    <span className="text-sm text-ink-foreground/65">{season.months.split(" · ")[0]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </Container>
       </section>
 
-      {/* 3D map teaser */}
-      <Section labelledBy="map-title">
-        <div className="reveal relative isolate overflow-hidden rounded-3xl bg-brand-muted px-6 py-14 sm:px-12 sm:py-20">
-          <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-brand/20" />
-          <MapPinned aria-hidden="true" className="absolute top-[38%] right-[18%] -z-10 hidden size-10 text-earth sm:block" />
-          <MapPinned aria-hidden="true" className="absolute right-[34%] bottom-[22%] -z-10 hidden size-7 text-brand sm:block" />
-          <div className="max-w-xl">
-            <span className="inline-flex rounded-full bg-background px-3 py-1 text-sm font-semibold text-brand ring-1 ring-brand/20">
+      {/* ── 3D map teaser ───────────────────────────────────── */}
+      <Section labelledBy="map-title" className="py-24 sm:py-32">
+        <div className="reveal grid overflow-hidden rounded-[2rem] bg-brand text-brand-foreground lg:grid-cols-2">
+          <div className="flex flex-col justify-center p-8 sm:p-14">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-foreground/10 px-3 py-1 text-sm font-semibold ring-1 ring-brand-foreground/20">
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-earth" />
               {t.map.eyebrow} · {t.map.badge}
             </span>
-            <h2 id="map-title" className="mt-5 font-display text-3xl leading-tight font-semibold tracking-tight sm:text-4xl">
+            <h2 id="map-title" className="mt-6 font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
               {t.map.title}
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{t.map.body}</p>
+            <p className="mt-5 max-w-lg text-lg leading-relaxed text-brand-foreground/80">{t.map.body}</p>
           </div>
+          <Terrain3D labels={t.map.places} className="min-h-96" />
         </div>
       </Section>
 
-      {/* Community */}
-      <Section tone="brand" labelledBy="community-title">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-          <div>
-            <SectionHeader id="community-title" eyebrow={t.community.eyebrow} title={t.community.title} lead={t.community.lead} />
-            <div className="reveal mt-9 flex flex-wrap gap-3">
-              <Link href={href("/community")} className={buttonStyles.primary}>
-                {t.community.primary}
-              </Link>
-              <Link href="/login" className={buttonStyles.secondary}>
-                {t.community.secondary}
-              </Link>
-            </div>
+      {/* ── Community ────────────────────────────────────────── */}
+      <Section id="community" tone="brand" labelledBy="community-title" className="py-24 sm:py-32">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHeader id="community-title" eyebrow={t.community.eyebrow} title={t.community.title} lead={t.community.lead} />
+          <div className="reveal flex shrink-0 flex-wrap gap-3">
+            <Link href={href("/community")} className={buttonStyles.primary}>
+              {t.community.primary}
+            </Link>
+            <Link href="/login" className={buttonStyles.secondary}>
+              {t.community.secondary}
+            </Link>
           </div>
-          <ul className="reveal flex flex-wrap gap-3 lg:justify-end">
-            {t.community.surnames.map((name) => (
+        </div>
+
+        <ul className="mt-16 grid grid-cols-2 border-t border-brand/15 sm:grid-cols-3 lg:grid-cols-5">
+          {t.community.surnames.map((name, index) => {
+            const first = index === 0
+            return (
               <li
                 key={name}
-                className="rounded-full bg-background px-6 py-3 font-display text-xl font-semibold text-brand shadow-sm ring-1 ring-brand/15"
+                className="reveal border-b border-brand/15 py-8 pr-4 lg:border-b-0 lg:border-l lg:px-6 lg:first:border-l-0 lg:first:pl-0"
               >
-                {name}
+                <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
+                <p className="mt-3 font-display text-3xl font-semibold text-ink sm:text-4xl">{name}</p>
+                <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+                  <span aria-hidden="true" className={cn("size-2 rounded-full", first ? "bg-brand ring-4 ring-brand/15" : "bg-muted-foreground/35")} />
+                  <span className="sr-only">{t.community.portal}: </span>
+                  {first ? t.community.statusFirst : t.community.statusNext}
+                </p>
               </li>
-            ))}
-          </ul>
-        </div>
+            )
+          })}
+        </ul>
       </Section>
 
-      {/* Help preserve the archive */}
-      <Section labelledBy="archive-title">
-        <div className="reveal mx-auto max-w-3xl text-center">
-          <Archive aria-hidden="true" className="mx-auto size-8 text-earth" />
-          <h2 id="archive-title" className="mt-5 font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl">
-            {t.archive.title}
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{t.archive.body}</p>
-          <Link href={href("/contact")} className={`${buttonStyles.primary} mt-9`}>
-            {t.archive.cta}
-          </Link>
+      {/* ── Archive ──────────────────────────────────────────── */}
+      <Section labelledBy="archive-title" className="py-24 sm:py-32">
+        <div className="reveal grid items-center gap-12 overflow-hidden rounded-[2rem] bg-[color-mix(in_oklch,var(--earth)_10%,var(--snow))] p-8 sm:p-14 lg:grid-cols-2 lg:gap-16">
+          <PhotoStack className="order-last lg:order-first" />
+          <div>
+            <Eyebrow className="text-earth">{t.archive.eyebrow}</Eyebrow>
+            <h2 id="archive-title" className="mt-4 font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
+              {t.archive.title}
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{t.archive.body}</p>
+            <Link href={href("/contact")} className={cn(buttonStyles.primary, "mt-9")}>
+              {t.archive.cta}
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
+          </div>
         </div>
       </Section>
     </>

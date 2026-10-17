@@ -5,7 +5,7 @@ import { site } from "@/config/site"
 
 import { JsonLd } from "./json-ld"
 import { Landscape } from "./landscape"
-import { Container } from "./section"
+import { Container, Eyebrow } from "./section"
 import { TopoPattern } from "./topo-pattern"
 
 export type Crumb = { label: string; href: string }
@@ -60,7 +60,7 @@ export function PageHero({
         </nav>
 
         <div className="rise mt-10 max-w-3xl">
-          {eyebrow && <p className="text-sm font-semibold tracking-wide text-brand">{eyebrow}</p>}
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
           <h1 className="mt-3 font-display text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-6xl">
             {title}
           </h1>
