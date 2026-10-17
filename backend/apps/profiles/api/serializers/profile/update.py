@@ -7,7 +7,7 @@ from __future__ import annotations
 from django.utils import timezone
 from rest_framework import serializers
 
-from apps.users.choices import GenderChoices
+from apps.users.choices import GenderChoices, LanguageChoices
 
 # Upper bound on a plausible birth year, used to reject typos such as
 # 0202 that would otherwise be stored happily.
@@ -61,9 +61,9 @@ class UpdateProfileSerializer(serializers.Serializer):
         allow_blank=True,
     )
 
-    preferred_language = serializers.CharField(
+    preferred_language = serializers.ChoiceField(
         required=False,
-        max_length=10,
+        choices=LanguageChoices.choices,
     )
 
     timezone = serializers.CharField(

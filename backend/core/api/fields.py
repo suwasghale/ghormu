@@ -13,7 +13,7 @@ from core.i18n import DEFAULT_LANGUAGE, localized
 @extend_schema_field(str)
 class LocalizedField(serializers.Field):
     """
-    Serialises a pair of ``<field>_fr`` / ``<field>_en`` columns as one value.
+    Serialises a pair of ``<field>_ne`` / ``<field>_en`` columns as one value.
 
     The output key is the bare field name, so the API contract is
     ``{"title": "..."}`` regardless of how it is stored — clients never

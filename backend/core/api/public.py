@@ -13,6 +13,7 @@ from rest_framework.permissions import AllowAny
 
 from core.api.base import BaseAPIView
 from core.api.throttles import PublicThrottle
+from core.choices import LanguageChoices
 from core.i18n import LANGUAGE_QUERY_PARAM, resolve_language
 
 #: Browsers and CDNs may serve a cached copy for this long, and may keep
@@ -70,7 +71,7 @@ class PublicContentAPIView(BaseAPIView):
                 f"stale-while-revalidate={PUBLIC_STALE_SECONDS}"
             )
             # The same URL yields different bodies per language, so a
-            # shared cache must key on both. Without this a French
+            # shared cache must key on both. Without this a Nepali
             # visitor can be served an English response from the CDN.
             response["Vary"] = "Accept-Language"
 
@@ -86,8 +87,8 @@ class PublicContentAPIView(BaseAPIView):
 
         return OpenApiParameter(
             name=LANGUAGE_QUERY_PARAM,
-            description="Content language: `fr` (default) or `en`.",
+            description="Content language: `ne` (default) or `en`.",
             required=False,
             type=str,
-            enum=["fr", "en"],
+            enum=list(LanguageChoices.values),
         )

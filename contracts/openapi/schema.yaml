@@ -212,7 +212,9 @@ paths:
     delete:
       operationId: auth_account_delete_destroy
       description: Soft delete the authenticated user's account. Requires the current
-        password and revokes every session.
+        password, plus a two-factor or recovery code when two-factor authentication
+        is enabled, and revokes every session. Personal data is anonymized after the
+        configured grace period.
       summary: Delete account
       tags:
       - Account
@@ -2368,9 +2370,7 @@ components:
         biography:
           type: string
         preferred_language:
-          type: string
-          minLength: 1
-          maxLength: 10
+          $ref: '#/components/schemas/PreferredLanguageEnum'
         timezone:
           type: string
           minLength: 1
@@ -2409,6 +2409,14 @@ components:
           type: boolean
           title: Verified
           description: Indicates whether the user's email address has been verified.
+    PreferredLanguageEnum:
+      enum:
+      - ne
+      - en
+      type: string
+      description: |-
+        * `ne` - नेपाली
+        * `en` - English
     Profile:
       type: object
       properties:
@@ -2429,8 +2437,7 @@ components:
           type: string
           description: Short public biography.
         preferred_language:
-          type: string
-          maxLength: 10
+          $ref: '#/components/schemas/PreferredLanguageEnum'
         timezone:
           type: string
           nullable: true

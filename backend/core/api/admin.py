@@ -10,7 +10,7 @@ revalidation hook.
 Three deliberate differences from the public API:
 
 * **Both languages are exposed.** The public serializers collapse
-  ``title_fr``/``title_en`` into one ``title`` for the requested
+  ``title_ne``/``title_en`` into one ``title`` for the requested
   language. An editor needs to see and set both, so admin serializers
   work on the raw model fields.
 
@@ -81,7 +81,7 @@ class AdminAPIView(BaseAPIView):
     revalidate_tag: str = ""
 
     #: Locale-less paths that should also be rebuilt. The frontend
-    #: expands each into its /fr and /en variants. Named to match the
+    #: expands each into its /ne and /en variants. Named to match the
     #: Django admin mixin in apps/content/admin/collections.py, and so
     #: it does not shadow the imported `revalidate_paths` function.
     revalidate_extra_paths: tuple[str, ...] = ()

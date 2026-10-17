@@ -134,6 +134,18 @@ def test_update_writes_user_and_profile_fields(
     assert Profile.objects.get(user=user).biography == "Engineer."
 
 
+def test_preferred_language_defaults_to_nepali(user):
+    assert user.profile.preferred_language == "ne"
+
+
+def test_preferred_language_accepts_only_site_languages(authed_client, me_url):
+    response = authed_client.patch(me_url, {"preferred_language": "en"}, format="json")
+    assert response.status_code == 200
+
+    response = authed_client.patch(me_url, {"preferred_language": "fr"}, format="json")
+    assert response.status_code == 400
+
+
 def test_update_rejects_an_empty_payload(authed_client, me_url):
     response = authed_client.patch(me_url, {}, format="json")
 

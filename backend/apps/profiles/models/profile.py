@@ -17,7 +17,7 @@ from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from timezone_field import TimeZoneField
 
-from apps.users.choices import GenderChoices
+from apps.users.choices import GenderChoices, LanguageChoices
 from apps.users.models.user import User
 
 
@@ -104,10 +104,12 @@ class Profile(models.Model):
     # Preferences
     # ------------------------------------------------------------------
 
-    # Defaults match LANGUAGE_CODE and TIME_ZONE in config/settings.
+    # The language default matches core.i18n.DEFAULT_LANGUAGE (the site is
+    # Nepali first); the timezone default matches TIME_ZONE in config/settings.
     preferred_language = models.CharField(
         max_length=10,
-        default="en",
+        choices=LanguageChoices.choices,
+        default=LanguageChoices.NE,
         verbose_name="Preferred language",
     )
 

@@ -33,7 +33,7 @@ def revalidate_paths(*paths: str, tags: list[str] | None = None) -> None:
     Queue a revalidation for one or more frontend paths, after commit.
 
     Paths are locale-less (``/projects/banepa``); the frontend expands
-    each into its ``/fr`` and ``/en`` variants, because only it knows
+    each into its ``/ne`` and ``/en`` variants, because only it knows
     which locales it renders.
 
     ``tags`` invalidate by domain instead of by URL — passing

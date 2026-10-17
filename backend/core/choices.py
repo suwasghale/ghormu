@@ -19,9 +19,9 @@ class LanguageChoices(models.TextChoices):
     """
     The site's two content languages.
 
-    French first: it is the primary language of sg-starter.org and the default
+    Nepali first: it is the primary language of ghormu.com and the default
     when a request expresses no preference.
     """
 
-    FR = "fr", "Français"
+    NE = "ne", "नेपाली"
     EN = "en", "English"

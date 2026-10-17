@@ -1,7 +1,7 @@
 """
 Serializer base for the admin API.
 
-The public serializers collapse each ``<field>_fr`` / ``<field>_en``
+The public serializers collapse each ``<field>_ne`` / ``<field>_en``
 pair into one localised value. The admin does the opposite: an editor
 needs both columns, side by side, so admin serializers work on the raw
 model fields and let ``ModelSerializer`` derive validation from them.
