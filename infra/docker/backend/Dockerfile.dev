@@ -1,0 +1,107 @@
+# ==============================================================================
+# Development backend image
+# ==============================================================================
+#
+# Source lives on a bind mount (see docker-compose.dev.yml), so this image
+# only has to provide the interpreter and the dependency tree. Rebuild it
+# when pyproject.toml or uv.lock change; everything else hot-reloads.
+
+# Must match requires-python in pyproject.toml. On 3.13 the
+# `uv sync --locked` below fails outright: the lockfile was
+# resolved for 3.14.
+FROM python:3.14-slim
+
+# ==============================================================================
+# Environment
+# ==============================================================================
+#
+# UV_PROJECT_ENVIRONMENT keeps the virtualenv outside /app. The source tree
+# is bind-mounted over /app at runtime, which would otherwise bury a venv at
+# /app/.venv — and on a Windows host it would replace it with Windows
+# executables that Linux cannot run.
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    UV_PROJECT_ENVIRONMENT=/opt/venv
+
+# ==============================================================================
+# System Dependencies
+# ==============================================================================
+#
+# libpq-dev and build-essential cover building psycopg from source when no
+# wheel is available; curl backs the healthcheck.
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# ==============================================================================
+# Install uv
+# ==============================================================================
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
+
+# ==============================================================================
+# Working Directory
+# ==============================================================================
+
+WORKDIR /app
+
+# ==============================================================================
+# Dependency Layer
+# ==============================================================================
+#
+# Copied before the source so a code change doesn't reinstall the world.
+# Dev dependencies are included: this image also runs pytest and ruff.
+
+COPY backend/pyproject.toml backend/uv.lock ./
+
+RUN uv sync --locked
+
+# ==============================================================================
+# Copy Application
+# ==============================================================================
+#
+# The bind mount shadows this at runtime. Still worth copying so the image
+# can run without compose (CI, a one-off `docker run`).
+
+COPY backend/ .
+
+# ==============================================================================
+# Entrypoint
+# ==============================================================================
+
+COPY infra/docker/backend/entrypoint.dev.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# ==============================================================================
+# Django Environment
+# ==============================================================================
+#
+# `config.settings` is a namespace package with no settings in it — pointing
+# DJANGO_SETTINGS_MODULE there loads an EMPTY configuration (no DATABASES,
+# DEBUG False, no SECRET_KEY) and Django starts anyway. It has to name a
+# concrete module.
+#
+# PATH is the venv uv created at /opt/venv, so `python`, `celery` and
+# `pytest` resolve without an `uv run` prefix.
+
+ENV DJANGO_SETTINGS_MODULE=config.settings.dev \
+    PATH="/opt/venv/bin:$PATH"
+
+# ==============================================================================
+# Expose Django Development Server
+# ==============================================================================
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=15s --timeout=5s --start-period=40s --retries=5 \
+    CMD curl --fail http://127.0.0.1:8000/health/ || exit 1
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

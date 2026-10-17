@@ -1,0 +1,17 @@
+{% extends "emails/base.txt" %}
+
+{% block title %}Verify your email address{% endblock %}
+
+{% block content %}
+Hello {{ full_name|default:"there" }},
+
+Thanks for creating an account on {{ site_name }}.
+
+Confirm your email address using the link below:
+
+{{ verification_url }}
+
+This link expires in {{ expires_in_hours }} hours.
+
+If you did not request this, you can safely ignore this email.
+{% endblock %}

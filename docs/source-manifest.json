@@ -1,0 +1,2762 @@
+[
+  {
+    "source": "lwnf-dev/backend/config/api_urls.py",
+    "target": "backend/config/api_urls.py",
+    "sha256": "7221fdf7028ec0ea21e7c68c22ab82d3b42a23345a7e77c6af3ef3a75cc2d7a5"
+  },
+  {
+    "source": "lwnf-dev/backend/config/asgi.py",
+    "target": "backend/config/asgi.py",
+    "sha256": "059d2bc4b5e53e3d194c008281ac99b480227ffde62b11b03c8a8dfc4a5691b0"
+  },
+  {
+    "source": "lwnf-dev/backend/config/celery.py",
+    "target": "backend/config/celery.py",
+    "sha256": "f89030c6b08f8d0ef714d682a5500d2d448b982781a50e5b94576c58f6d2df5d"
+  },
+  {
+    "source": "lwnf-dev/backend/config/urls.py",
+    "target": "backend/config/urls.py",
+    "sha256": "fdd4d85ddde1fa596737f71a75fbdacb094a15846100a9bd63aafa3f8270371a"
+  },
+  {
+    "source": "lwnf-dev/backend/config/wsgi.py",
+    "target": "backend/config/wsgi.py",
+    "sha256": "c52fbc9c276c85506bfa631a7800d32c99100c40df7f4bb1d946b70b796225fa"
+  },
+  {
+    "source": "lwnf-dev/backend/config/_urls_no_profiles.py",
+    "target": "backend/config/_urls_no_profiles.py",
+    "sha256": "0dfb4806d7f6368fc9edb633de7e3f8538dfb799f2aa1dd3f2e9e34a0f5f3204"
+  },
+  {
+    "source": "lwnf-dev/backend/config/__init__.py",
+    "target": "backend/config/__init__.py",
+    "sha256": "4aa07b6f730a7fd4a1189f0c7983db0cf8e40443c467324aeb10a05b23879a03"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/base.py",
+    "target": "backend/config/settings/base.py",
+    "sha256": "56515f84affa94ec3fe1c14b9384bb85842226332342c4717e289466f676e5c0"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/build.py",
+    "target": "backend/config/settings/build.py",
+    "sha256": "fb58642b908e6e03bd697c24c17a27f239b468011a2bfba66dd98787b162ba5d"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/dev.py",
+    "target": "backend/config/settings/dev.py",
+    "sha256": "421216760e631a2565d41309bba86702231107ceff3d9e0d648104300c5ddd73"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/env.py",
+    "target": "backend/config/settings/env.py",
+    "sha256": "2a1360a7166977430ab68f71fa3229b3d79e4cb9e0be98648a6248354550fc6c"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/prod.py",
+    "target": "backend/config/settings/prod.py",
+    "sha256": "ad2919fc83ffae993022fe0f62ad491af2848b7c62019a754d89add4e2e1cf42"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/test.py",
+    "target": "backend/config/settings/test.py",
+    "sha256": "d421ace2307720f3b359563647945727c61bfbd9993c204ff33511efb65a3229"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/_no_profiles.py",
+    "target": "backend/config/settings/_no_profiles.py",
+    "sha256": "fbe1dfbac38ff7a1983843f9ba2ffa5f9ffd2c2b1aa47f0bcfc2147470d0171d"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/auth.py",
+    "target": "backend/config/settings/components/auth.py",
+    "sha256": "66b6e07f449b8f122dedd5a393d1b2364485ec84fcfb1b3716f1034cad90ce13"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/cache.py",
+    "target": "backend/config/settings/components/cache.py",
+    "sha256": "7a4ba7a89c225997e6b74714c71c01beb392fc246f6b2f747d41bdc888638a33"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/celery.py",
+    "target": "backend/config/settings/components/celery.py",
+    "sha256": "afba78a7b8ed7efcc2b54969a79f51d6af005061e0cf52b75602c9e19b763990"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/cors.py",
+    "target": "backend/config/settings/components/cors.py",
+    "sha256": "fa2cb67a5ae4f25e1b5d6ff36cdfd2262522bb485b3cd20aba392e8d533b8292"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/database.py",
+    "target": "backend/config/settings/components/database.py",
+    "sha256": "2980cbdaa8dc06e6aa943639f165942217b62787b79542a8c5bc6f761151fb47"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/drf.py",
+    "target": "backend/config/settings/components/drf.py",
+    "sha256": "e29d2cd641c3a2ce573257e4f5da591dbc7bc7e44122ad6195e8417109b593ae"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/email.py",
+    "target": "backend/config/settings/components/email.py",
+    "sha256": "e9a9061d2bd0b3580fc647d7b86175cf1cd4c2da92d6c1b78a12d1a3cacf5641"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/i18n.py",
+    "target": "backend/config/settings/components/i18n.py",
+    "sha256": "65fe0d9e1cb894bb9595d82c921a72deb103c56af20fcd0044b8db12b9bec972"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/installed_apps.py",
+    "target": "backend/config/settings/components/installed_apps.py",
+    "sha256": "a1a1361f05e0ce7349023ce1d170d6202727db1abaee0242dc8a6ebff5a07534"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/jwt.py",
+    "target": "backend/config/settings/components/jwt.py",
+    "sha256": "317eeb1855024443446d9824d75410c08fc6975d0eaa69e6eb18abac41f14f84"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/logging.py",
+    "target": "backend/config/settings/components/logging.py",
+    "sha256": "42f0e665763800d1d40a12b53da42ad218abf9ffee4a6d838dc1867cd6bc8956"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/middleware.py",
+    "target": "backend/config/settings/components/middleware.py",
+    "sha256": "fdccdf9ac70c8beadeca7b9dfa92fd648dbcb3cb3542ee9a30186fee794f9b03"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/passwords.py",
+    "target": "backend/config/settings/components/passwords.py",
+    "sha256": "ec76f4cfd0d49742e18e5bdff5a2e7b56e513600c24c2af365da5600dc3dc371"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/security.py",
+    "target": "backend/config/settings/components/security.py",
+    "sha256": "96d2179226b7008094a7a92e52c7229a0964b44caebae8f9df2b9941a36f80ff"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/sessions.py",
+    "target": "backend/config/settings/components/sessions.py",
+    "sha256": "14f7abe9e3d977fa1f447e6fa1c966d76735769269c01c74456f243caeffa165"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/spectacular.py",
+    "target": "backend/config/settings/components/spectacular.py",
+    "sha256": "db992e943118903c4a0368790ca2841718a006db16b10c44d93a288fa09ddf72"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/static.py",
+    "target": "backend/config/settings/components/static.py",
+    "sha256": "afb094b5149e6c17043b3f5a89a376d43c3feff2a7b687e53e3d042b1260bd32"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/storage.py",
+    "target": "backend/config/settings/components/storage.py",
+    "sha256": "5257ac98a3d94d4c259a9b94ac75dd4c6c0b7b2789c82d3f59ee1277f9fece1b"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/templates.py",
+    "target": "backend/config/settings/components/templates.py",
+    "sha256": "95242f4ff358528c691759b3f706fc8af3b0cac57892eedb87f577d0202735c9"
+  },
+  {
+    "source": "lwnf-dev/backend/config/settings/components/__init__.py",
+    "target": "backend/config/settings/components/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/core/apps.py",
+    "target": "backend/core/apps.py",
+    "sha256": "b1ca23af7e1d3feaf5fc8dbaa68769a0ba226f08b93f594c90efad3d638cb9ee"
+  },
+  {
+    "source": "lwnf-dev/backend/core/choices.py",
+    "target": "backend/core/choices.py",
+    "sha256": "9fa0bd5a40ade506f2cf3c44616c311f08434f79ff30bb97bcfdbeae276cbc9b"
+  },
+  {
+    "source": "lwnf-dev/backend/core/i18n.py",
+    "target": "backend/core/i18n.py",
+    "sha256": "c027315bb6c3ac805473b772c243e90653c5edd3d837d8043ae280ab286353f6"
+  },
+  {
+    "source": "lwnf-dev/backend/core/roles.py",
+    "target": "backend/core/roles.py",
+    "sha256": "74630e95e72e87958ea47f6f8e9b75f50f772eb5616fc2c9df7417cf4ddb55d0"
+  },
+  {
+    "source": "lwnf-dev/backend/core/tasks.py",
+    "target": "backend/core/tasks.py",
+    "sha256": "fe0f2df6b4f96cd9f9db59a9571e3d09a881d87ed911dee60d208b4885438bd2"
+  },
+  {
+    "source": "lwnf-dev/backend/core/__init__.py",
+    "target": "backend/core/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/admin.py",
+    "target": "backend/core/api/admin.py",
+    "sha256": "7046ab26cc87fb92a2c11e044bcf354c324417eb6387dc6a950d3874fe947f4f"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/admin_media.py",
+    "target": "backend/core/api/admin_media.py",
+    "sha256": "bd108fe231f9e8c4963d87d51f75998090e482b490dbf1a3ab29e7f7298c8499"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/admin_serializers.py",
+    "target": "backend/core/api/admin_serializers.py",
+    "sha256": "fe9d06ab5e42c8b209d26bfbd81cec573acb4b99c1744cd8f2b43adcc4a0cbe2"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/base.py",
+    "target": "backend/core/api/base.py",
+    "sha256": "09189a6a3d3362791a9fda4487f1d9d836577ce3b5d086d0c380ba3250954fbd"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/exceptions.py",
+    "target": "backend/core/api/exceptions.py",
+    "sha256": "1d728467c132ca0a7999159eecb607a7132d67b736014b32f720fa97735a0e48"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/fields.py",
+    "target": "backend/core/api/fields.py",
+    "sha256": "5fa76fcac9b00b69b65d59553b6aeea55600fedd2f0a4d3a0e69362b170740d9"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/health.py",
+    "target": "backend/core/api/health.py",
+    "sha256": "3a2bcd6b48ada73b8ba60238bfcc38199f5885f94ae89f6c662ff5528bf1fe41"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/pagination.py",
+    "target": "backend/core/api/pagination.py",
+    "sha256": "85cb0fde7578fa068f32ab5c5b7adedf39ca73d8041da006b6d63c6a706a01e3"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/permissions.py",
+    "target": "backend/core/api/permissions.py",
+    "sha256": "0229714fdfcb286f3632f95cf993216d99d6a52b3147877176d4f999cfbd08a4"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/public.py",
+    "target": "backend/core/api/public.py",
+    "sha256": "9048221255f0149d2d076b1fad547433e859fb72a3e30260322c677c8a7176a4"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/renderers.py",
+    "target": "backend/core/api/renderers.py",
+    "sha256": "c662ab416343da939f10d50ade84b3ede89d40060d8f7074fe127da807a89bce"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/responses.py",
+    "target": "backend/core/api/responses.py",
+    "sha256": "0012fbf427f18b75f13dc110a6063551dac80b61d1e4780d53c18afbf060bdc7"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/schemas.py",
+    "target": "backend/core/api/schemas.py",
+    "sha256": "db37300e1f8000bf8eeaab96056dde37ec42d5e7d4914eeddd431d6ad7c23f3c"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/throttles.py",
+    "target": "backend/core/api/throttles.py",
+    "sha256": "25cf6e18641a2317699661c6a07ec6fe8f58afc560eb5835748cb960b7e79fdb"
+  },
+  {
+    "source": "lwnf-dev/backend/core/api/__init__.py",
+    "target": "backend/core/api/__init__.py",
+    "sha256": "1bc0077bf8cb1742216b38c8be906670b9a8a42f6fd4d66a20bcbcfe04977d1f"
+  },
+  {
+    "source": "lwnf-dev/backend/core/content/revalidation.py",
+    "target": "backend/core/content/revalidation.py",
+    "sha256": "94fdfbe4534008066ae49db82923a98ece29d533705f8204ce3222efdf0bf211"
+  },
+  {
+    "source": "lwnf-dev/backend/core/content/sanitize.py",
+    "target": "backend/core/content/sanitize.py",
+    "sha256": "29fe0ebff836a811815cbbad607dc2a327158cfd2134f1d3e6a7762684b63c4b"
+  },
+  {
+    "source": "lwnf-dev/backend/core/content/__init__.py",
+    "target": "backend/core/content/__init__.py",
+    "sha256": "17743e0390277c9762dff03793f33e4b4fcdf508dd97c9c1ae3a5ebdfef94f90"
+  },
+  {
+    "source": "lwnf-dev/backend/core/exceptions/base.py",
+    "target": "backend/core/exceptions/base.py",
+    "sha256": "2fd977a8c86fe7e388698a9654e4e218bd3293461b9d39da4177ba24308a2add"
+  },
+  {
+    "source": "lwnf-dev/backend/core/exceptions/not_found.py",
+    "target": "backend/core/exceptions/not_found.py",
+    "sha256": "783ff934c1d434d140209cf9a9a2d8ae4c56b675f73cf0151e38931067c1558d"
+  },
+  {
+    "source": "lwnf-dev/backend/core/exceptions/__init__.py",
+    "target": "backend/core/exceptions/__init__.py",
+    "sha256": "3776917d2e58e40a202606909b093ba6dfa6c84b903b994221746a0075554ace"
+  },
+  {
+    "source": "lwnf-dev/backend/core/management/__init__.py",
+    "target": "backend/core/management/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/core/middleware/__init__.py",
+    "target": "backend/core/middleware/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/core/models/base.py",
+    "target": "backend/core/models/base.py",
+    "sha256": "77b181e5d0eb509a2812ccc1d43e1d9ad9ef2149be2886f4ad0fe286724b6b5b"
+  },
+  {
+    "source": "lwnf-dev/backend/core/models/__init__.py",
+    "target": "backend/core/models/__init__.py",
+    "sha256": "07695659f2d5edb8245fa11aeabd054650e596c7ea23c9f892ed953ba7652318"
+  },
+  {
+    "source": "lwnf-dev/backend/core/security/request_meta.py",
+    "target": "backend/core/security/request_meta.py",
+    "sha256": "4a0c82c600286a3a0823cad37d62422815bf20e47547ad3dccfaa61d7ef5b447"
+  },
+  {
+    "source": "lwnf-dev/backend/core/security/tokens.py",
+    "target": "backend/core/security/tokens.py",
+    "sha256": "24aea8709211d184288a616bda5180598a23e0b1a0d58cc098f7df9e38d6df1e"
+  },
+  {
+    "source": "lwnf-dev/backend/core/security/__init__.py",
+    "target": "backend/core/security/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/core/storage/backends.py",
+    "target": "backend/core/storage/backends.py",
+    "sha256": "097a71b666c3e65d1969e0a343e8de21285dfc9f57875cdbccf40202d15b65d5"
+  },
+  {
+    "source": "lwnf-dev/backend/core/storage/checks.py",
+    "target": "backend/core/storage/checks.py",
+    "sha256": "146a8725b94caf3d59de0e478ac70314672bad1955d542b8bd44a2b814f5a4f7"
+  },
+  {
+    "source": "lwnf-dev/backend/core/storage/images.py",
+    "target": "backend/core/storage/images.py",
+    "sha256": "ee56cb32c4ddb5b2ed47326ff83d1851a5cf3e1e23aa5d957135e744ec14f374"
+  },
+  {
+    "source": "lwnf-dev/backend/core/storage/__init__.py",
+    "target": "backend/core/storage/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/core/validators/password.py",
+    "target": "backend/core/validators/password.py",
+    "sha256": "8e6eb28c56cbaaf47ee9db25fe5c8f63b66ae0d7c6ed4af04488a41b6eb9e7da"
+  },
+  {
+    "source": "lwnf-dev/backend/core/validators/__init__.py",
+    "target": "backend/core/validators/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/core/management/commands/check_services.py",
+    "target": "backend/core/management/commands/check_services.py",
+    "sha256": "3c8d09000c532416780536e6d305137fa6b031d7903952548a5abcf3774db8c0"
+  },
+  {
+    "source": "lwnf-dev/backend/core/management/commands/sync_roles.py",
+    "target": "backend/core/management/commands/sync_roles.py",
+    "sha256": "54fee0a37709074357a799b61345677445fbc31d70c875b23745c4df45b9b6a5"
+  },
+  {
+    "source": "lwnf-dev/backend/core/management/commands/__init__.py",
+    "target": "backend/core/management/commands/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/cache/redis.py",
+    "target": "backend/infrastructure/cache/redis.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/cache/__init__.py",
+    "target": "backend/infrastructure/cache/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/database/health.py",
+    "target": "backend/infrastructure/database/health.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/database/__init__.py",
+    "target": "backend/infrastructure/database/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/email/email_service.py",
+    "target": "backend/infrastructure/email/email_service.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/email/__init__.py",
+    "target": "backend/infrastructure/email/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/monitoring/health.py",
+    "target": "backend/infrastructure/monitoring/health.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/monitoring/metrics.py",
+    "target": "backend/infrastructure/monitoring/metrics.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/monitoring/__init__.py",
+    "target": "backend/infrastructure/monitoring/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/queue/celery_tasks.py",
+    "target": "backend/infrastructure/queue/celery_tasks.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/queue/__init__.py",
+    "target": "backend/infrastructure/queue/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/storage/cloudflare.py",
+    "target": "backend/infrastructure/storage/cloudflare.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/infrastructure/storage/__init__.py",
+    "target": "backend/infrastructure/storage/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/base.html",
+    "target": "backend/templates/emails/base.html",
+    "sha256": "124c2131d1ac75070ebdae9c89a975e8e6518de92d6415555be8282e548e3bc7"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/base.txt",
+    "target": "backend/templates/emails/base.txt",
+    "sha256": "650887e9cc3a2510f2cf40f7761d54b17573548e24a3c98ef343c4460fd23cf9"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/email_change.html",
+    "target": "backend/templates/emails/email_change.html",
+    "sha256": "37c04ff5cec15f35c69927fdae6d61019b1bdc1fe1c7469420ca1121d419cb5e"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/email_change.txt",
+    "target": "backend/templates/emails/email_change.txt",
+    "sha256": "b7044592fdbaca7fcacb3e5b26d683bc239524a67f8b3356aee33de5059cf086"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/password_reset.html",
+    "target": "backend/templates/emails/password_reset.html",
+    "sha256": "86a9a8f687b933870d61e8b00b05c8eeac607301cab220787bd28ff234b76e27"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/password_reset.txt",
+    "target": "backend/templates/emails/password_reset.txt",
+    "sha256": "b367f75df22eec27b6b0d1dd644fb96986cb135e4d0b387d771509d4f49d7dee"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/verification.html",
+    "target": "backend/templates/emails/verification.html",
+    "sha256": "c9d86724296513479453db08729ca441bf1899e92f95c1579b6e37f93cd4186e"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/verification.txt",
+    "target": "backend/templates/emails/verification.txt",
+    "sha256": "8a2f402c0dde87606cd35f7ac5dc4082f6270350d8e57075fff67aaa4ef37e5b"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/welcome.html",
+    "target": "backend/templates/emails/welcome.html",
+    "sha256": "032874ff666f5cea0d34eacb2ba4aa7b01d13463691464773ebf3d724248d7ce"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/welcome.txt",
+    "target": "backend/templates/emails/welcome.txt",
+    "sha256": "be695613488605ec14e725a1ae0fb09a9ac25ec13ed435f3b1832749e1f137ba"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/inbox/contact.html",
+    "target": "backend/templates/emails/inbox/contact.html",
+    "sha256": "15bc7831736f91d2dae6a1066133aec26ad9800468b9becb818372c1d7633177"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/inbox/contact.txt",
+    "target": "backend/templates/emails/inbox/contact.txt",
+    "sha256": "280fa8986cf6d090a99569a4e101997deb07a8194e9bd56164abc7221e9102f9"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/inbox/sponsorship.html",
+    "target": "backend/templates/emails/inbox/sponsorship.html",
+    "sha256": "09cf68ebef1dc70f457d8b3279b2f18e01d5d5649dad50463b1013a80cfe6f4c"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/inbox/sponsorship.txt",
+    "target": "backend/templates/emails/inbox/sponsorship.txt",
+    "sha256": "a2cf2ca53998192f8fc3fbe9aee7aaadd951fb52e0d1838345f37d892b08d934"
+  },
+  {
+    "source": "lwnf-dev/backend/templates/emails/inbox/_row.html",
+    "target": "backend/templates/emails/inbox/_row.html",
+    "sha256": "8dc59458f542b073da8f0f176c88d8ef235725db1dd70af262307d9553d1d900"
+  },
+  {
+    "source": "lwnf-dev/backend/static/.gitkeep",
+    "target": "backend/static/.gitkeep",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/docs/architecture.md",
+    "target": "backend/docs/architecture.md",
+    "sha256": "de1aca8f82546560bfe8e860bc29c6d6841678d00e282a46eef4075e2bc1d5bf"
+  },
+  {
+    "source": "lwnf-dev/backend/docs/authentication.md",
+    "target": "backend/docs/authentication.md",
+    "sha256": "3fc6b22ebac40460fcd38bffa009e71e8721624629ccd607f33857d8ee9210ba"
+  },
+  {
+    "source": "lwnf-dev/backend/docs/configuration.md",
+    "target": "backend/docs/configuration.md",
+    "sha256": "504422f2085dac554f12ba515f2c71d6d61e03fdd491454ba529d7bd34a55446"
+  },
+  {
+    "source": "lwnf-dev/backend/docs/deployment.md",
+    "target": "backend/docs/deployment.md",
+    "sha256": "5ad4587f9b0f2737ab91fe46d91f0dfbb8e507901540a56a78cd3c8f92e088b3"
+  },
+  {
+    "source": "lwnf-dev/backend/docs/security.md",
+    "target": "backend/docs/security.md",
+    "sha256": "dc8f9a872061627889b3db9c1896e10e1ba9db14d7acca0fd8e3faebbfd22c46"
+  },
+  {
+    "source": "lwnf-dev/backend/docs/testing.md",
+    "target": "backend/docs/testing.md",
+    "sha256": "c49590d53353d22a6cd928994d0c4499bca8d11a9c3fe5106ea1d24b75e65fea"
+  },
+  {
+    "source": "lwnf-dev/backend/docs/vps.md",
+    "target": "backend/docs/vps.md",
+    "sha256": "1a2d3bd9f754da329bc6c7515a1fb379571adc5dd3e6ee04b792e0cbfe0dab66"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/conftest.py",
+    "target": "backend/tests/conftest.py",
+    "sha256": "bafbc8ff7a033f797a75e122e5de48b0fe8c10ad528de670c858d4d83e42f8de"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/factories.py",
+    "target": "backend/tests/factories.py",
+    "sha256": "ba046dcc949ca043a8987e24e35b660dd510594395eb4a2dc029cc4b71d987b7"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/__init__.py",
+    "target": "backend/tests/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_addresses.py",
+    "target": "backend/tests/integration/test_addresses.py",
+    "sha256": "1cf45ee2529d5f03a4e9b6faf4869ff2771662d95b6f2997e99922019c00d302"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_admin_lockout.py",
+    "target": "backend/tests/integration/test_admin_lockout.py",
+    "sha256": "0d80e1a86b23ffd749aa5a3672ecd9e3fa11a111ff38255934c6b52dec85e16d"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_blog_content.py",
+    "target": "backend/tests/integration/test_blog_content.py",
+    "sha256": "2ffc3951a120c40519673c163bd8cbac67af118681081fb5d6004fa7fad968b9"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_email_templates.py",
+    "target": "backend/tests/integration/test_email_templates.py",
+    "sha256": "46845e85402d2ed10369c0a454a4b23bd22b3971edc70bf06b07f85c36002b07"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_health_and_schema.py",
+    "target": "backend/tests/integration/test_health_and_schema.py",
+    "sha256": "517be310ddbdb5622b2ff34e16881dfe67220fc80e3812efe067c87125b8ec3e"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_inbox.py",
+    "target": "backend/tests/integration/test_inbox.py",
+    "sha256": "508b07e5ffea7b78535926fcbd63e2d18cf04ed16a26d2379c19546cfdc7cf27"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_login.py",
+    "target": "backend/tests/integration/test_login.py",
+    "sha256": "ffa8948bda24584310bd8571ed873ee3a9a5da4d2b1e9d3346b4e9ff4024fc15"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_mfa.py",
+    "target": "backend/tests/integration/test_mfa.py",
+    "sha256": "3c96c1e1001244eb3a0ebb3edbc02886836c5fd925a798a80e6d484e09872bd0"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_password_flows.py",
+    "target": "backend/tests/integration/test_password_flows.py",
+    "sha256": "1e832207ec846f5bbb0a92433360291123d159e8eb77ec840abf9ca5422518cc"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_permissions_and_social.py",
+    "target": "backend/tests/integration/test_permissions_and_social.py",
+    "sha256": "984386f7f248f710be6d3d280ce7fa633f228f9b2987197833d1a31fafb3a17c"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_profile.py",
+    "target": "backend/tests/integration/test_profile.py",
+    "sha256": "566d3525f4078f4b5349180ed81bdad29c13676fe7844988fb8cf82a9e4e61ff"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_projects_content.py",
+    "target": "backend/tests/integration/test_projects_content.py",
+    "sha256": "b2e946c5bb020dca6ded469b563e3350f46fc119f73a759c5ed426d371d9147c"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_qa_release.py",
+    "target": "backend/tests/integration/test_qa_release.py",
+    "sha256": "5cd768c09a8157f8a2ab18bd3de50583ec51dffcab24e6ed5b432e41c7787825"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_registration.py",
+    "target": "backend/tests/integration/test_registration.py",
+    "sha256": "7d1b7268e5e225a295709e8686b4e610e7f9e67b349b999d2f95e4597df399b9"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_regressions.py",
+    "target": "backend/tests/integration/test_regressions.py",
+    "sha256": "48aa404f138bc51187ee4f2af0ab05772a28869ad59b50bae929922e00e5ac8d"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_roles.py",
+    "target": "backend/tests/integration/test_roles.py",
+    "sha256": "af7c9499bcfc063da516184444f7af97a97eaf627d4692b7bd30dee857a1775d"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_session_lifecycle.py",
+    "target": "backend/tests/integration/test_session_lifecycle.py",
+    "sha256": "2f0f82a2c6dbcecb9fe69ceb2f4ad93ccce267ed08bcd07438f8634e72ad6b1c"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_site_content.py",
+    "target": "backend/tests/integration/test_site_content.py",
+    "sha256": "d7c33244ba7856d33c31e82051e6b634840ba3317fde471bcf670aa1c34667ac"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/test_social_login.py",
+    "target": "backend/tests/integration/test_social_login.py",
+    "sha256": "35d24a7882ddae303d61d7aa322b4cf8d3041ae230f1dfec5fcba36c9bdbd95b"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/integration/__init__.py",
+    "target": "backend/tests/integration/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/unit/test_app_boundaries.py",
+    "target": "backend/tests/unit/test_app_boundaries.py",
+    "sha256": "421fcb78a53f7342f17e819efa984814cf1664e8cc63d0215dfb3fba93ad6cf8"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/unit/test_pagination_ordering.py",
+    "target": "backend/tests/unit/test_pagination_ordering.py",
+    "sha256": "5b1cf38f1f5c7ead1b8565d601648373fd405fbb66fae3c5b8a5786d807a9bd2"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/unit/test_publishable.py",
+    "target": "backend/tests/unit/test_publishable.py",
+    "sha256": "23e8e3baea17028432a222bfd68249006704628dc53c644cf0cc78ea739d2395"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/unit/test_redis_urls.py",
+    "target": "backend/tests/unit/test_redis_urls.py",
+    "sha256": "8fc782be42c21422c01b7ff582a7f896ba7df99382626543864af289c364c962"
+  },
+  {
+    "source": "lwnf-dev/backend/tests/unit/__init__.py",
+    "target": "backend/tests/unit/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/apps.py",
+    "target": "backend/apps/users/apps.py",
+    "sha256": "cf5df3f0ea8178396fc023f4e74bf28424ebe97653d17051c81ea9df6c015204"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/authentication.py",
+    "target": "backend/apps/users/authentication.py",
+    "sha256": "f3ac9b8077ee484978b6b33bce762f3d2c40380a2054e074449801b32637f176"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/auth_backends.py",
+    "target": "backend/apps/users/auth_backends.py",
+    "sha256": "00bb6c9f9b8098587ab74d342d5661a190e36edf23f65fcc74b9c0315175962f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/constants.py",
+    "target": "backend/apps/users/constants.py",
+    "sha256": "906600b6cab603e44cb987cb552b9cc70cc7ca80bc450c5947891b141552ca8f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/__init__.py",
+    "target": "backend/apps/users/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/admin/group.py",
+    "target": "backend/apps/users/admin/group.py",
+    "sha256": "2e87984aaa095c578beef618dc94080fe426b9dcac3b8775895d2ab241e955ff"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/admin/user.py",
+    "target": "backend/apps/users/admin/user.py",
+    "sha256": "355bc5174f83b1ecfcb30496ddff1d592ee096ffb401dfce08e5075aae9eaaff"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/admin/__init__.py",
+    "target": "backend/apps/users/admin/__init__.py",
+    "sha256": "b32c17007a7e301f4ce54822b028a6ff08bc76908e905ead73b7538b032fc67d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/permissions.py",
+    "target": "backend/apps/users/api/permissions.py",
+    "sha256": "7b7fb4e5d335253fbd7446dd98b4fda39a9236497028ed47446c8a4e6eb2ab17"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/schema.py",
+    "target": "backend/apps/users/api/schema.py",
+    "sha256": "2cd6797782f547673e098d1f0b56034f9d3d391f5f62fb335d46ba9f11e6d5f3"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/account.py",
+    "target": "backend/apps/users/choices/account.py",
+    "sha256": "5c3cf2ad182b3e9f9524630801b33e1dd2d921ebbd69b0a3a8153ed3dcfb5dd1"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/device.py",
+    "target": "backend/apps/users/choices/device.py",
+    "sha256": "5d0c3ca3d68154e334ae21cb8db40755820d2a87e73a58d5a4482969f4ef1dae"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/file.py",
+    "target": "backend/apps/users/choices/file.py",
+    "sha256": "7ba7d7bb3fb9ff65fc0d9fd8daddb26a52f93c6ff0ad819d090e44a6cda7e1d9"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/gender.py",
+    "target": "backend/apps/users/choices/gender.py",
+    "sha256": "1265ca34351d8238224ac7ee9cc850721ffd9db3e8ce42610f7372a120739c3e"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/language.py",
+    "target": "backend/apps/users/choices/language.py",
+    "sha256": "c75f8a89e949971c3ec809200b119b5390c8cf37335f80106c2929ef9d95784f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/login.py",
+    "target": "backend/apps/users/choices/login.py",
+    "sha256": "c64aa93629bb04919373bbc9a5d4176ef3444aa57576ec4f9ec8224179e8438b"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/notification.py",
+    "target": "backend/apps/users/choices/notification.py",
+    "sha256": "eb6090bef870a53222edd883a578f45dfb92ab703823ff448e8fa8dcdeffbb93"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/security_event.py",
+    "target": "backend/apps/users/choices/security_event.py",
+    "sha256": "086ba42e2a98e73e8f176ab4b4c81dcc8d2ecfc678d9ab2a0ad317172fb8a5cd"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/user.py",
+    "target": "backend/apps/users/choices/user.py",
+    "sha256": "db93218a58d33fddfd73d9b5a97da4d162109cc612f891f512c1552973111a65"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/choices/__init__.py",
+    "target": "backend/apps/users/choices/__init__.py",
+    "sha256": "1327dd530a0df2a4b2970803d7ec2df9c2cfe54a62eaca87acd9a2208f451f98"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/exceptions/account.py",
+    "target": "backend/apps/users/exceptions/account.py",
+    "sha256": "38fdb8913de9c33c04e0908f0e5a48d933481674c673c1e8df849bd5972b23b7"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/exceptions/authentication.py",
+    "target": "backend/apps/users/exceptions/authentication.py",
+    "sha256": "4c0235299d7a2216e615610aa021a50482c610bc5ced72152c6c74b64f033089"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/exceptions/permission.py",
+    "target": "backend/apps/users/exceptions/permission.py",
+    "sha256": "1480b3ba1ffd4fa03ca0d23034b06dc4c31a9b38a15ebfaa731314cefb19421f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/exceptions/registration.py",
+    "target": "backend/apps/users/exceptions/registration.py",
+    "sha256": "3982376877a52064ec17f7a8335350c074f79bde6add0c771c28ee4555cb7eec"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/exceptions/security.py",
+    "target": "backend/apps/users/exceptions/security.py",
+    "sha256": "93c48c72e04d29ab009d5ab3b5b45aa04918ad3f61f5171b350838fadc852bd8"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/exceptions/user.py",
+    "target": "backend/apps/users/exceptions/user.py",
+    "sha256": "5dd970e03ebc2a323ff6b6dcd71420f256d864558c1784574541ea9488f3dc76"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/exceptions/__init__.py",
+    "target": "backend/apps/users/exceptions/__init__.py",
+    "sha256": "f37de7370141d1c5de075cfe5b7dc774b43717765a230a2708d169849d490b39"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0001_initial.py",
+    "target": "backend/apps/users/migrations/0001_initial.py",
+    "sha256": "56bdfe3f20fa59b14892d80baa7e5e87651dd62f02217e130507674c41161a13"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0002_address_profile.py",
+    "target": "backend/apps/users/migrations/0002_address_profile.py",
+    "sha256": "e0bf9bbd8613c5e267a79f6acd1f4370dd06b24260a61b53dcccf28ab4ea45a8"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0003_profile_nationality_emailverificationtoken_and_more.py",
+    "target": "backend/apps/users/migrations/0003_profile_nationality_emailverificationtoken_and_more.py",
+    "sha256": "f321b6c7607171330d36db49675d5c646c161ccdce56dd65ffcd5a28a3b3cec0"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0004_emailchangetoken.py",
+    "target": "backend/apps/users/migrations/0004_emailchangetoken.py",
+    "sha256": "2ca97aba40e667f11b83b5cf35d165134f27cbb5c782ac0a80f1239d4af62852"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0005_user_deleted_at.py",
+    "target": "backend/apps/users/migrations/0005_user_deleted_at.py",
+    "sha256": "279e4823f339637db8a826084e259f24787430f4eb30c5159221d7ce5464d157"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0006_remove_address_unique_default_address_per_type_and_more.py",
+    "target": "backend/apps/users/migrations/0006_remove_address_unique_default_address_per_type_and_more.py",
+    "sha256": "97549147d2537a769d8e74fc502482a518fa69fc2945c88919f65b95de81fdce"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0007_usersession.py",
+    "target": "backend/apps/users/migrations/0007_usersession.py",
+    "sha256": "85efcea6474bb2eadcae17ba4815600ffdec2e48292986a670b1bfcd3e3df661"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0008_alter_usersession_login_method_securityevent.py",
+    "target": "backend/apps/users/migrations/0008_alter_usersession_login_method_securityevent.py",
+    "sha256": "18b4724217dea08670208f83655a873e6f0840a137e8f562844882fef1c98ce4"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0009_alter_user_email.py",
+    "target": "backend/apps/users/migrations/0009_alter_user_email.py",
+    "sha256": "875e65912ae200abffe44955e86828ac95b2e279eac3cc7922bee9a081247520"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0010_normalize_user_emails.py",
+    "target": "backend/apps/users/migrations/0010_normalize_user_emails.py",
+    "sha256": "02fc9436b2785fdf1e3d605c4dc9fc9b58c6beb5d75e177b30f556cedaea26fd"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0011_address_unique_default_address_per_user.py",
+    "target": "backend/apps/users/migrations/0011_address_unique_default_address_per_user.py",
+    "sha256": "1252a5205918fe18587a2e3c5e1c05f4cd28ed3301bea50af21cef15aca92827"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0012_move_profile_and_address_out.py",
+    "target": "backend/apps/users/migrations/0012_move_profile_and_address_out.py",
+    "sha256": "2518043db1a4d9e984ac74d5cbce970cc437dc61813c8c3c7140c3436e584fe8"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0013_totpdevice_recoverycode.py",
+    "target": "backend/apps/users/migrations/0013_totpdevice_recoverycode.py",
+    "sha256": "00ec33fc3017cb44317bc56fd39555108b2830114736efe91cdbcaa1641e3e9c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/0014_socialaccount.py",
+    "target": "backend/apps/users/migrations/0014_socialaccount.py",
+    "sha256": "c0ad503067a43058ab53f105e8293aa7c516171a694560dc2ddc17655834bb80"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/migrations/__init__.py",
+    "target": "backend/apps/users/migrations/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/mfa.py",
+    "target": "backend/apps/users/models/mfa.py",
+    "sha256": "916a20ce751c842d62712d1a56f4308e3e1034342edce7da659def13c34d6669"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/security_event.py",
+    "target": "backend/apps/users/models/security_event.py",
+    "sha256": "2e7e7ef3a4e30404677b2768b693fff857fa56bc1992002835bc2c332ab69add"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/session.py",
+    "target": "backend/apps/users/models/session.py",
+    "sha256": "a4ac3bb8b2608cdd40e6acbdd20c6ea215cbea7683fb11a45228bd3bd47e6bf0"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/social.py",
+    "target": "backend/apps/users/models/social.py",
+    "sha256": "e9f2a16ce8495a3e9631380353ef29d723785e853c512d1e02cca8495a2c8239"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/user.py",
+    "target": "backend/apps/users/models/user.py",
+    "sha256": "a4407c4968c0d3fb92e697e84e4215c9fdce8cb088cd91cfb91740f59f86537a"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/__init__.py",
+    "target": "backend/apps/users/models/__init__.py",
+    "sha256": "b400cc9bd01e18e77dcfed4fcc8c62c6c3cbd5296bf6de84a3383d3acc3936c2"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/user.py",
+    "target": "backend/apps/users/selectors/user.py",
+    "sha256": "453959f939a73018ef1729e0f7748ebc08ca10d9fffc01c2f7e0f954caae8e99"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/__init__.py",
+    "target": "backend/apps/users/selectors/__init__.py",
+    "sha256": "fb8269c4cb3cf7ddc8eb2073c8c4fa8994233745b994e7cc2e6c44bbfa91f9ad"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/user.py",
+    "target": "backend/apps/users/services/user.py",
+    "sha256": "63c9285478352a7974f3930506d7021a6dba27c0339aeeb55a98b1e02db83ece"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tasks/emails.py",
+    "target": "backend/apps/users/tasks/emails.py",
+    "sha256": "2e9cc028315efc7105140aeb3f9408e321afbf37ff7705de4c6276ffae6cc2be"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tasks/maintenance.py",
+    "target": "backend/apps/users/tasks/maintenance.py",
+    "sha256": "9f1e47fa9e3669a256f54937d99dd46be52290e21ce2f2c8e7c981072f361b41"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tasks/security.py",
+    "target": "backend/apps/users/tasks/security.py",
+    "sha256": "5c846fb384ae0c1402abe94ff314c73275b3db992549f2dc7522203fb5aea962"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tasks/__init__.py",
+    "target": "backend/apps/users/tasks/__init__.py",
+    "sha256": "5f657c31570e2d828e218d1d44bf6c755e6890b213b7ff751148aa3327db4812"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tests/factories.py",
+    "target": "backend/apps/users/tests/factories.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tests/test_api.py",
+    "target": "backend/apps/users/tests/test_api.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tests/test_models.py",
+    "target": "backend/apps/users/tests/test_models.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tests/test_selectors.py",
+    "target": "backend/apps/users/tests/test_selectors.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tests/test_services.py",
+    "target": "backend/apps/users/tests/test_services.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/tests/test_tasks.py",
+    "target": "backend/apps/users/tests/test_tasks.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/utils/urls.py",
+    "target": "backend/apps/users/utils/urls.py",
+    "sha256": "5501fd9f37c2ec911b53a6c12d71e261286c3a6a655523b4e3c750772ddcda6d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/utils/__init__.py",
+    "target": "backend/apps/users/utils/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/account_validation.py",
+    "target": "backend/apps/users/services/auth/account_validation.py",
+    "sha256": "0f758fa24dee718838d3f41f03d17d556d87d7fcb8fe9657d689f32274d2399a"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/change_email.py",
+    "target": "backend/apps/users/services/auth/change_email.py",
+    "sha256": "c6c6ece03bcc7aa740866307956ebcc51c2e73ba0c66dca91a0696ca99e49b50"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/change_password.py",
+    "target": "backend/apps/users/services/auth/change_password.py",
+    "sha256": "cb8ea2cc3ed2245b61aa91b67e1e138ac8fc0623b8514bdbeb752bdc992c77f1"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/delete_account.py",
+    "target": "backend/apps/users/services/auth/delete_account.py",
+    "sha256": "1ecbcb2fd6696a6da7dd4dc5fbfbcf318f44e5a0078b2c0609144de29f0f2413"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/email_verification.py",
+    "target": "backend/apps/users/services/auth/email_verification.py",
+    "sha256": "9d9bac711511b914e24783b5f5cf73255b0d129f0a28bed2a38f784df95d3b04"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/forgot_password.py",
+    "target": "backend/apps/users/services/auth/forgot_password.py",
+    "sha256": "bc1faa425689c3f8f3eceebe8744ef0c9b8004bf8e06dc2757d25040a6aec544"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/issue_session.py",
+    "target": "backend/apps/users/services/auth/issue_session.py",
+    "sha256": "629baffde6d4cc53302bb8fca767f00597d935c97ad25a8789f57bc581f99c17"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/jwt.py",
+    "target": "backend/apps/users/services/auth/jwt.py",
+    "sha256": "5f211ce72088827376bd5a81546811471b05d5b22c6cfe48121a84c1f82e2510"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/lockout.py",
+    "target": "backend/apps/users/services/auth/lockout.py",
+    "sha256": "1398bd88369055c8a26d4a753f87f420cb3b637ba2edbbcbe583d5b3ee8c8fc7"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/login.py",
+    "target": "backend/apps/users/services/auth/login.py",
+    "sha256": "396e8076044aec235d656fae4c4c910df3981d72afe75fc9e8f6d4acf0386160"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/logout.py",
+    "target": "backend/apps/users/services/auth/logout.py",
+    "sha256": "d00b4b62c2ca644651048c82e284a509f35e5d9ee0101105cadc424d5783b39c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/logout_all.py",
+    "target": "backend/apps/users/services/auth/logout_all.py",
+    "sha256": "a6ed3d3be9c51f279c4da39237d1ff5e87bc3e24cba30fd9f75eeeb1d06ad265"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/me.py",
+    "target": "backend/apps/users/services/auth/me.py",
+    "sha256": "0bc31f86ac72eee035efe670befefedf54c0f298da6db6a4dca1738f0cb57ad3"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/mfa.py",
+    "target": "backend/apps/users/services/auth/mfa.py",
+    "sha256": "49dcaf57b71524dfa5e7b6dfe3012121ff5c1da61f900c71fec826e0b8d64f0c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/mfa_challenge.py",
+    "target": "backend/apps/users/services/auth/mfa_challenge.py",
+    "sha256": "fc8d04b0dac9db3ccde03855ff2d16dbdc34fd474986ca77037d790f99ffc8ef"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/mfa_login.py",
+    "target": "backend/apps/users/services/auth/mfa_login.py",
+    "sha256": "11f7a838c7d0cb821399960ba601e9e00f8e35811ca3e876325d32d1d37a7004"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/password.py",
+    "target": "backend/apps/users/services/auth/password.py",
+    "sha256": "5b8d22ae1de35004c8d49abad28beaab01de845bd90513a3dd41d3e12c16ad8b"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/password_validation.py",
+    "target": "backend/apps/users/services/auth/password_validation.py",
+    "sha256": "181fd1545f886477d3d6d2e866f59971fddd9c30f51a242b6d779bbc4c9990b1"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/refresh.py",
+    "target": "backend/apps/users/services/auth/refresh.py",
+    "sha256": "db09382e5b6905485d07c14aee1c39c82ef1bfe879f94945e1462632d082153d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/registration.py",
+    "target": "backend/apps/users/services/auth/registration.py",
+    "sha256": "1c8806f97a6d6dfaa06fe2b17af4a3e437897d3b96672da0c461c72f54c7ec8e"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/reset_password.py",
+    "target": "backend/apps/users/services/auth/reset_password.py",
+    "sha256": "98155ecb6029ec2b4d73fb0098bb3c05f6a9881c613b19c68a33d8e1d111e90d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/__init__.py",
+    "target": "backend/apps/users/services/auth/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/security/cleanup_sessions.py",
+    "target": "backend/apps/users/services/security/cleanup_sessions.py",
+    "sha256": "c54a1e0d6e5bb8b99d00d29c979c7cfcf603d563640e1779ec0616f0f4f9c95c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/security/create_session.py",
+    "target": "backend/apps/users/services/security/create_session.py",
+    "sha256": "7162c989893f679439c1f7d68615929cf59357eaef847e1863f69e55d036fbb3"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/security/list_sessions.py",
+    "target": "backend/apps/users/services/security/list_sessions.py",
+    "sha256": "01dfc3dce7ca48549fedb980f35e86ab5b92c6f54eddca9a9ea869886af0bd02"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/security/log_security_activity.py",
+    "target": "backend/apps/users/services/security/log_security_activity.py",
+    "sha256": "64a0ea736928a0060238b4e2dfaab2d2cac9ac9648684ce486ef57bfee33dc1b"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/security/revoke_session.py",
+    "target": "backend/apps/users/services/security/revoke_session.py",
+    "sha256": "d83734b3b525dda7a31bc3041f7f23b7892de3bf33f5345866eb7272481b99e1"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/security/session_state.py",
+    "target": "backend/apps/users/services/security/session_state.py",
+    "sha256": "77eee86623386d685b6debdafd077f0fa37c81f2d6782a0366534996472470d2"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/security/trust_device.py",
+    "target": "backend/apps/users/services/security/trust_device.py",
+    "sha256": "13dcc0441e32246a785dbba2e207db35cffa6655acd82d04c06995afcbed746b"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/security/untrust_device.py",
+    "target": "backend/apps/users/services/security/untrust_device.py",
+    "sha256": "ce55bc73bcc1d243502bea045c247374117251139451fa109197ba59028b4d7d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/security/__init__.py",
+    "target": "backend/apps/users/services/security/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/tokens/email_change.py",
+    "target": "backend/apps/users/services/tokens/email_change.py",
+    "sha256": "b0049b14d4d90d79d204774a1bb04b3491a92cfa4f03582fd3dc983636bf581f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/tokens/password_reset.py",
+    "target": "backend/apps/users/services/tokens/password_reset.py",
+    "sha256": "da71c3c1c3142d97816d594e9006618eb9686c48c57170f9fab3feede7f631f3"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/tokens/__init__.py",
+    "target": "backend/apps/users/services/tokens/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/social/base.py",
+    "target": "backend/apps/users/services/auth/social/base.py",
+    "sha256": "d7923f5c1b5bbae7ccc2052b4c9c95e59c41ebf15a90772b65bc1188cdbe26dc"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/social/google.py",
+    "target": "backend/apps/users/services/auth/social/google.py",
+    "sha256": "3ce8d38cb56f0666f71115e593be8228b0072808cb7af611da2044b3379fd95d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/social/login.py",
+    "target": "backend/apps/users/services/auth/social/login.py",
+    "sha256": "acd8d8a9d7a25e303a0205eaa12d8558b9288e9f97547de62eede0a5f8b65f21"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/services/auth/social/__init__.py",
+    "target": "backend/apps/users/services/auth/social/__init__.py",
+    "sha256": "ead87b92e6cec56de5ff81e568b82cc210b907c3ca0eb9d53aa482899e77aa4a"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/auth/email_change.py",
+    "target": "backend/apps/users/selectors/auth/email_change.py",
+    "sha256": "e4dfe7d4ac99075c5cb5d10e6baec55a4622848404374113f2de8fd6d1041c25"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/auth/email_verification.py",
+    "target": "backend/apps/users/selectors/auth/email_verification.py",
+    "sha256": "eb2f2f03e9b4b2b16c407e9d9e26617ac1cc3104ae4b810f0d0e79bfa198e855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/auth/password_reset.py",
+    "target": "backend/apps/users/selectors/auth/password_reset.py",
+    "sha256": "c42386dc38a68beafc32aaa4c1fbd8b640a9de2a27d1cd59eca51b49ec94f8c0"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/auth/__init__.py",
+    "target": "backend/apps/users/selectors/auth/__init__.py",
+    "sha256": "fad222cf97169c7a792b7262d9e939275fbdc1869e0a0d8192b983c45bae7624"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/security/security.py",
+    "target": "backend/apps/users/selectors/security/security.py",
+    "sha256": "34896fa524de27960b1afe289f1652939695ae86a38798d4af80f706d461935f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/security/session.py",
+    "target": "backend/apps/users/selectors/security/session.py",
+    "sha256": "bde1be0dbc980da9b7de6eeeb621756f0ba180862dd18f57671c536c944ac981"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/security/trusted_devices.py",
+    "target": "backend/apps/users/selectors/security/trusted_devices.py",
+    "sha256": "c6100246e4a900297bf5df4fb59cc4141d8c440f5c7b635c202b4837fb3e408e"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/selectors/security/__init__.py",
+    "target": "backend/apps/users/selectors/security/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/base/abstract_token.py",
+    "target": "backend/apps/users/models/base/abstract_token.py",
+    "sha256": "b63570ac8c2c8a9e393862e02ab510c9dc7bebc75b1930e39727f162acf65f09"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/base/__init__.py",
+    "target": "backend/apps/users/models/base/__init__.py",
+    "sha256": "d4b9523a468223e2ca46c44eefc10676f7037494636c1d18c1cdcadf3867389d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/managers/email_change.py",
+    "target": "backend/apps/users/models/managers/email_change.py",
+    "sha256": "c3a0429e855d6cfa0a67db8051df1f20f5312125fbdcdeb79fa73b14877fb79f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/managers/email_verification.py",
+    "target": "backend/apps/users/models/managers/email_verification.py",
+    "sha256": "25bdc83cd8adc661b02308ef6bbe6905e0ca45c02c7f8528fb1f989094c0efbb"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/managers/password_reset.py",
+    "target": "backend/apps/users/models/managers/password_reset.py",
+    "sha256": "1635b24074083712a1a0b23c97c6e43d7b4ae648147f28e8c6163f14e4b994ae"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/managers/user.py",
+    "target": "backend/apps/users/models/managers/user.py",
+    "sha256": "84a7785aa9e8cd822b6c627a63dec2abd1bddd8cb7202ee318f7e50067e61ba3"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/managers/__init__.py",
+    "target": "backend/apps/users/models/managers/__init__.py",
+    "sha256": "34978b989efd10eff7decad2d0a3df7d6be6c3489cbf4e8870b77e96b9395427"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/querysets/email_change.py",
+    "target": "backend/apps/users/models/querysets/email_change.py",
+    "sha256": "c94ecf5827d6e816eaa65563cb1f702b67466b769988f485bcefa49f26a24708"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/querysets/email_verification.py",
+    "target": "backend/apps/users/models/querysets/email_verification.py",
+    "sha256": "9babc7abb498d1e100f69b88a4bad16c3d53aa3790a0d78bbd577b6de1e8258e"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/querysets/password_reset.py",
+    "target": "backend/apps/users/models/querysets/password_reset.py",
+    "sha256": "024e9d1653d4e34267694dc2d89964989c0c85fbd5f7a7658801ffc918e0e1c6"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/querysets/__init__.py",
+    "target": "backend/apps/users/models/querysets/__init__.py",
+    "sha256": "2e81d3f09be9a0f64bdd5298ab33843ea15e874fe36644e5c7911b33306c75fc"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/tokens/email_change.py",
+    "target": "backend/apps/users/models/tokens/email_change.py",
+    "sha256": "c40db2fc9b33f978d04e822d3aa21dccc8ba06d4811471b0f2ba6115ff50fe5f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/tokens/email_verification.py",
+    "target": "backend/apps/users/models/tokens/email_verification.py",
+    "sha256": "0816e7bd46e925f01db3593841558b9d846b727e55c0c0e64b7312a0fc52590c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/tokens/password_reset.py",
+    "target": "backend/apps/users/models/tokens/password_reset.py",
+    "sha256": "59f219531247d5542b2708f4436e1500f730c443ef8b7fca37f12e6e398ea0d6"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/models/tokens/__init__.py",
+    "target": "backend/apps/users/models/tokens/__init__.py",
+    "sha256": "cc1069a5981352e2169e52c769be015140ef096e542042390a163832ab744fc6"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/management/commands/cleanup_sessions.py",
+    "target": "backend/apps/users/management/commands/cleanup_sessions.py",
+    "sha256": "5da22f8db6ae8494808837ce790543db57f44baee5e79d68b589eb2bed358f52"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/management/commands/__init__.py",
+    "target": "backend/apps/users/management/commands/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/admin/permissions.py",
+    "target": "backend/apps/users/api/admin/permissions.py",
+    "sha256": "5084dcaf3887bf1bafc0398962b43124e9d42665ff5eb448d12f599b9472722d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/admin/serializers.py",
+    "target": "backend/apps/users/api/admin/serializers.py",
+    "sha256": "5b965e718aaaced0ff8335e47a8facd59fa1234523b30e0feee35fc1713d00d2"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/admin/urls.py",
+    "target": "backend/apps/users/api/admin/urls.py",
+    "sha256": "5cf8e0abdbcddd39f4e4c72645211560e1729b076ff3f5b484467f1997dedecd"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/admin/views.py",
+    "target": "backend/apps/users/api/admin/views.py",
+    "sha256": "dc919da9d1a5806cc66ec3029a2eb701b2dab261d50010c1501a19f4e9b4da7b"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/admin/__init__.py",
+    "target": "backend/apps/users/api/admin/__init__.py",
+    "sha256": "76584859c7c689004040549285d783015f76a3fd11c6da1a7578850fce0da8a1"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/base.py",
+    "target": "backend/apps/users/api/serializers/base.py",
+    "sha256": "92348c7b25f2f5707e94ff684828cab7d0c28e357feac04777371612acb7865a"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/social.py",
+    "target": "backend/apps/users/api/serializers/social.py",
+    "sha256": "c1052485e5f51e9d714c31eb3728dea76c53d52d7d9846585a40c65afb8bd08f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/user.py",
+    "target": "backend/apps/users/api/serializers/user.py",
+    "sha256": "342bbe11f5ee113b148b2e554d2fb21cacc7e8543a931704e4f40a160bc33747"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/__init__.py",
+    "target": "backend/apps/users/api/serializers/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/urls/auth.py",
+    "target": "backend/apps/users/api/urls/auth.py",
+    "sha256": "c1ca918a64bfa6a1ddc200bff5c24b070d5738319af4188b17065d9725b924eb"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/urls/security.py",
+    "target": "backend/apps/users/api/urls/security.py",
+    "sha256": "f77c4fa9fd35050ad2222d09b77d30d8fc5854d8e936f57801ae1ff38743149f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/urls/__init__.py",
+    "target": "backend/apps/users/api/urls/__init__.py",
+    "sha256": "dbea43ba1d807eb3ff979128a5686e8e57de2869491560430a73e9d897389746"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/social.py",
+    "target": "backend/apps/users/api/views/social.py",
+    "sha256": "42b04e0e95c95e542399340674da434d533d6095abb07011c5e95a4d45374e5e"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/__init__.py",
+    "target": "backend/apps/users/api/views/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/change_email.py",
+    "target": "backend/apps/users/api/views/auth/change_email.py",
+    "sha256": "ee1237c68df31324292f5643bc1b17168879e8ce0e72d490ea3b07964b303af7"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/change_password.py",
+    "target": "backend/apps/users/api/views/auth/change_password.py",
+    "sha256": "4bcc98aeaec25e66307da40c36d99fa4666a4b9529941dc91d30ecb9ae3125b4"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/delete_account.py",
+    "target": "backend/apps/users/api/views/auth/delete_account.py",
+    "sha256": "4ceee529c58afe47dfe81a56239d0bdf6b1bb85901710196f5c3924ebb1e38f7"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/email_verification.py",
+    "target": "backend/apps/users/api/views/auth/email_verification.py",
+    "sha256": "56841804ea3289b0a224d46eff44624affe9056eac273402a0e18bd7f36b6d23"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/forgot_password.py",
+    "target": "backend/apps/users/api/views/auth/forgot_password.py",
+    "sha256": "1a721dae1679087968b8d855ee82353464f830c215a2f9336ff9a7ba410ebce8"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/login.py",
+    "target": "backend/apps/users/api/views/auth/login.py",
+    "sha256": "df6a24595d2bceacfc371e1e4f2e1a0eecb29531ed5e028c71930f03d2f5816e"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/logout.py",
+    "target": "backend/apps/users/api/views/auth/logout.py",
+    "sha256": "864ff46fb8cbec969cb6bd0f88c0810499b4d9153285b009733d94a00308bfa2"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/logout_all.py",
+    "target": "backend/apps/users/api/views/auth/logout_all.py",
+    "sha256": "ac291c31f879eaeb5cf3933aeaea6c9d3b35cba200e7614f9b5518ff94a6477c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/me.py",
+    "target": "backend/apps/users/api/views/auth/me.py",
+    "sha256": "f97c20a61367653dd88abb409ec2715406fc559ae44f66943446bb7cb26acc7b"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/registration.py",
+    "target": "backend/apps/users/api/views/auth/registration.py",
+    "sha256": "e384e6b11c0cb8c92452c13fc5f3e9738618dd39a552393deec445bf9c381353"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/resend_verification.py",
+    "target": "backend/apps/users/api/views/auth/resend_verification.py",
+    "sha256": "5094156fddefa360895802df20d46009b9f08e97c815610d7e255635db9914b6"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/reset_password.py",
+    "target": "backend/apps/users/api/views/auth/reset_password.py",
+    "sha256": "6b85a38f3a3605d4a65a0b99146e54768351464dcc6327d326c4b8f3bc4388e8"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/token_refresh.py",
+    "target": "backend/apps/users/api/views/auth/token_refresh.py",
+    "sha256": "a4ad7acb5f4ea64cc8d2d591cb3e78fb41293c48a06ac2837806ee79254a45f4"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/auth/__init__.py",
+    "target": "backend/apps/users/api/views/auth/__init__.py",
+    "sha256": "32ac548ca716f7cbc92434152ea2d9187fe79416697fd9a46e406226065c8e7d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/mfa/__init__.py",
+    "target": "backend/apps/users/api/views/mfa/__init__.py",
+    "sha256": "b4bd927e5118895517bd0e382fb33f77f1cd230ca06d27d6c01dc30557e1551c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/security/revoke_session.py",
+    "target": "backend/apps/users/api/views/security/revoke_session.py",
+    "sha256": "bb536e5d37aa54a9fbfde03df02ce02c1a915a4859c34be43bcf3780f7654279"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/security/sessions.py",
+    "target": "backend/apps/users/api/views/security/sessions.py",
+    "sha256": "d53bfec4ec6be243cf7a46443f0aa651f48508b140c397f451e8ed085d8395f2"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/security/trusted_devices.py",
+    "target": "backend/apps/users/api/views/security/trusted_devices.py",
+    "sha256": "8ce55efada0f2b3552ac51332d18a73610cba38fc46d5f761c026e96abdeb4c2"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/views/security/__init__.py",
+    "target": "backend/apps/users/api/views/security/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/change_password.py",
+    "target": "backend/apps/users/api/serializers/auth/change_password.py",
+    "sha256": "c9666abe816dbf400971a29a6b097adb46f55c87f0a74c2b578af27ea954c1ea"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/confirm_email_change.py",
+    "target": "backend/apps/users/api/serializers/auth/confirm_email_change.py",
+    "sha256": "76b44baeb0c395ea81a019a6dd2609d5979b86a4f4df5a42f1e79d8a2546493e"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/delete_account.py",
+    "target": "backend/apps/users/api/serializers/auth/delete_account.py",
+    "sha256": "a201f96293fd855dbd0751ad6b0d2bf98ae4f029e15241fb665cd3c0d76feede"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/email_verification.py",
+    "target": "backend/apps/users/api/serializers/auth/email_verification.py",
+    "sha256": "e4eec1e0fb118e3b428baaf6f3ecff9d85b7d6563ff3b5d00bb97d397819aa26"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/forgot_password.py",
+    "target": "backend/apps/users/api/serializers/auth/forgot_password.py",
+    "sha256": "c4a9243162692d717b54fa9d3d5fd176ae8f15caba767c597f264d8406b8ce73"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/login.py",
+    "target": "backend/apps/users/api/serializers/auth/login.py",
+    "sha256": "e5a18b2054c6e69f7af7fe6c766ea64b27f72f67f5b494ec54caeda3aa378392"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/login_response.py",
+    "target": "backend/apps/users/api/serializers/auth/login_response.py",
+    "sha256": "543bc99e2b6a1755b0efec03eb3c8736357723398b92d1668deeb0ade7b02588"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/logout.py",
+    "target": "backend/apps/users/api/serializers/auth/logout.py",
+    "sha256": "4dcd3dc0dfedffd44331b729ac9fc473355d31d082b1dd702da7291a0e1efe6c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/logout_all.py",
+    "target": "backend/apps/users/api/serializers/auth/logout_all.py",
+    "sha256": "eb20e9a8b2707b293a87362fe55d0071d95430168baec5569e658328496f2d10"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/me.py",
+    "target": "backend/apps/users/api/serializers/auth/me.py",
+    "sha256": "cf72f636044ff46a80b5a001727a0fe4b7f6a243ba3e90d8e30dd06c07804dd1"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/password_reset.py",
+    "target": "backend/apps/users/api/serializers/auth/password_reset.py",
+    "sha256": "8f36e96c706db6594cfe923cbe2f2b4a0ca50ee03fdfb1274ab97879e25f5eb1"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/registration.py",
+    "target": "backend/apps/users/api/serializers/auth/registration.py",
+    "sha256": "6f37c478dd0f71b4b6c77c65c77ba50f42fbf49c54be715c94d99f00119f8ca3"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/registration_response.py",
+    "target": "backend/apps/users/api/serializers/auth/registration_response.py",
+    "sha256": "e8441b69a8fc2de698d2229c00c82ef71a295d9b9dfa4807a72c7c5b41ef0f16"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/request_email_change.py",
+    "target": "backend/apps/users/api/serializers/auth/request_email_change.py",
+    "sha256": "c9d77eb14cefe811802617235b432498cf78d7f73f88ab9a59ceac58b46df9b7"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/resend_verification.py",
+    "target": "backend/apps/users/api/serializers/auth/resend_verification.py",
+    "sha256": "c5a1a4992565ad7a9f6f18348269f65d03a4b3fb7d9df1119be633db8a95691f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/reset_password.py",
+    "target": "backend/apps/users/api/serializers/auth/reset_password.py",
+    "sha256": "6fb2ce15e81e98008a86fe1eda9a01d054e7077679fd7fe80f88580391f78bea"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/token_refresh.py",
+    "target": "backend/apps/users/api/serializers/auth/token_refresh.py",
+    "sha256": "9d7b162ac23d69fce7675a8cfc127f8619f61635cb3856a2958b3a36bf4f6459"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/auth/__init__.py",
+    "target": "backend/apps/users/api/serializers/auth/__init__.py",
+    "sha256": "a55555fa02fe22f6ff274901e7d10fa93463e7107a15be1e028e25e02fb0b1f9"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/mfa/__init__.py",
+    "target": "backend/apps/users/api/serializers/mfa/__init__.py",
+    "sha256": "65750054834ce5295b1fb195264d45b0a986f15967d45d47ce34e3ddec384f0a"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/security/revoke_session.py",
+    "target": "backend/apps/users/api/serializers/security/revoke_session.py",
+    "sha256": "bc5dc2527a17946ffbfec1c70175202c88673972a0b3a5a1fb275228fbdd1b2f"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/security/session.py",
+    "target": "backend/apps/users/api/serializers/security/session.py",
+    "sha256": "1501e30ca69b6144b13ba97bbdcdab5c47b0019c87a3cc9e377d3f5413b48a41"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/security/trusted_devices.py",
+    "target": "backend/apps/users/api/serializers/security/trusted_devices.py",
+    "sha256": "93b3675fd9ee0268a0b79c5f9ba5841c2d7573d1e1c53296ddd61a7f6f5b9211"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/users/api/serializers/security/__init__.py",
+    "target": "backend/apps/users/api/serializers/security/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/apps.py",
+    "target": "backend/apps/profiles/apps.py",
+    "sha256": "ca8b7bbe5b3cd0bf115531f7d2d6870b03384c723c4ccd1b6f9014c0d7cb7226"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/choices.py",
+    "target": "backend/apps/profiles/choices.py",
+    "sha256": "e04b31cd7282372f2a5a93617c1c29bbd3defe2689dbc9cf177728cbd94f5969"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/constants.py",
+    "target": "backend/apps/profiles/constants.py",
+    "sha256": "13e82c36fdc67d924ac50af591662cc5b30e5138d7e13efb63745b27da0cdc72"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/exceptions.py",
+    "target": "backend/apps/profiles/exceptions.py",
+    "sha256": "51aab5a2d40882bf7c396119c5bf67ed817b30e0c55afa889c2b52a0ce33e6a5"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/__init__.py",
+    "target": "backend/apps/profiles/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/admin/address.py",
+    "target": "backend/apps/profiles/admin/address.py",
+    "sha256": "22a566a142980084fbafda57828c54c5d4a20d09c11e83de4b8a63641a93f5cd"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/admin/profile.py",
+    "target": "backend/apps/profiles/admin/profile.py",
+    "sha256": "49bb8c759b5727a73376d3cec03570c8840a7a38de0c0c33461c805236b07bc1"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/admin/__init__.py",
+    "target": "backend/apps/profiles/admin/__init__.py",
+    "sha256": "f22f9c423d2ffed1a9e676d252442308a7bc240115450ea629055a3c6c467a2c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/__init__.py",
+    "target": "backend/apps/profiles/api/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/migrations/0001_initial.py",
+    "target": "backend/apps/profiles/migrations/0001_initial.py",
+    "sha256": "bc55eb16da43f22f896378ad9d543322fdfc350ed5520f4666ce3ce75f1b6b44"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/migrations/__init__.py",
+    "target": "backend/apps/profiles/migrations/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/models/address.py",
+    "target": "backend/apps/profiles/models/address.py",
+    "sha256": "acd5a0c0badd9e9536a483fea52f2c6bb147c49edf14256d1d2a904a8c8b6eee"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/models/profile.py",
+    "target": "backend/apps/profiles/models/profile.py",
+    "sha256": "8109985936f19872cccd9b56f37f4891249f7efb99209cf34044dfa5e50cc739"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/models/__init__.py",
+    "target": "backend/apps/profiles/models/__init__.py",
+    "sha256": "dc13d45aae29fd09561fe62e04f773a89a95d8e241faf93f1f3300c36385fe5e"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/selectors/address.py",
+    "target": "backend/apps/profiles/selectors/address.py",
+    "sha256": "f697997f0c7b1b52efc5292595108f83a1936496f390cb85c6433e0147f1182a"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/selectors/profile.py",
+    "target": "backend/apps/profiles/selectors/profile.py",
+    "sha256": "c99f34746b80cd0608416ad850ce65cc31fdc627fcf2ae1540a71d37ff8a3ec5"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/selectors/__init__.py",
+    "target": "backend/apps/profiles/selectors/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/profile.py",
+    "target": "backend/apps/profiles/services/profile.py",
+    "sha256": "98ac26fe4a1dd087be9d3c9724b89145117e66087f45a954c15842c3ee20246e"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/__init__.py",
+    "target": "backend/apps/profiles/services/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/signals/user.py",
+    "target": "backend/apps/profiles/signals/user.py",
+    "sha256": "595f7e3c6cc5fcd2ac901ac982c7732df0c5d2628df5feb00689bc253ba9d610"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/signals/__init__.py",
+    "target": "backend/apps/profiles/signals/__init__.py",
+    "sha256": "2c19472b202767c8fe17eff85b3366b84360796552a51a3578808312e69b71db"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/account/delete_avatar.py",
+    "target": "backend/apps/profiles/services/account/delete_avatar.py",
+    "sha256": "91e46152d21475dde278fd95d61789de2a8dc4cf318b7e8e4844774e4a30a14c"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/account/update_avatar.py",
+    "target": "backend/apps/profiles/services/account/update_avatar.py",
+    "sha256": "bedfbc7aed94dd3860fb3dd6e102d991cae4be731c7345d0bdbd96e5792d9a88"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/account/update_profile.py",
+    "target": "backend/apps/profiles/services/account/update_profile.py",
+    "sha256": "7b5596f974b40c06e4b10eb762d4da9c8e9af865f40612fe8bff5a7c0d307d36"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/account/__init__.py",
+    "target": "backend/apps/profiles/services/account/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/address/create.py",
+    "target": "backend/apps/profiles/services/address/create.py",
+    "sha256": "803544d387d38ce48cb0a82c75a7452e38a30514536a996055b540a136fbac0a"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/address/delete.py",
+    "target": "backend/apps/profiles/services/address/delete.py",
+    "sha256": "01a935ac686e61c9f06370a56b986234d40ac5ce2db0b4d61488d62f5bcaa6d8"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/address/set_default.py",
+    "target": "backend/apps/profiles/services/address/set_default.py",
+    "sha256": "dcba6cbb9dee9e450d76bbaa700a995fccf6f907028f5f16db91049f1b07d48b"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/address/update.py",
+    "target": "backend/apps/profiles/services/address/update.py",
+    "sha256": "79ab34ca00a1faca1f070983e770acf29b593b1274123142687cde245b1841fd"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/services/address/__init__.py",
+    "target": "backend/apps/profiles/services/address/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/__init__.py",
+    "target": "backend/apps/profiles/api/serializers/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/urls/address.py",
+    "target": "backend/apps/profiles/api/urls/address.py",
+    "sha256": "01f17f0c5ad802abbc7ca4872b396b0f212f667c9db843292e7f3df458d79239"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/urls/__init__.py",
+    "target": "backend/apps/profiles/api/urls/__init__.py",
+    "sha256": "bd160eebadc55ef64d546aa02f9ef15966befd27fffcb08d3ca1c3f82fb3aa69"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/views/avatar.py",
+    "target": "backend/apps/profiles/api/views/avatar.py",
+    "sha256": "51e321e94ae45ada549d8ab8902667cfd5ac345684296a507c56b9ae2c79df00"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/views/profile.py",
+    "target": "backend/apps/profiles/api/views/profile.py",
+    "sha256": "0fe723a1bd7c623a3cf77adaea0537e1921453801915a6eeb5fab047f3cb4912"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/views/__init__.py",
+    "target": "backend/apps/profiles/api/views/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/views/address/base.py",
+    "target": "backend/apps/profiles/api/views/address/base.py",
+    "sha256": "e970e90c427b2a4902e551e4535b20763f0a3ced1db30154eb07b13ef3c0fbe8"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/views/address/detail.py",
+    "target": "backend/apps/profiles/api/views/address/detail.py",
+    "sha256": "62c27468ac5db4c75a574a8ece66e213ea08aafde948e9054a53f700a4ecfbf7"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/views/address/list_create.py",
+    "target": "backend/apps/profiles/api/views/address/list_create.py",
+    "sha256": "4c9d6e448aa17ff7e7bbae8d25d62eda7c5f9969bde3dc0f854290efacb8920a"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/views/address/set_default.py",
+    "target": "backend/apps/profiles/api/views/address/set_default.py",
+    "sha256": "29798a65f1882a016a01a67675980cb00c788a41eed57d9ed779a64f64d6738d"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/views/address/__init__.py",
+    "target": "backend/apps/profiles/api/views/address/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/address/base.py",
+    "target": "backend/apps/profiles/api/serializers/address/base.py",
+    "sha256": "c38e327c3b640ba0db225e26d1eeff8ab0ecab8857f742cbb6dfd42295706a14"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/address/create.py",
+    "target": "backend/apps/profiles/api/serializers/address/create.py",
+    "sha256": "0a1e2a1e2eff2c672ccda863d0a19a77bd53e6750d8f20889ee61e4c6f4f05d2"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/address/detail.py",
+    "target": "backend/apps/profiles/api/serializers/address/detail.py",
+    "sha256": "8c938aae476aec95f65eb3961914b2f541c6b3f8b0330e19b9210232bcd877aa"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/address/update.py",
+    "target": "backend/apps/profiles/api/serializers/address/update.py",
+    "sha256": "3a59d4160a5f15acb6c08b02a8644449491785c7f707895ee8ba9dece9333091"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/address/__init__.py",
+    "target": "backend/apps/profiles/api/serializers/address/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/profile/avatar.py",
+    "target": "backend/apps/profiles/api/serializers/profile/avatar.py",
+    "sha256": "5343da29aca9d706097caf7d0c9ac074aaee41fee01f9ee1aecbdd9a46aa3a48"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/profile/detail.py",
+    "target": "backend/apps/profiles/api/serializers/profile/detail.py",
+    "sha256": "59034c77f453cb95e99d41d010688e1b49d3ad14fd924fe7178bc57d58abffa7"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/profile/update.py",
+    "target": "backend/apps/profiles/api/serializers/profile/update.py",
+    "sha256": "2537dec2606eb086dbdad235e957a87ba338e2f775511b9b5686449748016492"
+  },
+  {
+    "source": "lwnf-dev/backend/apps/profiles/api/serializers/profile/__init__.py",
+    "target": "backend/apps/profiles/api/serializers/profile/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/backend/manage.py",
+    "target": "backend/manage.py",
+    "sha256": "c6817ac7cac6b2526d78bad7a17e6c7388d25655c8b3ca31d01437f4c080a424"
+  },
+  {
+    "source": "lwnf-dev/backend/pyproject.toml",
+    "target": "backend/pyproject.toml",
+    "sha256": "ea0f8d083d2e3fc20abb611ff7eb0cb342eb24da4a54ab43b7ac6a48198ded86"
+  },
+  {
+    "source": "lwnf-dev/backend/uv.lock",
+    "target": "backend/uv.lock",
+    "sha256": "910c2ede7f116b573b557a8702d0030c280a2a9c26129cb943eb7015ba396a32"
+  },
+  {
+    "source": "lwnf-dev/backend/.env.example",
+    "target": "backend/.env.example",
+    "sha256": "f380f159d9b1f24ca7d2a645042d2bb3d36cdcb2fe00b5f68c508c4a3539d5af"
+  },
+  {
+    "source": "lwnf-dev/backend/.gitignore",
+    "target": "backend/.gitignore",
+    "sha256": "965633b89cf40b6e736e3f0f37b2a02fc09367e593750ede190d10e7eba09d5d"
+  },
+  {
+    "source": "lwnf-dev/backend/.dockerignore",
+    "target": "backend/.dockerignore",
+    "sha256": "cf2123bd34646eed662c621b37ffc29a0d13f93b9126cc32fbaffcbbadf5d759"
+  },
+  {
+    "source": "lwnf-dev/backend/LICENSE",
+    "target": "backend/LICENSE",
+    "sha256": "6e5c2d7e43217e848270808102b3e77ddb18a81e05fad1ff14caa7fe8fe40484"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/layout.tsx",
+    "target": "frontend/app/(app)/layout.tsx",
+    "sha256": "c7a4bc385be634599ec56ff34c790bece8d1b19dab061bafe74e1b4e7e6adcf4"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/providers.tsx",
+    "target": "frontend/app/(app)/providers.tsx",
+    "sha256": "3b238588358fdcb5e4fb6ee1bc67ec87ab16a17bb59c0de5f1821ecb02a691b1"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/layout.tsx",
+    "target": "frontend/app/(app)/admin/layout.tsx",
+    "sha256": "42f44f4411a34edb04a363e8fae4b5f53d022b8e17fa5a059dee5a378643b873"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/page.tsx",
+    "target": "frontend/app/(app)/profile/page.tsx",
+    "sha256": "752011f3a729f8636c53e229978a76c17af32f0df9c07321aeab179fc0eae111"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/resend-verification/page.tsx",
+    "target": "frontend/app/(app)/resend-verification/page.tsx",
+    "sha256": "fe8feeba3bcd7627436263868a8f7b25bb3a1785a2f751952f0501f12f7cade6"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/resend-verification/components/resend-verification-form.tsx",
+    "target": "frontend/app/(app)/resend-verification/components/resend-verification-form.tsx",
+    "sha256": "d1805177072e79b23e30bb65eee3ccb26881ab0dc904d805a312bfbba2adf538"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/change-email/page.tsx",
+    "target": "frontend/app/(app)/profile/change-email/page.tsx",
+    "sha256": "4afd8363bca9c6ba2bd56f0bb60ac40e740e438bdfdef31f3058c256621fcb42"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/change-password/page.tsx",
+    "target": "frontend/app/(app)/profile/change-password/page.tsx",
+    "sha256": "05d8e090874be93418777b134ac8b760baa9e20a0378b0a952352a5fc3a2dd9c"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/active-sessions-card.tsx",
+    "target": "frontend/app/(app)/profile/components/active-sessions-card.tsx",
+    "sha256": "59112eee6b7f18568241d96ba35415bdf3d0f24847243bf749e71394433fc7f0"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/avatar-upload.tsx",
+    "target": "frontend/app/(app)/profile/components/avatar-upload.tsx",
+    "sha256": "70e522ad2c8788ff1f5b1ecef89e01c273c7eb3c7ebe84365816ec583cb0125f"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/change-email-card.tsx",
+    "target": "frontend/app/(app)/profile/components/change-email-card.tsx",
+    "sha256": "75dc77865b32b3b5c2937840a1870a0d4c10602dab87a420074a1846010f8f86"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/change-password-card.tsx",
+    "target": "frontend/app/(app)/profile/components/change-password-card.tsx",
+    "sha256": "3aa2c5ca093aa80c5d4aa8c059a0802bd54a8c9a9d1f469ce3311fbdb1fcd5a2"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/danger-zone.tsx",
+    "target": "frontend/app/(app)/profile/components/danger-zone.tsx",
+    "sha256": "6c87e407daa9a945c5d677b7ac6745f3393516b3c3fd13b283b410d7f1357c76"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/edit-profile-card.tsx",
+    "target": "frontend/app/(app)/profile/components/edit-profile-card.tsx",
+    "sha256": "9e112bbdd2754af1942602ae7f591bb9daa9141d00b4bfa8ab464bd40fb38d6e"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/profile-form.tsx",
+    "target": "frontend/app/(app)/profile/components/profile-form.tsx",
+    "sha256": "c61a9c683e11d2abae93124c19e78c78f0d25173d6d050b6428cf0ae10606aa0"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/profile-header.tsx",
+    "target": "frontend/app/(app)/profile/components/profile-header.tsx",
+    "sha256": "1421736f368fb8d450c3fd866a553223c586d633201fddc25700004918cd49b7"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/profile-info-card.tsx",
+    "target": "frontend/app/(app)/profile/components/profile-info-card.tsx",
+    "sha256": "3ede04dc226b965a17c0fb23d4f92ce9622a666334e5d6b9da127950bc7b84a2"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/security-card.tsx",
+    "target": "frontend/app/(app)/profile/components/security-card.tsx",
+    "sha256": "837ec9ecdd9d4bdee0f39d63cac7991ccb2b3afc61175193d899c76461927b09"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/session-card.tsx",
+    "target": "frontend/app/(app)/profile/components/session-card.tsx",
+    "sha256": "5138d5a61db84a5c53084aefd96eef063b00a2b0316a8178aff8a50f41fa4c19"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/trusted-device-card.tsx",
+    "target": "frontend/app/(app)/profile/components/trusted-device-card.tsx",
+    "sha256": "8f69a9f48068d8437784bff38826114491b88acbf31b85435042846a77051670"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/profile/components/trusted-devices-card.tsx",
+    "target": "frontend/app/(app)/profile/components/trusted-devices-card.tsx",
+    "sha256": "ad8ffc27e015304bce606ee1d103888b71b6409c2978c3008a6320012ff8636f"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/achievements-input.tsx",
+    "target": "frontend/app/(app)/admin/components/achievements-input.tsx",
+    "sha256": "00e5e169c410b7b6ba0dcda6f9ad1ef3b6b0042ca4d841445912525473ab2de7"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/cells.tsx",
+    "target": "frontend/app/(app)/admin/components/cells.tsx",
+    "sha256": "de31b44b57441a98506a09f181c44b8a9fd6f32b5d1116b3b5ad76cb2add73b8"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/charts.tsx",
+    "target": "frontend/app/(app)/admin/components/charts.tsx",
+    "sha256": "e52e3ca6878bbd66257d5caa849ade505c4a81eb3753322ca4955faa7865b24d"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/confirm-dialog.tsx",
+    "target": "frontend/app/(app)/admin/components/confirm-dialog.tsx",
+    "sha256": "22284702b0e6d1ef6d2544e36ec3c00f28c300fd63dbb3d01cade93e625627ca"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/header.tsx",
+    "target": "frontend/app/(app)/admin/components/header.tsx",
+    "sha256": "34f05082ed22d88f16548d8ad47e6ef1b76af878ba88d4631521a9ae55b72d9e"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/image-field.tsx",
+    "target": "frontend/app/(app)/admin/components/image-field.tsx",
+    "sha256": "40857799b2ec9ce51bba009ea0bea445a6901721b68acc03db929ff6930253eb"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/nav-item.tsx",
+    "target": "frontend/app/(app)/admin/components/nav-item.tsx",
+    "sha256": "86a18258401b5bf86e60828c80d25cfd335f646217d0633f5132429aee674166"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/resource-form.tsx",
+    "target": "frontend/app/(app)/admin/components/resource-form.tsx",
+    "sha256": "19eb959cfe6661ed6add935557b2b3e33ad69688c318e5a7f64e44522c948a2c"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/resource-table.tsx",
+    "target": "frontend/app/(app)/admin/components/resource-table.tsx",
+    "sha256": "6b52abab28fa062b07bcf164107fe182f0474e77b22c7b05895d0d1d0a7ec6ef"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/rich-text.tsx",
+    "target": "frontend/app/(app)/admin/components/rich-text.tsx",
+    "sha256": "70918790bcc36d86ccec88a631efb9cc6d3016e3e9988320982738e3abb90ec1"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/components/sidebar.tsx",
+    "target": "frontend/app/(app)/admin/components/sidebar.tsx",
+    "sha256": "4ad2b996ab44cfd06b0f10c04a3f72694858181706c42c3fae76bc44bfeef056"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/dashboard/page.tsx",
+    "target": "frontend/app/(app)/admin/dashboard/page.tsx",
+    "sha256": "39308f7dda567fa9a450a27e0b1faa7264e85cf308747fe864c4b12ec5c14179"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/[resource]/page.tsx",
+    "target": "frontend/app/(app)/admin/[resource]/page.tsx",
+    "sha256": "ca68fbb06d268814d74edd135be152f45547c8b288616e14484c0b1be7acbca0"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/admin/[resource]/[id]/page.tsx",
+    "target": "frontend/app/(app)/admin/[resource]/[id]/page.tsx",
+    "sha256": "bdcbeaff048454f7122e94de18762d98ca4344ce03f7a266c68c8409f0f3dc27"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/forgot-password/page.tsx",
+    "target": "frontend/app/(app)/(auth)/forgot-password/page.tsx",
+    "sha256": "ccd130014ff746f6ef41cd57be3b99141dc1c6ca7a6a796fe30b8b4d539f5532"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/login/page.tsx",
+    "target": "frontend/app/(app)/(auth)/login/page.tsx",
+    "sha256": "780909e95db5bfc245f035d0491f5d96940af4785e39b65c2eb77b8082af3aa6"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/register/page.tsx",
+    "target": "frontend/app/(app)/(auth)/register/page.tsx",
+    "sha256": "5fa436caf866f6ecb7816058b617c853ae391659513204e5fc413a9bd659f8c0"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/registration-success/page.tsx",
+    "target": "frontend/app/(app)/(auth)/registration-success/page.tsx",
+    "sha256": "3a85bcc13e94fb75a07a974bc3580b3986e8378aaf696c468dd78a0340635907"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/reset-password/page.tsx",
+    "target": "frontend/app/(app)/(auth)/reset-password/page.tsx",
+    "sha256": "83fd599c7f33fabb723f22306b85624f3d90036674592d8e8723d635ab148f9a"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/verify-email/page.tsx",
+    "target": "frontend/app/(app)/(auth)/verify-email/page.tsx",
+    "sha256": "3025cdd343b13e1346f515dc9c589883100b819a9a79f364852ccfe94a90d3e9"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/verify-email/components/verify-email-card.tsx",
+    "target": "frontend/app/(app)/(auth)/verify-email/components/verify-email-card.tsx",
+    "sha256": "15d04c5c6b509181ff7e37fd2409f5612443d196b6ea582a7fdcfb4b2e5d965f"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/reset-password/components/reset-password-form.tsx",
+    "target": "frontend/app/(app)/(auth)/reset-password/components/reset-password-form.tsx",
+    "sha256": "354136317fd4d62132d07f3e3dc0ae32599c551f971f55f46daba528a807b3d0"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/register/components/form-alert.tsx",
+    "target": "frontend/app/(app)/(auth)/register/components/form-alert.tsx",
+    "sha256": "e93d466c3bfabbd278b1b9a9d1257b2e5c83426c57e7189e02e9bcac0e2bcfb0"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/register/components/password-field.tsx",
+    "target": "frontend/app/(app)/(auth)/register/components/password-field.tsx",
+    "sha256": "4af6490ccedbe2e04e34f723a6cc9c33e300cfedc75384de3cf3b04b0f5434b6"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/register/components/password-rules.tsx",
+    "target": "frontend/app/(app)/(auth)/register/components/password-rules.tsx",
+    "sha256": "ccddecdddcdce8002cb09fa95a721033cb2cc8d31bc29e65869955c61a1d6cef"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/register/components/password-strength.tsx",
+    "target": "frontend/app/(app)/(auth)/register/components/password-strength.tsx",
+    "sha256": "b98512b9c6e04012b0702ace049e4c27c5e47f47cd72cf9513ad0aa0ae8ef568"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/register/components/register-form.tsx",
+    "target": "frontend/app/(app)/(auth)/register/components/register-form.tsx",
+    "sha256": "3cd899e7389175c4909ebc360d24f7154ce2e2af9a134f1b0cf3dc402f231c91"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/register/hooks/use-password-strength.ts",
+    "target": "frontend/app/(app)/(auth)/register/hooks/use-password-strength.ts",
+    "sha256": "bd34bc43348ff8b1033f028c79bb0584d77ad318f37db5750788b33fe4c295de"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/register/utils/password-strength.ts",
+    "target": "frontend/app/(app)/(auth)/register/utils/password-strength.ts",
+    "sha256": "8d83689134b816abce6a2b6ecdb15afa7b834e21c132e263053b35ce6f89490b"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/(app)/(auth)/forgot-password/components/forgot-password-form.tsx",
+    "target": "frontend/app/(app)/(auth)/forgot-password/components/forgot-password-form.tsx",
+    "sha256": "1b8345a25be584b334d96dd47953d0cffa74b615a3faa1f0de3da7c9203a91b8"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/auth/auth-provider.tsx",
+    "target": "frontend/components/auth/auth-provider.tsx",
+    "sha256": "f51c6d794c84368bc54a2cca4a05210b139e31da7519a5094ee50cad6e00e0e9"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/auth/guest-route.tsx",
+    "target": "frontend/components/auth/guest-route.tsx",
+    "sha256": "8c5a3d9704b6e20e067872b1db6dc323a9ee40d35b854bc923681c0d31104388"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/auth/protected-route.tsx",
+    "target": "frontend/components/auth/protected-route.tsx",
+    "sha256": "7a42177afb31c2a2456a5a81695e3d2cf6f24394bbd169d45482da5cc6989fc7"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/common/full-screen-loader.tsx",
+    "target": "frontend/components/common/full-screen-loader.tsx",
+    "sha256": "78c60a67f64f62ff2466d94c9057cbb3b33d4e80698855be8977397cf473048c"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/ui/avatar.tsx",
+    "target": "frontend/components/ui/avatar.tsx",
+    "sha256": "357b2f9aac0192c071cb2ed65cb6e4c8ec01fa02fc15cf50d889b85731b75666"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/ui/button.tsx",
+    "target": "frontend/components/ui/button.tsx",
+    "sha256": "d14549ab3ba7a9d5d1f424c2599233bffa0b317121abf3b6efa2fb902d5e2781"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/ui/card.tsx",
+    "target": "frontend/components/ui/card.tsx",
+    "sha256": "d8113cbf964f8d1aadf2649d2944d8bbc6e3cfd49d36746f76868cbc4dde3cfe"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/ui/form.tsx",
+    "target": "frontend/components/ui/form.tsx",
+    "sha256": "9a34ad18c49cfd62bb89d391ff1cc1dee94b7034df4a5379d5dd64fc59738cf5"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/ui/input.tsx",
+    "target": "frontend/components/ui/input.tsx",
+    "sha256": "f7d6ecff9a4d631feeaf401c02bb87e26ddb38131c55d15a43b9290747390847"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/ui/label.tsx",
+    "target": "frontend/components/ui/label.tsx",
+    "sha256": "7f19b8476658d25ff197c84030e58cd7395059d876a54630e025951e474ebdae"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/ui/select.tsx",
+    "target": "frontend/components/ui/select.tsx",
+    "sha256": "ca3bd1b370ea67b84632d435c22d8270752fa6013c06c365162af265e4a0e87e"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/ui/sonner.tsx",
+    "target": "frontend/components/ui/sonner.tsx",
+    "sha256": "2dd975ad2170ba2570b00e58713dcbda90f26a7fffdaceb1ef7255f450c2d2a6"
+  },
+  {
+    "source": "lwnf-dev/frontend/components/ui/textarea.tsx",
+    "target": "frontend/components/ui/textarea.tsx",
+    "sha256": "58b58d84fc54ba5f4ca46937870c619349fd9eccc4d494250ac7bc73a94e05e9"
+  },
+  {
+    "source": "lwnf-dev/frontend/hooks/use-mounted.ts",
+    "target": "frontend/hooks/use-mounted.ts",
+    "sha256": "49057909f72e3791c212ac805ac6c42ac05355fc3f320d56eed116a1b3c3aeca"
+  },
+  {
+    "source": "lwnf-dev/frontend/hooks/use-persisted-flag.ts",
+    "target": "frontend/hooks/use-persisted-flag.ts",
+    "sha256": "f6341d28324e2bc1bd548411895d15eb50f46d4f50684d6279509dba4efe4f27"
+  },
+  {
+    "source": "lwnf-dev/frontend/hooks/mutations/use-update-profile.ts",
+    "target": "frontend/hooks/mutations/use-update-profile.ts",
+    "sha256": "82fe827ac803134acd2da7e2eb62feb3326648b5a050887b4fa9e06488bd9513"
+  },
+  {
+    "source": "lwnf-dev/frontend/hooks/queries/use-current-user.ts",
+    "target": "frontend/hooks/queries/use-current-user.ts",
+    "sha256": "1743860d08d987b54cabd5c179a3fcd071f15b218c9a901117c118364026d782"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/utils.ts",
+    "target": "frontend/lib/utils.ts",
+    "sha256": "7c8c3dfc0cdd370d44932828eb067ef771c8fe7996693221d5d4b90af6d54f2d"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/admin/resources.ts",
+    "target": "frontend/lib/admin/resources.ts",
+    "sha256": "e9baafb5bd2a77ed7746f701f219c5307248fe7ae7c32dbfdca8a79d30f67429"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/admin/validate.ts",
+    "target": "frontend/lib/admin/validate.ts",
+    "sha256": "326d6e6efae33b50c57bf7425ad57cdc0e05f5b4add64a1253a834f3dcce5865"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/client.ts",
+    "target": "frontend/lib/api/client.ts",
+    "sha256": "6590528d20d0fc569d6764436a077b04072e6c2991e1ca544634257cfd455083"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/errors.ts",
+    "target": "frontend/lib/api/errors.ts",
+    "sha256": "e184aab46d78edd2b34ce83106cd0a0322165532ee260b9cb66756fe14b86eca"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/submissions.ts",
+    "target": "frontend/lib/api/submissions.ts",
+    "sha256": "1fbd68b1185cf223ad597aa3a39597b0fefb29017a8683ccc23cfce44865e26d"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/auth/cookies.ts",
+    "target": "frontend/lib/auth/cookies.ts",
+    "sha256": "50c4397876574d5800c24bf6c38e0def4296e2bb1fa1d87ff3fcae8a7312f977"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/auth/logout.ts",
+    "target": "frontend/lib/auth/logout.ts",
+    "sha256": "17e24ef224883ab88475f7c83449bb4235a1e5916f49102b39def5d3da02e63f"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/auth/redirect.ts",
+    "target": "frontend/lib/auth/redirect.ts",
+    "sha256": "ea790b9f8d28c27828ebdd0ea8bd61de9a442afaa8feadd0a6aa5d1c1b605315"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/auth/require-auth.ts",
+    "target": "frontend/lib/auth/require-auth.ts",
+    "sha256": "d3fbb24fdbf28bd59126122843181798e4e94e6af157853ff6a94e1aab08cf63"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/auth/session.ts",
+    "target": "frontend/lib/auth/session.ts",
+    "sha256": "87f8359ced2f66bece4d139ea0c13204eb20db2d75dcbb7afeebeace7d9e0474"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/consent/index.ts",
+    "target": "frontend/lib/consent/index.ts",
+    "sha256": "4f5364cf1da1083554ac09a6e780a09a62dd4f70b6a2873c1be43e6393b88253"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/constants/profile.ts",
+    "target": "frontend/lib/constants/profile.ts",
+    "sha256": "dd24e74733c93b5de03b45d68948e59a0834efe75e02c0b5e1f714452f68f974"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/contact/phone.ts",
+    "target": "frontend/lib/contact/phone.ts",
+    "sha256": "797564e52e0bd581f4aed5e9d8576a4c1553b1384f8e6e7a4a89d3a7de36aa42"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/i18n/config.ts",
+    "target": "frontend/lib/i18n/config.ts",
+    "sha256": "64175644c971dd494c68fc7fd373aab6674a85489440aa16fdf7938d89ddac99"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/i18n/getDictionary.ts",
+    "target": "frontend/lib/i18n/getDictionary.ts",
+    "sha256": "8239d4230fc944d30749ff0c0a7b29d4789a59b5d3100a97d390707955a45759"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/i18n/metadata.ts",
+    "target": "frontend/lib/i18n/metadata.ts",
+    "sha256": "4f8c2bc6d3ac1d65ecd9e3287e5e64b8e1d2ab7bd03324fcfdab9954ec86a487"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/i18n/routes.ts",
+    "target": "frontend/lib/i18n/routes.ts",
+    "sha256": "bb9c86fed3eeafbf9d44f2e77ace3faa2ce1906d8e5740ccd5f2d0a2e8885639"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/legal/association.ts",
+    "target": "frontend/lib/legal/association.ts",
+    "sha256": "ca430702dbffd67a80c1a6b42ee2ec5f5cf295b101d21f27c713853ba649d6a6"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/mappers/profile.ts",
+    "target": "frontend/lib/mappers/profile.ts",
+    "sha256": "979f3a78b43df3b06d445f4b74335c8d7a08da8885280fc0face01bf6c59b128"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/query/client.ts",
+    "target": "frontend/lib/query/client.ts",
+    "sha256": "f2a37575bc32ad87882e4891a39fc37a600d4a9fb87b6f1e6ef29f6e2d0ac7b1"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/query/keys.ts",
+    "target": "frontend/lib/query/keys.ts",
+    "sha256": "c148c310f6dd5787ef483417ae926a7a30a0494aef5761aac7680f6f9cdfeaa5"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/query/provider.tsx",
+    "target": "frontend/lib/query/provider.tsx",
+    "sha256": "18257a540d92aaabdc32301c68d8f0e522bbc8814b7a9b7de19e35acfd98dc3f"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/validators/profile.ts",
+    "target": "frontend/lib/validators/profile.ts",
+    "sha256": "6aeeed8f0b59d98cef197e2ac0993195025f231ddab64ca8527f0c0e009dca48"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/i18n/dictionaries/en.ts",
+    "target": "frontend/lib/i18n/dictionaries/en.ts",
+    "sha256": "6504e2aeb0c18d55adb570341f2ac5d39d54910a63dd193d9250eaca16ffbe90"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/i18n/dictionaries/fr.ts",
+    "target": "frontend/lib/i18n/dictionaries/fr.ts",
+    "sha256": "8ed39485412e2471e3f094663f290f34be0acba5056b027d16ec00902de10ffa"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/admin/client.ts",
+    "target": "frontend/lib/api/admin/client.ts",
+    "sha256": "ff0f769fc545478ad0f7056d0a4b42324d9f96022462063acfd196e4f3e0db80"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/admin/media.ts",
+    "target": "frontend/lib/api/admin/media.ts",
+    "sha256": "8c5a900cef1d296e34483bad66343b1d6d0552dc49cc5511ce060729d25f996d"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/change-email-request.ts",
+    "target": "frontend/lib/api/auth/change-email-request.ts",
+    "sha256": "b581d2b147470ac1374b4e13c3cad4c1d8b58ed25d50b1dab0f30c69e0b73cbf"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/change-password.ts",
+    "target": "frontend/lib/api/auth/change-password.ts",
+    "sha256": "17904c916f51e7b0fdbcf22ee7845bb204f488fa5cf1e1d3acd52c9ae4fe7936"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/forgot-password.ts",
+    "target": "frontend/lib/api/auth/forgot-password.ts",
+    "sha256": "477dcac9a1859ee388175c1c68ece91d0fb78866b2b4a0b1985c084cd0b937c7"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/login.ts",
+    "target": "frontend/lib/api/auth/login.ts",
+    "sha256": "e9811d4aafe5cc2bcb3764d86f5d7b7994905e7cf2ab575599860307800fa098"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/logout.ts",
+    "target": "frontend/lib/api/auth/logout.ts",
+    "sha256": "60870b57dc8ff96f2b23720c8f8a076c4316f4027548b07508aecd46fff4a9c2"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/me.ts",
+    "target": "frontend/lib/api/auth/me.ts",
+    "sha256": "38cddea2c9a5a37b5d875afea60366d34b410c0de0812892ce9697b6f2c6d57a"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/register.ts",
+    "target": "frontend/lib/api/auth/register.ts",
+    "sha256": "2c4c43c61318e5e3a260d02e1dc21c7d0e071eabc11969ee09a94e7d4134951b"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/resend-verification.ts",
+    "target": "frontend/lib/api/auth/resend-verification.ts",
+    "sha256": "df2afc84fde43a041602102e5c3aa75d758eeb6251a7cb9bb30f7c13df8cdc38"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/reset-password.ts",
+    "target": "frontend/lib/api/auth/reset-password.ts",
+    "sha256": "ecf22bd46ba21e28ce15994b4ed09d87bb69cc8d7137aeb198f28b5752e61915"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/update-profile.ts",
+    "target": "frontend/lib/api/auth/update-profile.ts",
+    "sha256": "427692f81180d5ca02e2eb3c98dcdccd74e5b97ecaf8bb67cd496f0467e41148"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/auth/verify-email.ts",
+    "target": "frontend/lib/api/auth/verify-email.ts",
+    "sha256": "2fa88fe974f4e8cbbd1efaca19a4bb76529da001a86e9b2adffb085a65893f85"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/content/blog.ts",
+    "target": "frontend/lib/api/content/blog.ts",
+    "sha256": "898192066509ef48bc942e933b5c96c9de8520705564681b019b3298d2d8000a"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/content/client.ts",
+    "target": "frontend/lib/api/content/client.ts",
+    "sha256": "beb1bae418640a097c16b3df70197b44bfd39b8b90a11c911e09af925406204d"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/content/collections.ts",
+    "target": "frontend/lib/api/content/collections.ts",
+    "sha256": "0d8411629c19e027422da918ac6a3281e6f4d8a924723eddbe976494956b18f7"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/content/projects.ts",
+    "target": "frontend/lib/api/content/projects.ts",
+    "sha256": "9cf7891b3d65de540f75ef6fe6e2b02c501eb90a96f7a2246a138f1744b127fe"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/content/sponsorship.ts",
+    "target": "frontend/lib/api/content/sponsorship.ts",
+    "sha256": "d8c60aa1daecf721d044b9b5900898e511bb8c088613fdd0b87f0ee20e773551"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/security/revoke-session.ts",
+    "target": "frontend/lib/api/security/revoke-session.ts",
+    "sha256": "b39f07da06b240c09d4a597045b541d1ab5225491c57f0c164ee82f94a7b8ff6"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/security/sessions.ts",
+    "target": "frontend/lib/api/security/sessions.ts",
+    "sha256": "31744992d2616b74a6c9566b851fb632f5af9951f50148ac1eed0b1ba6533a6a"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/security/trust-device.ts",
+    "target": "frontend/lib/api/security/trust-device.ts",
+    "sha256": "a2cbf1edeb0ad3a77fc2916e7eac1cd8f2dde280c43e5523edd95db43f217f11"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/security/trusted-devices.ts",
+    "target": "frontend/lib/api/security/trusted-devices.ts",
+    "sha256": "74cc728282b3d142e1a69f11f14e172e47bd2a9017127e26610ba72171de7646"
+  },
+  {
+    "source": "lwnf-dev/frontend/lib/api/security/untrust-device.ts",
+    "target": "frontend/lib/api/security/untrust-device.ts",
+    "sha256": "0f5f70c812f79c17f87be9dc3ba4b3d9d05e6d681f9030812a95fbbbabcc949b"
+  },
+  {
+    "source": "lwnf-dev/frontend/store/auth-store.ts",
+    "target": "frontend/store/auth-store.ts",
+    "sha256": "adec900451ed549c0e697afa3550ed913f2fc8c7e928473be184112a56ff5c69"
+  },
+  {
+    "source": "lwnf-dev/frontend/types/auth.ts",
+    "target": "frontend/types/auth.ts",
+    "sha256": "6c5b26489863beacaeabfa19c9cdad36baf04a01daf0d15e08571265b9ea11b9"
+  },
+  {
+    "source": "lwnf-dev/frontend/types/password.ts",
+    "target": "frontend/types/password.ts",
+    "sha256": "c1a32da3cd1683774274ca4db3a08b6c23996c7df1674fe6a723ee0dac85752c"
+  },
+  {
+    "source": "lwnf-dev/frontend/types/profile.ts",
+    "target": "frontend/types/profile.ts",
+    "sha256": "1d9e5e45e5cc9a54d07e8ebd883ef1ffa40f3f1b0c5cc9961c26c29322cb2e77"
+  },
+  {
+    "source": "lwnf-dev/frontend/types/security.ts",
+    "target": "frontend/types/security.ts",
+    "sha256": "4ae8edd40cf5e2521e1522beda18f82384e68c274e5700715134a45abcd20a8c"
+  },
+  {
+    "source": "lwnf-dev/frontend/package.json",
+    "target": "frontend/package.json",
+    "sha256": "4faa675288854926058749ec196c4cb22af8e4c7f3eef18367f222248eee2be1"
+  },
+  {
+    "source": "lwnf-dev/frontend/pnpm-lock.yaml",
+    "target": "frontend/pnpm-lock.yaml",
+    "sha256": "d0ed7df952a9a9b1345ed1c808837fcedb376f516583fb802a3fb7978c6d61fd"
+  },
+  {
+    "source": "lwnf-dev/frontend/pnpm-workspace.yaml",
+    "target": "frontend/pnpm-workspace.yaml",
+    "sha256": "869ff1762f1ad52a037ff373f8d40db87d4b6b20a1d9534454342959041b29cf"
+  },
+  {
+    "source": "lwnf-dev/frontend/postcss.config.mjs",
+    "target": "frontend/postcss.config.mjs",
+    "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde"
+  },
+  {
+    "source": "lwnf-dev/frontend/eslint.config.mjs",
+    "target": "frontend/eslint.config.mjs",
+    "sha256": "56a2d770c7abb127617773ec465309cb4732b6d44b64eced53260d4279a713bb"
+  },
+  {
+    "source": "lwnf-dev/frontend/tsconfig.json",
+    "target": "frontend/tsconfig.json",
+    "sha256": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3"
+  },
+  {
+    "source": "lwnf-dev/frontend/components.json",
+    "target": "frontend/components.json",
+    "sha256": "9928283696d86836422959a2c520df83a718d31ffbcab533a14ca8dca2c8d475"
+  },
+  {
+    "source": "lwnf-dev/frontend/env.ts",
+    "target": "frontend/env.ts",
+    "sha256": "2638b36a30683cf84a9db076043a243a18398ceabc5c963b1eacb91c69a8819f"
+  },
+  {
+    "source": "lwnf-dev/frontend/next.config.ts",
+    "target": "frontend/next.config.ts",
+    "sha256": "19dc2e0a341f3c99016bbfa815a604adc1a2140e8825ae2cd8efedca92acdb0a"
+  },
+  {
+    "source": "lwnf-dev/frontend/.gitignore",
+    "target": "frontend/.gitignore",
+    "sha256": "e1986c70c4e8bacec51cb061cba6c2852ab9441616c77a105df401a1c081df23"
+  },
+  {
+    "source": "lwnf-dev/frontend/app/globals.css",
+    "target": "frontend/app/globals.css",
+    "sha256": "f01c7662d98a8deba1f32963ea9c8033e4706c4a0520f4953873d59d83b7fc8a"
+  },
+  {
+    "source": "lwnf-dev/infra/nginx/nginx.conf",
+    "target": "infra/nginx/nginx.conf",
+    "sha256": "9bd6c73758fa1eafe5a87508bc35b8b2bc90742da9f373c476979a1aa45c5d2b"
+  },
+  {
+    "source": "lwnf-dev/infra/scripts/backup.sh",
+    "target": "infra/scripts/backup.sh",
+    "sha256": "0488a26c88481647965597563514a0c465ad925915271baa063fc814cdc6e7f1"
+  },
+  {
+    "source": "lwnf-dev/infra/scripts/deploy.sh",
+    "target": "infra/scripts/deploy.sh",
+    "sha256": "6574767c83a4463c782348ab4d460eeed8da068f5bd422fbc4e2d27554fc4984"
+  },
+  {
+    "source": "lwnf-dev/infra/nginx/sites/app.conf",
+    "target": "infra/nginx/sites/app.conf",
+    "sha256": "ffb152087a9b6d8993cfaf9e87b5e85f71a45b783f47ecb04b0ffbba7d5aad38"
+  },
+  {
+    "source": "lwnf-dev/infra/nginx/sites/frontend.conf",
+    "target": "infra/nginx/sites/frontend.conf",
+    "sha256": "e772fd6859df74bc95f1b9f50cb37fb178cb29e2da5ed1129bca0b631b70b83c"
+  },
+  {
+    "source": "lwnf-dev/infra/docker/backend/.dockerignore",
+    "target": "infra/docker/backend/.dockerignore",
+    "sha256": "3f47159e78dfbf015fae6c6d4d17d52671fef3c08f411df79bdf6db168bc903b"
+  },
+  {
+    "source": "lwnf-dev/infra/docker/backend/Dockerfile",
+    "target": "infra/docker/backend/Dockerfile",
+    "sha256": "242b95521cc8141c85645a0a57f94a93b0cea32d83b7f903000c177215ca4862"
+  },
+  {
+    "source": "lwnf-dev/infra/docker/backend/Dockerfile.dev",
+    "target": "infra/docker/backend/Dockerfile.dev",
+    "sha256": "beac1eb297406a56a98a97641f72ed10119593d43ea912ec3419bffe937d64e3"
+  },
+  {
+    "source": "lwnf-dev/infra/docker/backend/entrypoint.dev.sh",
+    "target": "infra/docker/backend/entrypoint.dev.sh",
+    "sha256": "a7b9d71945e56829a5d9d0a83b5145d3eb95c9fdf735eaeace5fd8b1f4504e99"
+  },
+  {
+    "source": "lwnf-dev/infra/docker/frontend/.dockerignore",
+    "target": "infra/docker/frontend/.dockerignore",
+    "sha256": "2a9215206640674d22ad676b78975a4c736b4bbf86b3cb8fcfafe8ad10629c68"
+  },
+  {
+    "source": "lwnf-dev/infra/docker/frontend/Dockerfile",
+    "target": "infra/docker/frontend/Dockerfile",
+    "sha256": "a73b1455cc00fca4f87152464b96fcbd49a8ae3ef351fb7fe86bfbf51440cd42"
+  },
+  {
+    "source": "lwnf-dev/infra/docker/frontend/Dockerfile.dev",
+    "target": "infra/docker/frontend/Dockerfile.dev",
+    "sha256": "447dd27650451b1918644dfb6f5c202d7d02229a1560af9dabadda2c9fc8204c"
+  },
+  {
+    "source": "lwnf-dev/.github/workflows/backend.yml",
+    "target": ".github/workflows/backend.yml",
+    "sha256": "ce2d4378c19a3dfc7a46063c75299e03f2e08c13e5a3c63b6be9ef96fd79b16d"
+  },
+  {
+    "source": "lwnf-dev/.github/workflows/frontend.yml",
+    "target": ".github/workflows/frontend.yml",
+    "sha256": "75c91557b22b73a32ae5c80a69e9decbddd295caf5965b02ec9dea75daad62ea"
+  },
+  {
+    "source": "lwnf-dev/docker-compose.dev.yml",
+    "target": "docker-compose.dev.yml",
+    "sha256": "d909982e930db04101b853d23ed7ba4f332417eef06a24513e75cb8a10628b5c"
+  },
+  {
+    "source": "lwnf-dev/docker-compose.prod.yml",
+    "target": "docker-compose.prod.yml",
+    "sha256": "ab978e98b266e3f0d38d20ffa19c62c495f15bc6dba639088b561e597d3892bf"
+  },
+  {
+    "source": "lwnf-dev/.dockerignore",
+    "target": ".dockerignore",
+    "sha256": "a56da51c4a1bdccebf4abe2520ef54f79fa473091aab4927f0dd75fec131d64b"
+  },
+  {
+    "source": "lwnf-dev/.gitignore",
+    "target": ".gitignore",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "lwnf-dev/.gitattributes",
+    "target": ".gitattributes",
+    "sha256": "1d5d71dcc6ccd28ab46a335349ecc74742ca4b81f4fcad212f8d134f70f1f13e"
+  },
+  {
+    "source": "lwnf-dev/.env.example",
+    "target": ".env.example",
+    "sha256": "8cdf8d00f838f0c8c6e68098d644b4623592d4b2c1efcc9ebf8c9b05e15e7237"
+  },
+  {
+    "source": "aucoeurdunepal/infra/backup/backup.sh",
+    "target": "infra/backup/backup.sh",
+    "sha256": "95bd0e75edbf8b97b628a98ded52e0db2c6e4058b181cab155f88fe4cec23790"
+  },
+  {
+    "source": "aucoeurdunepal/infra/backup/environment.sh",
+    "target": "infra/backup/environment.sh",
+    "sha256": "01876e5df1213d09229b61bb6f05189436cc082f32b8f8402dc008c9a9a41637"
+  },
+  {
+    "source": "aucoeurdunepal/infra/backup/restore.sh",
+    "target": "infra/backup/restore.sh",
+    "sha256": "5086a1c147befa2b952df9016bfcd8d6d4421da4ea09a36f8e0b3da8ad4e0cc5"
+  },
+  {
+    "source": "aucoeurdunepal/infra/docker/backup/Dockerfile",
+    "target": "infra/docker/backup/Dockerfile",
+    "sha256": "454eda0fb1763643179865696dd4df5663e241c43e45a49342de0cf94f55e46e"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/lib/auth/cookies.ts",
+    "target": "frontend/lib/auth/cookies.ts",
+    "sha256": "7b66f261e9b21f5c3c2bff957df36737499a8a4212b16690e1f405a3d0785bcf"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/lib/auth/rotation.ts",
+    "target": "frontend/lib/auth/rotation.ts",
+    "sha256": "3af858451005accb7937aaeff283a6c3148c367c70eeec269a9102bf9723ad05"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/lib/auth/rotation.test.ts",
+    "target": "frontend/lib/auth/rotation.test.ts",
+    "sha256": "d9fef03e58f0421f1ec292ea70a78cce92fd6cee337ffb651d7ec1b06cfcf98f"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/lib/auth/login-response.ts",
+    "target": "frontend/lib/auth/login-response.ts",
+    "sha256": "b0ed861e86dffcb050e8b61a1c35594abe442fcadc209e9769719c38f569fa3b"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/lib/auth/redirect.ts",
+    "target": "frontend/lib/auth/redirect.ts",
+    "sha256": "a4ff517f7e26073c093126310a163a13d69075857e6f7cf64df5b505e2b67e79"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/lib/auth/redirect.test.ts",
+    "target": "frontend/lib/auth/redirect.test.ts",
+    "sha256": "bd38caa285b36fa56ea5efdf55af7f5bf155165bbda271d7c4953014ec317860"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/lib/api/transport.ts",
+    "target": "frontend/lib/api/transport.ts",
+    "sha256": "c55cb7c8051762548acb00abd88de50420bf9ce039b03702b392ae2aaab30b92"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/app/api/auth/login/route.ts",
+    "target": "frontend/app/api/auth/login/route.ts",
+    "sha256": "a3796a75ef00ac5d82871f3f6f5365e83b08c8fff12d19b4456db958bf230fbe"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/app/api/auth/logout/route.ts",
+    "target": "frontend/app/api/auth/logout/route.ts",
+    "sha256": "5e76ac0d490460be78ee9c3e7a16a36e708c8445c967f87aefc37877b21cc5e7"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/app/api/auth/logout-all/route.ts",
+    "target": "frontend/app/api/auth/logout-all/route.ts",
+    "sha256": "6f6cd5b8665f3e2f09609787d45fa01ae3723e0111a5edaec4c09f0ca3514c5f"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/app/api/auth/mfa/route.ts",
+    "target": "frontend/app/api/auth/mfa/route.ts",
+    "sha256": "3cd0e33a3663ce2ee2825ce1eff8441d821274f39c0b54f7ef1861adfd2051a9"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/app/api/auth/refresh/route.ts",
+    "target": "frontend/app/api/auth/refresh/route.ts",
+    "sha256": "d3da0242b9fd45227a172adafca45485a8895008a8f88cd75af9a0d750706458"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/app/api/proxy/[...path]/route.ts",
+    "target": "frontend/app/api/proxy/[...path]/route.ts",
+    "sha256": "1862083bbe9ae78171f4bf28d1f98b71c793e5695f98c7eed13ca08b176792ee"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/proxy.ts",
+    "target": "frontend/proxy.ts",
+    "sha256": "d4c63dec525442297a5b3dd9197f530c50cbef853cffcda5762723eae2ff775f"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/vitest.config.mts",
+    "target": "frontend/vitest.config.mts",
+    "sha256": "af50996591b0b91afcf4dab51bc5506227ad1f31823c1c02cc9909df57f902da"
+  }
+]

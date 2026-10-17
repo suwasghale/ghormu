@@ -1,0 +1,132 @@
+# ==============================================================================
+# Build context exclusions
+# ==============================================================================
+#
+# This file MUST live at the root of the build context, which the
+# compose files set to the repository root. A .dockerignore sitting next
+# to the Dockerfile is not read for a root context, so the one in
+# infra/docker/backend/ had no effect at all - and `COPY backend/ .`
+# was baking .env, .venv and .git straight into the image.
+#
+# Anything excluded here is invisible to COPY, so secrets cannot reach a
+# layer even by accident.
+
+# ------------------------------------------------------------------------------
+# Secrets
+# ------------------------------------------------------------------------------
+
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+secrets.env
+infra/nginx/certs/
+
+# ------------------------------------------------------------------------------
+# Version control
+# ------------------------------------------------------------------------------
+#
+# .git is often the largest thing in the context and can contain deleted
+# secrets that are still in history.
+
+.git
+.github
+.gitignore
+.gitattributes
+
+# ------------------------------------------------------------------------------
+# Python
+# ------------------------------------------------------------------------------
+
+**/__pycache__/
+**/*.py[cod]
+**/*.egg-info/
+.venv/
+**/.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# ------------------------------------------------------------------------------
+# Django runtime output
+#
+# Rebuilt inside the image; copying them in wastes layers and can shadow
+# a fresh collectstatic.
+# ------------------------------------------------------------------------------
+
+**/staticfiles/
+**/media/
+**/logs/
+**/*.sqlite3
+**/*.log
+
+# ------------------------------------------------------------------------------
+# Frontend
+#
+# node_modules alone can be hundreds of megabytes of build context that
+# the backend image never uses.
+# ------------------------------------------------------------------------------
+
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# ------------------------------------------------------------------------------
+# Editors and OS
+# ------------------------------------------------------------------------------
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ------------------------------------------------------------------------------
+# Docs and compose
+#
+# Not needed at runtime.
+# ------------------------------------------------------------------------------
+
+docker-compose*.yml
+**/docs/
+README.md
+
+.tools
+**/.env
+**/.env.*
+**/node_modules
+**/.venv
+**/.next
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+**/logs
+backups
+infra/nginx/certs
+
+**/.pnpm-store/
+
+.deployment/
+infra/e2e/generated/
+frontend/test-results/
+frontend/playwright-report/
+
+**/.aws/
+**/.ssh/
+**/.terraform/
+**/.npmrc
+**/.pypirc
+**/.netrc
+**/credentials.json
+**/*.credentials.json
+**/*.p12
+**/*.pfx
+**/*.tfstate
+**/*.tfstate.backup

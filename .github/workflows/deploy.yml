@@ -1,0 +1,111 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Publish images"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release_sha:
+        description: Full commit SHA of a successfully validated and published release
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+# Do not interrupt a migration or let two releases modify the VPS together.
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: ${{ vars.ENABLE_DEPLOYMENTS == 'true' && (github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch') }}
+    environment: production
+    steps:
+      - name: Verify the exact published release
+        id: release
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            const sha = context.eventName === 'workflow_dispatch'
+              ? context.payload.inputs.release_sha
+              : context.payload.workflow_run.head_sha;
+            if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error('A full commit SHA is required');
+            const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
+              ...context.repo, workflow_id: 'publish.yml', head_sha: sha, status: 'success', per_page: 100,
+            });
+            if (!runs.some(run => run.head_branch === 'main' && run.head_repository.full_name === context.payload.repository.full_name)) {
+              throw new Error('This commit has no successful main-branch Publish images run');
+            }
+            if (context.eventName !== 'workflow_dispatch') {
+              const { data: branch } = await github.rest.repos.getBranch({ ...context.repo, branch: 'main' });
+              if (branch.commit.sha !== sha) throw new Error('Superseded release: main has advanced');
+            }
+            const run = runs.find(run => run.head_branch === 'main' && run.head_repository.full_name === context.payload.repository.full_name);
+            const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, { ...context.repo, run_id: run.id, per_page: 100 });
+            if (jobs.filter(job => /^build \(/.test(job.name) && job.conclusion === 'success').length !== 3) {
+              throw new Error('All three release images must have been published; skipped publication is not a release');
+            }
+            core.setOutput('sha', sha);
+      - name: Check deployment connection settings
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST_FINGERPRINT: ${{ secrets.VPS_HOST_FINGERPRINT }}
+          DEPLOY_DIR: ${{ vars.DEPLOY_DIR }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          for name in VPS_HOST VPS_USER VPS_SSH_KEY VPS_HOST_FINGERPRINT DEPLOY_DIR SITE_URL; do
+            if [ -z "${!name}" ]; then echo "Configure $name before enabling deployment" >&2; exit 1; fi
+          done
+      - name: Deploy the verified revision over SSH
+        uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1
+        env:
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
+          IMAGE_NAMESPACE: ghcr.io/${{ github.repository }}
+          DEPLOY_DIR: ${{ vars.DEPLOY_DIR }}
+          DEPLOY_SITE_URL: ${{ vars.SITE_URL }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          fingerprint: ${{ secrets.VPS_HOST_FINGERPRINT }}
+          envs: RELEASE_SHA,IMAGE_NAMESPACE,DEPLOY_DIR,DEPLOY_SITE_URL
+          command_timeout: 20m
+          # The script runs from a file, never from stdin.
+          #
+          # It used to be piped: `git show â€¦:deploy.sh | bash -s`. Bash then
+          # reads the script from that pipe as it goes, and the backup step's
+          # `docker compose run` also reads stdin -- so it swallowed the rest
+          # of the script. Bash hit end-of-file, exited with the backup's 0,
+          # and the job went green having skipped the restore test, the
+          # container swap and the smoke checks. Production silently stayed
+          # on the old release.
+          #
+          # The last line proves the release actually landed: deploy.sh
+          # writes current-sha only as its final step, so any early stop --
+          # however it happens -- now fails this job instead of passing it.
+          script: |
+            set -eu
+            : "${DEPLOY_DIR:?Set the absolute deployment directory}"
+            case "$DEPLOY_DIR" in /*) ;; *) echo "DEPLOY_DIR must be absolute" >&2; exit 1;; esac
+            export IMAGE_NAMESPACE="$(printf '%s' "$IMAGE_NAMESPACE" | tr '[:upper:]' '[:lower:]')"
+            cd "$DEPLOY_DIR"
+            git fetch origin "$RELEASE_SHA"
+            release_script="$(mktemp)"
+            trap 'rm -f "$release_script"' EXIT
+            git show "$RELEASE_SHA:deploy.sh" > "$release_script"
+            bash "$release_script" "$RELEASE_SHA" < /dev/null
+            deployed="$(cat .deployment/current-sha 2>/dev/null || true)"
+            if [ "$deployed" != "$RELEASE_SHA" ]; then
+              echo "Release $RELEASE_SHA did not complete (server reports: ${deployed:-nothing})" >&2
+              exit 1
+            fi
+            echo "Verified: $RELEASE_SHA is live"

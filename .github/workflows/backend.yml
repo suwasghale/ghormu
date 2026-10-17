@@ -1,0 +1,232 @@
+name: Backend
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: backend
+
+env:
+  # Values that must exist for the settings module to import at all.
+  # Deliberately obvious throwaways - nothing here is a real secret.
+  #
+  # Both are padded past 50 characters on purpose. The deploy-check job
+  # runs `manage.py check --deploy --fail-level WARNING`, and Django's
+  # security.W009 fires for any SECRET_KEY under 50 characters. The old
+  # value was 47, so that job would have gone red on its first run for a
+  # reason that has nothing to do with the code under review - the worst
+  # kind of CI failure, because the obvious next move is to weaken the
+  # check rather than lengthen the string.
+  SECRET_KEY: ci-secret-key-not-used-anywhere-else-0123456789-abcdefghijklmnop
+  JWT_SIGNING_KEY: ci-jwt-signing-key-not-used-anywhere-else-9876-abcdefghijklmnop
+  ALLOWED_HOSTS: localhost,127.0.0.1
+  POSTGRES_DB: test_db
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: ci-only
+  POSTGRES_HOST: localhost
+  POSTGRES_PORT: "5432"
+  CORS_ALLOWED_ORIGINS: http://localhost:3000
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Fast feedback: lint and the SQLite suite need no services, so they
+  # fail in under a minute rather than after waiting for Postgres.
+  # ---------------------------------------------------------------------------
+  quick:
+    name: Lint and unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+
+      - name: Install dependencies
+        run: uv sync --all-groups --frozen
+
+      - name: Release contracts and shell syntax
+        run: |
+          uv run python -m unittest discover -s ../infra/tests -p 'test_*.py'
+          bash -n ../deploy.sh
+          for script in ../infra/backup/*.sh; do sh -n "$script"; done
+
+      - name: Validate GitHub Actions workflows
+        working-directory: ${{ github.workspace }}
+        run: |
+          docker run --rm -v "$PWD:/repo:ro" --workdir /repo rhysd/actionlint:1.7.7
+          docker run --rm -v "$PWD:/repo:ro" --workdir /repo --entrypoint shellcheck rhysd/actionlint:1.7.7 -x deploy.sh infra/backup/*.sh
+
+      - name: Audit frozen production dependencies
+        run: |
+          uv export --frozen --no-dev --no-emit-project --format requirements-txt --output-file /tmp/starter-production-requirements.txt
+          uvx pip-audit --no-deps --disable-pip --requirement /tmp/starter-production-requirements.txt
+
+      - name: Lint
+        run: uv run ruff check apps core config tests
+
+      - name: Check formatting
+        run: uv run ruff format --check apps core config tests
+
+      - name: Tests (SQLite)
+        run: uv run pytest -q
+
+  # ---------------------------------------------------------------------------
+  # The real engine. SQLite and PostgreSQL differ on constraint
+  # enforcement, transaction semantics and SELECT ... FOR UPDATE, and the
+  # session and address code depends on all three - so a green SQLite run
+  # is necessary but not sufficient.
+  # ---------------------------------------------------------------------------
+  postgres:
+    name: Tests (PostgreSQL)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: quick
+
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      TEST_DATABASE: postgres
+      POSTGRES_DB: test_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: "5432"
+      REDIS_HOST: localhost
+      REDIS_PORT: "6379"
+      DB_SSLMODE: disable
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+
+      - name: Install dependencies
+        run: uv sync --all-groups --frozen
+
+      - name: Migrations are complete
+        # Catches a model changed without a migration, which otherwise
+        # only surfaces on deploy.
+        run: uv run python manage.py makemigrations --check --dry-run
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.test
+
+      - name: Migrations apply cleanly from scratch
+        # Runs every migration in order against a real PostgreSQL, which
+        # is the only way to exercise the data migrations and the partial
+        # unique index.
+        run: uv run python manage.py migrate --noinput
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.test
+          TEST_DATABASE: postgres
+
+      - name: Tests
+        run: uv run coverage run -m pytest -q
+
+      - name: Coverage
+        run: |
+          uv run coverage report
+          uv run coverage xml
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: coverage
+          path: backend/coverage.xml
+          if-no-files-found: ignore
+
+  # ---------------------------------------------------------------------------
+  # Configuration that only fails in production is configuration nobody
+  # tests. This runs Django's own audit against the production settings.
+  # ---------------------------------------------------------------------------
+  deploy-check:
+    name: Production settings audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: quick
+
+    env:
+      DJANGO_SETTINGS_MODULE: config.settings.prod
+      POSTGRES_DB: unused
+      POSTGRES_USER: unused
+      POSTGRES_PASSWORD: unused
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: "5432"
+      FRONTEND_URL: https://app.example.com
+      TRUSTED_PROXY_COUNT: "1"
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+
+      - name: Install dependencies
+        run: uv sync --all-groups --frozen
+
+      - name: Deployment checks
+        run: uv run python manage.py check --deploy --fail-level WARNING
+
+      - name: OpenAPI schema is generated and non-empty
+        # An empty schema is syntactically valid, so client generators
+        # accept it silently. This is the only thing that notices.
+        run: |
+          uv run python manage.py spectacular --api-version v1 --file schema.yml --validate --fail-on-warn
+          test -s schema.yml
+          grep -q "/api/v1/auth/login/" schema.yml
+
+      - name: Upload schema
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: openapi-schema
+          path: backend/schema.yml

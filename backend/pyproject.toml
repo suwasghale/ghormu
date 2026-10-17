@@ -1,0 +1,137 @@
+[project]
+name = "backend"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "boto3>=1.43.38",
+    "celery>=5.6.3",
+    "django>=6.0.8,<6.1",
+    "django-celery-beat>=2.9.0",
+    "django-celery-results>=2.6.0",
+    "django-cors-headers>=4.9.0",
+    "django-countries>=9.0.0",
+    "django-environ>=0.14.0",
+    "django-extensions>=4.1",
+    "django-filter>=25.2",
+    "django-phonenumber-field>=8.4.0",
+    "django-redis>=7.0.0",
+    "django-storages>=1.14.6",
+    "django-user-agents>=0.4.0",
+    "djangorestframework>=3.17.2,<3.18",
+    "djangorestframework-simplejwt>=5.5.1",
+    "drf-spectacular>=0.29.0",
+    "drf-standardized-errors>=0.16.0",
+    "gunicorn>=26.0.0",
+    "httpx>=0.28.1",
+    "nh3>=0.3.7",
+    "orjson>=3.11.9",
+    "phonenumbers>=9.0.33",
+    "pillow>=12.3.0",
+    "psycopg[binary]>=3.3.4",
+    # TOTP two-factor authentication.
+    "pyotp>=2.9.0",
+    "python-dotenv>=1.2.2",
+    "redis>=7.4,<8",
+    "requests>=2.34.2",
+    "sentry-sdk>=2.69.1",
+    "user-agents>=2.2.0",
+    "whitenoise>=6.12.0",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py", "*_test.py"]
+testpaths = ["tests"]
+addopts = [
+    # Beats the DJANGO_SETTINGS_MODULE environment variable, which the ini
+    # setting above does not. The dev container exports
+    # config.settings.dev, so every test run inside it silently used dev
+    # settings: manifest static storage (so every admin page 500'd),
+    # Celery not eager (so queued emails never ran and mail.outbox stayed
+    # empty), and real SMTP configured. Eleven tests failed for that
+    # reason alone and looked like broken code.
+    "--ds=config.settings.test",
+    "--strict-markers",
+    "--strict-config",
+    "-ra",
+]
+markers = [
+    "integration: exercises more than one layer end to end",
+]
+filterwarnings = [
+    # Deprecations in our own code should fail the build.
+    "error::DeprecationWarning",
+    "ignore::DeprecationWarning:kombu.*",
+    "ignore::DeprecationWarning:celery.*",
+    # drf-spectacular 0.29 probes typing._UnionGenericAlias, which
+    # Python 3.14 deprecates and 3.17 removes. Schema generation will
+    # break on that release unless the library is updated first.
+    "ignore:.*_UnionGenericAlias.*:DeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["apps", "core"]
+omit = [
+    "*/migrations/*",
+    "*/tests/*",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+skip_covered = true
+show_missing = true
+
+[tool.ruff]
+# 79 would reflow the section banners the codebase uses throughout.
+line-length = 88
+target-version = "py314"
+extend-exclude = ["migrations"]
+
+[tool.ruff.lint]
+select = [
+    "E",     # pycodestyle
+    "F",     # pyflakes
+    "I",     # isort
+    "B",     # bugbear
+    "DJ",    # flake8-django
+    "S",     # bandit
+    "UP",    # pyupgrade
+    "C4",    # comprehensions
+]
+ignore = [
+    "S101",   # assert is expected in tests
+    # The models group members by concern (fields, properties, methods,
+    # Meta) rather than in the order this rule prescribes. The grouping
+    # is consistent across the codebase, so the rule is pure churn here.
+    "DJ012",
+    # null=True on a CharField normally creates two empty states. On the
+    # nullable choice fields here (revoke_reason, country) NULL means
+    # "not applicable" and "" is never stored, so the ambiguity does not
+    # arise.
+    "DJ001",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Hardcoded test credentials are the point.
+"tests/*" = ["S105", "S106", "S311"]
+# Settings modules re-export via star imports by design.
+"config/settings/*" = ["F403", "F405", "E501"]
+# Package __init__ files exist to re-export.
+"**/__init__.py" = ["F401", "F403"]
+
+[dependency-groups]
+dev = [
+    "coverage>=7.14.3",
+    "factory-boy>=3.3.3",
+    "faker>=40.27.0",
+    "ipython>=9.15.0",
+    "mypy>=2.1.0",
+    "pre-commit>=4.6.0",
+    "pytest>=9.1.1",
+    "pytest-django>=4.12.0",
+    "ruff>=0.15.20",
+    # Used by the schema tests to parse the generated OpenAPI document.
+    # Present transitively via drf-spectacular, but declared here so the
+    # suite does not break if that changes.
+    "pyyaml>=6.0",
+]

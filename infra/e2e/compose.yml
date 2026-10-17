@@ -1,0 +1,40 @@
+# Overlay on docker-compose.prod.yml; changes only test services, ports and fixtures.
+services:
+  minio:
+    # quay.io, not Docker Hub: MinIO withdrew its images from Docker Hub, so
+    # `minio/minio` no longer pulls at all -- and it failed only in CI,
+    # because every machine that had run this before still had it cached.
+    # Same release tag, same image, from MinIO's own registry.
+    image: quay.io/minio/minio:RELEASE.2025-04-22T22-12-26Z
+    command: server /data
+    environment:
+      MINIO_ROOT_USER: validation-storage
+      MINIO_ROOT_PASSWORD: validation-storage-password
+    volumes: ["validation_objects:/data"]
+  buckets:
+    image: quay.io/minio/mc:RELEASE.2025-04-16T18-13-26Z
+    depends_on: [minio]
+    entrypoint: [sh, -ec, 'until mc alias set local http://minio:9000 validation-storage validation-storage-password; do sleep 2; done; mc mb --ignore-existing local/media local/private-backups; mc anonymous set download local/media']
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports: ["127.0.0.1:8036:8025"]
+  web:
+    volumes: ["./infra/e2e:/fixtures:ro"]
+    depends_on:
+      buckets: {condition: service_completed_successfully}
+      mailpit: {condition: service_started}
+  nginx:
+    ports: !override ["127.0.0.1:8446:443", "127.0.0.1:8086:80"]
+    volumes: !override
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./infra/e2e/generated/app.conf:/etc/nginx/conf.d/app.conf:ro
+      - ./infra/e2e/generated:/etc/nginx/certs:ro
+      - certbot_webroot:/var/www/certbot
+    networks:
+      default:
+        aliases: [media.starter.test]
+  backup:
+    depends_on:
+      buckets: {condition: service_completed_successfully}
+volumes:
+  validation_objects:

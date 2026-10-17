@@ -1,0 +1,94 @@
+[
+  {
+    "source": "aucoeurdunepal/deploy.sh",
+    "target": "deploy.sh",
+    "source_sha256": "abe02d399b0222dca48afa13f56f380d8db95f990340908fa1e2bc227be7b1f5"
+  },
+  {
+    "source": "aucoeurdunepal/.github/workflows/publish.yml",
+    "target": ".github/workflows/publish.yml",
+    "source_sha256": "741254194d95b03822d38da16cfab6f54a34f4892f8c587850d664893ab14943"
+  },
+  {
+    "source": "aucoeurdunepal/.github/workflows/deploy.yml",
+    "target": ".github/workflows/deploy.yml",
+    "source_sha256": "fad3bf673f7b15c5033068e3406b81ece1ed82b058bb65e50622c1d91d8d7b6c"
+  },
+  {
+    "source": "aucoeurdunepal/.github/workflows/production-validation.yml",
+    "target": ".github/workflows/production-validation.yml",
+    "source_sha256": "8fa9f392fc25ebf46da70eda88eca8df08a9b4d90f570fe18c8d4b4f7fe7a957"
+  },
+  {
+    "source": "aucoeurdunepal/infra/release_env.py",
+    "target": "infra/release_env.py",
+    "source_sha256": "3950d49eff93b5fb06dc580bb2ccddbdeed10e5d55110cc657bf653ad83269a0"
+  },
+  {
+    "source": "aucoeurdunepal/infra/smoke.py",
+    "target": "infra/smoke.py",
+    "source_sha256": "6e8b17f7373f8449c12d6c6c41d12f3fbd8a0169387dd18715a220faa89c4b4a"
+  },
+  {
+    "source": "aucoeurdunepal/infra/tests/test_release_contract.py",
+    "target": "infra/tests/test_release_contract.py",
+    "source_sha256": "a8eeec7c61af9c74ab3da7565e19c2cd537b92da13169cfac26d5469a81710fc"
+  },
+  {
+    "source": "aucoeurdunepal/infra/e2e/run.py",
+    "target": "infra/e2e/run.py",
+    "source_sha256": "2f65ca2b6a1304d8c12fc356e2279418b9946006270f750425a5c006f073bdfb"
+  },
+  {
+    "source": "aucoeurdunepal/infra/e2e/prepare.py",
+    "target": "infra/e2e/prepare.py",
+    "source_sha256": "2ed176aedfb3fa370a10b7137bbd21ca19556d257648e44d76ac0140b947a334"
+  },
+  {
+    "source": "aucoeurdunepal/infra/e2e/compose.yml",
+    "target": "infra/e2e/compose.yml",
+    "source_sha256": "281932fe52b4dfd11fc40c20c865b921517514495c3f5da44b7fc76844aa30e2"
+  },
+  {
+    "source": "aucoeurdunepal/infra/e2e/seed.py",
+    "target": "infra/e2e/seed.py",
+    "source_sha256": "fccbfc12093ee3ad54378b6212f6efa2d16b1e18b5303e5be3a613a5d8cb0688"
+  },
+  {
+    "source": "aucoeurdunepal/infra/e2e/probe.py",
+    "target": "infra/e2e/probe.py",
+    "source_sha256": "c1c5bb00689db8a9587b90b1c7de36a8b18bd09765d58fb2135b5569cda19de1"
+  },
+  {
+    "source": "aucoeurdunepal/infra/e2e/reset_login_throttle.py",
+    "target": "infra/e2e/reset_login_throttle.py",
+    "source_sha256": "5853b9c3352b465fac84b62197ca354def33813b1de7f15d780dcbb84727f14f"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/playwright.config.ts",
+    "target": "frontend/playwright.config.ts",
+    "source_sha256": "d77841e6d31c9ca78c6eb14c50a8eb8907c4c3902f9765d0139eee673c4847f1"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/e2e/fixtures.ts",
+    "target": "frontend/e2e/fixtures.ts",
+    "source_sha256": "e79309ac4dafce18be9ef7db6d3a893cbf1f70214fcda615e6b7a7561435b219"
+  },
+  {
+    "source": "aucoeurdunepal/frontend/e2e/production.spec.ts",
+    "target": "frontend/e2e/production.spec.ts",
+    "source_sha256": "8b6cce7dc6c5619c29c4ae82354cfe634e17a0bb9615b5b62b1347c9a6e67512"
+  },
+  {
+    "source": "aucoeurdunepal/docker-compose.prod.yml",
+    "target": "docker-compose.prod.yml",
+    "source_sha256": "6dcd0879322af07f0cdbc6c3a0edb3a5dbc7894d55f598b8c2d5f20af8af2fcd",
+    "note": "Daily backup entrypoint and restore-freshness healthcheck copied into backup-scheduler."
+  },
+  {
+    "source": "aucoeurdunepal/.github/workflows/backend.yml",
+    "target": ".github/workflows/backend.yml",
+    "source_sha256": "4a1fa8bb84cca75007acd29e63f8c8a435a04150cb87186e41a773d2f301fea3",
+    "note": "Frozen production dependency audit step copied."
+  }
+]

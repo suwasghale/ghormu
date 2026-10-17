@@ -1,0 +1,243 @@
+# ==============================================================================
+# Development stack
+# ==============================================================================
+#
+#   docker compose -f docker-compose.dev.yml up --build
+#
+# Six services: Postgres, Redis, the API, a Celery worker, the beat
+# scheduler and the Next.js frontend. Beat is easy to omit and its absence
+# is silent — session cleanup and token flushing simply never run.
+#
+# Configuration comes from backend/.env. The values there point at
+# localhost so host-side `manage.py` works; the overrides below repoint
+# them at the service names for anything inside this network. Real
+# environment variables beat the file (see config/settings/env.py), so
+# nothing has to be edited to switch between the two.
+
+name: ${COMPOSE_PROJECT_NAME:-ghormu-dev}
+
+# ------------------------------------------------------------------------------
+# Shared backend definition
+# ------------------------------------------------------------------------------
+#
+# The API, the worker and beat are the same image with different commands.
+
+x-backend: &backend
+  build:
+    context: .
+    dockerfile: infra/docker/backend/Dockerfile.dev
+  restart: unless-stopped
+  env_file:
+    - ./backend/.env
+  environment: &backend-env
+    DJANGO_SETTINGS_MODULE: config.settings.dev
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: "5432"
+    REDIS_HOST: redis
+    REDIS_PORT: "6379"
+    EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend
+    EMAIL_HOST: mailpit
+    EMAIL_PORT: "1025"
+    EMAIL_USE_TLS: "False"
+  volumes:
+    - ./backend:/app
+    # Masks the host's virtualenv. On Windows that directory holds .exe
+    # files the container cannot run, and it would otherwise shadow the
+    # image's own environment.
+    - backend_venv:/app/.venv
+  depends_on:
+    postgres:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+
+services:
+  mailpit:
+    image: axllent/mailpit:v1.27
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${SG_MAIL_PORT:-8030}:8025"
+  # ----------------------------------------------------------------------------
+  # Data stores
+  # ----------------------------------------------------------------------------
+
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+
+    # Reads the same file Django does, so the credentials cannot drift.
+    env_file:
+      - ./backend/.env
+
+    # Published so host-side tooling (psql, manage.py, an IDE) can reach it.
+    ports:
+      # 5433, not 5432: another project on this machine already owns the
+      # default, and a host-side `manage.py runserver` reading
+      # backend/.env would then connect to *its* database and report
+      # that every table is missing. Keep this in step with
+      # POSTGRES_PORT in backend/.env, which describes the host view.
+      - "127.0.0.1:${SG_POSTGRES_PORT:-5440}:5432"
+
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+    ports:
+      # 6380 for the same reason as Postgres above.
+      - "127.0.0.1:${SG_REDIS_PORT:-6390}:6379"
+
+    volumes:
+      - redis_dev_data:/data
+
+    command: ["redis-server", "--appendonly", "yes"]
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ----------------------------------------------------------------------------
+  # Application
+  # ----------------------------------------------------------------------------
+
+  backend:
+    <<: *backend
+
+    ports:
+      - "127.0.0.1:${SG_BACKEND_PORT:-8010}:8000"
+
+    # The entrypoint waits for a connection Django can actually make, then
+    # migrates. Only this service does — the worker and beat below start
+    # from the same image and would race it.
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+  celery:
+    <<: *backend
+
+    environment:
+      <<: *backend-env
+      RUN_MIGRATIONS: "0"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+
+    command:
+      - celery
+      - -A
+      - config
+      - worker
+      - --loglevel=info
+      # solo pool: the default prefork pool needs fork(), which is
+      # unavailable on Windows hosts running this image under WSL in
+      # some configurations, and the throughput is irrelevant in dev.
+      - --pool=solo
+
+    # The image's healthcheck curls /health/, which only the web process
+    # serves — the worker would sit "unhealthy" forever. Ask Celery instead.
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A config inspect ping -d celery@$$HOSTNAME"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 30s
+
+  # The scheduler. Separate from the worker on purpose: beat only decides
+  # when tasks fire, the worker runs them, and exactly one beat process
+  # may exist or every job is scheduled twice.
+  #
+  # Without this the periodic jobs never run — expired sessions and
+  # outstanding refresh tokens accumulate forever.
+  celery-beat:
+    <<: *backend
+
+    environment:
+      <<: *backend-env
+      RUN_MIGRATIONS: "0"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+
+    command:
+      - celery
+      - -A
+      - config
+      - beat
+      - --loglevel=info
+      - --scheduler
+      - django_celery_beat.schedulers:DatabaseScheduler
+
+    # Beat serves nothing and answers no ping: it is a clock. Inheriting
+    # the image's HTTP healthcheck only ever marks it unhealthy.
+    healthcheck:
+      disable: true
+
+  frontend:
+    build:
+      context: .
+      dockerfile: infra/docker/frontend/Dockerfile.dev
+
+    restart: unless-stopped
+
+    environment:
+      NODE_ENV: development
+      NEXT_TELEMETRY_DISABLED: "1"
+      PORT: "3000"
+      # node_modules is a named volume, so it starts empty and pnpm sees a
+      # directory it did not create. Without CI it asks permission to clear
+      # it, finds no TTY, and the container restart-loops on
+      # ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY — which is what happens
+      # to anyone who adds a dependency on the host.
+      CI: "true"
+      # Reached from the browser, not from inside the network, so this is
+      # the published host port rather than the service name.
+      NEXT_PUBLIC_SITE_URL: http://localhost:${SG_FRONTEND_PORT:-3010}
+      AUTH_COOKIE_PREFIX: ${COMPOSE_PROJECT_NAME:-ghormu-dev}
+      # Reached from the Next.js server, which runs inside this network:
+      # 127.0.0.1 here is the frontend container itself, so a value copied
+      # from .env.local silently fails every server-side content fetch and
+      # the pages render empty. A real environment variable also takes
+      # precedence over .env.local, which is what makes this override work.
+      API_INTERNAL_URL: http://backend:8000
+
+    ports:
+      - "127.0.0.1:${SG_FRONTEND_PORT:-3010}:3000"
+
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+      - frontend_next:/app/.next
+
+    depends_on:
+      backend:
+        condition: service_healthy
+
+    # Named volumes survive image rebuilds; synchronize them with the lockfile.
+    command: ["sh", "-ec", "pnpm install --frozen-lockfile && exec pnpm dev --hostname 0.0.0.0"]
+
+volumes:
+  postgres_dev_data:
+  redis_dev_data:
+  backend_venv:
+  frontend_node_modules:
+  frontend_next:

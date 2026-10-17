@@ -1,0 +1,19 @@
+{% extends "emails/base.txt" %}
+
+{% block title %}Confirm your new email address{% endblock %}
+
+{% block content %}
+Hello {{ full_name|default:"there" }},
+
+A request was made to change the email address on your {{ site_name }}
+account to this one.
+
+Confirm the change using the link below:
+
+{{ verification_url }}
+
+This link expires in {{ expires_in_hours }} hours.
+
+If you did not request this, you can safely ignore this email. Your
+address will not change.
+{% endblock %}

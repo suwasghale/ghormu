@@ -1,0 +1,2 @@
+// Stand-in for Next's `server-only` marker in unit tests.
+export {}

@@ -1,0 +1,15 @@
+{% block title %}{{ site_name }}{% endblock %}
+
+========================================================
+
+{{ site_name }}
+
+========================================================
+
+{% block content %}{% endblock %}
+
+--------------------------------------------------------
+
+This message was sent automatically. Please do not reply to it.
+
+{% now "Y" %} {{ site_name }}

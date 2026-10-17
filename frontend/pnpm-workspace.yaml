@@ -1,0 +1,10 @@
+packages: []
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
+# Security patch floors for transitive packages still pinned by upstream tooling.
+overrides:
+  'brace-expansion@5': 5.0.9
+  browserslist: 4.28.7
+  fast-uri: 3.1.6
+  baseline-browser-mapping: 2.11.0
