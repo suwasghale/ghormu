@@ -16,7 +16,7 @@ services:
     depends_on: [minio]
     entrypoint: [sh, -ec, 'until mc alias set local http://minio:9000 validation-storage validation-storage-password; do sleep 2; done; mc mb --ignore-existing local/media local/private-backups; mc anonymous set download local/media']
   mailpit:
-    image: axllent/mailpit:v1.27
+    image: axllent/mailpit:v1.30
     ports: ["127.0.0.1:8036:8025"]
   web:
     volumes: ["./infra/e2e:/fixtures:ro"]
