@@ -118,7 +118,7 @@ export const footerColumns: FooterColumn[] = [
  * Public pages that have their own route and real content. Add a page here
  * when you build it: it leaves the placeholder list and joins the sitemap.
  */
-export const publishedPages = ["/", "/about", "/about/vision", "/about/culture", "/explore"] as const
+export const publishedPages = ["/", "/about", "/about/vision", "/about/culture", "/explore", "/explore/travel-guide"] as const
 
 /**
  * Every localized page the navigation points at, other than home, with the
