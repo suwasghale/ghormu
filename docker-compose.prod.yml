@@ -86,7 +86,7 @@ services:
         max-file: "3"
 
   redis:
-    image: redis:7-alpine
+    image: redis:8-alpine
     restart: unless-stopped
 
     # Same single source of truth as Postgres.
