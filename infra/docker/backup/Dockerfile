@@ -13,7 +13,7 @@
 # mismatch fails loudly instead of filling the bucket with 20-byte files --
 # which is exactly what a version mismatch produces.
 
-FROM postgres:17-alpine
+FROM postgres:18-alpine
 
 # aws-cli speaks S3, and R2 is S3-compatible, so the same client covers both
 # the upload and the restore drill.
