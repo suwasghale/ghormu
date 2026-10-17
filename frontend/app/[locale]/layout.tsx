@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Mukta } from "next/font/google"
+import { Mukta, Noto_Serif_Devanagari } from "next/font/google"
 import { notFound } from "next/navigation"
 
 import "../globals.css"
@@ -12,6 +12,14 @@ const mukta = Mukta({
   subsets: ["devanagari", "latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-mukta",
+  display: "swap",
+})
+
+/** Headings only; one variable file covers every weight. */
+const notoSerif = Noto_Serif_Devanagari({
+  subsets: ["devanagari", "latin"],
+  weight: "variable",
+  variable: "--font-noto-serif",
   display: "swap",
 })
 
@@ -62,7 +70,7 @@ export default async function PublicLayout({ children, params }: LayoutProps) {
   const dict = getDictionary(locale)
 
   return (
-    <html lang={locale} data-site="public" className={`${mukta.variable} h-full antialiased`}>
+    <html lang={locale} data-site="public" className={`${mukta.variable} ${notoSerif.variable} h-full scroll-smooth antialiased`}>
       <body className="flex min-h-full flex-col">
         <a
           href="#main"

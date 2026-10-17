@@ -1,13 +1,10 @@
 import type { MetadataRoute } from 'next'
 import { site } from '@/config/site'
+import { publishedPages } from '@/config/navigation'
 import { localizePath, locales } from '@/lib/i18n/config'
 
-/**
- * Public pages that have real content, locale-less. Placeholder pages stay
- * out until they are written (they are `noindex` meanwhile); add each page
- * here when it replaces its placeholder.
- */
-const indexedPaths = ['/']
+/** Only pages with real content; placeholders are `noindex` until written. */
+const indexedPaths: readonly string[] = publishedPages
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const url = (path: string) => new URL(path, site.url).toString()

@@ -1,7 +1,8 @@
+import { existsSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { NextRequest } from 'next/server'
 
-import { footerColumns, linkedPages, mainNav } from '@/config/navigation'
+import { footerColumns, linkedPages, mainNav, placeholderPages, publishedPages } from '@/config/navigation'
 import { proxy } from '@/proxy'
 import { defaultLocale, isLocale, localizePath, otherLocale, stripLocale } from './config'
 import en from './dictionaries/en'
@@ -67,6 +68,18 @@ describe('navigation', () => {
     expect(linkedPages.get('/privacy')).toBe('privacy')
     expect(linkedPages.has('/')).toBe(false)
     expect(linkedPages.has('/login')).toBe(false)
+  })
+
+  it('builds a placeholder only for pages without their own route', () => {
+    for (const path of publishedPages) expect(placeholderPages.has(path), path).toBe(false)
+    expect(placeholderPages.has('/about/history')).toBe(true)
+  })
+
+  it('has a route file for every published page', () => {
+    for (const path of publishedPages) {
+      const file = path === '/' ? 'app/[locale]/page.tsx' : `app/[locale]${path}/page.tsx`
+      expect(existsSync(file), file).toBe(true)
+    }
   })
 })
 

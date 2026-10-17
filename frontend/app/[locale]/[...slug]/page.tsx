@@ -3,21 +3,21 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Hourglass } from "lucide-react"
 
-import { linkedPages } from "@/config/navigation"
+import { placeholderPages } from "@/config/navigation"
 import { getDictionary, isLocale, localizePath } from "@/lib/i18n"
 import { alternatesFor } from "@/lib/i18n/metadata"
 
 /**
  * "Coming soon" for every page the navigation links to that has no route yet.
  *
- * A real page at, say, `app/[locale]/about/history/page.tsx` takes precedence
- * over this catch-all, so pages replace their placeholder one at a time with
- * nothing else to change. Unknown paths are a 404, not a placeholder.
+ * To build one, add `app/[locale]/<path>/page.tsx` and list the path in
+ * `publishedPages` (config/navigation.ts); it then leaves this list and joins
+ * the sitemap. Unknown paths are a 404, not a placeholder.
  */
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return [...linkedPages.keys()].map((path) => ({ slug: path.slice(1).split("/") }))
+  return [...placeholderPages.keys()].map((path) => ({ slug: path.slice(1).split("/") }))
 }
 
 type PageProps = { params: Promise<{ locale: string; slug: string[] }> }
@@ -25,7 +25,7 @@ type PageProps = { params: Promise<{ locale: string; slug: string[] }> }
 async function resolve(params: PageProps["params"]) {
   const { locale, slug } = await params
   const path = `/${slug.join("/")}`
-  const key = linkedPages.get(path)
+  const key = placeholderPages.get(path)
 
   if (!isLocale(locale) || !key) notFound()
 

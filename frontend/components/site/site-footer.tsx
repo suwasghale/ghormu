@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { MapPin } from "lucide-react"
 
 import { footerColumns, type NavLink } from "@/config/navigation"
 import type { Dictionary } from "@/lib/i18n"
@@ -31,10 +30,6 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
             <span className="text-xl font-bold tracking-tight">{dict.site.name}</span>
           </Link>
           <p className="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">{dict.site.tagline}</p>
-          <p className="mt-3 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-            <MapPin aria-hidden="true" className="size-4 text-brand" />
-            {dict.site.location}
-          </p>
         </div>
 
         {footerColumns.map((column) => (

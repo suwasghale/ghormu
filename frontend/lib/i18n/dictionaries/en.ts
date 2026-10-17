@@ -4,9 +4,7 @@ const en: Dictionary = {
   site: {
     name: "Ghormu",
     tagline: "The digital home of Ghormu village",
-    description:
-      "History, culture, tourism and community life of Ghormu village in Rasuwa, Nepal.",
-    location: "Rasuwa, Nepal",
+    description: "History, culture, tourism and community life of Ghormu village, Nepal.",
   },
 
   header: {
@@ -16,6 +14,7 @@ const en: Dictionary = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
     switchLanguage: "View this page in Nepali",
+    breadcrumb: "Breadcrumb",
   },
 
   nav: {

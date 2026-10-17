@@ -115,12 +115,25 @@ export const footerColumns: FooterColumn[] = [
 ]
 
 /**
+ * Public pages that have their own route and real content. Add a page here
+ * when you build it: it leaves the placeholder list and joins the sitemap.
+ */
+export const publishedPages = ["/", "/about", "/about/vision", "/about/culture", "/explore"] as const
+
+/**
  * Every localized page the navigation points at, other than home, with the
- * label that titles it. Pages without their own route yet render as a
- * "coming soon" placeholder, so no link in the header or footer is ever a 404.
+ * label that titles it.
  */
 export const linkedPages: ReadonlyMap<string, NavKey> = new Map(
   [...mainNav.flatMap((item) => item.children ?? [item]), ...footerColumns.flatMap((column) => column.links)]
     .filter((link) => link.localized !== false && link.href !== "/")
     .map((link) => [link.href, link.key]),
+)
+
+/**
+ * Linked pages not built yet. Each renders a "coming soon" placeholder, so no
+ * link in the header or footer is ever a 404.
+ */
+export const placeholderPages: ReadonlyMap<string, NavKey> = new Map(
+  [...linkedPages].filter(([path]) => !(publishedPages as readonly string[]).includes(path)),
 )
