@@ -43,6 +43,17 @@ class PublicThrottle(TrustedIPAnonThrottle):
     scope = "public"
 
 
+class SubmissionThrottle(TrustedIPAnonThrottle):
+    """
+    Public forms that end in a person reading an email, such as contact.
+
+    Tight on purpose: one person sends one message, and the ceiling is
+    what stops a form becoming a mail relay.
+    """
+
+    scope = "submission"
+
+
 # =============================================================================
 # Authentication
 # =============================================================================

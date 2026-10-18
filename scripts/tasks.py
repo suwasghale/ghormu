@@ -18,6 +18,9 @@ def run(args, *, cwd=ROOT, **kwargs):
 
 
 def bootstrap():
+    # One secret, written to both sides: the backend sends it when content is
+    # published and the frontend checks it before rebuilding pages.
+    revalidate_secret = secrets.token_urlsafe(32)
     for example, target in [(".env.example", ".env"), ("backend/.env.example", "backend/.env"),
                             ("frontend/.env.example", "frontend/.env.local")]:
         path = ROOT / target
@@ -29,6 +32,9 @@ def bootstrap():
             text = text.replace("# SECRET_KEY=", "SECRET_KEY=" + secrets.token_urlsafe(64))
             text = text.replace("# JWT_SIGNING_KEY=", "JWT_SIGNING_KEY=" + secrets.token_urlsafe(64))
             text = text.replace("POSTGRES_PASSWORD=local-development-only", "POSTGRES_PASSWORD=" + secrets.token_urlsafe(32))
+            text = text.replace("# FRONTEND_REVALIDATE_SECRET=", "FRONTEND_REVALIDATE_SECRET=" + revalidate_secret)
+        if target == "frontend/.env.local":
+            text = text.replace("REVALIDATE_SECRET=\n", f"REVALIDATE_SECRET={revalidate_secret}\n")
         path.write_text(text, encoding="utf-8")
         if os.name != "nt":
             path.chmod(0o600)

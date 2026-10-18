@@ -43,7 +43,14 @@ THIRD_PARTY_APPS = [
 # Local Apps
 # ------------------------------------------------------------------------------
 
-LOCAL_APPS = ["core", "apps.users", "apps.profiles", "apps.dashboard"]
+LOCAL_APPS = [
+    "core",
+    "apps.users",
+    "apps.profiles",
+    "apps.dashboard",
+    "apps.public_content",
+    "apps.contact",
+]
 
 # ------------------------------------------------------------------------------
 # Final Installed Apps

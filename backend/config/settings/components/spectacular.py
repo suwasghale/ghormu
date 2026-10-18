@@ -43,6 +43,11 @@ SPECTACULAR_SETTINGS = {
         # hash-suffixed "Status202Enum" spectacular falls back to.
         "PublicationStatusEnum": "core.choices.PublicationStatusChoices",
         # Same story for the three unrelated "category" fields.
+        # Two unrelated "kind" fields, and one language list used by both
+        # profiles and the contact form.
+        "PostKindEnum": "apps.public_content.choices.PostKindChoices",
+        "ArchiveKindEnum": "apps.public_content.choices.ArchiveKindChoices",
+        "LanguageEnum": "core.choices.LanguageChoices",
     },
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,

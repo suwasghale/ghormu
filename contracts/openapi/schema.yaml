@@ -11,6 +11,143 @@ info:
     name: Proprietary
     url: ''
 paths:
+  /api/v1/admin/archive/:
+    get:
+      operationId: admin_archive_list
+      description: Archive items.
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedArchiveItemAdminList'
+          description: ''
+    post:
+      operationId: admin_archive_create
+      description: Archive items.
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArchiveItemAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ArchiveItemAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ArchiveItemAdminRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveItemAdmin'
+          description: ''
+  /api/v1/admin/archive/{id}/:
+    get:
+      operationId: admin_archive_retrieve
+      description: One archive item.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveItemAdmin'
+          description: ''
+    patch:
+      operationId: admin_archive_partial_update
+      description: One archive item.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedArchiveItemAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedArchiveItemAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedArchiveItemAdminRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveItemAdmin'
+          description: ''
+    delete:
+      operationId: admin_archive_destroy
+      description: One archive item.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
   /api/v1/admin/dashboard/:
     get:
       operationId: admin_dashboard_retrieve
@@ -35,6 +172,143 @@ paths:
                 type: object
                 additionalProperties: {}
           description: ''
+  /api/v1/admin/events/:
+    get:
+      operationId: admin_events_list
+      description: Events.
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEventAdminList'
+          description: ''
+    post:
+      operationId: admin_events_create
+      description: Events.
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EventAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EventAdminRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventAdmin'
+          description: ''
+  /api/v1/admin/events/{id}/:
+    get:
+      operationId: admin_events_retrieve
+      description: One event.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventAdmin'
+          description: ''
+    patch:
+      operationId: admin_events_partial_update
+      description: One event.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEventAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEventAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEventAdminRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventAdmin'
+          description: ''
+    delete:
+      operationId: admin_events_destroy
+      description: One event.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
   /api/v1/admin/media/:
     post:
       operationId: admin_media_create
@@ -55,6 +329,416 @@ paths:
       - jwtAuth: []
       responses:
         '201':
+          description: No response body
+  /api/v1/admin/messages/:
+    get:
+      operationId: admin_messages_list
+      description: The inbox. Messages arrive through the website form only.
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedContactMessageAdminList'
+          description: ''
+    post:
+      operationId: admin_messages_create
+      description: The inbox. Messages arrive through the website form only.
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactMessageAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ContactMessageAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ContactMessageAdminRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactMessageAdmin'
+          description: ''
+  /api/v1/admin/messages/{id}/:
+    get:
+      operationId: admin_messages_retrieve
+      description: One message.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactMessageAdmin'
+          description: ''
+    patch:
+      operationId: admin_messages_partial_update
+      description: One message.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedContactMessageAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedContactMessageAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedContactMessageAdminRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactMessageAdmin'
+          description: ''
+    delete:
+      operationId: admin_messages_destroy
+      description: One message.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/admin/posts/:
+    get:
+      operationId: admin_posts_list
+      description: News and announcements.
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPostAdminList'
+          description: ''
+    post:
+      operationId: admin_posts_create
+      description: News and announcements.
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostAdminRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAdmin'
+          description: ''
+  /api/v1/admin/posts/{id}/:
+    get:
+      operationId: admin_posts_retrieve
+      description: One post.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAdmin'
+          description: ''
+    patch:
+      operationId: admin_posts_partial_update
+      description: One post.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPostAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPostAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPostAdminRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAdmin'
+          description: ''
+    delete:
+      operationId: admin_posts_destroy
+      description: One post.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/admin/projects/:
+    get:
+      operationId: admin_projects_list
+      description: Development projects.
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProjectAdminList'
+          description: ''
+    post:
+      operationId: admin_projects_create
+      description: Development projects.
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectAdminRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectAdmin'
+          description: ''
+  /api/v1/admin/projects/{id}/:
+    get:
+      operationId: admin_projects_retrieve
+      description: One project.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectAdmin'
+          description: ''
+    patch:
+      operationId: admin_projects_partial_update
+      description: One project.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectAdminRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectAdmin'
+          description: ''
+    delete:
+      operationId: admin_projects_destroy
+      description: One project.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
           description: No response body
   /api/v1/admin/users/:
     get:
@@ -996,6 +1680,357 @@ paths:
           description: Requested resource was not found.
         '429':
           description: Too many requests.
+  /api/v1/contact/:
+    post:
+      operationId: contact_create
+      description: |-
+        Base view for unauthenticated endpoints.
+
+        Authentication is disabled outright rather than merely permitted:
+        leaving it enabled means an expired or malformed Authorization
+        header rejects the request before the view is ever reached, which
+        breaks login and refresh for exactly the clients that need them.
+      tags:
+      - contact
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactSubmissionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ContactSubmissionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ContactSubmissionRequest'
+        required: true
+      security:
+      - {}
+      responses:
+        '201':
+          description: No response body
+  /api/v1/content/archive/:
+    get:
+      operationId: content_archive_list
+      description: |-
+        Read-only, unauthenticated, language-aware, cacheable.
+
+        Authentication is disabled rather than merely permitted, for the same
+        reason ``PublicAPIView`` does it: an expired ``Authorization`` header
+        from a logged-in editor browsing the site should not turn a public
+        read into a 401.
+      parameters:
+      - in: query
+        name: decade
+        schema:
+          type: integer
+        description: First year of a decade, e.g. 1990.
+      - in: query
+        name: kind
+        schema:
+          type: string
+          enum:
+          - document
+          - map
+          - photo
+          - satellite
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - en
+          - ne
+        description: 'Content language: `ne` (default) or `en`.'
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - content
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedArchiveItemList'
+          description: ''
+  /api/v1/content/archive/{slug}/:
+    get:
+      operationId: content_archive_retrieve
+      description: |-
+        Read-only, unauthenticated, language-aware, cacheable.
+
+        Authentication is disabled rather than merely permitted, for the same
+        reason ``PublicAPIView`` does it: an expired ``Authorization`` header
+        from a logged-in editor browsing the site should not turn a public
+        read into a 401.
+      parameters:
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - en
+          - ne
+        description: 'Content language: `ne` (default) or `en`.'
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - content
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveItem'
+          description: ''
+  /api/v1/content/events/:
+    get:
+      operationId: content_events_list
+      description: |-
+        Read-only, unauthenticated, language-aware, cacheable.
+
+        Authentication is disabled rather than merely permitted, for the same
+        reason ``PublicAPIView`` does it: an expired ``Authorization`` header
+        from a logged-in editor browsing the site should not turn a public
+        read into a 401.
+      parameters:
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - en
+          - ne
+        description: 'Content language: `ne` (default) or `en`.'
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: when
+        schema:
+          type: string
+          enum:
+          - past
+          - upcoming
+      tags:
+      - content
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEventList'
+          description: ''
+  /api/v1/content/posts/:
+    get:
+      operationId: content_posts_list
+      description: |-
+        Read-only, unauthenticated, language-aware, cacheable.
+
+        Authentication is disabled rather than merely permitted, for the same
+        reason ``PublicAPIView`` does it: an expired ``Authorization`` header
+        from a logged-in editor browsing the site should not turn a public
+        read into a 401.
+      parameters:
+      - in: query
+        name: kind
+        schema:
+          type: string
+          enum:
+          - announcement
+          - news
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - en
+          - ne
+        description: 'Content language: `ne` (default) or `en`.'
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - content
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPostListList'
+          description: ''
+  /api/v1/content/posts/{slug}/:
+    get:
+      operationId: content_posts_retrieve
+      description: |-
+        Read-only, unauthenticated, language-aware, cacheable.
+
+        Authentication is disabled rather than merely permitted, for the same
+        reason ``PublicAPIView`` does it: an expired ``Authorization`` header
+        from a logged-in editor browsing the site should not turn a public
+        read into a 401.
+      parameters:
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - en
+          - ne
+        description: 'Content language: `ne` (default) or `en`.'
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - content
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDetail'
+          description: ''
+  /api/v1/content/projects/:
+    get:
+      operationId: content_projects_list
+      description: |-
+        Read-only, unauthenticated, language-aware, cacheable.
+
+        Authentication is disabled rather than merely permitted, for the same
+        reason ``PublicAPIView`` does it: an expired ``Authorization`` header
+        from a logged-in editor browsing the site should not turn a public
+        read into a 401.
+      parameters:
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - en
+          - ne
+        description: 'Content language: `ne` (default) or `en`.'
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: stage
+        schema:
+          type: string
+          enum:
+          - completed
+          - ongoing
+          - planned
+      tags:
+      - content
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProjectList'
+          description: ''
   /api/v1/me/addresses/:
     get:
       operationId: me_addresses_retrieve
@@ -1348,6 +2383,256 @@ components:
         * `billing` - Billing
         * `shipping` - Shipping
         * `other` - Other
+    ArchiveItem:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        slug:
+          type: string
+          description: 'Part of the address: /about/archive/<slug>.'
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        kind:
+          $ref: '#/components/schemas/ArchiveKindEnum'
+        title:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        year:
+          type: integer
+          maximum: 2200
+          minimum: 1800
+          nullable: true
+          title: Year (AD)
+          description: Gregorian year, exact or best guess. Used for sorting and decades.
+        date_label:
+          type: string
+          readOnly: true
+        place:
+          type: string
+          readOnly: true
+        credit:
+          type: string
+          description: 'Who gave or took it, or the required credit line, e.g. "Imagery:
+            Google, Maxar Technologies".'
+          maxLength: 300
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+      required:
+      - date_label
+      - description
+      - id
+      - place
+      - title
+    ArchiveItemAdmin:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        kind:
+          $ref: '#/components/schemas/ArchiveKindEnum'
+        slug:
+          type: string
+          description: 'Part of the address: /about/archive/<slug>.'
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        title_ne:
+          type: string
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        description_ne:
+          type: string
+          title: Story (Nepali)
+          maxLength: 4000
+        description_en:
+          type: string
+          title: Story (English)
+          maxLength: 4000
+        year:
+          type: integer
+          maximum: 2200
+          minimum: 1800
+          nullable: true
+          title: Year (AD)
+          description: Gregorian year, exact or best guess. Used for sorting and decades.
+        date_label_ne:
+          type: string
+          title: Date shown (Nepali)
+          description: How to show the date, e.g. "करिब २०४५ साल".
+          maxLength: 100
+        date_label_en:
+          type: string
+          title: Date shown (English)
+          maxLength: 100
+        place_ne:
+          type: string
+          title: Place (Nepali)
+          maxLength: 200
+        place_en:
+          type: string
+          title: Place (English)
+          maxLength: 200
+        credit:
+          type: string
+          description: 'Who gave or took it, or the required credit line, e.g. "Imagery:
+            Google, Maxar Technologies".'
+          maxLength: 300
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        consent_confirmed:
+          type: boolean
+          title: Permission confirmed
+          description: The owner, and anyone recognisable in it, agreed to publication.
+      required:
+      - created_at
+      - id
+      - title_ne
+      - updated_at
+    ArchiveItemAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        kind:
+          $ref: '#/components/schemas/ArchiveKindEnum'
+        slug:
+          type: string
+          description: 'Part of the address: /about/archive/<slug>.'
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        title_ne:
+          type: string
+          minLength: 1
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        description_ne:
+          type: string
+          title: Story (Nepali)
+          maxLength: 4000
+        description_en:
+          type: string
+          title: Story (English)
+          maxLength: 4000
+        year:
+          type: integer
+          maximum: 2200
+          minimum: 1800
+          nullable: true
+          title: Year (AD)
+          description: Gregorian year, exact or best guess. Used for sorting and decades.
+        date_label_ne:
+          type: string
+          title: Date shown (Nepali)
+          description: How to show the date, e.g. "करिब २०४५ साल".
+          maxLength: 100
+        date_label_en:
+          type: string
+          title: Date shown (English)
+          maxLength: 100
+        place_ne:
+          type: string
+          title: Place (Nepali)
+          maxLength: 200
+        place_en:
+          type: string
+          title: Place (English)
+          maxLength: 200
+        credit:
+          type: string
+          description: 'Who gave or took it, or the required credit line, e.g. "Imagery:
+            Google, Maxar Technologies".'
+          maxLength: 300
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        consent_confirmed:
+          type: boolean
+          title: Permission confirmed
+          description: The owner, and anyone recognisable in it, agreed to publication.
+      required:
+      - title_ne
+    ArchiveKindEnum:
+      enum:
+      - photo
+      - document
+      - map
+      - satellite
+      type: string
+      description: |-
+        * `photo` - Photo
+        * `document` - Document
+        * `map` - Map
+        * `satellite` - Satellite image
+    CategoryEnum:
+      enum:
+      - festival
+      - ceremony
+      - meeting
+      - community
+      - sports
+      - other
+      type: string
+      description: |-
+        * `festival` - Festival
+        * `ceremony` - Ceremony
+        * `meeting` - Meeting
+        * `community` - Community programme
+        * `sports` - Sports
+        * `other` - Other
     ChangePasswordRequest:
       type: object
       description: Validate change password request.
@@ -1378,6 +2663,109 @@ components:
           description: Email change verification token.
       required:
       - token
+    ContactMessageAdmin:
+      type: object
+      description: |-
+        Staff can mark a message handled and keep a note; what the sender wrote
+        is a record and stays as sent.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+        phone:
+          type: string
+          readOnly: true
+        topic:
+          allOf:
+          - $ref: '#/components/schemas/TopicEnum'
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+        language:
+          allOf:
+          - $ref: '#/components/schemas/LanguageEnum'
+          readOnly: true
+          description: |-
+            The language the sender wrote from, to reply in it.
+
+            * `ne` - नेपाली
+            * `en` - English
+        handled:
+          type: boolean
+        staff_note:
+          type: string
+          description: Visible to staff only.
+      required:
+      - created_at
+      - email
+      - id
+      - language
+      - message
+      - name
+      - phone
+      - topic
+      - updated_at
+    ContactMessageAdminRequest:
+      type: object
+      description: |-
+        Staff can mark a message handled and keep a note; what the sender wrote
+        is a record and stays as sent.
+      properties:
+        handled:
+          type: boolean
+        staff_note:
+          type: string
+          description: Visible to staff only.
+    ContactSubmissionRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        email:
+          type: string
+          format: email
+          default: ''
+        phone:
+          type: string
+          default: ''
+          maxLength: 40
+        topic:
+          allOf:
+          - $ref: '#/components/schemas/TopicEnum'
+          default: general
+        message:
+          type: string
+          minLength: 10
+          maxLength: 5000
+        language:
+          allOf:
+          - $ref: '#/components/schemas/LanguageEnum'
+          default: ne
+        website:
+          type: string
+          default: ''
+      required:
+      - message
+      - name
     CountryEnum:
       enum:
       - AF
@@ -1987,6 +3375,174 @@ components:
           maxLength: 255
       required:
       - token
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        title:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        location:
+          type: string
+          readOnly: true
+        starts_on:
+          type: string
+          format: date
+        ends_on:
+          type: string
+          format: date
+          nullable: true
+          description: Leave empty for a one-day event.
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+      required:
+      - description
+      - id
+      - location
+      - starts_on
+      - title
+    EventAdmin:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        title_ne:
+          type: string
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        description_ne:
+          type: string
+          title: Description (Nepali)
+          maxLength: 2000
+        description_en:
+          type: string
+          title: Description (English)
+          maxLength: 2000
+        location_ne:
+          type: string
+          title: Place (Nepali)
+          maxLength: 200
+        location_en:
+          type: string
+          title: Place (English)
+          maxLength: 200
+        starts_on:
+          type: string
+          format: date
+        ends_on:
+          type: string
+          format: date
+          nullable: true
+          description: Leave empty for a one-day event.
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+      required:
+      - created_at
+      - id
+      - starts_on
+      - title_ne
+      - updated_at
+    EventAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        title_ne:
+          type: string
+          minLength: 1
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        description_ne:
+          type: string
+          title: Description (Nepali)
+          maxLength: 2000
+        description_en:
+          type: string
+          title: Description (English)
+          maxLength: 2000
+        location_ne:
+          type: string
+          title: Place (Nepali)
+          maxLength: 200
+        location_en:
+          type: string
+          title: Place (English)
+          maxLength: 200
+        starts_on:
+          type: string
+          format: date
+        ends_on:
+          type: string
+          format: date
+          nullable: true
+          description: Leave empty for a one-day event.
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+      required:
+      - starts_on
+      - title_ne
     ForgotPasswordRequest:
       type: object
       description: Validate password reset request.
@@ -2009,6 +3565,14 @@ components:
         * `female` - Female
         * `other` - Other
         * `prefer_not_to_say` - Prefer not to say
+    LanguageEnum:
+      enum:
+      - ne
+      - en
+      type: string
+      description: |-
+        * `ne` - नेपाली
+        * `en` - English
     LoginMethodEnum:
       enum:
       - password
@@ -2233,6 +3797,213 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address'
+    PaginatedArchiveItemAdminList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArchiveItemAdmin'
+    PaginatedArchiveItemList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArchiveItem'
+    PaginatedContactMessageAdminList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactMessageAdmin'
+    PaginatedEventAdminList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventAdmin'
+    PaginatedEventList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    PaginatedPostAdminList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostAdmin'
+    PaginatedPostListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostList'
+    PaginatedProjectAdminList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectAdmin'
+    PaginatedProjectList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     PaginatedSessionList:
       type: object
       required:
@@ -2335,6 +4106,84 @@ components:
         is_default:
           type: boolean
           title: Default address
+    PatchedArchiveItemAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        kind:
+          $ref: '#/components/schemas/ArchiveKindEnum'
+        slug:
+          type: string
+          description: 'Part of the address: /about/archive/<slug>.'
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        title_ne:
+          type: string
+          minLength: 1
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        description_ne:
+          type: string
+          title: Story (Nepali)
+          maxLength: 4000
+        description_en:
+          type: string
+          title: Story (English)
+          maxLength: 4000
+        year:
+          type: integer
+          maximum: 2200
+          minimum: 1800
+          nullable: true
+          title: Year (AD)
+          description: Gregorian year, exact or best guess. Used for sorting and decades.
+        date_label_ne:
+          type: string
+          title: Date shown (Nepali)
+          description: How to show the date, e.g. "करिब २०४५ साल".
+          maxLength: 100
+        date_label_en:
+          type: string
+          title: Date shown (English)
+          maxLength: 100
+        place_ne:
+          type: string
+          title: Place (Nepali)
+          maxLength: 200
+        place_en:
+          type: string
+          title: Place (English)
+          maxLength: 200
+        credit:
+          type: string
+          description: 'Who gave or took it, or the required credit line, e.g. "Imagery:
+            Google, Maxar Technologies".'
+          maxLength: 300
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        consent_confirmed:
+          type: boolean
+          title: Permission confirmed
+          description: The owner, and anyone recognisable in it, agreed to publication.
     PatchedAvatarUploadRequest:
       type: object
       description: Validate an uploaded avatar image.
@@ -2342,6 +4191,206 @@ components:
         avatar:
           type: string
           format: binary
+    PatchedContactMessageAdminRequest:
+      type: object
+      description: |-
+        Staff can mark a message handled and keep a note; what the sender wrote
+        is a record and stays as sent.
+      properties:
+        handled:
+          type: boolean
+        staff_note:
+          type: string
+          description: Visible to staff only.
+    PatchedEventAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        title_ne:
+          type: string
+          minLength: 1
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        description_ne:
+          type: string
+          title: Description (Nepali)
+          maxLength: 2000
+        description_en:
+          type: string
+          title: Description (English)
+          maxLength: 2000
+        location_ne:
+          type: string
+          title: Place (Nepali)
+          maxLength: 200
+        location_en:
+          type: string
+          title: Place (English)
+          maxLength: 200
+        starts_on:
+          type: string
+          format: date
+        ends_on:
+          type: string
+          format: date
+          nullable: true
+          description: Leave empty for a one-day event.
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+    PatchedPostAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        kind:
+          $ref: '#/components/schemas/PostKindEnum'
+        slug:
+          type: string
+          description: 'Part of the address: /updates/<slug>. Filled in from the English
+            title when left empty.'
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        title_ne:
+          type: string
+          minLength: 1
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        summary_ne:
+          type: string
+          title: Summary (Nepali)
+          maxLength: 400
+        summary_en:
+          type: string
+          title: Summary (English)
+          maxLength: 400
+        body_ne:
+          type: string
+          title: Body (Nepali)
+        body_en:
+          type: string
+          title: Body (English)
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        attachment_url:
+          type: string
+          format: uri
+          title: Attachment
+          description: A PDF or document to download, such as meeting minutes.
+          maxLength: 500
+        is_pinned:
+          type: boolean
+          title: Pinned
+          description: Pinned posts stay at the top of their list.
+    PatchedProjectAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        stage:
+          $ref: '#/components/schemas/StageEnum'
+        title_ne:
+          type: string
+          minLength: 1
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        summary_ne:
+          type: string
+          title: Summary (Nepali)
+          maxLength: 2000
+        summary_en:
+          type: string
+          title: Summary (English)
+          maxLength: 2000
+        funding_ne:
+          type: string
+          title: Funding (Nepali)
+          description: Who pays for it, e.g. the rural municipality or the community.
+          maxLength: 200
+        funding_en:
+          type: string
+          title: Funding (English)
+          maxLength: 200
+        budget_npr:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          title: Budget (NPR)
+          description: Total budget in rupees. Leave empty if not public.
+        progress:
+          type: integer
+          maximum: 100
+          minimum: 0
+          nullable: true
+          description: Percent complete, 0–100.
+        started_on:
+          type: string
+          format: date
+          nullable: true
+        completed_on:
+          type: string
+          format: date
+          nullable: true
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
     PatchedUpdateProfileRequest:
       type: object
       description: Partial update of the authenticated user's account.
@@ -2370,7 +4419,7 @@ components:
         biography:
           type: string
         preferred_language:
-          $ref: '#/components/schemas/PreferredLanguageEnum'
+          $ref: '#/components/schemas/LanguageEnum'
         timezone:
           type: string
           minLength: 1
@@ -2409,14 +4458,255 @@ components:
           type: boolean
           title: Verified
           description: Indicates whether the user's email address has been verified.
-    PreferredLanguageEnum:
+    PostAdmin:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        kind:
+          $ref: '#/components/schemas/PostKindEnum'
+        slug:
+          type: string
+          description: 'Part of the address: /updates/<slug>. Filled in from the English
+            title when left empty.'
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        title_ne:
+          type: string
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        summary_ne:
+          type: string
+          title: Summary (Nepali)
+          maxLength: 400
+        summary_en:
+          type: string
+          title: Summary (English)
+          maxLength: 400
+        body_ne:
+          type: string
+          title: Body (Nepali)
+        body_en:
+          type: string
+          title: Body (English)
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        attachment_url:
+          type: string
+          format: uri
+          title: Attachment
+          description: A PDF or document to download, such as meeting minutes.
+          maxLength: 500
+        is_pinned:
+          type: boolean
+          title: Pinned
+          description: Pinned posts stay at the top of their list.
+      required:
+      - created_at
+      - id
+      - title_ne
+      - updated_at
+    PostAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        kind:
+          $ref: '#/components/schemas/PostKindEnum'
+        slug:
+          type: string
+          description: 'Part of the address: /updates/<slug>. Filled in from the English
+            title when left empty.'
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        title_ne:
+          type: string
+          minLength: 1
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        summary_ne:
+          type: string
+          title: Summary (Nepali)
+          maxLength: 400
+        summary_en:
+          type: string
+          title: Summary (English)
+          maxLength: 400
+        body_ne:
+          type: string
+          title: Body (Nepali)
+        body_en:
+          type: string
+          title: Body (English)
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        attachment_url:
+          type: string
+          format: uri
+          title: Attachment
+          description: A PDF or document to download, such as meeting minutes.
+          maxLength: 500
+        is_pinned:
+          type: boolean
+          title: Pinned
+          description: Pinned posts stay at the top of their list.
+      required:
+      - title_ne
+    PostDetail:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        slug:
+          type: string
+          description: 'Part of the address: /updates/<slug>. Filled in from the English
+            title when left empty.'
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        kind:
+          $ref: '#/components/schemas/PostKindEnum'
+        title:
+          type: string
+          readOnly: true
+        summary:
+          type: string
+          readOnly: true
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        attachment_url:
+          type: string
+          format: uri
+          title: Attachment
+          description: A PDF or document to download, such as meeting minutes.
+          maxLength: 500
+        is_pinned:
+          type: boolean
+          title: Pinned
+          description: Pinned posts stay at the top of their list.
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        body:
+          type: string
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - body
+      - id
+      - summary
+      - title
+      - updated_at
+    PostKindEnum:
       enum:
-      - ne
-      - en
+      - news
+      - announcement
       type: string
       description: |-
-        * `ne` - नेपाली
-        * `en` - English
+        * `news` - News
+        * `announcement` - Announcement
+    PostList:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        slug:
+          type: string
+          description: 'Part of the address: /updates/<slug>. Filled in from the English
+            title when left empty.'
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        kind:
+          $ref: '#/components/schemas/PostKindEnum'
+        title:
+          type: string
+          readOnly: true
+        summary:
+          type: string
+          readOnly: true
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        attachment_url:
+          type: string
+          format: uri
+          title: Attachment
+          description: A PDF or document to download, such as meeting minutes.
+          maxLength: 500
+        is_pinned:
+          type: boolean
+          title: Pinned
+          description: Pinned posts stay at the top of their list.
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+      required:
+      - id
+      - summary
+      - title
     Profile:
       type: object
       properties:
@@ -2437,7 +4727,7 @@ components:
           type: string
           description: Short public biography.
         preferred_language:
-          $ref: '#/components/schemas/PreferredLanguageEnum'
+          $ref: '#/components/schemas/LanguageEnum'
         timezone:
           type: string
           nullable: true
@@ -2448,6 +4738,225 @@ components:
           nullable: true
       required:
       - timezone
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        stage:
+          $ref: '#/components/schemas/StageEnum'
+        title:
+          type: string
+          readOnly: true
+        summary:
+          type: string
+          readOnly: true
+        funding:
+          type: string
+          readOnly: true
+        budget_npr:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          title: Budget (NPR)
+          description: Total budget in rupees. Leave empty if not public.
+        progress:
+          type: integer
+          maximum: 100
+          minimum: 0
+          nullable: true
+          description: Percent complete, 0–100.
+        started_on:
+          type: string
+          format: date
+          nullable: true
+        completed_on:
+          type: string
+          format: date
+          nullable: true
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+      required:
+      - funding
+      - id
+      - summary
+      - title
+    ProjectAdmin:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        stage:
+          $ref: '#/components/schemas/StageEnum'
+        title_ne:
+          type: string
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        summary_ne:
+          type: string
+          title: Summary (Nepali)
+          maxLength: 2000
+        summary_en:
+          type: string
+          title: Summary (English)
+          maxLength: 2000
+        funding_ne:
+          type: string
+          title: Funding (Nepali)
+          description: Who pays for it, e.g. the rural municipality or the community.
+          maxLength: 200
+        funding_en:
+          type: string
+          title: Funding (English)
+          maxLength: 200
+        budget_npr:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          title: Budget (NPR)
+          description: Total budget in rupees. Leave empty if not public.
+        progress:
+          type: integer
+          maximum: 100
+          minimum: 0
+          nullable: true
+          description: Percent complete, 0–100.
+        started_on:
+          type: string
+          format: date
+          nullable: true
+        completed_on:
+          type: string
+          format: date
+          nullable: true
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+      required:
+      - created_at
+      - id
+      - title_ne
+      - updated_at
+    ProjectAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        stage:
+          $ref: '#/components/schemas/StageEnum'
+        title_ne:
+          type: string
+          minLength: 1
+          title: Title (Nepali)
+          maxLength: 200
+        title_en:
+          type: string
+          title: Title (English)
+          maxLength: 200
+        summary_ne:
+          type: string
+          title: Summary (Nepali)
+          maxLength: 2000
+        summary_en:
+          type: string
+          title: Summary (English)
+          maxLength: 2000
+        funding_ne:
+          type: string
+          title: Funding (Nepali)
+          description: Who pays for it, e.g. the rural municipality or the community.
+          maxLength: 200
+        funding_en:
+          type: string
+          title: Funding (English)
+          maxLength: 200
+        budget_npr:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          nullable: true
+          title: Budget (NPR)
+          description: Total budget in rupees. Leave empty if not public.
+        progress:
+          type: integer
+          maximum: 100
+          minimum: 0
+          nullable: true
+          description: Percent complete, 0–100.
+        started_on:
+          type: string
+          format: date
+          nullable: true
+        completed_on:
+          type: string
+          format: date
+          nullable: true
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+      required:
+      - title_ne
+    PublicationStatusEnum:
+      enum:
+      - draft
+      - published
+      - archived
+      type: string
+      description: |-
+        * `draft` - Draft
+        * `published` - Published
+        * `archived` - Archived
     RecoveryCodesResponse:
       type: object
       description: Recovery codes, returned exactly once.
@@ -2662,6 +5171,16 @@ components:
           readOnly: true
       required:
       - providers
+    StageEnum:
+      enum:
+      - planned
+      - ongoing
+      - completed
+      type: string
+      description: |-
+        * `planned` - Planned
+        * `ongoing` - Ongoing
+        * `completed` - Completed
     TokenRefreshRequest:
       type: object
       properties:
@@ -2680,6 +5199,20 @@ components:
       required:
       - access
       - refresh
+    TopicEnum:
+      enum:
+      - general
+      - feedback
+      - correction
+      - archive
+      - travel
+      type: string
+      description: |-
+        * `general` - General question
+        * `feedback` - Feedback or suggestion
+        * `correction` - Correction to the website
+        * `archive` - Photos, stories or documents to share
+        * `travel` - Visiting Ghormu
     TrustedDevice:
       type: object
       description: Serialize a trusted device.

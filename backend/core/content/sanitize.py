@@ -120,3 +120,35 @@ def strip_html(value: str | None, *, limit: int | None = None) -> str:
         return text[: limit - 1].rstrip() + "…"
 
     return text
+
+
+def plain_text(value: str | None) -> str:
+    """
+    Plain text that keeps its paragraphs, for multi-line form fields.
+
+    ``strip_html`` flattens everything onto one line, which suits a meta
+    description but turns a three-paragraph story into one block. This
+    removes markup the same way, then tidies each line and keeps single
+    blank lines between paragraphs.
+    """
+
+    if not value:
+        return ""
+
+    text = html.unescape(nh3.clean(value.replace("\r\n", "\n"), tags=set()))
+    lines = [" ".join(line.split()) for line in text.split("\n")]
+
+    paragraphs: list[str] = []
+    current: list[str] = []
+
+    for line in lines:
+        if line:
+            current.append(line)
+        elif current:
+            paragraphs.append("\n".join(current))
+            current = []
+
+    if current:
+        paragraphs.append("\n".join(current))
+
+    return "\n\n".join(paragraphs)
