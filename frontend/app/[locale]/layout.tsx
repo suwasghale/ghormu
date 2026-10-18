@@ -23,9 +23,12 @@ const notoSerif = Noto_Serif_Devanagari({
   display: "swap",
 })
 
-/** Only `/ne` and `/en` exist; anything else is a 404, not a render. */
-export const dynamicParams = false
-
+/**
+ * Both languages are built ahead of time. Not `dynamicParams = false`: that
+ * setting carries down to every page below, and news stories and archive
+ * items have addresses that only exist once an editor publishes them. Any
+ * other "locale" is turned away by the `isLocale` checks with a 404.
+ */
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }

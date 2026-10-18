@@ -81,6 +81,14 @@ describe('routing', () => {
     expect(calledUrls(fetchMock)).toEqual(['/api/auth/social'])
   })
 
+  it('drops the trailing slash before a query, so the proxy is not redirected', async () => {
+    const fetchMock = mockFetch(jsonResponse(200, { success: true, data: {} }))
+
+    await apiClient.get('/admin/posts/?page=1&page_size=6')
+
+    expect(calledUrls(fetchMock)).toEqual(['/api/proxy/admin/posts?page=1&page_size=6'])
+  })
+
   it('sends sign-in requests to the dedicated route, not the proxy', async () => {
     const fetchMock = mockFetch(jsonResponse(200, { success: true, data: {} }))
 

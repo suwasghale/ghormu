@@ -27,7 +27,7 @@ async function forward(request: Request, path: string[]) {
   const rejected = checkOrigin(request)
   if (rejected) return rejected
   const access = (await cookies()).get(ACCESS_COOKIE)?.value
-  const publicPaths = new Set(['auth/register', 'auth/email/verify', 'auth/email/resend', 'auth/password/forgot', 'auth/password/reset', 'auth/email/change/confirm'])
+  const publicPaths = new Set(['auth/register', 'auth/email/verify', 'auth/email/resend', 'auth/password/forgot', 'auth/password/reset', 'auth/email/change/confirm', 'contact'])
   const route = path.join('/')
   if (['auth/login', 'auth/refresh', 'auth/mfa/verify'].includes(route) || route.startsWith('auth/social/')) {
     return NextResponse.json({ message: 'Use the dedicated authentication route.' }, { status: 404 })

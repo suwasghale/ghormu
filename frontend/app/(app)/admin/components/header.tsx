@@ -112,7 +112,7 @@ export default function Header({ user, onOpenNav }: HeaderProps) {
 
         <div className="hidden min-w-0 sm:block">
           <p className="truncate text-sm font-semibold">
-            {`${user.first_name} ${user.last_name}`.trim() || "Administrateur"}
+            {`${user.first_name} ${user.last_name}`.trim() || "Administrator"}
           </p>
 
           <p className="truncate text-xs text-gray-500">{user.email}</p>

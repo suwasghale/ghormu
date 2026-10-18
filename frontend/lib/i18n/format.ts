@@ -25,3 +25,29 @@ export function formatClock(locale: Locale, localDateTime: string): string {
 export function formatDay(locale: Locale, localDate: string, options: Intl.DateTimeFormatOptions): string {
   return new Intl.DateTimeFormat(intlLocale(locale), { ...options, timeZone: "UTC" }).format(new Date(`${localDate}T00:00:00Z`))
 }
+
+/** Two local calendar dates as one range, the way each language writes it. */
+export function formatDayRange(locale: Locale, from: string, to: string, options: Intl.DateTimeFormatOptions): string {
+  return new Intl.DateTimeFormat(intlLocale(locale), { ...options, timeZone: "UTC" }).formatRange(
+    new Date(`${from}T00:00:00Z`),
+    new Date(`${to}T00:00:00Z`),
+  )
+}
+
+/** A moment (ISO timestamp) as a date in Nepal time. */
+export function formatDate(
+  locale: Locale,
+  iso: string,
+  options: Intl.DateTimeFormatOptions = { day: "numeric", month: "long", year: "numeric" },
+): string {
+  return new Intl.DateTimeFormat(intlLocale(locale), { ...options, timeZone: "Asia/Kathmandu" }).format(new Date(iso))
+}
+
+/** Rupees with South Asian grouping: नेरू २५,००,००० / NPR 25,00,000. */
+export function formatRupees(locale: Locale, amount: number): string {
+  return new Intl.NumberFormat(locale === "ne" ? "ne-NP" : "en-IN", {
+    style: "currency",
+    currency: "NPR",
+    maximumFractionDigits: 0,
+  }).format(amount)
+}

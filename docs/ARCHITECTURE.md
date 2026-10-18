@@ -29,6 +29,17 @@ The public site is Nepali first, with English as the second language. Routes are
 - Long-form page copy lives in `frontend/content/<page>.ts` as `bilingual({ ne, en })`. The English object must match the Nepali shape exactly. These files are what the Django CMS will replace later. Shared building blocks (`Section`, `PageHero`, `Landscape`, `TopoPattern`, `Faq`, `JsonLd`) are in `frontend/components/site`.
 - On the backend, translatable content uses paired columns (`title_ne`, `title_en`). `core.i18n` resolves the language from `?lang=`, then `Accept-Language`, then falls back to Nepali, and it falls back to the other column when one is empty. Profiles store `preferred_language` as `ne` or `en`, with `ne` as the default.
 
+## Public content
+
+Content that changes over time is managed in the admin at `/admin`, not written into the code:
+
+- **`apps.public_content`** holds four kinds of content: news and announcements (`Post`), events (`Event`), development projects (`Project`) and the digital archive (`ArchiveItem`). Each has paired Nepali/English columns and the draft → published → archived lifecycle. Archive items with kind `satellite` (dated aerial views with their required credit line) power the "Ghormu through time" comparison. An archive item cannot be published until `consent_confirmed` is ticked, and drafts and unconsented items never leave the public API.
+- **`apps.contact`** stores contact and feedback messages. It is separate because it holds personal data, and it has no public read endpoint. `POST /api/v1/contact/` is rate-limited (the `submission` throttle) and has a honeypot field. Each message is emailed to `ADMIN_EMAIL` with a link to it in the admin.
+- **Public reads** come from `/api/v1/content/...` (`posts`, `events`, `projects`, `archive`) and are fetched on the server by `frontend/lib/api/content.ts`, tagged and cached for five minutes. If the API is down, lists come back empty with `ok: false` and pages say so instead of failing.
+- **Rebuilds on publish.** Every admin write queues `core.tasks.revalidate_frontend_paths`, which posts to the frontend's `/api/revalidate` with `FRONTEND_REVALIDATE_SECRET`. The frontend checks it against `REVALIDATE_SECRET` and rebuilds the tagged pages in both languages. `python scripts/tasks.py bootstrap` writes the same random secret to both env files.
+- **Story and archive item pages** (`/updates/<slug>`, `/about/archive/<slug>`) are not built ahead of time. They render on first visit and stay cached until edited. That is why `app/[locale]/layout.tsx` must not set `dynamicParams = false`: it would turn every newly published address into a 404.
+- **Fixed facts** that rarely change stay in `frontend/content/` files rather than the database: emergency numbers, road status (`road-status.ts`), the travel route, attractions and local hosts. Empty lists are hidden or replaced by an honest "being prepared" note.
+
 `lib/admin/resources.ts` declares fields, columns and filters for the generic admin table/form. Add a matching backend resource endpoint and a resource definition to reuse those screens. Avoid adding a navigation entry until its route and permissions work.
 
 To add a feature:

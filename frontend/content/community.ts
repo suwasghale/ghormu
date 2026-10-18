@@ -1,0 +1,128 @@
+import { bilingual } from "./bilingual"
+
+/**
+ * Community pages. Clan histories are deliberately not written here: they
+ * belong to each community to tell, and are collected with them.
+ */
+export default bilingual({
+  ne: {
+    eyebrow: "समुदाय",
+    overview: {
+      title: "समुदायको परिचय",
+      lead: "घोर्मुका थर-थरका समुदाय, तिनका परम्परा, र परिवार तथा कार्यक्रमको अभिलेख राख्ने हाम्रो साझा प्रणाली।",
+      introTitle: "एउटै गाउँ, धेरै समुदाय",
+      intro: [
+        "घोर्मुमा घले, तामाङ, गुरुङलगायत विभिन्न समुदाय पुस्तौँदेखि सँगै बस्दै आएका छन्। हरेक थरको आफ्नै इतिहास र जिम्मेवारी छ, र विवाह, छेवर, गुफा बस्नेजस्ता संस्कारमा सबै एकअर्काको साथमा उभिन्छन्।",
+        "यही आपसी सहयोगको परम्परालाई सुरक्षित र पारदर्शी बनाउन समुदाय पोर्टल बनाइँदैछ।",
+      ],
+      surnamesTitle: "थर समुदायहरू",
+      surnamesLink: "सबै समुदाय हेर्नुहोस्",
+      portalTitle: "समुदाय पोर्टलले के गर्छ?",
+      portalLead: "हरेक समुदायका अधिकृत व्यवस्थापकले मात्र प्रयोग गर्ने सुरक्षित प्रणाली।",
+      features: [
+        { title: "परिवारको अभिलेख", body: "हरेक परिवारको स्थायी कोड र विवरण, जुन दशकौँसम्म नबदलिने गरी सुरक्षित रहन्छ।" },
+        { title: "कार्यक्रम र सहयोग", body: "विवाह, छेवर, गुफा बस्नेजस्ता कार्यक्रममा परेको सहयोगको तटस्थ र सही हिसाब।" },
+        { title: "पारदर्शी हिसाब", body: "कुल संकलन, खर्च र हस्तान्तरणको स्पष्ट विवरण, नेपाली भाषामा।" },
+        { title: "गोपनीयता", body: "एउटा समुदायको विवरण अर्को समुदायले हेर्न पाउँदैन; परिवारले आफ्नो मात्र विवरण हेर्छ।" },
+      ],
+      portalCta: "समुदाय पोर्टलमा जानुहोस्",
+      portalNote: "पोर्टल पहिलो चरणमा घले समुदायका लागि सुरु हुँदैछ।",
+      eventsTitle: "आगामी कार्यक्रम",
+      eventsLink: "कार्यक्रम पात्रो हेर्नुहोस्",
+    },
+    surnames: {
+      title: "थर समुदायहरू",
+      lead: "घोर्मुका थर समुदाय र समुदाय पोर्टलमा उनीहरूको अवस्था।",
+      statusFirst: "पोर्टल: पहिलो चरणमा",
+      statusNext: "पोर्टल: आगामी",
+      helpTitle: "आफ्नो समुदायको कथा लेख्न सघाउनुहोस्",
+      helpBody: "हरेक समुदायको इतिहास, उत्पत्ति र परम्परा उनीहरू आफैँले भन्नुपर्छ। तपाईंलाई आफ्नो थरको कथा थाहा छ भने हामीलाई सम्पर्क गर्नुहोस्।",
+      helpCta: "सम्पर्क गर्नुहोस्",
+      clans: [
+        { name: "घले", latin: "Ghale", first: true },
+        { name: "गुरुङ", latin: "Gurung", first: false },
+        { name: "लोप्चन", latin: "Lopchan", first: false },
+        { name: "थिङ", latin: "Thing", first: false },
+        { name: "मोक्तान", latin: "Moktan", first: false },
+      ],
+    },
+    events: {
+      title: "कार्यक्रम पात्रो",
+      lead: "घोर्मुका चाडपर्व, बैठक र सामुदायिक कार्यक्रमहरू।",
+      upcoming: "आगामी कार्यक्रम",
+      past: "सम्पन्न कार्यक्रम",
+      emptyTitle: "अहिले कुनै कार्यक्रम तय भएको छैन",
+      emptyBody: "नयाँ कार्यक्रम तय हुनासाथ यहाँ देखिनेछ। वर्षभरि मनाइने चाडपर्वबारे संस्कृति पृष्ठमा पढ्नुहोस्।",
+      emptyAction: "चाडपर्वबारे पढ्नुहोस्",
+      loadFailed: "कार्यक्रमहरू अहिले लोड हुन सकेनन्। केही समयपछि फेरि हेर्नुहोस्।",
+      categories: {
+        festival: "चाडपर्व",
+        ceremony: "संस्कार",
+        meeting: "बैठक",
+        community: "सामुदायिक कार्यक्रम",
+        sports: "खेलकुद",
+        other: "अन्य",
+      },
+    },
+  },
+  en: {
+    eyebrow: "Community",
+    overview: {
+      title: "Community Overview",
+      lead: "Ghormu's clan communities, their traditions, and the shared system that keeps the record of families and events.",
+      introTitle: "One village, many communities",
+      intro: [
+        "Ghale, Tamang, Gurung and other communities have lived together in Ghormu for generations. Each clan has its own history and responsibilities, and at weddings, Chhewar, Gufa Basne and other rites, everyone stands by one another.",
+        "The community portal is being built to keep this tradition of mutual support safe and transparent.",
+      ],
+      surnamesTitle: "Clan communities",
+      surnamesLink: "See all communities",
+      portalTitle: "What the community portal does",
+      portalLead: "A secure system used only by each community's authorised administrators.",
+      features: [
+        { title: "Family records", body: "A permanent code and details for every family, kept safe and unchanged for decades." },
+        { title: "Events and contributions", body: "A neutral, accurate record of contributions at weddings, Chhewar, Gufa Basne and other events." },
+        { title: "Transparent accounts", body: "Clear totals, expenses and handovers, in Nepali." },
+        { title: "Privacy", body: "No community sees another's records; a family sees only its own." },
+      ],
+      portalCta: "Go to the community portal",
+      portalNote: "The portal launches first for the Ghale community.",
+      eventsTitle: "Coming up",
+      eventsLink: "See the events calendar",
+    },
+    surnames: {
+      title: "Surname Communities",
+      lead: "Ghormu's clan communities and where each stands with the community portal.",
+      statusFirst: "Portal: first phase",
+      statusNext: "Portal: coming next",
+      helpTitle: "Help write your community's story",
+      helpBody: "Each community's history, origins and traditions are theirs to tell. If you know your clan's story, please get in touch.",
+      helpCta: "Get in touch",
+      clans: [
+        { name: "Ghale", latin: "घले", first: true },
+        { name: "Gurung", latin: "गुरुङ", first: false },
+        { name: "Lopchan", latin: "लोप्चन", first: false },
+        { name: "Thing", latin: "थिङ", first: false },
+        { name: "Moktan", latin: "मोक्तान", first: false },
+      ],
+    },
+    events: {
+      title: "Events Calendar",
+      lead: "Festivals, meetings and community programmes in Ghormu.",
+      upcoming: "Coming up",
+      past: "Past events",
+      emptyTitle: "Nothing is scheduled right now",
+      emptyBody: "New events will appear here as soon as they are set. Read about the festivals of the year on the culture page.",
+      emptyAction: "Read about the festivals",
+      loadFailed: "Events could not be loaded right now. Please check again shortly.",
+      categories: {
+        festival: "Festival",
+        ceremony: "Ceremony",
+        meeting: "Meeting",
+        community: "Community programme",
+        sports: "Sports",
+        other: "Other",
+      },
+    },
+  },
+})

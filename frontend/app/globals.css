@@ -340,3 +340,97 @@ html[data-site="public"] {
   pointer-events: none;
 }
 
+
+/* ============================================================================
+   Public rich text
+   ============================================================================
+   Articles written in the admin's editor. Same tag set as .admin-prose,
+   styled for reading: larger type, the display face for headings.
+   ========================================================================= */
+
+.prose-ghormu {
+  font-size: 1.125rem;
+  line-height: 1.85;
+  color: color-mix(in oklch, var(--foreground) 88%, transparent);
+}
+
+.prose-ghormu > * + * {
+  margin-top: 1.1em;
+}
+
+.prose-ghormu h2,
+.prose-ghormu h3,
+.prose-ghormu h4 {
+  font-family: var(--font-display-family);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--foreground);
+  margin-top: 1.8em;
+}
+
+.prose-ghormu h2 {
+  font-size: 1.6em;
+}
+
+.prose-ghormu h3 {
+  font-size: 1.3em;
+}
+
+.prose-ghormu a {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-ghormu ul,
+.prose-ghormu ol {
+  padding-left: 1.4em;
+}
+
+.prose-ghormu ul {
+  list-style: disc;
+}
+
+.prose-ghormu ol {
+  list-style: decimal;
+}
+
+.prose-ghormu li + li {
+  margin-top: 0.35em;
+}
+
+.prose-ghormu blockquote {
+  border-left: 3px solid var(--earth);
+  padding-left: 1.1em;
+  font-family: var(--font-display-family);
+  font-size: 1.15em;
+}
+
+.prose-ghormu img {
+  border-radius: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose-ghormu figcaption {
+  margin-top: 0.5em;
+  font-size: 0.85em;
+  color: var(--muted-foreground);
+}
+
+.prose-ghormu table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+.prose-ghormu th,
+.prose-ghormu td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.6em 0.5em;
+  text-align: left;
+}
+
+.prose-ghormu hr {
+  border-color: var(--border);
+}

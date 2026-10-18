@@ -71,6 +71,13 @@ export default bilingual({
       statusFirst: "पहिलो चरणमा",
       statusNext: "आगामी",
     },
+    latest: {
+      eyebrow: "ताजा",
+      title: "घोर्मुबाट ताजा खबर",
+      link: "सबै समाचार",
+      events: "आगामी कार्यक्रम",
+      eventsLink: "कार्यक्रम पात्रो",
+    },
     archive: {
       title: "घोर्मुको सम्झना जोगाउन सघाउनुहोस्",
       body: "तपाईंसँग पुराना तस्बिर, कथा वा कागजात छन्? गाउँमै हुनुहोस् वा विदेशमा, तपाईंको योगदानले आउँदा पुस्तालाई हाम्रो इतिहास चिनाउनेछ।",
@@ -142,6 +149,13 @@ export default bilingual({
       portal: "Community portal",
       statusFirst: "First phase",
       statusNext: "Coming next",
+    },
+    latest: {
+      eyebrow: "Latest",
+      title: "News from Ghormu",
+      link: "All news",
+      events: "Coming up",
+      eventsLink: "Events calendar",
     },
     archive: {
       title: "Help preserve Ghormu's memory",

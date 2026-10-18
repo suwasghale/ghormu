@@ -14,18 +14,26 @@ import {
   Trees,
 } from "lucide-react"
 
+import { EventCard } from "@/components/site/event-card"
 import { JsonLd } from "@/components/site/json-ld"
 import { Landscape } from "@/components/site/landscape"
 import { PhotoStack } from "@/components/site/photo-stack"
 import { ArrowLink, buttonStyles, Container, Eyebrow, Section, SectionHeader } from "@/components/site/section"
+import { PostCard } from "@/components/site/post-card"
 import { Terrain3D } from "@/components/site/terrain-3d"
+import { ThroughTimeSection } from "@/components/site/through-time-section"
 import { TopoPattern } from "@/components/site/topo-pattern"
 import { site } from "@/config/site"
+import community from "@/content/community"
 import home from "@/content/home"
 import tourism from "@/content/tourism"
 import { formatIndex, getDictionary, isLocale, localizePath, locales } from "@/lib/i18n"
+import { listEvents, listPosts } from "@/lib/api/content"
 import { alternatesFor } from "@/lib/i18n/metadata"
 import { cn } from "@/lib/utils"
+
+/** Static, but refreshed when news or events are published (see lib/api/content). */
+export const revalidate = 300
 
 type PageProps = { params: Promise<{ locale: string }> }
 
@@ -53,6 +61,9 @@ export default async function HomePage({ params }: PageProps) {
   const dict = getDictionary(locale)
   const href = (path: string) => localizePath(locale, path)
   const bestSeasons = tourism[locale].seasons.filter((season) => season.best)
+  const [{ items: posts }, { items: events }] = await Promise.all([listPosts(locale, "news"), listEvents(locale, "upcoming")])
+  const latestPosts = posts.slice(0, 3)
+  const nextEvents = events.slice(0, 2)
 
   return (
     <>
@@ -276,6 +287,42 @@ export default async function HomePage({ params }: PageProps) {
           <Terrain3D labels={t.map.places} className="min-h-96" />
         </div>
       </Section>
+
+      <ThroughTimeSection locale={locale} />
+
+      {/* ── Latest: only once there is something to show ──────── */}
+      {(latestPosts.length > 0 || nextEvents.length > 0) && (
+        <Section labelledBy="latest-title" className="py-24 sm:py-32">
+          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <SectionHeader id="latest-title" eyebrow={t.latest.eyebrow} title={t.latest.title} />
+            <ArrowLink href={href("/updates")} className="reveal shrink-0">
+              {t.latest.link}
+            </ArrowLink>
+          </div>
+          <div className={cn("mt-12 grid gap-12", nextEvents.length > 0 && latestPosts.length > 0 && "lg:grid-cols-[2fr_1fr]")}>
+            {latestPosts.length > 0 && (
+              <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2">
+                {latestPosts.slice(0, nextEvents.length > 0 ? 2 : 3).map((post) => (
+                  <PostCard key={post.id} post={post} locale={locale} />
+                ))}
+              </div>
+            )}
+            {nextEvents.length > 0 && (
+              <div className="reveal">
+                <h3 className="font-display text-xl font-semibold">{t.latest.events}</h3>
+                <div className="mt-5 flex flex-col gap-4">
+                  {nextEvents.map((event) => (
+                    <EventCard key={event.id} event={event} locale={locale} categoryLabel={community[locale].events.categories[event.category]} compact />
+                  ))}
+                </div>
+                <ArrowLink href={href("/community/events")} className="mt-6">
+                  {t.latest.eventsLink}
+                </ArrowLink>
+              </div>
+            )}
+          </div>
+        </Section>
+      )}
 
       {/* ── Community ────────────────────────────────────────── */}
       <Section id="community" tone="brand" labelledBy="community-title" className="py-24 sm:py-32">

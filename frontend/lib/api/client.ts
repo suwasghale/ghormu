@@ -83,7 +83,14 @@ class ApiClient {
     // Normalize URL
     // -------------------------------------------------------------------------
 
-    const clean = endpoint.replace(/^\//, "").replace(/\/$/, "")
+    // The slash is stripped from the path, not the end of the string: with a
+    // query (`admin/users/?page=1`) it sits before the `?`, and Next answers
+    // `/api/proxy/admin/users/` with a 308. Behind the production CSP's
+    // `upgrade-insecure-requests` that redirect can even turn into https on
+    // a plain-http host and fail outright.
+    const [path, query] = endpoint.split("?", 2)
+    const clean = path.replace(/^\//, "").replace(/\/$/, "")
+    const search = query ? `?${query}` : ""
     const authRoutes: Record<string, string> = {
       "auth/login": "/api/auth/login", "auth/mfa/verify": "/api/auth/mfa",
       "auth/logout": "/api/auth/logout", "auth/logout/all": "/api/auth/logout-all",
@@ -92,7 +99,7 @@ class ApiClient {
     // are called as written rather than through the Django proxy.
     const url =
       authRoutes[clean] ??
-      (endpoint.startsWith("/api/") ? endpoint : `${this.baseUrl}/${clean}`)
+      (endpoint.startsWith("/api/") ? endpoint : `${this.baseUrl}/${clean}${search}`)
 
     // -------------------------------------------------------------------------
     // Request

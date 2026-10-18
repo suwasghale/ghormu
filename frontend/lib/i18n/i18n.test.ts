@@ -72,7 +72,7 @@ describe('navigation', () => {
 
   it('builds a placeholder only for pages without their own route', () => {
     for (const path of publishedPages) expect(placeholderPages.has(path), path).toBe(false)
-    expect(placeholderPages.has('/about/history')).toBe(true)
+    expect([...placeholderPages.keys()].every((path) => linkedPages.has(path))).toBe(true)
   })
 
   it('has a route file for every published page', () => {
