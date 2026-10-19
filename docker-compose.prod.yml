@@ -54,7 +54,7 @@ x-backend-base: &backend-base
 
 services:
   postgres:
-    image: postgres:17-alpine
+    image: postgres:18-alpine
     restart: unless-stopped
 
     # Reads the same file Django does, so the credentials cannot drift
