@@ -16,7 +16,7 @@ import {
 
 import { EventCard } from "@/components/site/event-card"
 import { JsonLd } from "@/components/site/json-ld"
-import { Landscape } from "@/components/site/landscape"
+import { PhotoCredit, PhotoImage } from "@/components/site/photo"
 import { PhotoStack } from "@/components/site/photo-stack"
 import { ArrowLink, buttonStyles, Container, Eyebrow, Section, SectionHeader } from "@/components/site/section"
 import { PostCard } from "@/components/site/post-card"
@@ -26,6 +26,7 @@ import { TopoPattern } from "@/components/site/topo-pattern"
 import { site } from "@/config/site"
 import community from "@/content/community"
 import home from "@/content/home"
+import { photos, type PhotoName } from "@/content/photos"
 import tourism from "@/content/tourism"
 import { formatIndex, getDictionary, isLocale, localizePath, locales } from "@/lib/i18n"
 import { listEvents, listPosts } from "@/lib/api/content"
@@ -50,6 +51,9 @@ const ANCHORS = ["intro", "culture", "explore", "community"]
 const PILLAR_LINKS = ["/about", "/explore", "/community", "/about/archive"]
 
 const CULTURE_ICONS = [Sun, Scissors, Flower2, HeartHandshake]
+
+/** The "village life" mosaic: the first is the large tile. */
+const LIFE_PHOTOS: PhotoName[] = ["terraceWork", "smiles", "welcome", "doko", "greens"]
 
 const EXPLORE_ICONS = [Trees, Footprints, Landmark, HandHeart]
 
@@ -82,29 +86,30 @@ export default async function HomePage({ params }: PageProps) {
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section aria-labelledby="hero-title" className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col overflow-hidden">
-        <Landscape className="absolute inset-0 -z-10" />
-        {/* Soft wash behind the text so it stays readable over the peaks. */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_56%_at_6%_30%,var(--snow)_0%,color-mix(in_oklch,var(--snow)_80%,transparent)_38%,color-mix(in_oklch,var(--snow)_35%,transparent)_58%,transparent_78%)]"
-        />
+        <div className="hero-zoom absolute inset-0 -z-20">
+          <PhotoImage photo={photos.village} locale={locale} fill priority sizes="100vw" credit="none" />
+        </div>
+        {/* Darker at the left and the foot, so the title and the page index stay readable. */}
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/80 via-ink/40 to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/80 via-transparent to-ink/40" />
+        <PhotoCredit photo={photos.village} locale={locale} className="absolute right-4 bottom-4 sm:right-6 sm:bottom-20" />
 
-        <Container className="flex flex-1 flex-col pt-14 pb-[38vh] sm:pt-20 lg:pb-[32vh]">
+        <Container className="flex flex-1 flex-col justify-center py-20 text-ink-foreground sm:pb-36">
           <div className="rise max-w-3xl">
-            <Eyebrow>{t.hero.eyebrow}</Eyebrow>
+            <Eyebrow tone="ink">{t.hero.eyebrow}</Eyebrow>
             <h1
               id="hero-title"
-              className="mt-6 font-display text-7xl leading-[1.12] font-bold tracking-tight text-ink sm:text-8xl lg:text-[9rem]"
+              className="mt-6 font-display text-7xl leading-[1.12] font-bold tracking-tight text-white sm:text-8xl lg:text-[9rem]"
             >
               {t.hero.title}
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/75 sm:text-xl">{t.hero.lead}</p>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">{t.hero.lead}</p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link href={href("/about")} className={buttonStyles.primary}>
                 {t.hero.primary}
                 <ArrowRight aria-hidden="true" className="size-4" />
               </Link>
-              <Link href={href("/explore")} className={cn(buttonStyles.secondary, "bg-background/70 backdrop-blur")}>
+              <Link href={href("/explore")} className={cn(buttonStyles.ghostOnInk, "backdrop-blur-sm")}>
                 {t.hero.secondary}
               </Link>
             </div>
@@ -173,6 +178,37 @@ export default async function HomePage({ params }: PageProps) {
         </ol>
       </Section>
 
+      {/* ── Village life ─────────────────────────────────────── */}
+      <section aria-labelledby="life-title" className="pb-24 sm:pb-32">
+        <Container>
+          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <SectionHeader id="life-title" eyebrow={t.life.eyebrow} title={t.life.title} lead={t.life.lead} />
+            <ArrowLink href={href("/explore/gallery")} className="reveal shrink-0">
+              {t.life.link}
+            </ArrowLink>
+          </div>
+          <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:h-[38rem] lg:grid-cols-4 lg:grid-rows-2">
+            {LIFE_PHOTOS.map((name, index) => (
+              <li
+                key={name}
+                className={cn(
+                  "reveal relative overflow-hidden rounded-2xl bg-muted",
+                  index === 0 ? "col-span-2 aspect-[4/3] lg:row-span-2 lg:aspect-auto" : "aspect-square lg:aspect-auto",
+                )}
+              >
+                <PhotoImage
+                  photo={photos[name]}
+                  locale={locale}
+                  fill
+                  sizes={index === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
+                  className="transition duration-700 hover:scale-[1.03]"
+                />
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
       {/* ── Culture ──────────────────────────────────────────── */}
       <Section id="culture" tone="mist" labelledBy="culture-title" className="overflow-hidden py-24 sm:py-32">
         <TopoPattern className="absolute inset-0 h-full w-full text-brand/[0.06]" />
@@ -193,13 +229,9 @@ export default async function HomePage({ params }: PageProps) {
                   key={item.title}
                   className="reveal relative isolate flex min-h-[22rem] flex-col justify-end overflow-hidden rounded-3xl bg-ink p-8 text-ink-foreground sm:p-10 lg:col-span-2 lg:row-span-2 lg:min-h-[30rem]"
                 >
-                  <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-ink-foreground/[0.08]" />
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -top-4 -right-6 -z-10 font-display text-[8rem] leading-none font-bold whitespace-nowrap text-ink-foreground/[0.06] sm:text-[11rem]"
-                  >
-                    {item.title}
-                  </span>
+                  <PhotoImage photo={photos.chorten} locale={locale} fill sizes="(min-width: 1024px) 50vw, 100vw" credit="none" className="-z-20" />
+                  <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/55 to-ink/5" />
+                  <PhotoCredit photo={photos.chorten} locale={locale} className="absolute top-4 right-4" />
                   <Icon aria-hidden="true" className="size-8 text-earth" />
                   <h3 className="mt-6 font-display text-3xl font-semibold sm:text-4xl">{item.title}</h3>
                   <p className="mt-3 max-w-md text-lg leading-relaxed text-ink-foreground/75">{item.body}</p>
@@ -254,7 +286,7 @@ export default async function HomePage({ params }: PageProps) {
 
           <div className="reveal relative pb-8">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] ring-1 ring-ink-foreground/10 sm:aspect-[5/4] lg:aspect-[4/5]">
-              <Landscape id="explore-ls" still className="absolute inset-0" />
+              <PhotoImage photo={photos.trail} locale={locale} fill sizes="(min-width: 1024px) 40vw, 100vw" />
             </div>
             <div className="absolute bottom-0 left-5 rounded-2xl bg-ink/85 p-5 ring-1 ring-ink-foreground/15 backdrop-blur-md sm:left-8">
               <p className="text-sm font-semibold text-earth">{tourism[locale].recommended}</p>

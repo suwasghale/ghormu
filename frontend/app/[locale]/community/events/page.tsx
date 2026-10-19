@@ -9,6 +9,7 @@ import community from "@/content/community"
 import { listEvents } from "@/lib/api/content"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
+import { photos } from "@/content/photos"
 
 export const revalidate = 300
 
@@ -56,6 +57,7 @@ export default async function EventsPage({ params }: PageProps) {
       )}
 
       <PageHero
+        photo={{ photo: photos.football, locale }}
         crumbs={crumbs(locale, [
           [t.overview.title, "/community"],
           [t.events.title, "/community/events"],

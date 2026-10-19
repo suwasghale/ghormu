@@ -7,6 +7,7 @@ import { TopoPattern } from "@/components/site/topo-pattern"
 import vision from "@/content/vision"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
+import { photos } from "@/content/photos"
 
 type PageProps = { params: Promise<{ locale: string }> }
 
@@ -25,6 +26,7 @@ export default async function VisionPage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.smiles, locale }}
         crumbs={crumbs(locale, [
           [dict.nav.about, "/about"],
           [t.title, "/about/vision"],

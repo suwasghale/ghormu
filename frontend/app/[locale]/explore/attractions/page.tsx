@@ -8,6 +8,7 @@ import explore from "@/content/explore-more"
 import home from "@/content/home"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
+import { photos } from "@/content/photos"
 
 type PageProps = { params: Promise<{ locale: string }> }
 
@@ -25,6 +26,7 @@ export default async function AttractionsPage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.forest, locale }}
         crumbs={crumbs(locale, [
           [dict.nav.explore, "/explore"],
           [t.attractions.title, "/explore/attractions"],

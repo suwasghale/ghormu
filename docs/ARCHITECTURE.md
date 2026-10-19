@@ -40,6 +40,12 @@ Content that changes over time is managed in the admin at `/admin`, not written 
 - **Story and archive item pages** (`/updates/<slug>`, `/about/archive/<slug>`) are not built ahead of time. They render on first visit and stay cached until edited. That is why `app/[locale]/layout.tsx` must not set `dynamicParams = false`: it would turn every newly published address into a 404.
 - **Fixed facts** that rarely change stay in `frontend/content/` files rather than the database: emergency numbers, road status (`road-status.ts`), the travel route, attractions and local hosts. Empty lists are hidden or replaced by an honest "being prepared" note.
 
+## Photographs
+
+The site's own photos of Ghormu are in `frontend/public/images/ghormu` and are listed in `frontend/content/photos.ts`. Each entry records the photo's size, a description in both languages, and its source. They are used with their owners' permission (Plein Leurs Yeux and Little World Nepal France), and every use shows a credit through `PhotoImage` / `PhotoCredit`. They are served through `next/image`, so visitors get resized AVIF/WebP files.
+
+To add one, first get the owner's permission. Then re-encode it to WebP with its EXIF and GPS data removed (long edge at most 1600px), add it to `photos.ts` with its source, and use it. Photos people send for the archive go through the admin instead (`ArchiveItem`), where permission must be confirmed before publishing.
+
 `lib/admin/resources.ts` declares fields, columns and filters for the generic admin table/form. Add a matching backend resource endpoint and a resource definition to reuse those screens. Avoid adding a navigation entry until its route and permissions work.
 
 To add a feature:

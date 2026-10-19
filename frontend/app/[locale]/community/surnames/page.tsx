@@ -8,6 +8,7 @@ import { getDictionary, localizePath } from "@/lib/i18n"
 import { formatIndex } from "@/lib/i18n/config"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
 import { cn } from "@/lib/utils"
+import { photos } from "@/content/photos"
 
 type PageProps = { params: Promise<{ locale: string }> }
 
@@ -25,6 +26,7 @@ export default async function SurnamesPage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.greens, locale }}
         crumbs={crumbs(locale, [
           [t.overview.title, "/community"],
           [t.surnames.title, "/community/surnames"],

@@ -7,6 +7,7 @@ import { Section, SectionHeader } from "@/components/site/section"
 import about from "@/content/about"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
+import { photos } from "@/content/photos"
 
 type PageProps = { params: Promise<{ locale: string }> }
 
@@ -24,6 +25,7 @@ export default async function AboutPage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.terraces, locale }}
         crumbs={crumbs(locale, [[t.title, "/about"]])}
         breadcrumbLabel={dict.header.breadcrumb}
         eyebrow={t.eyebrow}

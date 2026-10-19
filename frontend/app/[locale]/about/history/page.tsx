@@ -10,6 +10,7 @@ import { listArchive } from "@/lib/api/content"
 import { itemDate } from "@/lib/archive"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
+import { photos } from "@/content/photos"
 
 export const revalidate = 300
 
@@ -31,6 +32,7 @@ export default async function HistoryPage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.ploughing, locale }}
         crumbs={crumbs(locale, [
           [dict.nav.about, "/about"],
           [t.history.title, "/about/history"],

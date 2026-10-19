@@ -68,6 +68,9 @@ export default bilingual({
       emptyTitle: "तस्बिरहरू छिट्टै आउँदैछन्",
       emptyBody: "गाउँका तस्बिर संकलन भइरहेका छन्। तपाईंले खिचेका तस्बिर साझा गर्न चाहनुहुन्छ भने हामीलाई सम्पर्क गर्नुहोस्।",
       emptyAction: "तस्बिर साझा गर्नुहोस्",
+      creditsTitle: "तस्बिर सौजन्य",
+      creditsBody: "यी तस्बिरहरू तिनका मालिकको अनुमतिमा प्रयोग गरिएका हुन्। पुनः प्रयोग गर्नुअघि उहाँहरूसँग अनुमति लिनुहोस्।",
+      archiveTitle: "अभिलेखबाट थप तस्बिर",
     },
   },
   en: {
@@ -136,6 +139,9 @@ export default bilingual({
       emptyTitle: "Photos are coming soon",
       emptyBody: "Photos of the village are being collected. If you'd like to share yours, please get in touch.",
       emptyAction: "Share your photos",
+      creditsTitle: "Photo credits",
+      creditsBody: "These photographs are used with their owners' permission. Please ask them before reusing any.",
+      archiveTitle: "More photos from the archive",
     },
   },
 })

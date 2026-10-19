@@ -217,6 +217,11 @@ html[data-site="public"] {
     animation-delay: var(--rise-delay, 0ms);
   }
 
+  /* The homepage photo settles in slowly as the page opens. */
+  .hero-zoom {
+    animation: hero-zoom 2.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
   /* Hero layers drift at different speeds as the page scrolls: depth. */
   @supports (animation-timeline: scroll()) {
     .drift {
@@ -224,6 +229,15 @@ html[data-site="public"] {
       animation-timeline: scroll(root);
       animation-range: 0 100vh;
     }
+  }
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: none;
   }
 }
 

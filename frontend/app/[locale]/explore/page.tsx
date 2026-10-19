@@ -18,10 +18,11 @@ import {
 } from "lucide-react"
 
 import { JsonLd } from "@/components/site/json-ld"
-import { Landscape } from "@/components/site/landscape"
 import { ArrowLink, Section, SectionHeader } from "@/components/site/section"
 import { PageHero } from "@/components/site/page-hero"
+import { PhotoImage } from "@/components/site/photo"
 import { site } from "@/config/site"
+import { photos, type PhotoName } from "@/content/photos"
 import tourism from "@/content/tourism"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
@@ -35,6 +36,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const WHY_ICONS = [Trees, Landmark, Mountain, HandHeart]
+const WHY_PHOTOS: PhotoName[] = ["forest", "chorten", "trail", "welcome"]
 const SEASON_ICONS = [Flower, CloudRain, Leaf, Snowflake]
 const EXPERIENCE_ICONS = [Footprints, Landmark, UtensilsCrossed, PartyPopper, Camera]
 
@@ -55,6 +57,7 @@ export default async function TourismPage({ params }: PageProps) {
         }}
       />
       <PageHero
+        photo={{ photo: photos.trail, locale }}
         crumbs={crumbs(locale, [
           [dict.nav.explore, "/explore"],
         ])}
@@ -71,21 +74,26 @@ export default async function TourismPage({ params }: PageProps) {
           {t.why.map((item, index) => {
             const Icon = WHY_ICONS[index]
             return (
-              <li key={item.title} className="reveal rounded-2xl border border-border p-6">
-                <span className="inline-flex size-11 items-center justify-center rounded-xl bg-brand-muted text-brand">
-                  <Icon aria-hidden="true" className="size-5" />
-                </span>
-                <h3 className="mt-5 font-display text-xl font-semibold">{item.title}</h3>
-                <p className="mt-2 leading-relaxed text-muted-foreground">{item.body}</p>
+              <li key={item.title} className="reveal overflow-hidden rounded-2xl border border-border">
+                <div className="relative aspect-[4/3]">
+                  <PhotoImage photo={photos[WHY_PHOTOS[index]]} locale={locale} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                </div>
+                <div className="p-6">
+                  <span className="-mt-12 relative inline-flex size-11 items-center justify-center rounded-xl bg-background text-brand shadow-md ring-1 ring-border">
+                    <Icon aria-hidden="true" className="size-5" />
+                  </span>
+                  <h3 className="mt-4 font-display text-xl font-semibold">{item.title}</h3>
+                  <p className="mt-2 leading-relaxed text-muted-foreground">{item.body}</p>
+                </div>
               </li>
             )
           })}
         </ul>
       </Section>
 
-      {/* Scenic break */}
-      <div aria-hidden="true" className="h-56 overflow-hidden sm:h-80">
-        <Landscape />
+      {/* Scenic break: the terraces at work */}
+      <div className="relative h-64 overflow-hidden sm:h-[28rem]">
+        <PhotoImage photo={photos.terraceWork} locale={locale} fill sizes="100vw" />
       </div>
 
       {/* Seasons */}

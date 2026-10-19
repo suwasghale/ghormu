@@ -28,6 +28,7 @@ import { formatDay, formatNumber } from "@/lib/i18n/format"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
 import { cn } from "@/lib/utils"
 import { getForecast } from "@/lib/weather"
+import { photos } from "@/content/photos"
 
 /** Rebuilt at most every 30 minutes, so the weather stays fresh (matches lib/weather). */
 export const revalidate = 1800
@@ -58,6 +59,7 @@ export default async function TravelGuidePage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.fields, locale }}
         crumbs={crumbs(locale, [
           [dict.nav.explore, "/explore"],
           [t.title, "/explore/travel-guide"],

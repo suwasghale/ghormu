@@ -6,6 +6,7 @@ import { Section } from "@/components/site/section"
 import contact from "@/content/contact"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
+import { photos } from "@/content/photos"
 
 type PageProps = { params: Promise<{ locale: string }> }
 
@@ -23,6 +24,7 @@ export default async function FeedbackPage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.grandmother, locale }}
         crumbs={crumbs(locale, [
           [t.contact.title, "/contact"],
           [t.feedback.title, "/contact/feedback"],

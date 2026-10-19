@@ -20,6 +20,7 @@ import { TopoPattern } from "@/components/site/topo-pattern"
 import culture from "@/content/culture"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
+import { photos } from "@/content/photos"
 
 type PageProps = { params: Promise<{ locale: string }> }
 
@@ -40,6 +41,7 @@ export default async function CulturePage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.chorten, locale }}
         crumbs={crumbs(locale, [
           [dict.nav.about, "/about"],
           [t.title, "/about/culture"],

@@ -25,6 +25,12 @@ export default bilingual({
       body: "घोर्मु घले, तामाङ, गुरुङलगायत विभिन्न समुदायको साझा घर हो। यहाँका चाडपर्व, संस्कार र एकअर्कालाई सघाउने परम्पराले गाउँलाई एउटै परिवारझैँ जोडेर राखेको छ।",
       link: "पूरा परिचय पढ्नुहोस्",
     },
+    life: {
+      eyebrow: "गाउँको जीवन",
+      title: "घोर्मुका दिन र मानिसहरू",
+      lead: "खेतबारी, आँगन र चौरमा—गाउँको दैनिक जीवनका केही झलक।",
+      link: "तस्बिर संग्रह हेर्नुहोस्",
+    },
     pillars: {
       title: "ghormu.com मा के छ?",
       items: [
@@ -103,6 +109,12 @@ export default bilingual({
       title: "A community rooted together for generations",
       body: "Ghormu is a shared home for Ghale, Tamang, Gurung and other communities. Its festivals, rites and tradition of helping one another keep the village together like one family.",
       link: "Read the full story",
+    },
+    life: {
+      eyebrow: "Village life",
+      title: "Days and people of Ghormu",
+      lead: "In the fields, courtyards and village grounds: glimpses of everyday life.",
+      link: "See the gallery",
     },
     pillars: {
       title: "What you'll find on ghormu.com",
