@@ -19,6 +19,7 @@ class ContactTopicChoices(models.TextChoices):
     CORRECTION = "correction", "Correction to the website"
     ARCHIVE = "archive", "Photos, stories or documents to share"
     TRAVEL = "travel", "Visiting Ghormu"
+    SUPPORT = "support", "Supporting Ghormu"
 
 
 class ContactMessage(UUIDModel, TimeStampedModel):

@@ -5206,6 +5206,7 @@ components:
       - correction
       - archive
       - travel
+      - support
       type: string
       description: |-
         * `general` - General question
@@ -5213,6 +5214,7 @@ components:
         * `correction` - Correction to the website
         * `archive` - Photos, stories or documents to share
         * `travel` - Visiting Ghormu
+        * `support` - Supporting Ghormu
     TrustedDevice:
       type: object
       description: Serialize a trusted device.
