@@ -18,7 +18,6 @@ import {
 import { Faq } from "@/components/site/faq"
 import { PageHero } from "@/components/site/page-hero"
 import { buttonStyles, Section, SectionHeader } from "@/components/site/section"
-import { TopoPattern } from "@/components/site/topo-pattern"
 import { WeatherPanel } from "@/components/site/weather-panel"
 import { directionsUrl, ghormu, openStreetMapUrl } from "@/config/place"
 import { roadNote, roadStatus, type RoadLevel } from "@/content/road-status"
@@ -81,7 +80,6 @@ export default async function TravelGuidePage({ params }: PageProps) {
       <Section labelledBy="location-title" className="pt-0 sm:pt-0">
         <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
           <div className="reveal relative isolate overflow-hidden rounded-3xl bg-brand-muted p-8 sm:p-10">
-            <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-brand/15" />
             <MapPin aria-hidden="true" className="size-8 text-earth" />
             <h2 id="location-title" className="mt-5 font-display text-2xl font-semibold sm:text-3xl">
               {t.location.title}

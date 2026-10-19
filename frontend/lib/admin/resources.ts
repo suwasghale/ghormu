@@ -136,6 +136,7 @@ const MESSAGE_TOPICS: Option[] = [
   { value: "correction", label: "Correction" },
   { value: "archive", label: "Photos & stories" },
   { value: "travel", label: "Visiting" },
+  { value: "support", label: "Supporting Ghormu" },
 ]
 
 /** Publication fields every public content type shares. */

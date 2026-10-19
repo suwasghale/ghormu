@@ -10,6 +10,7 @@ import { listPosts } from "@/lib/api/content"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
 import { updatesTabs } from "@/lib/i18n/sections"
+import { photos } from "@/content/photos"
 
 /** Refreshed on publish by the admin; this is only the safety net. */
 export const revalidate = 300
@@ -31,6 +32,7 @@ export default async function NewsPage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.play, locale }}
         crumbs={crumbs(locale, [[t.news.title, "/updates"]])}
         breadcrumbLabel={dict.header.breadcrumb}
         eyebrow={t.eyebrow}

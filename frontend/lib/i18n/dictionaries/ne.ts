@@ -7,7 +7,7 @@
 const ne = {
   site: {
     name: "घोर्मु",
-    tagline: "घोर्मु गाउँको डिजिटल घर",
+    tagline: "नेपालको एउटा पहाडी गाउँ, गाउँलेकै शब्दमा",
     description: "घोर्मु गाउँको इतिहास, संस्कृति, पर्यटन र समुदायबारे जानकारी।",
   },
 
@@ -19,6 +19,7 @@ const ne = {
     closeMenu: "मेनु बन्द गर्नुहोस्",
     switchLanguage: "यो पृष्ठ अंग्रेजीमा हेर्नुहोस्",
     breadcrumb: "तपाईं यहाँ हुनुहुन्छ",
+    support: "सहयोग गर्नुहोस्",
   },
 
   nav: {
@@ -59,12 +60,14 @@ const ne = {
     terms: "प्रयोगका सर्तहरू",
     accessibility: "पहुँचयोग्यता",
     sitemap: "साइट नक्सा",
+    support: "घोर्मुलाई सहयोग",
   },
 
   footer: {
     discover: "जान्नुहोस्",
     community: "समुदाय",
     help: "सहायता",
+    closing: "घोर्मुको कथा अझै लेखिँदैछ। अर्को अध्याय लेख्न हामीलाई साथ दिनुहोस्।",
     /** `{year}` is replaced with the year in Nepali digits. */
     copyright: "© {year} घोर्मु। सर्वाधिकार सुरक्षित।",
   },

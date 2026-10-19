@@ -4,7 +4,6 @@ import { CloudOff, ImageIcon, type LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 import { buttonStyles } from "./section"
-import { TopoPattern } from "./topo-pattern"
 
 /**
  * Pieces shared by pages whose content comes from the admin.
@@ -26,7 +25,6 @@ export function EmptyState({
 }) {
   return (
     <div className={cn("relative isolate overflow-hidden rounded-3xl border border-dashed border-border px-6 py-14 text-center sm:py-20", className)}>
-      <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-brand/[0.06]" />
       <span className="mx-auto inline-flex size-14 items-center justify-center rounded-full bg-brand-muted text-brand">
         <Icon aria-hidden="true" className="size-6" />
       </span>
@@ -72,7 +70,6 @@ export function ContentImage({
   if (!src) {
     return (
       <div aria-hidden="true" className={cn("relative isolate flex items-center justify-center overflow-hidden bg-brand-muted text-brand/40", className)}>
-        <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-brand/15" />
         <ImageIcon className="size-8" />
       </div>
     )

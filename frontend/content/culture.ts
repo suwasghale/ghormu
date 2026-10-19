@@ -9,7 +9,7 @@ export default bilingual({
   ne: {
     eyebrow: "परिचय",
     title: "संस्कृति र सम्पदा",
-    lead: "घोर्मुको संस्कृति यहाँका समुदायको भाषा, भेषभूषा, गीत, नाच र संस्कारमा जीवित छ, र पुस्तादेखि पुस्तामा सर्दै आएको छ।",
+    lead: "हाम्रो संस्कृति संग्रहालयमा होइन, घरघरमा छ: बोलीमा, लुगामा, गीतमा, र जन्मदेखि मृत्युसम्मका संस्कारमा।",
     communitiesTitle: "समुदाय र परम्परा",
     communitiesLead: "घोर्मुमा विभिन्न समुदाय सँगै बस्छन्, र हरेकको आफ्नै परम्परा छ। यिनै परम्पराले गाउँको साझा पहिचान बनाउँछन्।",
     communities: [
@@ -70,7 +70,7 @@ export default bilingual({
   en: {
     eyebrow: "About",
     title: "Culture & Heritage",
-    lead: "Ghormu's culture lives on in the languages, dress, songs, dances and rites of its communities, passed down from generation to generation.",
+    lead: "Our culture is not in a museum. It is in every home: in how we speak and dress, in our songs, and in the rites that mark a life.",
     communitiesTitle: "Communities and traditions",
     communitiesLead: "Different communities live side by side in Ghormu, each with its own traditions. Together they form the village's shared identity.",
     communities: [

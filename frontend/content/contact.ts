@@ -92,6 +92,7 @@ export default bilingual({
         correction: "वेबसाइटमा सच्याउनुपर्ने कुरा",
         archive: "तस्बिर, कथा वा कागजात साझा गर्न",
         travel: "घोर्मु घुम्न आउने बारे",
+        support: "घोर्मुलाई सहयोग गर्ने बारे",
       },
       errors: {
         name: "आफ्नो नाम लेख्नुहोस्।",
@@ -175,6 +176,7 @@ export default bilingual({
         correction: "Something to correct on the website",
         archive: "Sharing photos, stories or documents",
         travel: "Visiting Ghormu",
+        support: "Supporting Ghormu",
       },
       errors: {
         name: "Please write your name.",

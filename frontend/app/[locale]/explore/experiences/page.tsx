@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Footprints, HeartHandshake, PartyPopper, Sprout, UtensilsCrossed } from "lucide-react"
+import { HeartHandshake } from "lucide-react"
 
 import { PageHero } from "@/components/site/page-hero"
 import { PhotoImage } from "@/components/site/photo"
@@ -17,7 +17,6 @@ export async function generateMetadata({ params }: PageProps) {
   return pageMetadata(locale, "/explore/experiences", t.title, t.lead)
 }
 
-const ICONS = [UtensilsCrossed, PartyPopper, Footprints, Sprout]
 const IDEA_PHOTOS: PhotoName[] = ["courtyard", "khata", "trail", "doko"]
 
 export default async function ExperiencesPage({ params }: PageProps) {
@@ -43,17 +42,13 @@ export default async function ExperiencesPage({ params }: PageProps) {
         <SectionHeader id="ideas-title" title={t.experiences.ideasTitle} />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
           {t.experiences.ideas.map((idea, index) => {
-            const Icon = ICONS[index]
             return (
               <li key={idea.title} className="reveal grid overflow-hidden rounded-3xl border border-border sm:grid-cols-[2fr_3fr]">
                 <div className="relative aspect-[4/3] sm:aspect-auto sm:min-h-56">
                   <PhotoImage photo={photos[IDEA_PHOTOS[index]]} locale={locale} fill sizes="(min-width: 640px) 20vw, 100vw" />
                 </div>
                 <div className="p-6 sm:p-8">
-                  <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-brand-muted text-brand">
-                    <Icon aria-hidden="true" className="size-6" />
-                  </span>
-                  <h3 className="mt-4 font-display text-xl font-semibold">{idea.title}</h3>
+                  <h3 className="font-display text-xl font-semibold">{idea.title}</h3>
                   <p className="mt-2 leading-relaxed text-muted-foreground">{idea.body}</p>
                 </div>
               </li>

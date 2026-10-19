@@ -2,9 +2,9 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { useState, useSyncExternalStore } from "react"
 import { NavigationMenu } from "@base-ui/react/navigation-menu"
-import { ChevronDown, Menu, X } from "lucide-react"
+import { ChevronDown, Heart, Menu, X } from "lucide-react"
 
 import { mainNav, type NavItem, type NavLink } from "@/config/navigation"
 import type { Dictionary } from "@/lib/i18n"
@@ -37,8 +37,25 @@ function isWithin(path: string, item: NavItem): boolean {
   return path === item.href || path.startsWith(`${item.href}/`)
 }
 
-const triggerClass =
-  "inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-[0.95rem] font-medium text-foreground/80 transition-colors outline-none select-none hover:bg-brand-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand data-popup-open:bg-brand-muted data-popup-open:text-foreground data-[current=true]:text-brand"
+/** Scrolled past the top of the page. Read without an effect, so no flash. */
+function subscribeToScroll(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true })
+  return () => window.removeEventListener("scroll", onChange)
+}
+const isScrolled = () => window.scrollY > 24
+const isScrolledOnServer = () => false
+
+/* Over the homepage photo the header is transparent with white text
+   (`data-transparent`); everywhere else, and once the page scrolls, it is a
+   solid bar. One set of classes covers both through the group selector,
+   written out in full so Tailwind can find them. */
+
+const triggerClass = cn(
+  "inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-[0.95rem] font-medium text-foreground/80 transition-colors outline-none select-none",
+  "hover:bg-brand-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
+  "data-popup-open:bg-brand-muted data-popup-open:text-foreground data-[current=true]:text-brand",
+  "group-data-[transparent=true]/header:text-white/85 group-data-[transparent=true]/header:hover:bg-white/10 group-data-[transparent=true]/header:hover:text-white group-data-[transparent=true]/header:data-popup-open:bg-white/15 group-data-[transparent=true]/header:data-popup-open:text-white group-data-[transparent=true]/header:data-[current=true]:text-white group-data-[transparent=true]/header:focus-visible:outline-white",
+)
 
 const menuLinkClass =
   "block rounded-lg px-3 py-2.5 text-[0.95rem] text-foreground/85 transition-colors outline-none hover:bg-brand-muted hover:text-foreground focus-visible:bg-brand-muted focus-visible:outline-2 focus-visible:outline-brand aria-[current=page]:font-semibold aria-[current=page]:text-brand"
@@ -48,8 +65,23 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false)
 
+  const overHero = path === "/"
+  const scrolled = useSyncExternalStore(subscribeToScroll, isScrolled, isScrolledOnServer)
+  const transparent = overHero && !scrolled && !menuOpen
+
+  const support = localizePath(locale, "/support")
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
+    <header
+      data-transparent={transparent}
+      className={cn(
+        "group/header top-0 z-40 border-b transition-[background-color,border-color,color,box-shadow] duration-300",
+        overHero ? "fixed inset-x-0" : "sticky",
+        transparent
+          ? "border-transparent bg-transparent text-white"
+          : "border-border/70 bg-background/90 text-foreground backdrop-blur supports-[backdrop-filter]:bg-background/80",
+      )}
+    >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href={localizePath(locale, "/")}
@@ -57,7 +89,7 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
           className="flex items-center gap-2.5 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
         >
           <LogoMark />
-          <span className="text-xl font-bold tracking-tight">{siteName}</span>
+          <span className="font-display text-xl font-bold tracking-tight">{siteName}</span>
         </Link>
 
         {/* Desktop */}
@@ -66,10 +98,7 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
             {mainNav.map((item) =>
               item.children ? (
                 <NavigationMenu.Item key={item.key}>
-                  <NavigationMenu.Trigger
-                    className={triggerClass}
-                    data-current={isWithin(path, item)}
-                  >
+                  <NavigationMenu.Trigger className={triggerClass} data-current={isWithin(path, item)}>
                     {nav[item.key]}
                     <NavigationMenu.Icon className="transition-transform duration-200 data-popup-open:rotate-180">
                       <ChevronDown aria-hidden="true" className="size-4 opacity-70" />
@@ -97,7 +126,7 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
                   <NavigationMenu.Link
                     render={<Link href={hrefFor(locale, item)} />}
                     active={isCurrent(path, item)}
-                    className={cn(triggerClass, "aria-[current=page]:text-brand")}
+                    className={cn(triggerClass, "aria-[current=page]:text-brand", "group-data-[transparent=true]/header:aria-[current=page]:text-white")}
                   >
                     {nav[item.key]}
                   </NavigationMenu.Link>
@@ -112,7 +141,7 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
               collisionPadding={16}
               className="z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-200 ease-out data-instant:transition-none"
             >
-              <NavigationMenu.Popup className="relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) rounded-2xl border border-border bg-popover text-popover-foreground shadow-lg shadow-black/5 transition-[opacity,transform,width,height] duration-200 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
+              <NavigationMenu.Popup className="relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) rounded-2xl border border-border bg-popover text-popover-foreground shadow-xl shadow-black/10 transition-[opacity,transform,width,height] duration-200 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
                 <NavigationMenu.Viewport className="relative h-full w-full overflow-hidden" />
               </NavigationMenu.Popup>
             </NavigationMenu.Positioner>
@@ -120,11 +149,27 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
         </NavigationMenu.Root>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcher locale={locale} label={ui.switchLanguage} className="hidden sm:inline-flex" />
+          <LanguageSwitcher
+            locale={locale}
+            label={ui.switchLanguage}
+            className={cn("hidden md:inline-flex", "group-data-[transparent=true]/header:border-white/30 group-data-[transparent=true]/header:hover:border-white group-data-[transparent=true]/header:hover:text-white")}
+          />
+
+          <Link
+            href={support}
+            aria-current={path === "/support" ? "page" : undefined}
+            className="hidden h-10 items-center gap-2 rounded-full bg-earth px-4 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth sm:inline-flex"
+          >
+            <Heart aria-hidden="true" className="size-4" />
+            {ui.support}
+          </Link>
 
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-full border border-border transition-colors hover:border-brand hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand lg:hidden"
+            className={cn(
+              "inline-flex size-10 items-center justify-center rounded-full border border-border transition-colors hover:border-brand hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand lg:hidden",
+              "group-data-[transparent=true]/header:border-white/30 group-data-[transparent=true]/header:hover:border-white group-data-[transparent=true]/header:hover:text-white",
+            )}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? ui.closeMenu : ui.openMenu}
@@ -152,7 +197,7 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
                   <details className="group rounded-xl" open={isWithin(path, item)}>
                     <summary
                       className={cn(
-                        "flex cursor-pointer list-none items-center justify-between rounded-xl px-3 py-3 text-base font-medium hover:bg-brand-muted [&::-webkit-details-marker]:hidden",
+                        "flex min-h-12 cursor-pointer list-none items-center justify-between rounded-xl px-3 text-base font-medium hover:bg-brand-muted [&::-webkit-details-marker]:hidden",
                         isWithin(path, item) && "text-brand",
                       )}
                     >
@@ -181,15 +226,23 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
                     href={hrefFor(locale, item)}
                     aria-current={isCurrent(path, item) ? "page" : undefined}
                     onClick={closeMenu}
-                    className="block rounded-xl px-3 py-3 text-base font-medium hover:bg-brand-muted aria-[current=page]:text-brand"
+                    className="flex min-h-12 items-center rounded-xl px-3 text-base font-medium hover:bg-brand-muted aria-[current=page]:text-brand"
                   >
                     {nav[item.key]}
                   </Link>
                 </li>
               ),
             )}
-            <li className="mt-3 border-t border-border pt-4 sm:hidden">
-              <LanguageSwitcher locale={locale} label={ui.switchLanguage} onNavigate={closeMenu} />
+            <li className="mt-3 flex flex-wrap items-center gap-3 border-t border-border pt-4">
+              <Link
+                href={support}
+                onClick={closeMenu}
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-earth px-5 font-semibold text-white"
+              >
+                <Heart aria-hidden="true" className="size-4" />
+                {ui.support}
+              </Link>
+              <LanguageSwitcher locale={locale} label={ui.switchLanguage} onNavigate={closeMenu} className="md:hidden" />
             </li>
           </ul>
         </nav>

@@ -1,10 +1,9 @@
 import Link from "next/link"
-import { ArrowRight, Calculator, CalendarHeart, LockKeyhole, Users } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { EventCard } from "@/components/site/event-card"
 import { PageHero } from "@/components/site/page-hero"
 import { ArrowLink, buttonStyles, Section, SectionHeader } from "@/components/site/section"
-import { TopoPattern } from "@/components/site/topo-pattern"
 import community from "@/content/community"
 import { listEvents } from "@/lib/api/content"
 import { getDictionary, localizePath } from "@/lib/i18n"
@@ -22,8 +21,6 @@ export async function generateMetadata({ params }: PageProps) {
   const t = community[locale].overview
   return pageMetadata(locale, "/community", t.title, t.lead)
 }
-
-const FEATURE_ICONS = [Users, CalendarHeart, Calculator, LockKeyhole]
 
 export default async function CommunityPage({ params }: PageProps) {
   const locale = await pageLocale(params)
@@ -73,18 +70,13 @@ export default async function CommunityPage({ params }: PageProps) {
 
       {/* The portal */}
       <section aria-labelledby="portal-title" className="relative isolate overflow-hidden bg-ink text-ink-foreground">
-        <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-ink-foreground/[0.05]" />
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
           <SectionHeader id="portal-title" tone="ink" title={t.overview.portalTitle} lead={t.overview.portalLead} />
           <ol className="mt-12 grid gap-px overflow-hidden rounded-3xl bg-ink-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
             {t.overview.features.map((feature, index) => {
-              const Icon = FEATURE_ICONS[index]
               return (
                 <li key={feature.title} className="reveal bg-ink p-7">
-                  <div className="flex items-center justify-between">
-                    <Icon aria-hidden="true" className="size-6 text-earth" />
-                    <span className="font-display text-sm text-ink-foreground/40">{formatIndex(locale, index + 1)}</span>
-                  </div>
+                  <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
                   <h3 className="mt-6 font-display text-xl font-semibold">{feature.title}</h3>
                   <p className="mt-2 leading-relaxed text-ink-foreground/70">{feature.body}</p>
                 </li>

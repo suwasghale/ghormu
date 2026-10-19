@@ -1,179 +1,137 @@
 import { bilingual } from "./bilingual"
 
 /**
- * Homepage copy. Draft: written from the project plan, to be checked and
- * enriched by people from Ghormu. No figures (population, altitude, dates)
- * appear until they are confirmed.
+ * Homepage copy, written as the village speaking: plain sentences, things
+ * you can see in the photos, no slogans. No figures (population, altitude,
+ * dates) until they are confirmed.
  */
 export default bilingual({
   ne: {
     meta: {
-      description: "घोर्मु गाउँको इतिहास, संस्कृति, पर्यटन र समुदायलाई एकै ठाउँमा जोड्ने डिजिटल घर।",
+      description: "नेपालको पहाडी गाउँ घोर्मुका मानिस, संस्कृति र दैनिक जीवनबारे, गाउँलेकै शब्दमा।",
     },
     hero: {
-      eyebrow: "हाम्रो गाउँ · हाम्रो पहिचान",
+      kicker: "नेपालको एउटा पहाडी गाउँ",
       title: "घोर्मु",
-      lead: "हाम्रो गाउँको इतिहास, संस्कृति र समुदायलाई एकै ठाउँमा जोगाउने र संसारसँग बाँड्ने डिजिटल घर।",
-      primary: "घोर्मुको परिचय",
-      secondary: "घुमफिर गर्नुहोस्",
-      index: ["परिचय", "संस्कृति", "घुमफिर", "समुदाय"],
-      indexLabel: "यस पृष्ठमा",
+      lead: "गरा-गरामा फैलिएका खेत, ढुङ्गाका पर्खाल र पुस्तौँदेखि सँगै बसेका परिवार। यहाँ हामी आफ्नो गाउँको कथा आफ्नै शब्दमा भन्छौँ।",
+      primary: "हाम्रो गाउँ चिन्नुहोस्",
+      secondary: "घोर्मुलाई सहयोग गर्नुहोस्",
+      scroll: "तल हेर्नुहोस्",
     },
-    intro: {
-      eyebrow: "घोर्मुको बारेमा",
-      title: "पुस्तौँदेखि सँगै बसेको समुदाय",
-      body: "घोर्मु घले, तामाङ, गुरुङलगायत विभिन्न समुदायको साझा घर हो। यहाँका चाडपर्व, संस्कार र एकअर्कालाई सघाउने परम्पराले गाउँलाई एउटै परिवारझैँ जोडेर राखेको छ।",
-      link: "पूरा परिचय पढ्नुहोस्",
-    },
-    life: {
-      eyebrow: "गाउँको जीवन",
-      title: "घोर्मुका दिन र मानिसहरू",
-      lead: "खेतबारी, आँगन र चौरमा—गाउँको दैनिक जीवनका केही झलक।",
-      link: "तस्बिर संग्रह हेर्नुहोस्",
-    },
-    pillars: {
-      title: "ghormu.com मा के छ?",
-      items: [
-        { title: "जान्नुहोस्", body: "गाउँको इतिहास, संस्कृति र कथा।" },
-        { title: "घुमफिर", body: "प्राकृतिक सौन्दर्य, पैदल मार्ग र स्थानीय आतिथ्य।" },
-        { title: "समुदाय", body: "परिवार, कार्यक्रम र आपसी सहयोगको व्यवस्थित अभिलेख।" },
-        { title: "अभिलेख", body: "पुराना तस्बिर, कथा र कागजातको सुरक्षित संग्रह।" },
+    letter: {
+      title: "घोर्मुबाट नमस्ते",
+      paragraphs: [
+        "घोर्मु सानो गाउँ हो। बिहान डोकोमा घाँस बोकेर उकालो, दिउँसो गरामा गोरु, अनि खानाको बेला आँगनमा भेला हुने परिवार। हाम्रा दिन यस्तै बित्छन्।",
+        "यहाँ घले, तामाङ, गुरुङलगायत समुदाय पुस्तौँदेखि सँगै बस्छन्। विवाह होस् वा छेवर, एउटा परिवारको काममा अर्को परिवार साथ दिन आइपुग्छ।",
+        "हाम्रा धेरै छोराछोरी पढ्न र काम गर्न टाढा पुगेका छन्। यो वेबसाइट उनीहरूलाई गाउँसँग जोडिराख्न, र बुढापाकाका कथा हराउन नदिन बनाइएको हो।",
       ],
+      signature: "घोर्मुका गाउँलेहरू",
+      link: "हाम्रो कथा पढ्नुहोस्",
     },
-    culture: {
-      eyebrow: "संस्कृति र सम्पदा",
-      title: "हाम्रा संस्कार, हाम्रो पहिचान",
-      lead: "जीवनका महत्त्वपूर्ण क्षणमा गरिने संस्कार र वर्षभरिका चाडपर्वले घोर्मुको जीवनलाई रङ्ग दिन्छन्।",
-      items: [
-        { title: "ल्होसार", body: "नयाँ वर्षको स्वागतमा नाचगान, भेटघाट र मीठा परिकारसहित मनाइने प्रमुख चाड।" },
-        { title: "छेवर", body: "बालकको पहिलो पटक कपाल काट्ने परम्परागत संस्कार, जसमा आफन्त र समुदाय सँगै जुट्छन्।" },
-        { title: "गुफा बस्ने", body: "किशोरीको जीवनको नयाँ चरणलाई सम्मान गर्ने परम्परागत संस्कार।" },
-        { title: "विवाह", body: "दुई परिवार मात्र होइन, पूरै समुदायलाई जोड्ने उत्सव, जहाँ सबैले आ-आफ्नो सहयोग पुर्‍याउँछन्।" },
+    day: {
+      title: "घोर्मुको एक दिन",
+      lead: "ठूलो कुरा केही छैन। तर यही सानो दिनचर्यामा हाम्रो गाउँ बाँचेको छ।",
+      moments: [
+        { label: "बिहान", caption: "दिनको पहिलो डोको उकालो लाग्छ।" },
+        { label: "दिउँसो", caption: "गोरुले गरा जोत्छन्, घाँसको भारी घर फर्कन्छ।" },
+        { label: "दिउँसोपछि", caption: "उपत्यकामाथिको चौरमा फुटबल।" },
+        { label: "खानाको बेला", caption: "सबै सँगै बसेर खान्छन्।" },
       ],
-      link: "संस्कृति र सम्पदा हेर्नुहोस्",
+      link: "थप तस्बिरहरू",
     },
-    explore: {
-      eyebrow: "घुमफिर",
-      title: "पहाड, वन र न्यानो आतिथ्य",
-      lead: "पैदल मार्ग, दृश्यस्थल र गाउँको सरल जीवनशैलीलाई नजिकबाट अनुभव गर्नुहोस्।",
-      highlights: ["प्रकृति", "पदयात्रा", "संस्कृति", "आतिथ्य"],
+    traditions: {
+      title: "हाम्रा चाडपर्व र संस्कार",
+      lead: "जन्मदेखि विवाहसम्मका संस्कारमा पूरै गाउँ जुट्छ। तिनैले हामीलाई एक-अर्कासँग बाँधेर राखेका छन्।",
+      items: [
+        { name: "ल्होसार", body: "नयाँ वर्ष। नाचगान, भेटघाट र घरघरमा मीठा परिकार।" },
+        { name: "छेवर", body: "बालकको पहिलो पटक कपाल काट्ने दिन, आफन्त र गाउँले आशीर्वाद दिन आउँछन्।" },
+        { name: "गुफा बस्ने", body: "किशोरीको जीवनको नयाँ चरणलाई सम्मान गर्ने संस्कार।" },
+        { name: "विवाह", body: "दुई परिवार जोडिन्छन्, र गाउँका सबै परिवार आ-आफ्नो सहयोग लिएर आउँछन्।" },
+      ],
+      link: "संस्कृतिबारे पढ्नुहोस्",
+    },
+    visit: {
+      title: "घोर्मु आउनुहोस्",
+      body: "पैदल बाटो, खुला डाँडा र आँगनमा चिया। हामी पाहुनालाई खादा ओढाएर स्वागत गर्छौँ।",
+      bestTime: "घुम्ने उत्तम समय",
+      weather: "अहिलेको मौसम र बाटो",
       cta: "यात्राको योजना बनाउनुहोस्",
     },
-    map: {
-      eyebrow: "छिट्टै आउँदै",
-      title: "घोर्मुलाई ३D मा हेर्नुहोस्",
-      body: "गाउँ, धार्मिक स्थल, पैदल मार्ग र दृश्यस्थलहरू एउटै अन्तरक्रियात्मक नक्सामा। पहाडको उचाइ र भूगोलसहित गाउँलाई नयाँ कोणबाट चिन्नुहोस्।",
-      badge: "३D नक्सा",
-      places: ["गाउँ", "धार्मिक स्थल", "पैदल मार्ग", "दृश्यस्थल"],
-    },
-    community: {
-      eyebrow: "हाम्रो समुदाय",
-      title: "थर-थरका समुदाय, एउटै गाउँ",
-      lead: "घोर्मुका हरेक थर समुदायको आफ्नै इतिहास र परम्परा छ। समुदाय पोर्टलले परिवार, कार्यक्रम र सहयोगको अभिलेख सुरक्षित राख्नेछ।",
-      surnames: ["घले", "गुरुङ", "लोप्चन", "थिङ", "मोक्तान"],
-      primary: "समुदायको परिचय",
-      secondary: "समुदाय पोर्टल",
-      portal: "समुदाय पोर्टल",
-      statusFirst: "पहिलो चरणमा",
-      statusNext: "आगामी",
+    support: {
+      title: "घोर्मुको भविष्यमा साथ दिनुहोस्",
+      body: "गाउँका आयोजना गाउँलेकै मेहनत र साथीहरूको सहयोगले अघि बढ्छन्। हामी हरेक सहयोगको हिसाब खुला राख्छौँ, ताकि तपाईंले आफ्नो सहयोग कहाँ पुग्यो देख्न सक्नुहोस्।",
+      primary: "सहयोग गर्ने तरिका",
+      secondary: "विकास आयोजनाहरू हेर्नुहोस्",
     },
     latest: {
-      eyebrow: "ताजा",
-      title: "घोर्मुबाट ताजा खबर",
+      title: "गाउँका ताजा खबर",
       link: "सबै समाचार",
       events: "आगामी कार्यक्रम",
       eventsLink: "कार्यक्रम पात्रो",
     },
-    archive: {
-      title: "घोर्मुको सम्झना जोगाउन सघाउनुहोस्",
-      body: "तपाईंसँग पुराना तस्बिर, कथा वा कागजात छन्? गाउँमै हुनुहोस् वा विदेशमा, तपाईंको योगदानले आउँदा पुस्तालाई हाम्रो इतिहास चिनाउनेछ।",
-      cta: "सम्पर्क गर्नुहोस्",
-      eyebrow: "डिजिटल अभिलेख",
-    },
   },
   en: {
     meta: {
-      description: "The digital home that brings together the history, culture, tourism and community of Ghormu village.",
+      description: "The people, culture and everyday life of Ghormu, a hill village in Nepal, told by the villagers themselves.",
     },
     hero: {
-      eyebrow: "Our village · Our identity",
+      kicker: "A hill village in Nepal",
       title: "Ghormu",
-      lead: "A digital home that keeps our village's history, culture and community together, and shares them with the world.",
-      primary: "About Ghormu",
-      secondary: "Explore Ghormu",
-      index: ["About", "Culture", "Explore", "Community"],
-      indexLabel: "On this page",
+      lead: "Terraced fields, stone walls and families who have lived side by side for generations. This is where we tell our village's story, in our own words.",
+      primary: "Get to know Ghormu",
+      secondary: "Support Ghormu",
+      scroll: "Scroll down",
     },
-    intro: {
-      eyebrow: "About Ghormu",
-      title: "A community rooted together for generations",
-      body: "Ghormu is a shared home for Ghale, Tamang, Gurung and other communities. Its festivals, rites and tradition of helping one another keep the village together like one family.",
-      link: "Read the full story",
-    },
-    life: {
-      eyebrow: "Village life",
-      title: "Days and people of Ghormu",
-      lead: "In the fields, courtyards and village grounds: glimpses of everyday life.",
-      link: "See the gallery",
-    },
-    pillars: {
-      title: "What you'll find on ghormu.com",
-      items: [
-        { title: "Discover", body: "The village's history, culture and stories." },
-        { title: "Explore", body: "Natural beauty, walking trails and local hospitality." },
-        { title: "Community", body: "Families, events and mutual support, properly recorded." },
-        { title: "Archive", body: "A safe home for old photos, stories and documents." },
+    letter: {
+      title: "Namaste from Ghormu",
+      paragraphs: [
+        "Ghormu is a small village. Mornings start with a doko of fodder carried uphill, the oxen work the terraces in the afternoon, and at mealtime families gather in the courtyard. That is how our days go.",
+        "Ghale, Tamang, Gurung and other families have lived here together for generations. Whether it is a wedding or a Chhewar, when one family has work to do, the others turn up to help.",
+        "Many of our sons and daughters have gone far away to study and work. We built this website to keep them close to the village, and to keep our elders' stories from being lost.",
       ],
+      signature: "The people of Ghormu",
+      link: "Read our story",
     },
-    culture: {
-      eyebrow: "Culture & Heritage",
-      title: "Our traditions, our identity",
-      lead: "Rites for life's important moments and festivals through the year give life in Ghormu its colour.",
-      items: [
-        { title: "Lhosar", body: "The new year festival, welcomed with song and dance, family visits and festive food." },
-        { title: "Chhewar", body: "A boy's first haircut: a traditional rite that brings relatives and the community together." },
-        { title: "Gufa Basne", body: "A traditional rite honouring a girl's passage into a new stage of life." },
-        { title: "Marriage", body: "A celebration that joins not just two families but the whole community, with everyone contributing their share." },
+    day: {
+      title: "A day in Ghormu",
+      lead: "Nothing grand. But this is the everyday life that keeps our village alive.",
+      moments: [
+        { label: "Morning", caption: "The first doko of the day heads uphill." },
+        { label: "Midday", caption: "Oxen plough the terraces; fodder comes home." },
+        { label: "Afternoon", caption: "Football on the ground above the valley." },
+        { label: "Mealtime", caption: "Everyone sits down to eat together." },
       ],
-      link: "Explore culture & heritage",
+      link: "More photos",
     },
-    explore: {
-      eyebrow: "Explore",
-      title: "Hills, forests and a warm welcome",
-      lead: "Walk the trails, find the viewpoints and experience simple village life up close.",
-      highlights: ["Nature", "Hiking", "Culture", "Hospitality"],
+    traditions: {
+      title: "Our festivals and rites",
+      lead: "From a child's first haircut to a wedding, the whole village gathers. These are the moments that hold us together.",
+      items: [
+        { name: "Lhosar", body: "New year. Song and dance, visits, and festive food in every home." },
+        { name: "Chhewar", body: "A boy's first haircut, when relatives and villagers come to give their blessings." },
+        { name: "Gufa Basne", body: "A rite that honours a girl's passage into a new stage of life." },
+        { name: "Marriage", body: "Two families join, and every family in the village arrives with its share of help." },
+      ],
+      link: "Read about our culture",
+    },
+    visit: {
+      title: "Come and visit",
+      body: "Footpaths, open ridges and tea in a courtyard. We welcome guests with a khata.",
+      bestTime: "Best time to visit",
+      weather: "Weather and routes, today",
       cta: "Plan your visit",
     },
-    map: {
-      eyebrow: "Coming soon",
-      title: "See Ghormu in 3D",
-      body: "The village, religious sites, trails and viewpoints on one interactive map. Get to know Ghormu from a new angle, with its real terrain and elevation.",
-      badge: "3D map",
-      places: ["Village", "Religious sites", "Trails", "Viewpoints"],
-    },
-    community: {
-      eyebrow: "Our community",
-      title: "Many clans, one village",
-      lead: "Each of Ghormu's clan communities has its own history and traditions. The community portal will keep a safe record of families, events and contributions.",
-      surnames: ["Ghale", "Gurung", "Lopchan", "Thing", "Moktan"],
-      primary: "Community overview",
-      secondary: "Community portal",
-      portal: "Community portal",
-      statusFirst: "First phase",
-      statusNext: "Coming next",
+    support: {
+      title: "Stand with Ghormu",
+      body: "Village projects move forward on our own work and the help of friends. We keep every contribution accounted for in the open, so you can see where your help went.",
+      primary: "Ways to help",
+      secondary: "See our development projects",
     },
     latest: {
-      eyebrow: "Latest",
-      title: "News from Ghormu",
+      title: "News from the village",
       link: "All news",
       events: "Coming up",
       eventsLink: "Events calendar",
-    },
-    archive: {
-      title: "Help preserve Ghormu's memory",
-      body: "Do you have old photos, stories or documents? Whether you live in the village or abroad, your contribution will help future generations know our history.",
-      cta: "Get in touch",
-      eyebrow: "Digital archive",
     },
   },
 })

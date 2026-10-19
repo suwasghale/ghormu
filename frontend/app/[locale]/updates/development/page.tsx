@@ -11,6 +11,7 @@ import { formatDay, formatNumber, formatRupees } from "@/lib/i18n/format"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
 import { updatesTabs } from "@/lib/i18n/sections"
 import { cn } from "@/lib/utils"
+import { photos } from "@/content/photos"
 
 export const revalidate = 300
 
@@ -42,6 +43,7 @@ export default async function DevelopmentPage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.terraceWork, locale }}
         crumbs={crumbs(locale, [
           [t.news.title, "/updates"],
           [t.development.title, "/updates/development"],

@@ -18,6 +18,7 @@ export default bilingual({
       emptyAction: "ठाउँ सुझाउनुहोस्",
       mapTitle: "३D नक्सामा हेर्नुहोस्",
       mapBody: "पछि यी सबै ठाउँहरू घोर्मुको ३D अन्तरक्रियात्मक नक्सामा देखिनेछन्।",
+      mapPlaces: ["गाउँ", "धार्मिक स्थल", "पैदल मार्ग", "दृश्यस्थल"],
       planLink: "यात्राको योजना बनाउनुहोस्",
     },
     experiences: {
@@ -50,6 +51,7 @@ export default bilingual({
       emptyAction: "Suggest a place",
       mapTitle: "See them on the 3D map",
       mapBody: "Later, all of these places will appear on an interactive 3D map of Ghormu.",
+      mapPlaces: ["Village", "Religious sites", "Trails", "Viewpoints"],
       planLink: "Plan your trip",
     },
     experiences: {

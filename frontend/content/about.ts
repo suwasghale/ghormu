@@ -10,7 +10,7 @@ export default bilingual({
   ne: {
     eyebrow: "परिचय",
     title: "घोर्मुको परिचय",
-    lead: "घोर्मु केवल एउटा ठाउँ होइन। यो पुस्तौँदेखि सँगै बसेका परिवार, साझा परम्परा र एकअर्काप्रतिको भरोसाको नाम हो।",
+    lead: "घोर्मु पहाडको भिरमा बसेको सानो गाउँ हो। यहाँका परिवारहरू पुस्तौँदेखि एकअर्काका छिमेकी, आफन्त र सहारा बनेर बस्दै आएका छन्।",
     factsTitle: "एक नजरमा",
     facts: [
       { label: "देश", value: "नेपाल" },
@@ -24,7 +24,7 @@ export default bilingual({
         title: "हाम्रो गाउँ",
         body: [
           "घोर्मु नेपालको पहाडी भेगमा रहेको गाउँ हो, जहाँ घले, तामाङ, गुरुङलगायत विभिन्न समुदाय पुस्तौँदेखि सँगै बस्दै आएका छन्।",
-          "साझा चाडपर्व, संस्कार र आपसी सहयोगले यहाँको जीवनलाई जोडेर राखेको छ। गाउँ सानो भए पनि यसको इतिहास, संस्कृति र सम्बन्धहरू गहिरा छन्।",
+          "चाडपर्वमा सबै भेला हुन्छन्, संस्कारमा सबै जुट्छन्, र कसैको घरमा काम पर्दा छिमेकी आइपुग्छन्। गाउँ यसरी नै चल्दै आएको छ।",
         ],
       },
       {
@@ -37,7 +37,7 @@ export default bilingual({
       {
         title: "डिजिटल घोर्मु",
         body: [
-          "ghormu.com गाउँको डिजिटल पहिचान हो। यसले घोर्मुको कथा संसारसामु पुर्‍याउँछ र संस्कृति तथा इतिहासको अभिलेख राख्छ।",
+          "घरबाट टाढा बस्नेहरूले पनि गाउँमा के भइरहेको छ थाहा पाऊन्, र हाम्रा तस्बिर, कथा र अभिलेख एकै ठाउँमा सुरक्षित रहून् भनेर हामीले ghormu.com सुरु गर्‍यौँ।",
           "साथै, समुदाय पोर्टलले परिवार, कार्यक्रम र सहयोगको हिसाब सुरक्षित र पारदर्शी रूपमा राख्न मद्दत गर्नेछ।",
         ],
       },
@@ -72,7 +72,7 @@ export default bilingual({
   en: {
     eyebrow: "About",
     title: "About Ghormu",
-    lead: "Ghormu is more than a place. It is generations of families living side by side, shared traditions, and trust in one another.",
+    lead: "Ghormu is a small village on a hillside. Its families have lived here for generations as neighbours, relatives and each other's support.",
     factsTitle: "At a glance",
     facts: [
       { label: "Country", value: "Nepal" },
@@ -86,7 +86,7 @@ export default bilingual({
         title: "Our village",
         body: [
           "Ghormu is a village in the hills of Nepal, where Ghale, Tamang, Gurung and other communities have lived together for generations.",
-          "Shared festivals, rites and mutual support hold life here together. The village may be small, but its history, culture and relationships run deep.",
+          "Everyone gathers for festivals and rites, and when a family has work to do, the neighbours turn up. That is how the village has always worked.",
         ],
       },
       {
@@ -99,7 +99,7 @@ export default bilingual({
       {
         title: "Digital Ghormu",
         body: [
-          "ghormu.com is the village's digital identity. It carries Ghormu's story to the world and keeps a record of its culture and history.",
+          "We started ghormu.com so that people far from home can still follow what happens here, and so that our photos, stories and records are kept safe in one place.",
           "The community portal will also help keep the records of families, events and contributions safe and transparent.",
         ],
       },

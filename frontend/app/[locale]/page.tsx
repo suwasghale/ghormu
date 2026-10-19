@@ -1,35 +1,20 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Flower2,
-  Footprints,
-  HandHeart,
-  HeartHandshake,
-  Landmark,
-  Scissors,
-  Sun,
-  Trees,
-} from "lucide-react"
+import { ArrowRight, ChevronDown, CloudSun, Heart } from "lucide-react"
 
 import { EventCard } from "@/components/site/event-card"
 import { JsonLd } from "@/components/site/json-ld"
 import { PhotoCredit, PhotoImage } from "@/components/site/photo"
-import { PhotoStack } from "@/components/site/photo-stack"
-import { ArrowLink, buttonStyles, Container, Eyebrow, Section, SectionHeader } from "@/components/site/section"
 import { PostCard } from "@/components/site/post-card"
-import { Terrain3D } from "@/components/site/terrain-3d"
-import { ThroughTimeSection } from "@/components/site/through-time-section"
-import { TopoPattern } from "@/components/site/topo-pattern"
+import { ArrowLink, buttonStyles, Container, Section } from "@/components/site/section"
 import { site } from "@/config/site"
 import community from "@/content/community"
 import home from "@/content/home"
 import { photos, type PhotoName } from "@/content/photos"
 import tourism from "@/content/tourism"
-import { formatIndex, getDictionary, isLocale, localizePath, locales } from "@/lib/i18n"
 import { listEvents, listPosts } from "@/lib/api/content"
+import { getDictionary, isLocale, localizePath, locales } from "@/lib/i18n"
 import { alternatesFor } from "@/lib/i18n/metadata"
 import { cn } from "@/lib/utils"
 
@@ -42,20 +27,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   if (!isLocale(locale)) notFound()
 
-  return { description: home[locale].meta.description, alternates: alternatesFor(locale, "/") }
+  return {
+    description: home[locale].meta.description,
+    alternates: alternatesFor(locale, "/"),
+    openGraph: { images: [{ url: photos.village.src, width: photos.village.width, height: photos.village.height, alt: photos.village.alt[locale] }] },
+  }
 }
 
-/** In-page anchors, in the order of the hero's section index. */
-const ANCHORS = ["intro", "culture", "explore", "community"]
+/** "A day in Ghormu", in order. Staggered on wide screens like a contact sheet. */
+const DAY: PhotoName[] = ["doko", "terraceWork", "football", "sharedMeal"]
 
-const PILLAR_LINKS = ["/about", "/explore", "/community", "/about/archive"]
-
-const CULTURE_ICONS = [Sun, Scissors, Flower2, HeartHandshake]
-
-/** The "village life" mosaic: the first is the large tile. */
-const LIFE_PHOTOS: PhotoName[] = ["terraceWork", "smiles", "welcome", "doko", "greens"]
-
-const EXPLORE_ICONS = [Trees, Footprints, Landmark, HandHeart]
+const headingClass = "font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl"
 
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params
@@ -84,249 +66,196 @@ export default async function HomePage({ params }: PageProps) {
         }}
       />
 
-      {/* ── Hero ─────────────────────────────────────────────── */}
-      <section aria-labelledby="hero-title" className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col overflow-hidden">
+      {/* ── Arrival ──────────────────────────────────────────── */}
+      <section aria-labelledby="hero-title" className="relative isolate flex min-h-svh flex-col overflow-hidden bg-ink text-white">
         <div className="hero-zoom absolute inset-0 -z-20">
           <PhotoImage photo={photos.village} locale={locale} fill priority sizes="100vw" credit="none" />
         </div>
-        {/* Darker at the left and the foot, so the title and the page index stay readable. */}
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/80 via-ink/40 to-transparent" />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/80 via-transparent to-ink/40" />
-        <PhotoCredit photo={photos.village} locale={locale} className="absolute right-4 bottom-4 sm:right-6 sm:bottom-20" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/80 via-ink/35 to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/75 via-transparent to-ink/50" />
 
-        <Container className="flex flex-1 flex-col justify-center py-20 text-ink-foreground sm:pb-36">
-          <div className="rise max-w-3xl">
-            <Eyebrow tone="ink">{t.hero.eyebrow}</Eyebrow>
-            <h1
-              id="hero-title"
-              className="mt-6 font-display text-7xl leading-[1.12] font-bold tracking-tight text-white sm:text-8xl lg:text-[9rem]"
-            >
+        <Container className="flex flex-1 flex-col justify-end pt-32 pb-24 sm:pb-28">
+          <div className="rise max-w-2xl">
+            <p className="text-sm font-medium tracking-wide text-white/80 sm:text-base">{t.hero.kicker}</p>
+            <h1 id="hero-title" className="mt-3 font-display text-7xl leading-[1.1] font-bold tracking-tight sm:text-8xl lg:text-[8.5rem]">
               {t.hero.title}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">{t.hero.lead}</p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link href={href("/about")} className={buttonStyles.primary}>
+            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <Link href={href("/about")} className={cn(buttonStyles.primary, "bg-white text-ink hover:bg-white/90 focus-visible:outline-white")}>
                 {t.hero.primary}
                 <ArrowRight aria-hidden="true" className="size-4" />
               </Link>
-              <Link href={href("/explore")} className={cn(buttonStyles.ghostOnInk, "backdrop-blur-sm")}>
+              <Link
+                href={href("/support")}
+                className="group inline-flex items-center gap-2 font-semibold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              >
+                <Heart aria-hidden="true" className="size-4 text-earth" />
                 {t.hero.secondary}
               </Link>
             </div>
           </div>
         </Container>
 
-        {/* Index of this page, set along the foreground ridge */}
-        <nav aria-label={t.hero.indexLabel} className="absolute inset-x-0 bottom-0 hidden bg-gradient-to-t from-black/25 to-transparent sm:block">
-          <Container>
-            <ol className="grid grid-cols-4 border-t border-white/20">
-              {t.hero.index.map((label, index) => (
-                <li key={label}>
-                  <a
-                    href={`#${ANCHORS[index]}`}
-                    className="group flex items-baseline gap-3 py-5 text-white/80 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                  >
-                    <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
-                    <span className="font-medium">{label}</span>
-                    <ArrowRight aria-hidden="true" className="size-3.5 -translate-x-1 opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100" />
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </Container>
-        </nav>
+        <a
+          href="#letter"
+          aria-label={t.hero.scroll}
+          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 rounded-full p-2 text-white/70 transition hover:text-white focus-visible:outline-2 focus-visible:outline-white sm:block"
+        >
+          <ChevronDown aria-hidden="true" className="size-6 animate-bounce" />
+        </a>
+        <PhotoCredit photo={photos.village} locale={locale} className="absolute right-4 bottom-4 sm:right-6 sm:bottom-6" />
       </section>
 
-      {/* ── Introduction ─────────────────────────────────────── */}
-      <Section id="intro" labelledBy="intro-title" className="py-24 sm:py-32">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="reveal lg:col-span-4">
-            <Eyebrow>{t.intro.eyebrow}</Eyebrow>
-            <h2 id="intro-title" className="mt-4 font-display text-2xl leading-snug font-semibold text-balance sm:text-3xl">
-              {t.intro.title}
-            </h2>
+      {/* ── A note from the village ──────────────────────────── */}
+      <Section id="letter" labelledBy="letter-title" className="py-24 sm:py-36">
+        <div className="grid items-center gap-12 lg:grid-cols-[5fr_6fr] lg:gap-20">
+          <div className="reveal relative mx-auto aspect-[3/4] w-full max-w-md overflow-hidden rounded-[2rem] lg:mx-0">
+            <PhotoImage photo={photos.fodder} locale={locale} fill sizes="(min-width: 1024px) 40vw, 90vw" />
           </div>
-          <div className="reveal lg:col-span-8">
-            <p className="font-display text-2xl leading-[1.65] text-foreground/90 sm:text-[1.85rem]">{t.intro.body}</p>
+          <div className="reveal max-w-xl">
+            <h2 id="letter-title" className={headingClass}>
+              {t.letter.title}
+            </h2>
+            <div className="mt-8 flex flex-col gap-5 text-lg leading-[1.8] text-foreground/80">
+              {t.letter.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <p className="mt-8 font-display text-xl text-foreground">— {t.letter.signature}</p>
             <ArrowLink href={href("/about")} className="mt-8">
-              {t.intro.link}
+              {t.letter.link}
             </ArrowLink>
           </div>
         </div>
-
-        <h3 className="sr-only">{t.pillars.title}</h3>
-        <ol className="mt-20 grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
-          {t.pillars.items.map((item, index) => (
-            <li
-              key={item.title}
-              className="reveal border-b border-border sm:odd:pr-8 sm:even:border-l sm:even:pl-8 lg:border-b-0 lg:border-l lg:px-8 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0"
-            >
-              <Link
-                href={href(PILLAR_LINKS[index])}
-                className="group relative block h-full py-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-              >
-                <span aria-hidden="true" className="absolute -top-px left-0 h-0.5 w-0 bg-brand transition-all duration-500 group-hover:w-full" />
-                <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
-                <span className="mt-6 flex items-center justify-between gap-3 font-display text-2xl font-semibold">
-                  {item.title}
-                  <ArrowUpRight aria-hidden="true" className="size-5 text-brand transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-                <span className="mt-3 block leading-relaxed text-muted-foreground">{item.body}</span>
-              </Link>
-            </li>
-          ))}
-        </ol>
       </Section>
 
-      {/* ── Village life ─────────────────────────────────────── */}
-      <section aria-labelledby="life-title" className="pb-24 sm:pb-32">
+      {/* ── A day in Ghormu ──────────────────────────────────── */}
+      <section aria-labelledby="day-title" className="bg-snow py-24 sm:py-32">
         <Container>
-          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <SectionHeader id="life-title" eyebrow={t.life.eyebrow} title={t.life.title} lead={t.life.lead} />
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="reveal max-w-xl">
+              <h2 id="day-title" className={headingClass}>
+                {t.day.title}
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{t.day.lead}</p>
+            </div>
             <ArrowLink href={href("/explore/gallery")} className="reveal shrink-0">
-              {t.life.link}
+              {t.day.link}
             </ArrowLink>
           </div>
-          <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:h-[38rem] lg:grid-cols-4 lg:grid-rows-2">
-            {LIFE_PHOTOS.map((name, index) => (
-              <li
-                key={name}
-                className={cn(
-                  "reveal relative overflow-hidden rounded-2xl bg-muted",
-                  index === 0 ? "col-span-2 aspect-[4/3] lg:row-span-2 lg:aspect-auto" : "aspect-square lg:aspect-auto",
-                )}
-              >
-                <PhotoImage
-                  photo={photos[name]}
-                  locale={locale}
-                  fill
-                  sizes={index === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
-                  className="transition duration-700 hover:scale-[1.03]"
-                />
+
+          <ol className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4 lg:gap-x-6">
+            {t.day.moments.map((moment, index) => (
+              <li key={moment.label} className={cn("reveal", index % 2 === 1 && "lg:mt-16")}>
+                <figure>
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-muted">
+                    <PhotoImage photo={photos[DAY[index]]} locale={locale} fill sizes="(min-width: 1024px) 25vw, 50vw" />
+                  </div>
+                  <figcaption className="mt-4">
+                    <span className="text-sm font-semibold text-earth">{moment.label}</span>
+                    <span className="mt-1 block leading-relaxed text-foreground/80">{moment.caption}</span>
+                  </figcaption>
+                </figure>
               </li>
             ))}
-          </ul>
+          </ol>
         </Container>
       </section>
 
-      {/* ── Culture ──────────────────────────────────────────── */}
-      <Section id="culture" tone="mist" labelledBy="culture-title" className="overflow-hidden py-24 sm:py-32">
-        <TopoPattern className="absolute inset-0 h-full w-full text-brand/[0.06]" />
-        <div className="relative flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          <SectionHeader id="culture-title" eyebrow={t.culture.eyebrow} title={t.culture.title} lead={t.culture.lead} />
-          <ArrowLink href={href("/about/culture")} className="reveal shrink-0">
-            {t.culture.link}
-          </ArrowLink>
-        </div>
-
-        <ul className="relative mt-14 grid gap-4 lg:grid-cols-4 lg:grid-rows-2">
-          {t.culture.items.map((item, index) => {
-            const Icon = CULTURE_ICONS[index]
-
-            if (index === 0) {
-              return (
-                <li
-                  key={item.title}
-                  className="reveal relative isolate flex min-h-[22rem] flex-col justify-end overflow-hidden rounded-3xl bg-ink p-8 text-ink-foreground sm:p-10 lg:col-span-2 lg:row-span-2 lg:min-h-[30rem]"
-                >
-                  <PhotoImage photo={photos.chorten} locale={locale} fill sizes="(min-width: 1024px) 50vw, 100vw" credit="none" className="-z-20" />
-                  <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/55 to-ink/5" />
-                  <PhotoCredit photo={photos.chorten} locale={locale} className="absolute top-4 right-4" />
-                  <Icon aria-hidden="true" className="size-8 text-earth" />
-                  <h3 className="mt-6 font-display text-3xl font-semibold sm:text-4xl">{item.title}</h3>
-                  <p className="mt-3 max-w-md text-lg leading-relaxed text-ink-foreground/75">{item.body}</p>
-                </li>
-              )
-            }
-
-            return (
-              <li
-                key={item.title}
-                className={cn(
-                  "reveal flex flex-col rounded-3xl bg-background/90 p-7 ring-1 ring-border backdrop-blur-sm",
-                  index === 1 && "lg:col-span-2",
-                )}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex size-11 items-center justify-center rounded-full bg-earth/10 text-earth">
-                    <Icon aria-hidden="true" className="size-5" />
-                  </span>
-                  <span className="font-display text-sm text-muted-foreground">{formatIndex(locale, index + 1)}</span>
+      {/* ── Traditions ───────────────────────────────────────── */}
+      <Section labelledBy="traditions-title" className="py-24 sm:py-36">
+        <div className="grid gap-12 lg:grid-cols-[5fr_6fr] lg:gap-20">
+          <div className="reveal relative order-last aspect-[4/5] overflow-hidden rounded-[2rem] lg:order-first lg:sticky lg:top-24 lg:self-start">
+            <PhotoImage photo={photos.chorten} locale={locale} fill sizes="(min-width: 1024px) 40vw, 100vw" />
+          </div>
+          <div>
+            <div className="reveal max-w-xl">
+              <h2 id="traditions-title" className={headingClass}>
+                {t.traditions.title}
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{t.traditions.lead}</p>
+            </div>
+            <dl className="mt-12 border-t border-border">
+              {t.traditions.items.map((item) => (
+                <div key={item.name} className="reveal grid gap-2 border-b border-border py-7 sm:grid-cols-[11rem_1fr] sm:gap-8">
+                  <dt className="font-display text-2xl font-semibold">{item.name}</dt>
+                  <dd className="leading-relaxed text-muted-foreground sm:pt-1.5">{item.body}</dd>
                 </div>
-                <h3 className="mt-auto pt-8 font-display text-2xl font-semibold">{item.title}</h3>
-                <p className="mt-2 leading-relaxed text-muted-foreground">{item.body}</p>
-              </li>
-            )
-          })}
-        </ul>
+              ))}
+            </dl>
+            <ArrowLink href={href("/about/culture")} className="reveal mt-10">
+              {t.traditions.link}
+            </ArrowLink>
+          </div>
+        </div>
       </Section>
 
-      {/* ── Explore ──────────────────────────────────────────── */}
-      <section id="explore" aria-labelledby="explore-title" className="relative isolate scroll-mt-20 overflow-hidden bg-ink text-ink-foreground">
-        <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-ink-foreground/[0.05]" />
-        <Container className="grid gap-16 py-24 sm:py-32 lg:grid-cols-2 lg:items-center lg:gap-20">
-          <div>
-            <SectionHeader id="explore-title" tone="ink" eyebrow={t.explore.eyebrow} title={t.explore.title} lead={t.explore.lead} />
-            <ul className="reveal mt-10 grid grid-cols-2 gap-x-8 border-t border-ink-foreground/15">
-              {t.explore.highlights.map((label, index) => {
-                const Icon = EXPLORE_ICONS[index]
-                return (
-                  <li key={label} className="flex items-center gap-3 border-b border-ink-foreground/15 py-4">
-                    <Icon aria-hidden="true" className="size-5 shrink-0 text-earth" />
-                    <span className="text-lg font-medium">{label}</span>
-                  </li>
-                )
-              })}
-            </ul>
-            <Link href={href("/explore")} className={cn(buttonStyles.onInk, "reveal mt-10")}>
-              {t.explore.cta}
+      {/* ── Visit ────────────────────────────────────────────── */}
+      <section aria-labelledby="visit-title" className="relative isolate overflow-hidden bg-ink text-ink-foreground">
+        <PhotoImage photo={photos.trail} locale={locale} fill sizes="100vw" credit="none" className="-z-20" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/10" />
+        <Container className="py-28 sm:py-40">
+          <div className="reveal max-w-lg">
+            <h2 id="visit-title" className={headingClass}>
+              {t.visit.title}
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-ink-foreground/80">{t.visit.body}</p>
+
+            <dl className="mt-10 grid gap-6 border-t border-ink-foreground/15 pt-8 sm:grid-cols-2">
+              <div>
+                <dt className="text-sm text-ink-foreground/60">{t.visit.bestTime}</dt>
+                <dd className="mt-1 font-display text-xl font-semibold">{bestSeasons.map((season) => season.name).join(" · ")}</dd>
+              </div>
+              <div>
+                <dt className="text-sm text-ink-foreground/60">{t.visit.weather}</dt>
+                <dd className="mt-1">
+                  <Link href={href("/explore/travel-guide")} className="inline-flex items-center gap-2 font-display text-xl font-semibold text-earth hover:underline">
+                    <CloudSun aria-hidden="true" className="size-5" />
+                    {dict.nav.travelGuide}
+                  </Link>
+                </dd>
+              </div>
+            </dl>
+
+            <Link href={href("/explore")} className={cn(buttonStyles.onInk, "mt-10")}>
+              {t.visit.cta}
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           </div>
-
-          <div className="reveal relative pb-8">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] ring-1 ring-ink-foreground/10 sm:aspect-[5/4] lg:aspect-[4/5]">
-              <PhotoImage photo={photos.trail} locale={locale} fill sizes="(min-width: 1024px) 40vw, 100vw" />
-            </div>
-            <div className="absolute bottom-0 left-5 rounded-2xl bg-ink/85 p-5 ring-1 ring-ink-foreground/15 backdrop-blur-md sm:left-8">
-              <p className="text-sm font-semibold text-earth">{tourism[locale].recommended}</p>
-              <ul className="mt-2 flex flex-col gap-1">
-                {bestSeasons.map((season) => (
-                  <li key={season.name} className="flex items-baseline gap-3">
-                    <span className="font-display text-xl font-semibold">{season.name}</span>
-                    <span className="text-sm text-ink-foreground/65">{season.months.split(" · ")[0]}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
         </Container>
+        <PhotoCredit photo={photos.trail} locale={locale} className="absolute right-4 bottom-4" />
       </section>
 
-      {/* ── 3D map teaser ───────────────────────────────────── */}
-      <Section labelledBy="map-title" className="py-24 sm:py-32">
-        <div className="reveal grid overflow-hidden rounded-[2rem] bg-brand text-brand-foreground lg:grid-cols-2">
-          <div className="flex flex-col justify-center p-8 sm:p-14">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-foreground/10 px-3 py-1 text-sm font-semibold ring-1 ring-brand-foreground/20">
-              <span aria-hidden="true" className="size-1.5 rounded-full bg-earth" />
-              {t.map.eyebrow} · {t.map.badge}
-            </span>
-            <h2 id="map-title" className="mt-6 font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
-              {t.map.title}
+      {/* ── Support ──────────────────────────────────────────── */}
+      <Section labelledBy="support-title" className="py-24 sm:py-36">
+        <div className="grid items-center gap-12 overflow-hidden rounded-[2rem] bg-brand-muted lg:grid-cols-2 lg:gap-0">
+          <div className="reveal p-8 sm:p-14">
+            <h2 id="support-title" className={headingClass}>
+              {t.support.title}
             </h2>
-            <p className="mt-5 max-w-lg text-lg leading-relaxed text-brand-foreground/80">{t.map.body}</p>
+            <p className="mt-5 text-lg leading-relaxed text-foreground/75">{t.support.body}</p>
+            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <Link href={href("/support")} className={cn(buttonStyles.primary, "bg-earth hover:brightness-110 focus-visible:outline-earth")}>
+                <Heart aria-hidden="true" className="size-4" />
+                {t.support.primary}
+              </Link>
+              <ArrowLink href={href("/updates/development")}>{t.support.secondary}</ArrowLink>
+            </div>
           </div>
-          <Terrain3D labels={t.map.places} className="min-h-96" />
+          <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[28rem]">
+            <PhotoImage photo={photos.smiles} locale={locale} fill sizes="(min-width: 1024px) 50vw, 100vw" />
+          </div>
         </div>
       </Section>
 
-      <ThroughTimeSection locale={locale} />
-
       {/* ── Latest: only once there is something to show ──────── */}
       {(latestPosts.length > 0 || nextEvents.length > 0) && (
-        <Section labelledBy="latest-title" className="py-24 sm:py-32">
+        <Section tone="mist" labelledBy="latest-title">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <SectionHeader id="latest-title" eyebrow={t.latest.eyebrow} title={t.latest.title} />
+            <h2 id="latest-title" className={cn(headingClass, "reveal")}>
+              {t.latest.title}
+            </h2>
             <ArrowLink href={href("/updates")} className="reveal shrink-0">
               {t.latest.link}
             </ArrowLink>
@@ -355,59 +284,6 @@ export default async function HomePage({ params }: PageProps) {
           </div>
         </Section>
       )}
-
-      {/* ── Community ────────────────────────────────────────── */}
-      <Section id="community" tone="brand" labelledBy="community-title" className="py-24 sm:py-32">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeader id="community-title" eyebrow={t.community.eyebrow} title={t.community.title} lead={t.community.lead} />
-          <div className="reveal flex shrink-0 flex-wrap gap-3">
-            <Link href={href("/community")} className={buttonStyles.primary}>
-              {t.community.primary}
-            </Link>
-            <Link href="/login" className={buttonStyles.secondary}>
-              {t.community.secondary}
-            </Link>
-          </div>
-        </div>
-
-        <ul className="mt-16 grid grid-cols-2 border-t border-brand/15 sm:grid-cols-3 lg:grid-cols-5">
-          {t.community.surnames.map((name, index) => {
-            const first = index === 0
-            return (
-              <li
-                key={name}
-                className="reveal border-b border-brand/15 py-8 pr-4 lg:border-b-0 lg:border-l lg:px-6 lg:first:border-l-0 lg:first:pl-0"
-              >
-                <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
-                <p className="mt-3 font-display text-3xl font-semibold text-ink sm:text-4xl">{name}</p>
-                <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
-                  <span aria-hidden="true" className={cn("size-2 rounded-full", first ? "bg-brand ring-4 ring-brand/15" : "bg-muted-foreground/35")} />
-                  <span className="sr-only">{t.community.portal}: </span>
-                  {first ? t.community.statusFirst : t.community.statusNext}
-                </p>
-              </li>
-            )
-          })}
-        </ul>
-      </Section>
-
-      {/* ── Archive ──────────────────────────────────────────── */}
-      <Section labelledBy="archive-title" className="py-24 sm:py-32">
-        <div className="reveal grid items-center gap-12 overflow-hidden rounded-[2rem] bg-[color-mix(in_oklch,var(--earth)_10%,var(--snow))] p-8 sm:p-14 lg:grid-cols-2 lg:gap-16">
-          <PhotoStack className="order-last lg:order-first" />
-          <div>
-            <Eyebrow className="text-earth">{t.archive.eyebrow}</Eyebrow>
-            <h2 id="archive-title" className="mt-4 font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
-              {t.archive.title}
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{t.archive.body}</p>
-            <Link href={href("/contact")} className={cn(buttonStyles.primary, "mt-9")}>
-              {t.archive.cta}
-              <ArrowRight aria-hidden="true" className="size-4" />
-            </Link>
-          </div>
-        </div>
-      </Section>
     </>
   )
 }

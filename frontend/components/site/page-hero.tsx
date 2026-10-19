@@ -7,10 +7,8 @@ import type { Locale } from "@/lib/i18n/config"
 import { cn } from "@/lib/utils"
 
 import { JsonLd } from "./json-ld"
-import { Landscape } from "./landscape"
 import { PhotoCredit, PhotoImage } from "./photo"
 import { Container, Eyebrow } from "./section"
-import { TopoPattern } from "./topo-pattern"
 
 export type Crumb = { label: string; href: string }
 
@@ -18,8 +16,9 @@ export type Crumb = { label: string; href: string }
  * Header for every inner page: breadcrumbs, title and a short lead.
  *
  * With a `photo`, the text sits on a darkened photograph of Ghormu, credited
- * in the corner; without one, on a contour texture with a ridgeline at its
- * foot. Either way the bottom edge curves into the page below.
+ * in the corner, and the bottom edge curves into the page below. Without
+ * one it is quiet on purpose: type on a plain ground, for pages people come
+ * to read (policies, notices, help).
  *
  * The last crumb is the page itself. Breadcrumbs are also emitted as
  * BreadcrumbList structured data, which search results show as the path.
@@ -43,18 +42,16 @@ export function PageHero({
   const onPhoto = Boolean(photo)
 
   return (
-    <header className={cn("relative isolate overflow-hidden", onPhoto ? "bg-ink text-ink-foreground" : "bg-mist")}>
+    <header className={cn("relative isolate overflow-hidden", onPhoto ? "bg-ink text-ink-foreground" : "border-b border-border bg-snow")}>
       {photo ? (
         <>
           <PhotoImage photo={photo.photo} locale={photo.locale} fill priority sizes="100vw" credit="none" className="-z-20" />
           <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/20" />
           <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/60 via-transparent to-ink/30" />
         </>
-      ) : (
-        <TopoPattern className="absolute inset-0 h-full w-full text-brand/10" />
-      )}
+      ) : null}
 
-      <Container className={cn("relative pt-10 sm:pt-14", onPhoto ? "pb-32 sm:pb-44" : "pb-24 sm:pb-32")}>
+      <Container className={cn("relative pt-10 sm:pt-14", onPhoto ? "pb-32 sm:pb-44" : "pb-16 sm:pb-24")}>
         <nav aria-label={breadcrumbLabel}>
           <ol className={cn("flex flex-wrap items-center gap-1 text-sm", onPhoto ? "text-ink-foreground/70" : "text-muted-foreground")}>
             {crumbs.map((crumb, index) => {
@@ -97,9 +94,7 @@ export function PageHero({
             <path d="M0 48 Q240 14 480 40 T960 30 T1440 36 V80 H0 Z" fill="var(--background)" />
           </svg>
         </>
-      ) : (
-        <Landscape variant="strip" className="absolute inset-x-0 bottom-0 h-16 sm:h-24" />
-      )}
+      ) : null}
 
       <JsonLd
         data={{

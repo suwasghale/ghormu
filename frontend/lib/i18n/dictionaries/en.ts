@@ -3,7 +3,7 @@ import type { Dictionary } from "./ne"
 const en: Dictionary = {
   site: {
     name: "Ghormu",
-    tagline: "The digital home of Ghormu village",
+    tagline: "A hill village in Nepal, in its own words",
     description: "History, culture, tourism and community life of Ghormu village, Nepal.",
   },
 
@@ -15,6 +15,7 @@ const en: Dictionary = {
     closeMenu: "Close menu",
     switchLanguage: "View this page in Nepali",
     breadcrumb: "Breadcrumb",
+    support: "Support Ghormu",
   },
 
   nav: {
@@ -55,12 +56,14 @@ const en: Dictionary = {
     terms: "Terms of Use",
     accessibility: "Accessibility",
     sitemap: "Sitemap",
+    support: "Support Ghormu",
   },
 
   footer: {
     discover: "Discover",
     community: "Community",
     help: "Help",
+    closing: "Ghormu's story is still being written. Help us write the next chapter.",
     copyright: "© {year} Ghormu. All rights reserved.",
   },
 

@@ -21,7 +21,7 @@ export async function ThroughTimeSection({ locale, tone = "mist" }: { locale: Lo
 
   return (
     <Section tone={tone} labelledBy="through-time-title">
-      <SectionHeader id="through-time-title" eyebrow={t.eyebrow} title={t.title} lead={t.lead} />
+      <SectionHeader id="through-time-title" title={t.title} lead={t.lead} />
       <div className="reveal mt-10">
         <ThroughTime frames={frames} strings={t} />
       </div>

@@ -6,7 +6,7 @@ export default bilingual({
     eyebrow: "परिचय",
     title: "हाम्रो दृष्टि",
     lead: "घोर्मुको इतिहास, संस्कृति र सम्बन्धलाई आउँदा पुस्ताका लागि जोगाउँदै, गाउँ र संसारभर छरिएका घोर्मुवासीलाई एउटै ठाउँमा जोड्ने।",
-    statement: "हाम्रा बुढापाकाले बाँचेको इतिहास, हामीले मनाउने संस्कार र हामीबीचको सहयोगको परम्परा—यी सबै घोर्मुको सम्पत्ति हुन्। ghormu.com यिनलाई सुरक्षित राख्ने डिजिटल घर हो।",
+    statement: "बीस वर्षपछि घोर्मुमा जन्मने बच्चाले पनि आफ्ना हजुरबा-हजुरआमा कसरी बाँचे भनेर हेर्न सकोस्, र गाउँको कथामा आफ्नो परिवारको ठाउँ भेटोस्। हामी त्यसैका लागि यो काम गर्दैछौँ।",
     whyTitle: "किन ghormu.com?",
     why: [
       {
@@ -42,7 +42,7 @@ export default bilingual({
     eyebrow: "About",
     title: "Our Vision",
     lead: "To preserve Ghormu's history, culture and relationships for generations to come, and to bring together everyone from Ghormu, in the village and across the world.",
-    statement: "The history our elders lived, the rites we celebrate and our tradition of helping one another are Ghormu's true wealth. ghormu.com is a digital home to keep them safe.",
+    statement: "We want a child born in Ghormu twenty years from now to be able to see how their grandparents lived, and to find their family's place in the village's story. That is what this work is for.",
     whyTitle: "Why ghormu.com?",
     why: [
       {

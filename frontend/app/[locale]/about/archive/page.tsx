@@ -12,6 +12,7 @@ import { archiveGroups } from "@/lib/archive"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { formatIndex } from "@/lib/i18n/config"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
+import { photos } from "@/content/photos"
 
 export const revalidate = 300
 
@@ -33,6 +34,7 @@ export default async function ArchivePage({ params }: PageProps) {
   return (
     <>
       <PageHero
+        photo={{ photo: photos.flags, locale }}
         crumbs={crumbs(locale, [
           [dict.nav.about, "/about"],
           [t.archive.title, "/about/archive"],

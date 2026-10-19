@@ -76,7 +76,7 @@ export const mainNav: NavItem[] = [
 ]
 
 export type FooterColumn = {
-  key: keyof Dictionary["footer"]
+  key: "discover" | "community" | "help"
   links: NavLink[]
 }
 
@@ -98,6 +98,7 @@ export const footerColumns: FooterColumn[] = [
       { key: "events", href: "/community/events" },
       { key: "news", href: "/updates" },
       { key: "portal", href: "/login", localized: false },
+      { key: "support", href: "/support" },
     ],
   },
   {
@@ -144,6 +145,7 @@ export const publishedPages = [
   "/terms",
   "/accessibility",
   "/sitemap",
+  "/support",
 ] as const
 
 /**

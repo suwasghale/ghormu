@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { ArrowRight, Heart } from "lucide-react"
 
 import { footerColumns, type NavLink } from "@/config/navigation"
 import type { Dictionary } from "@/lib/i18n"
@@ -16,47 +17,67 @@ function formatYear(locale: Locale, year: number): string {
   return new Intl.NumberFormat(locale === "ne" ? "ne-NP" : "en", { useGrouping: false }).format(year)
 }
 
+/**
+ * Every page ends the same way: one plain sentence and a way to help, then
+ * the site's map. Dark, so it reads as the ground the page stands on.
+ */
 export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   return (
-    <footer className="border-t border-border bg-brand-muted/60">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_repeat(3,1fr)]">
-        <div className="max-w-xs">
+    <footer className="bg-ink text-ink-foreground">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex flex-col gap-8 border-b border-ink-foreground/10 py-14 sm:py-20 lg:flex-row lg:items-end lg:justify-between">
+          <p className="max-w-2xl font-display text-3xl leading-snug font-semibold text-balance sm:text-4xl">{dict.footer.closing}</p>
           <Link
-            href={localizePath(locale, "/")}
-            aria-label={dict.header.homeLink}
-            className="inline-flex items-center gap-2.5 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+            href={localizePath(locale, "/support")}
+            className="inline-flex h-12 shrink-0 items-center gap-2 self-start rounded-full bg-earth px-6 font-semibold text-white transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth lg:self-auto"
           >
-            <LogoMark />
-            <span className="text-xl font-bold tracking-tight">{dict.site.name}</span>
+            <Heart aria-hidden="true" className="size-4" />
+            {dict.header.support}
+            <ArrowRight aria-hidden="true" className="size-4" />
           </Link>
-          <p className="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">{dict.site.tagline}</p>
         </div>
 
-        {footerColumns.map((column) => (
-          <nav key={column.key} aria-labelledby={`footer-${column.key}`}>
-            <h2 id={`footer-${column.key}`} className="text-sm font-semibold text-foreground">
-              {dict.footer[column.key]}
-            </h2>
-            <ul className="mt-4 flex flex-col gap-2.5">
-              {column.links.map((link) => (
-                <li key={link.key}>
-                  <Link
-                    href={hrefFor(locale, link)}
-                    className="text-[0.95rem] text-muted-foreground transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                  >
-                    {dict.nav[link.key]}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ))}
-      </div>
+        <div className="grid gap-10 py-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+          <div className="max-w-xs">
+            <Link
+              href={localizePath(locale, "/")}
+              aria-label={dict.header.homeLink}
+              className="inline-flex items-center gap-2.5 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-earth"
+            >
+              <LogoMark />
+              <span className="font-display text-xl font-bold tracking-tight">{dict.site.name}</span>
+            </Link>
+            <p className="mt-4 text-[0.95rem] leading-relaxed text-ink-foreground/65">{dict.site.tagline}</p>
+          </div>
 
-      <div className="border-t border-border/80">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:px-6">
+          {footerColumns.map((column) => (
+            <nav key={column.key} aria-labelledby={`footer-${column.key}`}>
+              <h2 id={`footer-${column.key}`} className="text-sm font-semibold text-ink-foreground">
+                {dict.footer[column.key]}
+              </h2>
+              <ul className="mt-4 flex flex-col gap-2.5">
+                {column.links.map((link) => (
+                  <li key={link.key}>
+                    <Link
+                      href={hrefFor(locale, link)}
+                      className="text-[0.95rem] text-ink-foreground/65 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth"
+                    >
+                      {dict.nav[link.key]}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+
+        <div className="flex flex-col items-start justify-between gap-4 border-t border-ink-foreground/10 py-6 text-sm text-ink-foreground/55 sm:flex-row sm:items-center">
           <p>{dict.footer.copyright.replace("{year}", formatYear(locale, new Date().getFullYear()))}</p>
-          <LanguageSwitcher locale={locale} label={dict.header.switchLanguage} className="bg-background" />
+          <LanguageSwitcher
+            locale={locale}
+            label={dict.header.switchLanguage}
+            className="border-ink-foreground/20 text-ink-foreground hover:border-earth hover:text-earth focus-visible:outline-earth"
+          />
         </div>
       </div>
     </footer>

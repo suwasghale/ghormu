@@ -5,7 +5,6 @@ import { PageHero } from "@/components/site/page-hero"
 import { ArrowLink, Section } from "@/components/site/section"
 import { Terrain3D } from "@/components/site/terrain-3d"
 import explore from "@/content/explore-more"
-import home from "@/content/home"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
 import { photos } from "@/content/photos"
@@ -66,7 +65,7 @@ export default async function AttractionsPage({ params }: PageProps) {
               {t.attractions.planLink}
             </ArrowLink>
           </div>
-          <Terrain3D labels={home[locale].map.places} className="min-h-80" />
+          <Terrain3D labels={t.attractions.mapPlaces} className="min-h-80" />
         </div>
       </Section>
     </>

@@ -9,13 +9,13 @@ export default bilingual({
   ne: {
     eyebrow: "घुमफिर",
     title: "पर्यटन",
-    lead: "शान्त गाउँ, हरियो वन, पैदल मार्ग र न्यानो आतिथ्य। घोर्मुमा प्रकृति र संस्कृति सँगै भेटिन्छन्।",
+    lead: "घोर्मु रिसोर्ट होइन, गाउँलेहरू बस्ने र काम गर्ने गाउँ हो। यहाँ आउने पाहुनाले पैदल बाटो हिँड्न, आँगनमा बस्न र गाउँको जीवन नजिकबाट हेर्न पाउँछन्।",
     whyTitle: "किन घोर्मु?",
     why: [
       { title: "प्रकृति", body: "डाँडाकाँडा, वन र खोलानालाको शान्त वातावरण।" },
-      { title: "संस्कृति", body: "जीवित परम्परा, चाडपर्व र समुदायको जीवन नजिकबाट हेर्ने अवसर।" },
+      { title: "संस्कृति", body: "चाडपर्व र संस्कार देखाउनका लागि होइन, गाउँलेकै जीवनको हिस्सा हुन्।" },
       { title: "पदयात्रा", body: "गाउँ वरपरका पैदल मार्ग र दृश्यस्थल।" },
-      { title: "आतिथ्य", body: "पाहुनालाई देवता मान्ने गाउँले संस्कारको न्यानो स्वागत।" },
+      { title: "आतिथ्य", body: "पाहुनालाई खादा ओढाएर स्वागत गरिन्छ।" },
     ],
     seasonsTitle: "घुम्ने उपयुक्त समय",
     seasonsLead: "हरेक ऋतुको आफ्नै सौन्दर्य छ। यात्रा अघि मौसम र बाटोको अवस्था बुझ्नुहोस्।",
@@ -61,13 +61,13 @@ export default bilingual({
   en: {
     eyebrow: "Explore",
     title: "Tourism",
-    lead: "A peaceful village, green forests, walking trails and a warm welcome. In Ghormu, nature and culture meet.",
+    lead: "Ghormu is not a resort. It is a working village, where visitors can walk the trails, sit in a courtyard and see how life goes here.",
     whyTitle: "Why Ghormu?",
     why: [
       { title: "Nature", body: "The calm of hills, forests and streams." },
-      { title: "Culture", body: "A chance to see living traditions, festivals and community life up close." },
+      { title: "Culture", body: "Festivals and rites here are not a show; they are part of village life." },
       { title: "Hiking", body: "Walking trails and viewpoints around the village." },
-      { title: "Hospitality", body: "The warm welcome of a village where guests are treated as gods." },
+      { title: "Hospitality", body: "Guests are welcomed with a khata, the white scarf of greeting." },
     ],
     seasonsTitle: "When to visit",
     seasonsLead: "Every season has its own beauty. Check the weather and trail conditions before you travel.",

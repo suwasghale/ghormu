@@ -2,7 +2,6 @@ import Link from "next/link"
 
 import { PageHero } from "@/components/site/page-hero"
 import { buttonStyles, Section } from "@/components/site/section"
-import { TopoPattern } from "@/components/site/topo-pattern"
 import community from "@/content/community"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { formatIndex } from "@/lib/i18n/config"
@@ -47,7 +46,6 @@ export default async function SurnamesPage({ params }: PageProps) {
                 clan.first ? "bg-ink text-ink-foreground" : "bg-brand-muted",
               )}
             >
-              <TopoPattern className={cn("absolute inset-0 -z-10 h-full w-full", clan.first ? "text-ink-foreground/[0.07]" : "text-brand/15")} />
               <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
               <div>
                 <p className="font-display text-4xl font-semibold">{clan.name}</p>

@@ -6,14 +6,11 @@ import {
   CloudRain,
   Flower,
   Footprints,
-  HandHeart,
   Landmark,
   Leaf,
-  Mountain,
   PartyPopper,
   ShieldAlert,
   Snowflake,
-  Trees,
   UtensilsCrossed,
 } from "lucide-react"
 
@@ -35,7 +32,6 @@ export async function generateMetadata({ params }: PageProps) {
   return pageMetadata(locale, "/explore", tourism[locale].title, tourism[locale].lead)
 }
 
-const WHY_ICONS = [Trees, Landmark, Mountain, HandHeart]
 const WHY_PHOTOS: PhotoName[] = ["forest", "chorten", "trail", "welcome"]
 const SEASON_ICONS = [Flower, CloudRain, Leaf, Snowflake]
 const EXPERIENCE_ICONS = [Footprints, Landmark, UtensilsCrossed, PartyPopper, Camera]
@@ -72,17 +68,13 @@ export default async function TourismPage({ params }: PageProps) {
         <SectionHeader id="why-title" title={t.whyTitle} />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {t.why.map((item, index) => {
-            const Icon = WHY_ICONS[index]
             return (
               <li key={item.title} className="reveal overflow-hidden rounded-2xl border border-border">
                 <div className="relative aspect-[4/3]">
                   <PhotoImage photo={photos[WHY_PHOTOS[index]]} locale={locale} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" />
                 </div>
                 <div className="p-6">
-                  <span className="-mt-12 relative inline-flex size-11 items-center justify-center rounded-xl bg-background text-brand shadow-md ring-1 ring-border">
-                    <Icon aria-hidden="true" className="size-5" />
-                  </span>
-                  <h3 className="mt-4 font-display text-xl font-semibold">{item.title}</h3>
+                  <h3 className="font-display text-xl font-semibold">{item.title}</h3>
                   <p className="mt-2 leading-relaxed text-muted-foreground">{item.body}</p>
                 </div>
               </li>

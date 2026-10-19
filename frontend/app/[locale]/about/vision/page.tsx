@@ -1,9 +1,8 @@
 import Link from "next/link"
-import { Check, Infinity as Lasting, Link2, ShieldCheck, Sprout } from "lucide-react"
+import { Check } from "lucide-react"
 
 import { PageHero } from "@/components/site/page-hero"
 import { buttonStyles, Section, SectionHeader } from "@/components/site/section"
-import { TopoPattern } from "@/components/site/topo-pattern"
 import vision from "@/content/vision"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
@@ -15,8 +14,6 @@ export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
   return pageMetadata(locale, "/about/vision", vision[locale].title, vision[locale].lead)
 }
-
-const PROMISE_ICONS = [Sprout, Link2, ShieldCheck, Lasting]
 
 export default async function VisionPage({ params }: PageProps) {
   const locale = await pageLocale(params)
@@ -61,23 +58,16 @@ export default async function VisionPage({ params }: PageProps) {
       <Section labelledBy="promises-title">
         <SectionHeader id="promises-title" title={t.promisesTitle} align="center" />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {t.promises.map((item, index) => {
-            const Icon = PROMISE_ICONS[index]
-            return (
-              <li key={item.title} className="reveal rounded-2xl border border-border p-6 text-center">
-                <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-brand-muted text-brand">
-                  <Icon aria-hidden="true" className="size-5" />
-                </span>
-                <h3 className="mt-4 font-display text-xl font-semibold">{item.title}</h3>
-                <p className="mt-2 leading-relaxed text-muted-foreground">{item.body}</p>
-              </li>
-            )
-          })}
+          {t.promises.map((item) => (
+            <li key={item.title} className="reveal border-t-2 border-brand pt-6">
+              <h3 className="font-display text-xl font-semibold">{item.title}</h3>
+              <p className="mt-2 leading-relaxed text-muted-foreground">{item.body}</p>
+            </li>
+          ))}
         </ul>
       </Section>
 
       <section aria-labelledby="help-title" className="relative isolate overflow-hidden bg-ink text-ink-foreground">
-        <TopoPattern className="absolute inset-0 -z-10 h-full w-full text-ink-foreground/[0.06]" />
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:items-center">
           <SectionHeader id="help-title" tone="ink" title={t.helpTitle} />
           <div className="reveal">
