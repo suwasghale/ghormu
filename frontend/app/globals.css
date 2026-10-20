@@ -448,3 +448,138 @@ html[data-site="public"] {
 .prose-ghormu hr {
   border-color: var(--border);
 }
+
+/* ---------------------------------------------------------------------------
+   Village map (components/site/village-map.tsx). MapLibre builds these
+   elements itself, outside React, so they are styled here.
+   --------------------------------------------------------------------------- */
+
+.village-pin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 9999px;
+}
+
+.village-pin:focus-visible {
+  outline: 3px solid var(--color-earth);
+  outline-offset: 2px;
+}
+
+.village-pin-head {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  background: var(--pin);
+  border: 3px solid #fff;
+  box-shadow: 0 6px 16px rgb(0 0 0 / 0.35);
+  transition: transform 0.2s ease;
+}
+
+.village-pin:hover .village-pin-head,
+.village-pin:focus-visible .village-pin-head {
+  transform: scale(1.12);
+}
+
+.village-pin-stem {
+  width: 2px;
+  height: 0.75rem;
+  background: #fff;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.3);
+}
+
+.village-label {
+  pointer-events: none;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.92);
+  color: var(--color-ink);
+  font-family: var(--font-display-family), serif;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.25);
+}
+
+.maplibregl-popup-content {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  font-family: inherit;
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.25);
+}
+
+.maplibregl-popup-close-button {
+  z-index: 1;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  font-size: 1.25rem;
+}
+
+.village-popup-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.village-popup-body {
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.village-popup-category {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-muted-foreground);
+}
+
+.village-popup-category::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 9999px;
+  background: var(--pin);
+}
+
+.village-popup-title {
+  margin-top: 0.2rem;
+  padding-right: 1.5rem;
+  font-family: var(--font-display-family), serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-foreground);
+}
+
+.village-popup-text {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-muted-foreground);
+}
+
+.village-popup-altitude {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-foreground);
+}
+
+.village-popup-altitude:empty {
+  display: none;
+}
+
+.village-popup-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-brand);
+}
+
+.village-popup-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

@@ -2,8 +2,8 @@ import { MapPinned, Mountain } from "lucide-react"
 
 import { EmptyState } from "@/components/site/content-ui"
 import { PageHero } from "@/components/site/page-hero"
+import { PhotoImage } from "@/components/site/photo"
 import { ArrowLink, Section } from "@/components/site/section"
-import { Terrain3D } from "@/components/site/terrain-3d"
 import explore from "@/content/explore-more"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
@@ -61,11 +61,13 @@ export default async function AttractionsPage({ params }: PageProps) {
           <div className="flex flex-col justify-center p-8 sm:p-12">
             <h2 className="font-display text-3xl font-semibold">{t.attractions.mapTitle}</h2>
             <p className="mt-4 text-lg leading-relaxed text-brand-foreground/80">{t.attractions.mapBody}</p>
-            <ArrowLink href={localizePath(locale, "/explore/travel-guide")} tone="ink" className="mt-8">
-              {t.attractions.planLink}
+            <ArrowLink href={localizePath(locale, "/explore/map")} tone="ink" className="mt-8">
+              {t.attractions.mapLink}
             </ArrowLink>
           </div>
-          <Terrain3D labels={t.attractions.mapPlaces} className="min-h-80" />
+          <div className="relative min-h-80">
+            <PhotoImage photo={photos.village} locale={locale} fill sizes="(min-width: 1024px) 50vw, 100vw" />
+          </div>
         </div>
       </Section>
     </>

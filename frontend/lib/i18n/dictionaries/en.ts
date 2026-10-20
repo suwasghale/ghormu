@@ -31,6 +31,7 @@ const en: Dictionary = {
     explore: "Explore",
     tourism: "Tourism",
     attractions: "Attractions",
+    map: "3D Map",
     gallery: "Gallery",
     experiences: "Local Experiences",
     travelGuide: "Travel Guide",

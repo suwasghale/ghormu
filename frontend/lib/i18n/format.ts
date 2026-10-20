@@ -7,8 +7,12 @@ import type { Locale } from "./config"
 
 const intlLocale = (locale: Locale) => (locale === "ne" ? "ne-NP" : "en-GB")
 
+const DEVANAGARI_DIGITS = "०१२३४५६७८९"
+
 export function formatNumber(locale: Locale, value: number, options?: Intl.NumberFormatOptions): string {
-  return new Intl.NumberFormat(intlLocale(locale), options).format(value)
+  const text = new Intl.NumberFormat(intlLocale(locale), options).format(value)
+  // Node prints ne-NP in Devanagari; most browsers fall back to Latin digits.
+  return locale === "ne" ? text.replace(/[0-9]/g, (digit) => DEVANAGARI_DIGITS[Number(digit)]) : text
 }
 
 /** `2026-10-17T06:05` (already local time) → `०६:०५` / `06:05`. */

@@ -1,4 +1,4 @@
-import { Archive, CalendarDays, Construction, Inbox, LayoutDashboard, Newspaper, Users, type LucideIcon } from "lucide-react"
+import { Archive, CalendarDays, Construction, Inbox, LayoutDashboard, MapPin, Newspaper, Users, type LucideIcon } from "lucide-react"
 
 export type FieldType =
   | "text"
@@ -128,6 +128,17 @@ const ARCHIVE_KINDS: Option[] = [
   { value: "document", label: "Document" },
   { value: "map", label: "Map" },
   { value: "satellite", label: "Satellite image (through time)" },
+]
+
+const PLACE_CATEGORIES: Option[] = [
+  { value: "sacred", label: "Sacred place" },
+  { value: "school", label: "School" },
+  { value: "water", label: "Water source" },
+  { value: "viewpoint", label: "Viewpoint" },
+  { value: "trail", label: "Trail or path" },
+  { value: "community", label: "Community place" },
+  { value: "health", label: "Health" },
+  { value: "other", label: "Other" },
 ]
 
 const MESSAGE_TOPICS: Option[] = [
@@ -309,6 +320,44 @@ export const RESOURCES: Record<string, ResourceDef> = {
     ],
   },
 
+  places: {
+    key: "places",
+    label: "Map places",
+    labelSingular: "Map place",
+    icon: MapPin,
+    description: "Public places pinned on the 3D village map. Never private homes.",
+    titleField: "name_ne",
+    searchPlaceholder: "Search by name…",
+    columns: [
+      { name: "name_ne", label: "Name" },
+      { name: "category", label: "Category", type: "badge", className: "w-40" },
+      { name: "sort_order", label: "Order", type: "number", className: "w-24" },
+      { name: "status", label: "Status", type: "status", className: "w-32" },
+    ],
+    filters: [{ name: "category", label: "Category", options: PLACE_CATEGORIES }, STATUS_FILTER],
+    fields: [
+      { name: "category", label: "Category", type: "select", options: PLACE_CATEGORIES, required: true, group: "Place" },
+      {
+        name: "latitude",
+        label: "Latitude",
+        // Text, not a number input: browsers refuse decimals without a step.
+        type: "text",
+        required: true,
+        group: "Place",
+        placeholder: "28.010270",
+        help: "In Google Maps, right-click the exact spot and click the two numbers at the top to copy them. The first is the latitude.",
+      },
+      { name: "longitude", label: "Longitude", type: "text", required: true, group: "Place", placeholder: "85.254317", help: "The second number." },
+      { name: "sort_order", label: "Order", type: "number", group: "Place", help: "Lower numbers come first in the list beside the map." },
+      { name: "name_ne", label: "Name (Nepali)", type: "text", required: true, group: "Nepali" },
+      { name: "description_ne", label: "Description (Nepali)", type: "textarea", rows: 3, group: "Nepali" },
+      { name: "name_en", label: "Name (English)", type: "text", group: "English" },
+      { name: "description_en", label: "Description (English)", type: "textarea", rows: 3, group: "English" },
+      { name: "image_url", label: "Photo", type: "image", group: "Media" },
+      ...PUBLISHING,
+    ],
+  },
+
   messages: {
     key: "messages",
     label: "Messages",
@@ -437,6 +486,6 @@ export const RESOURCES: Record<string, ResourceDef> = {
     ],
   },
 }
-export const RESOURCE_ORDER: string[] = ["posts", "events", "projects", "archive", "messages", "users"]
+export const RESOURCE_ORDER: string[] = ["posts", "events", "projects", "archive", "places", "messages", "users"]
 export const DASHBOARD_ICON = LayoutDashboard
 export function getResource(key: string): ResourceDef | null { return RESOURCES[key] ?? null }

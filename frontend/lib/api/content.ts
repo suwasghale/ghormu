@@ -23,6 +23,7 @@ export const CONTENT_TAGS = {
   events: "events",
   projects: "projects",
   archive: "archive",
+  places: "places",
 } as const
 
 export type Post = {
@@ -76,6 +77,18 @@ export type ArchiveItem = {
   date_label: string
   place: string
   credit: string
+  image_url: string
+}
+
+export type MapPlaceCategory = "sacred" | "school" | "water" | "viewpoint" | "trail" | "community" | "health" | "other"
+
+export type MapPlace = {
+  id: string
+  category: MapPlaceCategory
+  name: string
+  description: string
+  latitude: number
+  longitude: number
   image_url: string
 }
 
@@ -135,4 +148,8 @@ export function listArchive(locale: Locale, kind?: ArchiveItem["kind"]) {
 
 export async function getArchiveItem(locale: Locale, slug: string): Promise<ArchiveItem | null> {
   return (await request<ArchiveItem>(`archive/${encodeURIComponent(slug)}/`, locale, [CONTENT_TAGS.archive])).data
+}
+
+export function listPlaces(locale: Locale) {
+  return list<MapPlace>("places/", locale, CONTENT_TAGS.places)
 }

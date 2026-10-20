@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { mapTileOrigins } from "./config/map";
+
 const nextConfig: NextConfig = {
   output: "standalone",
 
@@ -56,8 +58,11 @@ function contentSecurityPolicy({ anyImageHost = false } = {}): string {
     "font-src": ["'self'", "data:"],
     "img-src": anyImageHost
       ? ["'self'", "data:", "blob:", "https:", ...(dev ? ["http:"] : [])]
-      : ["'self'", "data:", "blob:", ...(process.env.MEDIA_HOST ? [`https://${process.env.MEDIA_HOST}`] : [])],
-    "connect-src": ["'self'", apiOrigin()].filter(Boolean),
+      : ["'self'", "data:", "blob:", ...mapTileOrigins, ...(process.env.MEDIA_HOST ? [`https://${process.env.MEDIA_HOST}`] : [])],
+    // The village map fetches its terrain and imagery tiles itself.
+    "connect-src": ["'self'", apiOrigin(), ...mapTileOrigins].filter(Boolean),
+    // MapLibre starts its renderer from /vendor and from blob: URLs.
+    "worker-src": ["'self'", "blob:"],
     "frame-src": ["'none'"],
     "frame-ancestors": ["'none'"],
 

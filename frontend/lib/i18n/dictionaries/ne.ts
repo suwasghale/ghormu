@@ -35,6 +35,7 @@ const ne = {
     explore: "घुमफिर",
     tourism: "पर्यटन",
     attractions: "मुख्य आकर्षण",
+    map: "३D नक्सा",
     gallery: "तस्बिर संग्रह",
     experiences: "स्थानीय अनुभव",
     travelGuide: "यात्रा निर्देशिका",

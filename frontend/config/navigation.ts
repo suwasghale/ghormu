@@ -40,6 +40,7 @@ export const mainNav: NavItem[] = [
     children: [
       { key: "tourism", href: "/explore" },
       { key: "attractions", href: "/explore/attractions" },
+      { key: "map", href: "/explore/map" },
       { key: "gallery", href: "/explore/gallery" },
       { key: "experiences", href: "/explore/experiences" },
       { key: "travelGuide", href: "/explore/travel-guide" },
@@ -128,6 +129,7 @@ export const publishedPages = [
   "/about/archive",
   "/explore",
   "/explore/attractions",
+  "/explore/map",
   "/explore/gallery",
   "/explore/experiences",
   "/explore/travel-guide",

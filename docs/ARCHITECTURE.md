@@ -33,12 +33,20 @@ The public site is Nepali first, with English as the second language. Routes are
 
 Content that changes over time is managed in the admin at `/admin`, not written into the code:
 
-- **`apps.public_content`** holds four kinds of content: news and announcements (`Post`), events (`Event`), development projects (`Project`) and the digital archive (`ArchiveItem`). Each has paired Nepali/English columns and the draft → published → archived lifecycle. Archive items with kind `satellite` (dated aerial views with their required credit line) power the "Ghormu through time" comparison. An archive item cannot be published until `consent_confirmed` is ticked, and drafts and unconsented items never leave the public API.
+- **`apps.public_content`** holds five kinds of content: news and announcements (`Post`), events (`Event`), development projects (`Project`), the digital archive (`ArchiveItem`) and places on the village map (`MapPlace`). Each has paired Nepali/English columns and the draft → published → archived lifecycle. Archive items with kind `satellite` (dated aerial views with their required credit line) power the "Ghormu through time" comparison. An archive item cannot be published until `consent_confirmed` is ticked, and drafts and unconsented items never leave the public API.
 - **`apps.contact`** stores contact and feedback messages. It is separate because it holds personal data, and it has no public read endpoint. `POST /api/v1/contact/` is rate-limited (the `submission` throttle) and has a honeypot field. Each message is emailed to `ADMIN_EMAIL` with a link to it in the admin.
-- **Public reads** come from `/api/v1/content/...` (`posts`, `events`, `projects`, `archive`) and are fetched on the server by `frontend/lib/api/content.ts`, tagged and cached for five minutes. If the API is down, lists come back empty with `ok: false` and pages say so instead of failing.
+- **Public reads** come from `/api/v1/content/...` (`posts`, `events`, `projects`, `archive`, `places`) and are fetched on the server by `frontend/lib/api/content.ts`, tagged and cached for five minutes. If the API is down, lists come back empty with `ok: false` and pages say so instead of failing.
 - **Rebuilds on publish.** Every admin write queues `core.tasks.revalidate_frontend_paths`, which posts to the frontend's `/api/revalidate` with `FRONTEND_REVALIDATE_SECRET`. The frontend checks it against `REVALIDATE_SECRET` and rebuilds the tagged pages in both languages. `python scripts/tasks.py bootstrap` writes the same random secret to both env files.
 - **Story and archive item pages** (`/updates/<slug>`, `/about/archive/<slug>`) are not built ahead of time. They render on first visit and stay cached until edited. That is why `app/[locale]/layout.tsx` must not set `dynamicParams = false`: it would turn every newly published address into a 404.
 - **Fixed facts** that rarely change stay in `frontend/content/` files rather than the database: emergency numbers, road status (`road-status.ts`), the travel route, attractions and local hosts. Empty lists are hidden or replaced by an honest "being prepared" note.
+
+## Village map
+
+`/explore/map` is a 3D map of Ghormu drawn by MapLibre (`components/site/village-map.tsx`), loaded only on that page. It needs no API key:
+
+- **Terrain** comes from AWS Terrain Tiles (mostly SRTM, about 30 m between height samples). **Imagery** is Sentinel-2 cloudless 2024 by EOX (10 m per pixel, CC BY-NC-SA 4.0, so non-commercial use only). Both are set in `frontend/config/map.ts`, whose hosts are also allowed in the Content-Security-Policy. The page prints their credits and explains the limits of each layer.
+- **Places** are `MapPlace` rows managed under Map places in the admin. Coordinates are decimal degrees as Google Maps copies them. A point more than about 5 km from the village is refused, which catches swapped latitude and longitude. Public places only, never private homes. Migration `0003_first_map_place` adds Ghormu Primary School.
+- **The rendering worker** is copied from `node_modules` into `public/vendor/` by `scripts/copy-map-worker.mjs`, which `pnpm dev` and `pnpm build` run first. The copy is not committed.
 
 ## Photographs
 
