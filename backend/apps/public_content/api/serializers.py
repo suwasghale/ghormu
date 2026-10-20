@@ -13,7 +13,7 @@ import copy
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework import serializers
 
-from apps.public_content.models import ArchiveItem, Event, Post, Project
+from apps.public_content.models import ArchiveItem, Event, MapPlace, Post, Project
 from core.api.admin_serializers import PublishableAdminSerializer
 from core.api.fields import LocalizedField
 
@@ -114,6 +114,27 @@ class ArchiveItemSerializer(serializers.ModelSerializer):
         )
 
 
+class MapPlaceSerializer(serializers.ModelSerializer):
+    name = LocalizedField()
+    description = LocalizedField()
+    # Numbers, not the strings DecimalField gives by default: the map wants
+    # [longitude, latitude] as it is.
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
+
+    class Meta:
+        model = MapPlace
+        fields = (
+            "id",
+            "category",
+            "name",
+            "description",
+            "latitude",
+            "longitude",
+            "image_url",
+        )
+
+
 # =============================================================================
 # Admin
 # =============================================================================
@@ -169,3 +190,8 @@ class ArchiveItemAdminSerializer(_AdminBase):
     class Meta(_AdminBase.Meta):
         model = ArchiveItem
         extra_kwargs = {"slug": {"required": False}}
+
+
+class MapPlaceAdminSerializer(_AdminBase):
+    class Meta(_AdminBase.Meta):
+        model = MapPlace

@@ -4,7 +4,7 @@ Staff endpoints for the website's content.
     GET|POST         /api/v1/admin/<resource>/
     GET|PATCH|DELETE /api/v1/admin/<resource>/<id>/
 
-for ``posts``, ``events``, ``projects`` and ``archive``. Every write
+for ``posts``, ``events``, ``projects``, ``archive`` and ``places``. Every write
 rebuilds the affected pages on the frontend (see ``core.api.admin``).
 """
 
@@ -13,10 +13,11 @@ from __future__ import annotations
 from apps.public_content.api.serializers import (
     ArchiveItemAdminSerializer,
     EventAdminSerializer,
+    MapPlaceAdminSerializer,
     PostAdminSerializer,
     ProjectAdminSerializer,
 )
-from apps.public_content.models import ArchiveItem, Event, Post, Project
+from apps.public_content.models import ArchiveItem, Event, MapPlace, Post, Project
 from core.api.admin import AdminDetailAPIView, AdminListCreateAPIView
 
 
@@ -64,6 +65,17 @@ class _ArchiveConfig:
     revalidate_extra_paths = ("/", "/about/archive")
 
 
+class _MapPlaceConfig:
+    model = MapPlace
+    serializer_class = MapPlaceAdminSerializer
+    search_fields = ("name_ne", "name_en")
+    filter_fields = ("category", "status")
+    ordering_fields = ("sort_order", "name_ne", "created_at")
+    default_ordering = ("sort_order", "name_ne")
+    revalidate_tag = "places"
+    revalidate_extra_paths = ("/explore/map",)
+
+
 class PostAdminListAPIView(_PostConfig, AdminListCreateAPIView):
     """News and announcements."""
 
@@ -94,3 +106,11 @@ class ArchiveAdminListAPIView(_ArchiveConfig, AdminListCreateAPIView):
 
 class ArchiveAdminDetailAPIView(_ArchiveConfig, AdminDetailAPIView):
     """One archive item."""
+
+
+class MapPlaceAdminListAPIView(_MapPlaceConfig, AdminListCreateAPIView):
+    """Places on the village map."""
+
+
+class MapPlaceAdminDetailAPIView(_MapPlaceConfig, AdminDetailAPIView):
+    """One map place."""

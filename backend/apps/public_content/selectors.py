@@ -11,7 +11,7 @@ from django.db.models import Q, QuerySet
 from django.utils import timezone
 
 from apps.public_content.choices import ArchiveKindChoices
-from apps.public_content.models import ArchiveItem, Event, Post, Project
+from apps.public_content.models import ArchiveItem, Event, MapPlace, Post, Project
 
 
 def published_posts(*, kind: str | None = None) -> QuerySet[Post]:
@@ -83,3 +83,12 @@ def published_archive_item(slug: str) -> ArchiveItem | None:
         .filter(consent_confirmed=True, slug=slug)
         .first()
     )
+
+
+def published_places(*, category: str | None = None) -> QuerySet[MapPlace]:
+    queryset = MapPlace.objects.published()
+
+    if category:
+        queryset = queryset.filter(category=category)
+
+    return queryset.order_by("sort_order", "name_ne")

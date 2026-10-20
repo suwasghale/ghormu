@@ -40,3 +40,16 @@ class ArchiveKindChoices(models.TextChoices):
     DOCUMENT = "document", "Document"
     MAP = "map", "Map"
     SATELLITE = "satellite", "Satellite image"
+
+
+class MapPlaceCategoryChoices(models.TextChoices):
+    """What a pin on the village map marks; each has its own colour."""
+
+    SACRED = "sacred", "Sacred place"
+    SCHOOL = "school", "School"
+    WATER = "water", "Water source"
+    VIEWPOINT = "viewpoint", "Viewpoint"
+    TRAIL = "trail", "Trail or path"
+    COMMUNITY = "community", "Community place"
+    HEALTH = "health", "Health"
+    OTHER = "other", "Other"

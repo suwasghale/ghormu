@@ -9,7 +9,7 @@ from datetime import timedelta
 import pytest
 from django.utils import timezone
 
-from apps.public_content.models import ArchiveItem, Event, Post, Project
+from apps.public_content.models import ArchiveItem, Event, MapPlace, Post, Project
 from tests.factories import StaffUserFactory, UserFactory
 
 pytestmark = pytest.mark.django_db
@@ -212,7 +212,9 @@ def test_public_reads_are_cacheable_per_language(api_client):
 # =============================================================================
 
 
-@pytest.mark.parametrize("resource", ["posts", "events", "projects", "archive"])
+@pytest.mark.parametrize(
+    "resource", ["posts", "events", "projects", "archive", "places"]
+)
 def test_content_admin_is_staff_only(api_client, resource):
     url = f"/api/v1/admin/{resource}/"
 
@@ -306,3 +308,74 @@ def test_image_addresses_must_be_uploads_or_https(api_client):
 
     assert bad.status_code == 400
     assert good.status_code == 201
+
+
+# =============================================================================
+# Village map
+# =============================================================================
+
+
+def test_the_school_is_on_the_map_from_the_start(api_client):
+    rows = _results(api_client.get("/api/v1/content/places/?lang=en"))
+    school = next(row for row in rows if row["name"] == "Ghormu Primary School")
+
+    assert school["category"] == "school"
+    # Numbers the map can use as they are, not strings.
+    assert school["latitude"] == pytest.approx(28.01027)
+    assert school["longitude"] == pytest.approx(85.254317)
+
+
+def test_only_published_places_are_on_the_map(api_client):
+    MapPlace.objects.create(name_ne="मस्यौदा", latitude="28.01", longitude="85.25")
+    MapPlace.objects.create(
+        name_ne="गुम्बा",
+        name_en="Gompa",
+        category="sacred",
+        latitude="28.012",
+        longitude="85.251",
+        **PUBLISHED,
+    )
+
+    names = [
+        row["name"]
+        for row in _results(api_client.get("/api/v1/content/places/?lang=en"))
+    ]
+    sacred = _results(api_client.get("/api/v1/content/places/?category=sacred"))
+
+    assert "Gompa" in names
+    assert "मस्यौदा" not in names
+    assert [row["category"] for row in sacred] == ["sacred"]
+
+
+def test_a_place_far_from_ghormu_is_refused(api_client):
+    api_client.force_authenticate(StaffUserFactory())
+
+    # Latitude and longitude swapped: the most common mistake.
+    response = api_client.post(
+        "/api/v1/admin/places/",
+        {"name_ne": "धारा", "latitude": "85.254317", "longitude": "28.010270"},
+        format="json",
+    )
+
+    assert response.status_code == 400
+    assert {"latitude", "longitude"} <= set(response.data["errors"])
+
+
+def test_staff_can_add_a_place(api_client):
+    api_client.force_authenticate(StaffUserFactory())
+
+    response = api_client.post(
+        "/api/v1/admin/places/",
+        {
+            "name_ne": "धारा",
+            "name_en": "Water tap",
+            "category": "water",
+            "latitude": "28.0141",
+            "longitude": "85.2519",
+            "status": "published",
+        },
+        format="json",
+    )
+
+    assert response.status_code == 201, response.content
+    assert MapPlace.objects.published().filter(name_en="Water tap").exists()

@@ -17,6 +17,7 @@ public_urlpatterns = [
         views.ArchiveDetailAPIView.as_view(),
         name="archive-detail",
     ),
+    path("places/", views.MapPlaceListAPIView.as_view(), name="place-list"),
 ]
 
 admin_urlpatterns = [
@@ -53,5 +54,15 @@ admin_urlpatterns = [
         "archive/<uuid:id>/",
         admin_views.ArchiveAdminDetailAPIView.as_view(),
         name="admin-archive-detail",
+    ),
+    path(
+        "places/",
+        admin_views.MapPlaceAdminListAPIView.as_view(),
+        name="admin-place-list",
+    ),
+    path(
+        "places/<uuid:id>/",
+        admin_views.MapPlaceAdminDetailAPIView.as_view(),
+        name="admin-place-detail",
     ),
 ]

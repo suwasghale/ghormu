@@ -5,7 +5,7 @@ happens in the site's own admin at /admin.
 
 from django.contrib import admin
 
-from apps.public_content.models import ArchiveItem, Event, Post, Project
+from apps.public_content.models import ArchiveItem, Event, MapPlace, Post, Project
 
 
 @admin.register(Post)
@@ -41,3 +41,10 @@ class ArchiveItemAdmin(admin.ModelAdmin):
     list_display = ("title_ne", "kind", "year", "consent_confirmed", "status")
     list_filter = ("kind", "status", "consent_confirmed")
     search_fields = ("title_ne", "title_en", "credit")
+
+
+@admin.register(MapPlace)
+class MapPlaceAdmin(admin.ModelAdmin):
+    list_display = ("name_ne", "name_en", "category", "latitude", "longitude", "status")
+    list_filter = ("category", "status")
+    search_fields = ("name_ne", "name_en")

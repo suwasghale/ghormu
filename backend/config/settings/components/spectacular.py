@@ -42,11 +42,13 @@ SPECTACULAR_SETTINGS = {
         # generated clients get PublicationStatusEnum rather than the
         # hash-suffixed "Status202Enum" spectacular falls back to.
         "PublicationStatusEnum": "core.choices.PublicationStatusChoices",
-        # Same story for the three unrelated "category" fields.
-        # Two unrelated "kind" fields, and one language list used by both
-        # profiles and the contact form.
+        # Same story for two unrelated "kind" fields, two unrelated
+        # "category" fields, and one language list used by both profiles
+        # and the contact form.
         "PostKindEnum": "apps.public_content.choices.PostKindChoices",
         "ArchiveKindEnum": "apps.public_content.choices.ArchiveKindChoices",
+        "EventCategoryEnum": "apps.public_content.choices.EventCategoryChoices",
+        "MapPlaceCategoryEnum": "apps.public_content.choices.MapPlaceCategoryChoices",
         "LanguageEnum": "core.choices.LanguageChoices",
     },
     "SWAGGER_UI_SETTINGS": {

@@ -466,6 +466,143 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/v1/admin/places/:
+    get:
+      operationId: admin_places_list
+      description: Places on the village map.
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMapPlaceAdminList'
+          description: ''
+    post:
+      operationId: admin_places_create
+      description: Places on the village map.
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MapPlaceAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MapPlaceAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MapPlaceAdminRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapPlaceAdmin'
+          description: ''
+  /api/v1/admin/places/{id}/:
+    get:
+      operationId: admin_places_retrieve
+      description: One map place.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapPlaceAdmin'
+          description: ''
+    patch:
+      operationId: admin_places_partial_update
+      description: One map place.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMapPlaceAdminRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMapPlaceAdminRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMapPlaceAdminRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapPlaceAdmin'
+          description: ''
+    delete:
+      operationId: admin_places_destroy
+      description: One map place.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
   /api/v1/admin/posts/:
     get:
       operationId: admin_posts_list
@@ -1873,6 +2010,73 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedEventList'
           description: ''
+  /api/v1/content/places/:
+    get:
+      operationId: content_places_list
+      description: |-
+        Read-only, unauthenticated, language-aware, cacheable.
+
+        Authentication is disabled rather than merely permitted, for the same
+        reason ``PublicAPIView`` does it: an expired ``Authorization`` header
+        from a logged-in editor browsing the site should not turn a public
+        read into a 401.
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+          enum:
+          - community
+          - health
+          - other
+          - sacred
+          - school
+          - trail
+          - viewpoint
+          - water
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - en
+          - ne
+        description: 'Content language: `ne` (default) or `en`.'
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - content
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMapPlaceList'
+          description: ''
   /api/v1/content/posts/:
     get:
       operationId: content_posts_list
@@ -2617,22 +2821,6 @@ components:
         * `document` - Document
         * `map` - Map
         * `satellite` - Satellite image
-    CategoryEnum:
-      enum:
-      - festival
-      - ceremony
-      - meeting
-      - community
-      - sports
-      - other
-      type: string
-      description: |-
-        * `festival` - Festival
-        * `ceremony` - Ceremony
-        * `meeting` - Meeting
-        * `community` - Community programme
-        * `sports` - Sports
-        * `other` - Other
     ChangePasswordRequest:
       type: object
       description: Validate change password request.
@@ -3383,7 +3571,7 @@ components:
           format: uuid
           readOnly: true
         category:
-          $ref: '#/components/schemas/CategoryEnum'
+          $ref: '#/components/schemas/EventCategoryEnum'
         title:
           type: string
           readOnly: true
@@ -3441,7 +3629,7 @@ components:
           description: When this becomes publicly visible. Leave empty to publish
             as soon as the status is set to published.
         category:
-          $ref: '#/components/schemas/CategoryEnum'
+          $ref: '#/components/schemas/EventCategoryEnum'
         title_ne:
           type: string
           title: Title (Nepali)
@@ -3502,7 +3690,7 @@ components:
           description: When this becomes publicly visible. Leave empty to publish
             as soon as the status is set to published.
         category:
-          $ref: '#/components/schemas/CategoryEnum'
+          $ref: '#/components/schemas/EventCategoryEnum'
         title_ne:
           type: string
           minLength: 1
@@ -3543,6 +3731,22 @@ components:
       required:
       - starts_on
       - title_ne
+    EventCategoryEnum:
+      enum:
+      - festival
+      - ceremony
+      - meeting
+      - community
+      - sports
+      - other
+      type: string
+      description: |-
+        * `festival` - Festival
+        * `ceremony` - Ceremony
+        * `meeting` - Meeting
+        * `community` - Community programme
+        * `sports` - Sports
+        * `other` - Other
     ForgotPasswordRequest:
       type: object
       description: Validate password reset request.
@@ -3765,6 +3969,193 @@ components:
       required:
       - code
       - mfa_ticket
+    MapPlace:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        category:
+          $ref: '#/components/schemas/MapPlaceCategoryEnum'
+        name:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+      required:
+      - description
+      - id
+      - latitude
+      - longitude
+      - name
+    MapPlaceAdmin:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        category:
+          $ref: '#/components/schemas/MapPlaceCategoryEnum'
+        name_ne:
+          type: string
+          title: Name (Nepali)
+          maxLength: 120
+        name_en:
+          type: string
+          title: Name (English)
+          maxLength: 120
+        description_ne:
+          type: string
+          title: Description (Nepali)
+          maxLength: 600
+        description_en:
+          type: string
+          title: Description (English)
+          maxLength: 600
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          description: The first number Google Maps copies, e.g. 28.010270.
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          description: The second number, e.g. 85.254317.
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        sort_order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          title: Order
+          description: Lower numbers come first in the list beside the map.
+      required:
+      - created_at
+      - id
+      - latitude
+      - longitude
+      - name_ne
+      - updated_at
+    MapPlaceAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        category:
+          $ref: '#/components/schemas/MapPlaceCategoryEnum'
+        name_ne:
+          type: string
+          minLength: 1
+          title: Name (Nepali)
+          maxLength: 120
+        name_en:
+          type: string
+          title: Name (English)
+          maxLength: 120
+        description_ne:
+          type: string
+          title: Description (Nepali)
+          maxLength: 600
+        description_en:
+          type: string
+          title: Description (English)
+          maxLength: 600
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          description: The first number Google Maps copies, e.g. 28.010270.
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          description: The second number, e.g. 85.254317.
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        sort_order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          title: Order
+          description: Lower numbers come first in the list beside the map.
+      required:
+      - latitude
+      - longitude
+      - name_ne
+    MapPlaceCategoryEnum:
+      enum:
+      - sacred
+      - school
+      - water
+      - viewpoint
+      - trail
+      - community
+      - health
+      - other
+      type: string
+      description: |-
+        * `sacred` - Sacred place
+        * `school` - School
+        * `water` - Water source
+        * `viewpoint` - Viewpoint
+        * `trail` - Trail or path
+        * `community` - Community place
+        * `health` - Health
+        * `other` - Other
     MediaUploadRequest:
       type: object
       description: Validates the envelope; ``process_image`` validates the bytes.
@@ -3912,6 +4303,52 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
+    PaginatedMapPlaceAdminList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MapPlaceAdmin'
+    PaginatedMapPlaceList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MapPlace'
     PaginatedPostAdminList:
       type: object
       required:
@@ -4220,7 +4657,7 @@ components:
           description: When this becomes publicly visible. Leave empty to publish
             as soon as the status is set to published.
         category:
-          $ref: '#/components/schemas/CategoryEnum'
+          $ref: '#/components/schemas/EventCategoryEnum'
         title_ne:
           type: string
           minLength: 1
@@ -4258,6 +4695,63 @@ components:
           type: string
           title: Image
           maxLength: 500
+    PatchedMapPlaceAdminRequest:
+      type: object
+      description: |-
+        Run the model's own ``clean()`` before saving.
+
+        DRF does not call it, so rules that live on the model (no reserved
+        slug, consent before publishing, a credit on satellite images) would be
+        enforced in the Django admin and silently skipped here.
+      properties:
+        status:
+          $ref: '#/components/schemas/PublicationStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this becomes publicly visible. Leave empty to publish
+            as soon as the status is set to published.
+        category:
+          $ref: '#/components/schemas/MapPlaceCategoryEnum'
+        name_ne:
+          type: string
+          minLength: 1
+          title: Name (Nepali)
+          maxLength: 120
+        name_en:
+          type: string
+          title: Name (English)
+          maxLength: 120
+        description_ne:
+          type: string
+          title: Description (Nepali)
+          maxLength: 600
+        description_en:
+          type: string
+          title: Description (English)
+          maxLength: 600
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          description: The first number Google Maps copies, e.g. 28.010270.
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          description: The second number, e.g. 85.254317.
+        image_url:
+          type: string
+          title: Image
+          maxLength: 500
+        sort_order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          title: Order
+          description: Lower numbers come first in the list beside the map.
     PatchedPostAdminRequest:
       type: object
       description: |-

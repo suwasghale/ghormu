@@ -24,6 +24,7 @@ from django.utils.text import slugify
 from apps.public_content.choices import (
     ArchiveKindChoices,
     EventCategoryChoices,
+    MapPlaceCategoryChoices,
     PostKindChoices,
     ProjectStageChoices,
 )
@@ -450,4 +451,95 @@ class ArchiveItem(ContentModel):
         if not self.slug:
             self.slug = unique_slug(self, self.title_en, fallback="item")
 
+        super().save(*args, **kwargs)
+
+
+# =============================================================================
+# Village map
+# =============================================================================
+
+#: A box of about 10 km around the village centre. A point outside it is
+#: almost always a typing mistake or latitude and longitude swapped.
+VILLAGE_BOUNDS = {"latitude": (27.97, 28.06), "longitude": (85.20, 85.31)}
+
+
+class MapPlace(ContentModel):
+    """
+    A public place pinned on the 3D village map: a gompa, the school, a
+    water tap, a viewpoint. Never a private home.
+
+    Coordinates are WGS84 decimal degrees, as Google Maps copies them;
+    six decimals is about 10 cm, finer than any phone's GPS.
+    """
+
+    category = models.CharField(
+        max_length=20,
+        choices=MapPlaceCategoryChoices.choices,
+        default=MapPlaceCategoryChoices.OTHER,
+        db_index=True,
+        verbose_name="Category",
+    )
+
+    name_ne = models.CharField(max_length=120, verbose_name="Name (Nepali)")
+    name_en = models.CharField(
+        max_length=120, blank=True, verbose_name="Name (English)"
+    )
+
+    description_ne = models.TextField(
+        max_length=600, blank=True, verbose_name="Description (Nepali)"
+    )
+    description_en = models.TextField(
+        max_length=600, blank=True, verbose_name="Description (English)"
+    )
+
+    latitude = models.DecimalField(
+        max_digits=9,
+        decimal_places=6,
+        help_text="The first number Google Maps copies, e.g. 28.010270.",
+        verbose_name="Latitude",
+    )
+    longitude = models.DecimalField(
+        max_digits=9,
+        decimal_places=6,
+        help_text="The second number, e.g. 85.254317.",
+        verbose_name="Longitude",
+    )
+
+    image_url = media_url_field()
+
+    sort_order = models.PositiveSmallIntegerField(
+        default=0,
+        help_text="Lower numbers come first in the list beside the map.",
+        verbose_name="Order",
+    )
+
+    class Meta:
+        ordering = ("sort_order", "name_ne")
+        verbose_name = "map place"
+        verbose_name_plural = "map places"
+
+    def __str__(self) -> str:
+        return self.name_en or self.name_ne
+
+    def clean(self) -> None:
+        super().clean()
+
+        errors = {}
+
+        for axis in ("latitude", "longitude"):
+            value = getattr(self, axis)
+            low, high = VILLAGE_BOUNDS[axis]
+
+            if value is not None and not low <= value <= high:
+                errors[axis] = (
+                    f"This is not near Ghormu ({low}–{high}). "
+                    "Check the number, and that latitude and longitude are not swapped."
+                )
+
+        if errors:
+            raise ValidationError(errors)
+
+    def save(self, *args, **kwargs):
+        self.description_ne = plain_text(self.description_ne)
+        self.description_en = plain_text(self.description_en)
         super().save(*args, **kwargs)

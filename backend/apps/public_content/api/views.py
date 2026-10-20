@@ -7,6 +7,7 @@ Public, read-only content for the website.
     GET /api/v1/content/projects/?stage=planned|ongoing|completed
     GET /api/v1/content/archive/?kind=photo|document|map|satellite&decade=1990
     GET /api/v1/content/archive/<slug>/
+    GET /api/v1/content/places/?category=school|sacred|...
 
 Anonymous, cacheable and language-aware (``?lang=ne|en``); see
 ``core.api.public``.
@@ -21,12 +22,14 @@ from apps.public_content import selectors
 from apps.public_content.api.serializers import (
     ArchiveItemSerializer,
     EventSerializer,
+    MapPlaceSerializer,
     PostDetailSerializer,
     PostListSerializer,
     ProjectSerializer,
 )
 from apps.public_content.choices import (
     ArchiveKindChoices,
+    MapPlaceCategoryChoices,
     PostKindChoices,
     ProjectStageChoices,
 )
@@ -162,3 +165,25 @@ class ArchiveDetailAPIView(PublicContentAPIView):
             raise NotFound("Archive item not found.")
 
         return SuccessResponse.ok(data=self.get_serializer(item).data)
+
+
+class MapPlaceListAPIView(_ListView):
+    serializer_class = MapPlaceSerializer
+
+    @extend_schema(
+        parameters=[
+            PublicContentAPIView.language_parameter(),
+            OpenApiParameter(
+                "category", str, enum=list(MapPlaceCategoryChoices.values)
+            ),
+        ],
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return selectors.published_places(
+            category=_choice(
+                self.request.query_params.get("category"), MapPlaceCategoryChoices
+            )
+        )
