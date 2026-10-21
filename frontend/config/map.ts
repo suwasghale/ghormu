@@ -1,6 +1,10 @@
 /**
- * Where the village map's tiles come from. Both are open data, need no
- * key, and are named in the map's credit line as their licences ask.
+ * Where the village map's tiles come from.
+ *
+ * With GOOGLE_MAPS_API_KEY set, the map shows Google's Photorealistic 3D
+ * Tiles (the Google Earth view) through CesiumJS. Without a key, or when
+ * Google refuses (quota, billing), it falls back to the free open-data map
+ * below, which needs no key.
  *
  * Terrain: AWS Terrain Tiles (Mapzen "terrarium" encoding), built mostly
  * from SRTM elevation, about 30 m between height samples in Nepal. True to
@@ -25,11 +29,31 @@ export const mapAttribution = {
 }
 
 /** Hosts the map fetches from, for the Content-Security-Policy. */
-export const mapTileOrigins = ["https://s3.amazonaws.com", "https://tiles.maps.eox.at"]
+export const mapTileOrigins = ["https://s3.amazonaws.com", "https://tiles.maps.eox.at", "https://tile.googleapis.com"]
+
+/** Where scripts/copy-map-assets.mjs puts CesiumJS's prebuilt files. */
+export const cesiumBaseUrl = "/vendor/cesium/"
+
+/**
+ * The opening view of the Google 3D map: the camera from the Google Earth
+ * link the village chose, looking at the village from the north-north-east.
+ */
+export const googleStartView = {
+  latitude: 28.01266654,
+  longitude: 85.25567249,
+  /** Height of the point looked at, in metres. */
+  height: 1617.56,
+  /** Metres from that point to the camera. */
+  range: 1573.58,
+  /** Compass direction the camera faces, in degrees. */
+  heading: 194.96,
+  /** Degrees below the horizon: Google Earth's 60° tilt. */
+  pitch: -30,
+}
 
 /**
  * MapLibre's rendering worker, copied out of node_modules by
- * scripts/copy-map-worker.mjs: once bundled, the library can no longer find
+ * scripts/copy-map-assets.mjs: once bundled, the library can no longer find
  * the file next to itself.
  */
 export const mapWorkerPath = "/vendor/maplibre-gl-worker.mjs"

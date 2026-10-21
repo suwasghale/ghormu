@@ -14,7 +14,7 @@ export default defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Third-party bundles copied in at build time (scripts/copy-map-worker.mjs).
+    // Third-party bundles copied in at build time (scripts/copy-map-assets.mjs).
     "public/vendor/**",
   ]),
 

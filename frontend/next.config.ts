@@ -53,7 +53,9 @@ function contentSecurityPolicy({ anyImageHost = false } = {}): string {
   const directives: Record<string, string[]> = {
     "default-src": ["'self'"],
     // Next streams inline RSC scripts; nonce-based CSP requires dynamic rendering.
-    "script-src": ["'self'", "'unsafe-inline'", ...(dev ? ["'unsafe-eval'"] : [])],
+    // 'wasm-unsafe-eval' lets the Google 3D map decode Draco-compressed
+    // meshes in WebAssembly; it does not allow eval() of scripts.
+    "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", ...(dev ? ["'unsafe-eval'"] : [])],
     "style-src": ["'self'", "'unsafe-inline'"],
     "font-src": ["'self'", "data:"],
     "img-src": anyImageHost

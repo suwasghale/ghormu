@@ -264,6 +264,9 @@ services:
       AUTH_COOKIE_PREFIX: ${APP_SLUG:-ghormu}
       # Checked by /api/revalidate; the backend sends the same value.
       REVALIDATE_SECRET: ${FRONTEND_REVALIDATE_SECRET:-}
+      # Optional: Google's 3D view on /explore/map. Without it the map uses
+      # free open data. Restrict the key to the Map Tiles API and this domain.
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY:-}
     depends_on:
       web:
         condition: service_healthy

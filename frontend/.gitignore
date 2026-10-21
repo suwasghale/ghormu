@@ -41,5 +41,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# MapLibre worker, copied from node_modules by scripts/copy-map-worker.mjs
+# Map libraries' browser files, copied from node_modules by scripts/copy-map-assets.mjs
 /public/vendor/
