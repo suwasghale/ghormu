@@ -6,7 +6,9 @@ import "../globals.css"
 import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
 import { site } from "@/config/site"
-import { getDictionary, isLocale, locales, ogLocales } from "@/lib/i18n"
+import { photos } from "@/content/photos"
+import { getDictionary, isLocale, locales } from "@/lib/i18n"
+import { shareCard, siteOpenGraph } from "@/lib/i18n/page"
 
 const mukta = Mukta({
   subsets: ["devanagari", "latin"],
@@ -50,12 +52,9 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     description: dict.site.description,
     // No `alternates` here: children would inherit the home page's canonical
     // URL. Each page declares its own with `alternatesFor`.
-    openGraph: {
-      type: "website",
-      siteName: dict.site.name,
-      locale: ogLocales[locale],
-      alternateLocale: locales.filter((l) => l !== locale).map((l) => ogLocales[l]),
-    },
+    // Pages replace this with their own (lib/i18n/page.ts); it covers the rest.
+    openGraph: { ...siteOpenGraph(locale), images: [shareCard(locale, photos.village)] },
+    twitter: { card: "summary_large_image" },
   }
 }
 

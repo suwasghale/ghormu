@@ -21,7 +21,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
-  return pageMetadata(locale, "/support", support[locale].title, support[locale].lead)
+  return pageMetadata(locale, "/support", support[locale].title, support[locale].lead, photos.khata)
 }
 
 const headingClass = "font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl"

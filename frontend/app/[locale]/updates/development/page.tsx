@@ -20,7 +20,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
   const t = updates[locale].development
-  return pageMetadata(locale, "/updates/development", t.title, t.lead)
+  return pageMetadata(locale, "/updates/development", t.title, t.lead, photos.terraceWork)
 }
 
 /** Work in progress first: it is what people come to check on. */

@@ -12,7 +12,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
-  return pageMetadata(locale, "/about/vision", vision[locale].title, vision[locale].lead)
+  return pageMetadata(locale, "/about/vision", vision[locale].title, vision[locale].lead, photos.smiles)
 }
 
 export default async function VisionPage({ params }: PageProps) {

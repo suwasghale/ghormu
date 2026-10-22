@@ -18,7 +18,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
   const t = community[locale].events
-  return pageMetadata(locale, "/community/events", t.title, t.lead)
+  return pageMetadata(locale, "/community/events", t.title, t.lead, photos.football)
 }
 
 /** How many finished events to keep showing; older ones live in the archive. */

@@ -19,7 +19,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
   const t = community[locale].overview
-  return pageMetadata(locale, "/community", t.title, t.lead)
+  return pageMetadata(locale, "/community", t.title, t.lead, photos.hillsideChildren)
 }
 
 export default async function CommunityPage({ params }: PageProps) {

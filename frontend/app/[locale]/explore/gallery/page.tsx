@@ -19,7 +19,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
   const t = archive[locale].gallery
-  return pageMetadata(locale, "/explore/gallery", t.title, t.lead)
+  return pageMetadata(locale, "/explore/gallery", t.title, t.lead, photos.village)
 }
 
 /**
@@ -50,7 +50,7 @@ export default async function GalleryPage({ params }: PageProps) {
 
       <Section className="pt-12 sm:pt-16">
         <ul className="columns-1 gap-4 sm:columns-2 lg:columns-3">
-          {galleryOrder.map((name, index) => {
+          {galleryOrder.map((name) => {
             const photo = photos[name]
             return (
               <li key={name} className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-muted">
@@ -59,7 +59,6 @@ export default async function GalleryPage({ params }: PageProps) {
                     photo={photo}
                     locale={locale}
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    priority={index < 3}
                     credit="none"
                     className="transition duration-700 group-hover:scale-[1.02]"
                   />

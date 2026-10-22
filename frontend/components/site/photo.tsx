@@ -4,12 +4,19 @@ import { creditLine, type Photo } from "@/content/photos"
 import type { Locale } from "@/lib/i18n/config"
 import { cn } from "@/lib/utils"
 
+/** Allowed in next.config.ts `images.qualities`; the default is 75. */
+const HERO_QUALITY = 85
+
 /**
  * One of Ghormu's photographs, always with its credit.
  *
  * Served through next/image, so each visitor gets a resized AVIF or WebP
- * for their screen instead of the full file. With `fill`, the parent must
- * be positioned and sized; without it the photo keeps its own proportions.
+ * for their screen instead of the full file, with a blurred preview while
+ * it loads. With `fill`, the parent must be positioned and sized; without
+ * it the photo keeps its own proportions.
+ *
+ * `priority` is for the photo a visitor sees first (a page's hero): it is
+ * preloaded and served at a higher quality, since it fills the screen.
  */
 export function PhotoImage({
   photo,
@@ -30,18 +37,18 @@ export function PhotoImage({
   /** `overlay`: a small badge in the corner. `none`: shown elsewhere by the caller. */
   credit?: "overlay" | "none"
 }) {
+  const shared = {
+    src: photo.src,
+    sizes,
+    preload: priority,
+    quality: priority ? HERO_QUALITY : undefined,
+    ...(photo.placeholder ? { placeholder: "blur" as const, blurDataURL: photo.placeholder } : {}),
+  }
+
   const image = fill ? (
-    <Image src={photo.src} alt={photo.alt[locale]} fill sizes={sizes} priority={priority} className={cn("object-cover", className)} />
+    <Image {...shared} alt={photo.alt[locale]} fill className={cn("object-cover", className)} />
   ) : (
-    <Image
-      src={photo.src}
-      alt={photo.alt[locale]}
-      width={photo.width}
-      height={photo.height}
-      sizes={sizes}
-      priority={priority}
-      className={cn("h-auto w-full", className)}
-    />
+    <Image {...shared} alt={photo.alt[locale]} width={photo.width} height={photo.height} className={cn("h-auto w-full", className)} />
   )
 
   if (credit === "none") return image

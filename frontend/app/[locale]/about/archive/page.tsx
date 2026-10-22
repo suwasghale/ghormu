@@ -21,7 +21,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
   const t = archive[locale].archive
-  return pageMetadata(locale, "/about/archive", t.title, t.lead)
+  return pageMetadata(locale, "/about/archive", t.title, t.lead, photos.flags)
 }
 
 export default async function ArchivePage({ params }: PageProps) {

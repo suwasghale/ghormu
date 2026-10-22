@@ -12,7 +12,7 @@ import { getArchiveItem } from "@/lib/api/content"
 import { itemDate } from "@/lib/archive"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { alternatesFor } from "@/lib/i18n/metadata"
-import { crumbs, pageLocale } from "@/lib/i18n/page"
+import { crumbs, defaultSharePhoto, pageLocale, shareCard, shareMetadata } from "@/lib/i18n/page"
 
 /** Rendered on first visit, cached, and rebuilt when the item is edited. */
 export const revalidate = 300
@@ -34,13 +34,20 @@ async function load(params: PageProps["params"]) {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, item } = await load(params)
-  const description = item.description.slice(0, 200) || undefined
+  const path = `/about/archive/${item.slug}`
+  const description = item.description.slice(0, 200) || archive[locale].archive.lead
 
   return {
     title: item.title,
     description,
-    alternates: alternatesFor(locale, `/about/archive/${item.slug}`),
-    openGraph: { title: item.title, description, images: item.image_url ? [{ url: item.image_url }] : undefined },
+    alternates: alternatesFor(locale, path),
+    ...shareMetadata(
+      locale,
+      path,
+      item.title,
+      description,
+      item.image_url ? { url: item.image_url, alt: item.title } : shareCard(locale, defaultSharePhoto),
+    ),
   }
 }
 

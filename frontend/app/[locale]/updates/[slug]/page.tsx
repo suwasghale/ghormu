@@ -13,7 +13,7 @@ import { getPost } from "@/lib/api/content"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { formatDate } from "@/lib/i18n/format"
 import { alternatesFor } from "@/lib/i18n/metadata"
-import { crumbs, pageLocale } from "@/lib/i18n/page"
+import { crumbs, defaultSharePhoto, pageLocale, shareCard, shareMetadata } from "@/lib/i18n/page"
 import { cn } from "@/lib/utils"
 
 /**
@@ -39,19 +39,22 @@ async function load(params: PageProps["params"]) {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, post } = await load(params)
+  const path = `/updates/${post.slug}`
+  const description = post.summary || getDictionary(locale).site.description
+  const share = shareMetadata(
+    locale,
+    path,
+    post.title,
+    description,
+    post.image_url ? { url: post.image_url, alt: post.title } : shareCard(locale, defaultSharePhoto),
+  )
 
   return {
     title: post.title,
-    description: post.summary || undefined,
-    alternates: alternatesFor(locale, `/updates/${post.slug}`),
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.summary || undefined,
-      publishedTime: post.published_at,
-      modifiedTime: post.updated_at,
-      images: post.image_url ? [{ url: post.image_url }] : undefined,
-    },
+    description,
+    alternates: alternatesFor(locale, path),
+    ...share,
+    openGraph: { ...share.openGraph, type: "article", publishedTime: post.published_at, modifiedTime: post.updated_at },
   }
 }
 

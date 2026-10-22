@@ -14,7 +14,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
   const t = explore[locale].experiences
-  return pageMetadata(locale, "/explore/experiences", t.title, t.lead)
+  return pageMetadata(locale, "/explore/experiences", t.title, t.lead, photos.courtyard)
 }
 
 const IDEA_PHOTOS: PhotoName[] = ["courtyard", "khata", "trail", "doko"]

@@ -20,6 +20,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: process.env.MEDIA_HOST ? [{ protocol: 'https', hostname: process.env.MEDIA_HOST }] : [],
     formats: ['image/avif', 'image/webp'],
+    // 85 for full-screen hero photos (components/site/photo.tsx), 75 elsewhere.
+    qualities: [75, 85],
   },
 
   async rewrites() {

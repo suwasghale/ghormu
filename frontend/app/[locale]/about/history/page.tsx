@@ -19,7 +19,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
   const t = archive[locale].history
-  return pageMetadata(locale, "/about/history", t.title, t.lead)
+  return pageMetadata(locale, "/about/history", t.title, t.lead, photos.ploughing)
 }
 
 export default async function HistoryPage({ params }: PageProps) {

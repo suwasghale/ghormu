@@ -1,11 +1,15 @@
 import type { Locale } from "@/lib/i18n/config"
 
+import { photoPlaceholders } from "./photo-placeholders"
+
 /**
  * Photographs of Ghormu, used with their owners' permission.
  *
- * Files live in public/images/ghormu, resized and re-encoded without
- * metadata (no camera or GPS data). Every use shows its credit; add a new
- * photo here with its source before using it anywhere.
+ * Files live in public/images/ghormu, re-encoded without metadata (no
+ * camera or GPS data) at the largest size their source publishes, up to
+ * 2048 px. Every use shows its credit; add a new photo here with its source
+ * before using it anywhere, then run `node scripts/photo-assets.mjs` for its
+ * loading placeholder and share card.
  */
 
 export const photoSources = {
@@ -28,6 +32,10 @@ export type Photo = {
   height: number
   source: PhotoSource
   alt: Record<Locale, string>
+  /** A tiny blurred copy, shown while the photo loads. */
+  placeholder?: string
+  /** The 1200×630 card shown when a page with this photo is shared. */
+  shareCard: string
 }
 
 function photo(id: string, width: number, height: number, ne: string, en: string): Photo {
@@ -38,10 +46,12 @@ function photo(id: string, width: number, height: number, ne: string, en: string
     height,
     source: id.startsWith("lwnf") ? "lwnf" : "ply",
     alt: { ne, en },
+    placeholder: photoPlaceholders[id],
+    shareCard: `/images/og/${id}.jpg`,
   }
 }
 
-const LANDSCAPE = [1600, 1066] as const
+const LANDSCAPE = [2048, 1365] as const
 const WIDE = [1440, 1080] as const
 const TALL = [1080, 1440] as const
 

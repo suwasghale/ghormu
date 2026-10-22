@@ -16,6 +16,7 @@ import tourism from "@/content/tourism"
 import { listEvents, listPosts } from "@/lib/api/content"
 import { getDictionary, isLocale, localizePath, locales } from "@/lib/i18n"
 import { alternatesFor } from "@/lib/i18n/metadata"
+import { shareCard, shareMetadata } from "@/lib/i18n/page"
 import { cn } from "@/lib/utils"
 
 /** Static, but refreshed when news or events are published (see lib/api/content). */
@@ -27,10 +28,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   if (!isLocale(locale)) notFound()
 
+  const { site } = getDictionary(locale)
+  const description = home[locale].meta.description
+
   return {
-    description: home[locale].meta.description,
+    description,
     alternates: alternatesFor(locale, "/"),
-    openGraph: { images: [{ url: photos.village.src, width: photos.village.width, height: photos.village.height, alt: photos.village.alt[locale] }] },
+    ...shareMetadata(locale, "/", `${site.name} — ${site.tagline}`, description, shareCard(locale, photos.village)),
   }
 }
 

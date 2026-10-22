@@ -29,7 +29,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
-  return pageMetadata(locale, "/explore", tourism[locale].title, tourism[locale].lead)
+  return pageMetadata(locale, "/explore", tourism[locale].title, tourism[locale].lead, photos.trail)
 }
 
 const WHY_PHOTOS: PhotoName[] = ["forest", "chorten", "trail", "welcome"]

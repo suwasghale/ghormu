@@ -13,7 +13,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
   const t = contact[locale].feedback
-  return pageMetadata(locale, "/contact/feedback", t.title, t.lead)
+  return pageMetadata(locale, "/contact/feedback", t.title, t.lead, photos.grandmother)
 }
 
 export default async function FeedbackPage({ params }: PageProps) {

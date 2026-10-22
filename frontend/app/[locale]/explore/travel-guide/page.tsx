@@ -36,7 +36,7 @@ type PageProps = { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await pageLocale(params)
-  return pageMetadata(locale, "/explore/travel-guide", guide[locale].title, guide[locale].lead)
+  return pageMetadata(locale, "/explore/travel-guide", guide[locale].title, guide[locale].lead, photos.fields)
 }
 
 const PACK_ICONS = [Shirt, Umbrella, Footprints, Flashlight, BatteryCharging, Banknote, Pill, GlassWater]
