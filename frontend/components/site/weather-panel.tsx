@@ -97,8 +97,8 @@ export function WeatherPanel({
       <div className="flex flex-col p-8 sm:p-10">
         <Eyebrow tone="ink">
           <span className="relative mr-1 flex size-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-earth opacity-60" />
-            <span className="relative inline-flex size-2 rounded-full bg-earth" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-earth-bright opacity-60" />
+            <span className="relative inline-flex size-2 rounded-full bg-earth-bright" />
           </span>
           {t.eyebrow}
         </Eyebrow>
@@ -107,7 +107,7 @@ export function WeatherPanel({
         </h2>
 
         <div className="mt-8 flex items-center gap-6">
-          <CurrentIcon aria-hidden="true" className="size-16 shrink-0 text-earth sm:size-20" strokeWidth={1.4} />
+          <CurrentIcon aria-hidden="true" className="size-16 shrink-0 text-earth-bright sm:size-20" strokeWidth={1.4} />
           <div>
             <p className="font-display text-6xl leading-none font-semibold sm:text-7xl">{degrees(current.temperature)}</p>
             <p className="mt-2 text-lg text-ink-foreground/80">{t.conditions[condition]}</p>
@@ -116,12 +116,13 @@ export function WeatherPanel({
 
         <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3">
           {details.map(({ icon: Icon, label, value }) => (
-            <div key={label} className="flex items-start gap-3">
-              <Icon aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-ink-foreground/50" />
-              <div>
-                <dt className="text-sm text-ink-foreground/60">{label}</dt>
-                <dd className="font-medium">{value}</dd>
-              </div>
+            // A <dl> group may hold only <dt> and <dd>, so the icon sits in the term.
+            <div key={label}>
+              <dt className="flex items-center gap-2 text-sm text-ink-foreground/70">
+                <Icon aria-hidden="true" className="size-4 shrink-0" />
+                {label}
+              </dt>
+              <dd className="mt-0.5 pl-6 font-medium">{value}</dd>
             </div>
           ))}
         </dl>
@@ -137,7 +138,7 @@ export function WeatherPanel({
               href="https://open-meteo.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-2 hover:text-earth"
+              className="underline underline-offset-2 hover:text-earth-bright"
             >
               Open-Meteo.com
             </a>
@@ -157,9 +158,9 @@ export function WeatherPanel({
                 <span className="font-medium">
                   {index === 0 ? t.today : formatDay(locale, day.date, { weekday: "short" })}
                 </span>
-                <Icon aria-label={t.conditions[dayCondition]} role="img" className="size-5 text-earth" />
+                <Icon aria-label={t.conditions[dayCondition]} role="img" className="size-5 text-earth-bright" />
                 <span
-                  className={cn("text-sm", (day.rainChance ?? 0) >= 40 ? "text-sky-300" : "text-ink-foreground/45")}
+                  className={cn("text-sm", (day.rainChance ?? 0) >= 40 ? "text-sky-300" : "text-ink-foreground/70")}
                   title={t.rainChance}
                 >
                   {day.rainChance !== null && (

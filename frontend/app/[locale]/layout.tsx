@@ -10,9 +10,14 @@ import { photos } from "@/content/photos"
 import { getDictionary, isLocale, locales } from "@/lib/i18n"
 import { shareCard, siteOpenGraph } from "@/lib/i18n/page"
 
+/**
+ * Body text. Three weights: every file here is preloaded on every page, so
+ * each one competes with the hero photo on a slow connection. Bold (700)
+ * text falls back to 600 without faux-bolding; headings use the serif.
+ */
 const mukta = Mukta({
   subsets: ["devanagari", "latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   variable: "--font-mukta",
   display: "swap",
 })

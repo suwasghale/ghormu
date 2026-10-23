@@ -94,7 +94,7 @@ export default async function HomePage({ params }: PageProps) {
                 href={href("/support")}
                 className="group inline-flex items-center gap-2 font-semibold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
-                <Heart aria-hidden="true" className="size-4 text-earth" />
+                <Heart aria-hidden="true" className="size-4 text-earth-bright" />
                 {t.hero.secondary}
               </Link>
             </div>
@@ -214,7 +214,7 @@ export default async function HomePage({ params }: PageProps) {
               <div>
                 <dt className="text-sm text-ink-foreground/60">{t.visit.weather}</dt>
                 <dd className="mt-1">
-                  <Link href={href("/explore/travel-guide")} className="inline-flex items-center gap-2 font-display text-xl font-semibold text-earth hover:underline">
+                  <Link href={href("/explore/travel-guide")} className="inline-flex items-center gap-2 font-display text-xl font-semibold text-earth-bright hover:underline">
                     <CloudSun aria-hidden="true" className="size-5" />
                     {dict.nav.travelGuide}
                   </Link>

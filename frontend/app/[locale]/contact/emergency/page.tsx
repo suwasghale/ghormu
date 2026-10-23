@@ -64,7 +64,6 @@ export default async function EmergencyPage({ params }: PageProps) {
               <li key={key}>
                 <a
                   href={`tel:${number}`}
-                  aria-label={`${t.emergency.numbers[key]}: ${number}. ${t.emergency.call}`}
                   className="group flex items-center gap-5 rounded-3xl border border-border p-5 transition hover:border-red-300 hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                 >
                   <span className="inline-flex size-14 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-700 group-hover:bg-red-100">
@@ -73,6 +72,7 @@ export default async function EmergencyPage({ params }: PageProps) {
                   <span className="flex-1">
                     <span className="block text-muted-foreground">{t.emergency.numbers[key]}</span>
                     <span className="block font-display text-4xl leading-tight font-bold tracking-tight">{shown(number)}</span>
+                    <span className="sr-only">. {t.emergency.call}</span>
                   </span>
                   <Phone aria-hidden="true" className="size-5 text-red-700 opacity-60 group-hover:opacity-100" />
                 </a>

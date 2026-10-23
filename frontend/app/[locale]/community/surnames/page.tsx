@@ -46,7 +46,7 @@ export default async function SurnamesPage({ params }: PageProps) {
                 clan.first ? "bg-ink text-ink-foreground" : "bg-brand-muted",
               )}
             >
-              <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
+              <span className={cn("font-display text-sm", clan.first ? "text-earth-bright" : "text-earth")}>{formatIndex(locale, index + 1)}</span>
               <div>
                 <p className="font-display text-4xl font-semibold">{clan.name}</p>
                 <p lang={locale === "ne" ? "en" : "ne"} className={cn("mt-1", clan.first ? "text-ink-foreground/60" : "text-muted-foreground")}>

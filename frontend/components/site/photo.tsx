@@ -16,7 +16,8 @@ const HERO_QUALITY = 85
  * it the photo keeps its own proportions.
  *
  * `priority` is for the photo a visitor sees first (a page's hero): it is
- * preloaded and served at a higher quality, since it fills the screen.
+ * fetched ahead of everything else and served at a higher quality, since it
+ * fills the screen.
  */
 export function PhotoImage({
   photo,
@@ -40,7 +41,8 @@ export function PhotoImage({
   const shared = {
     src: photo.src,
     sizes,
-    preload: priority,
+    // What Next 16 recommends over `preload` for the largest image on screen.
+    ...(priority ? { loading: "eager" as const, fetchPriority: "high" as const } : {}),
     quality: priority ? HERO_QUALITY : undefined,
     ...(photo.placeholder ? { placeholder: "blur" as const, blurDataURL: photo.placeholder } : {}),
   }

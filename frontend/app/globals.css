@@ -42,6 +42,7 @@
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-muted: var(--brand-muted);
   --color-earth: var(--earth);
+  --color-earth-bright: var(--earth-bright);
   --color-snow: var(--snow);
   --color-mist: var(--mist);
   --color-ink: var(--ink);
@@ -96,6 +97,7 @@
   /* Public-site palette: earth (accents), snow and mist (light grounds),
      ink (dark sections). */
   --earth: oklch(0.6 0.13 50);
+  --earth-bright: oklch(0.78 0.12 60);
   --snow: oklch(0.99 0.004 230);
   --mist: oklch(0.955 0.016 220);
   --ink: oklch(0.24 0.035 190);
@@ -169,6 +171,12 @@
    app/[locale]/layout.tsx) covers Devanagari and Latin with one family, so
    Nepali and English text share the same rhythm. */
 html[data-site="public"] {
+  /* WCAG AA on every ground the site uses: earth reaches 4.7:1 as text on
+     the light grounds and 5.3:1 under white text; earth-bright is the same
+     hue for dark grounds (ink), 7.3:1 there; muted text reaches 5:1 on the
+     tinted grounds. */
+  --earth: oklch(0.54 0.13 50);
+  --muted-foreground: oklch(0.51 0.012 170);
   --font-geist-sans: var(--font-mukta), ui-sans-serif, system-ui, sans-serif;
   /* Headings: a Devanagari serif with matching Latin, for an editorial voice. */
   --font-display-family: var(--font-noto-serif), Georgia, serif;
@@ -501,6 +509,13 @@ html[data-site="public"] {
   box-shadow: 0 6px 18px rgb(0 0 0 / 0.25);
 }
 
+/* Outranks MapLibre's own rule, which loads later and leaves links grey
+   and undecorated: told apart from the credit text by colour alone. */
+.maplibregl-map .maplibregl-ctrl-attrib a {
+  color: #1f2a26;
+  text-decoration: underline;
+}
+
 .maplibregl-popup-content {
   padding: 0;
   overflow: hidden;
@@ -582,4 +597,57 @@ html[data-site="public"] {
 .village-popup-link:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+   Page transitions (app/[locale]/template.tsx). The page leaving fades out
+   quickly; the new one rises 8px into place as it fades in. The header is
+   held still above both, and clicks pass straight through to the new page.
+   --------------------------------------------------------------------------- */
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.page-exit) {
+  animation: 140ms ease-in both page-fade-out;
+}
+
+::view-transition-new(.page-enter) {
+  animation: 300ms cubic-bezier(0.2, 0.7, 0.2, 1) 60ms both page-fade-in;
+}
+
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+
+::view-transition-group(site-header) {
+  z-index: 100;
+  animation: none;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
 }

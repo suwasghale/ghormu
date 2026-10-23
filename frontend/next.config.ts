@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
     // Two root layouts (public site and account screens) leave no single
     // layout for a 404; app/global-not-found.tsx renders one instead.
     globalNotFound: true,
+    // Styles arrive inside the HTML instead of as separate files, so a first
+    // visit on a slow connection draws the page one round trip sooner. The
+    // Tailwind CSS is small (about 24 KB); most visitors come once.
+    inlineCss: true,
   },
 
   images: {

@@ -45,10 +45,14 @@ export default async function SitemapPage({ params }: PageProps) {
       />
 
       <Section>
-        <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-          {groups.map((group) => (
-            <nav key={group.title} aria-label={group.title}>
-              <h2 className="font-display text-xl font-semibold">{group.title}</h2>
+        {/* One navigation landmark for the whole map; its groups are headed
+            sections, so their names never clash with the header's and footer's. */}
+        <nav aria-label={t.title} className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          {groups.map((group, index) => (
+            <section key={group.title} aria-labelledby={`sitemap-group-${index}`}>
+              <h2 id={`sitemap-group-${index}`} className="font-display text-xl font-semibold">
+                {group.title}
+              </h2>
               <ul className="mt-4 flex flex-col gap-2.5 border-l border-border pl-4">
                 {group.links.map((link) => (
                   <li key={link.href}>
@@ -58,9 +62,9 @@ export default async function SitemapPage({ params }: PageProps) {
                   </li>
                 ))}
               </ul>
-            </nav>
+            </section>
           ))}
-        </div>
+        </nav>
       </Section>
     </>
   )

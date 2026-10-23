@@ -44,7 +44,7 @@ export function Eyebrow({ children, tone = "default", className }: { children: R
     <p
       className={cn(
         "flex items-center gap-3 text-sm font-semibold tracking-wide",
-        tone === "ink" ? "text-earth" : "text-brand",
+        tone === "ink" ? "text-earth-bright" : "text-brand",
         className,
       )}
     >
@@ -105,7 +105,7 @@ export function ArrowLink({
       href={href}
       className={cn(
         "group inline-flex items-center gap-2 rounded-full font-semibold underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4",
-        tone === "ink" ? "text-earth focus-visible:outline-earth" : "text-brand focus-visible:outline-brand",
+        tone === "ink" ? "text-earth-bright focus-visible:outline-earth-bright" : "text-brand focus-visible:outline-brand",
         className,
       )}
     >
@@ -121,6 +121,9 @@ const buttonBase =
 export const buttonStyles = {
   primary: cn(buttonBase, "bg-brand text-brand-foreground hover:opacity-90 focus-visible:outline-brand"),
   secondary: cn(buttonBase, "border border-border bg-background hover:border-brand hover:text-brand focus-visible:outline-brand"),
-  onInk: cn(buttonBase, "bg-earth text-ink hover:opacity-90 focus-visible:outline-earth"),
-  ghostOnInk: cn(buttonBase, "border border-ink-foreground/30 text-ink-foreground hover:border-earth hover:text-earth focus-visible:outline-earth"),
+  onInk: cn(buttonBase, "bg-earth-bright text-ink hover:opacity-90 focus-visible:outline-earth-bright"),
+  ghostOnInk: cn(
+    buttonBase,
+    "border border-ink-foreground/30 text-ink-foreground hover:border-earth-bright hover:text-earth-bright focus-visible:outline-earth-bright",
+  ),
 } as const

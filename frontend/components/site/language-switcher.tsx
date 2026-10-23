@@ -30,7 +30,11 @@ export function LanguageSwitcher({
   onNavigate,
 }: {
   locale: Locale
-  /** Accessible name, in the current page's language. */
+  /**
+   * What the link does, in the current page's language. Read after the
+   * visible language name, so the link's spoken name starts with the word on
+   * screen (what voice-control users say to press it).
+   */
   label: string
   className?: string
   onNavigate?: () => void
@@ -42,8 +46,6 @@ export function LanguageSwitcher({
     <Link
       href={localizePath(target, stripLocale(pathname))}
       hrefLang={target}
-      lang={target}
-      aria-label={label}
       title={label}
       onClick={() => {
         document.cookie = `${LOCALE_COOKIE}=${target}; path=/; max-age=${ONE_YEAR}; samesite=lax`
@@ -55,7 +57,8 @@ export function LanguageSwitcher({
       )}
     >
       <Languages aria-hidden="true" className="size-4" />
-      {localeNames[target]}
+      <span lang={target}>{localeNames[target]}</span>
+      <span className="sr-only">: {label}</span>
     </Link>
   )
 }

@@ -61,7 +61,7 @@ export default async function AttractionsPage({ params }: PageProps) {
           <div className="flex flex-col justify-center p-8 sm:p-12">
             <h2 className="font-display text-3xl font-semibold">{t.attractions.mapTitle}</h2>
             <p className="mt-4 text-lg leading-relaxed text-brand-foreground/80">{t.attractions.mapBody}</p>
-            <ArrowLink href={localizePath(locale, "/explore/map")} tone="ink" className="mt-8">
+            <ArrowLink href={localizePath(locale, "/explore/map")} tone="ink" className="mt-8 text-brand-foreground focus-visible:outline-brand-foreground">
               {t.attractions.mapLink}
             </ArrowLink>
           </div>

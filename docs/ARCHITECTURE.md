@@ -50,6 +50,13 @@ Content that changes over time is managed in the admin at `/admin`, not written 
 - **The page renders per request** (`connection()`), so the key is read from the running server's environment and never baked into a build. The places list is still cached and refreshed by the admin.
 - **Browser files** for both libraries (the MapLibre worker, and Cesium's script, workers, WebAssembly decoders and assets) are copied from `node_modules` into `public/vendor/` by `scripts/copy-map-assets.mjs`, which `pnpm dev` and `pnpm build` run first. The copies are not committed. The script also replaces Knockout's `(0,eval)("this")` in Cesium's bundle with `globalThis`, so Cesium loads under the Content-Security-Policy without `unsafe-eval`. The policy allows `wasm-unsafe-eval` for the Draco mesh decoder, plus the tile hosts in `mapTileOrigins`.
 
+## Accessibility, speed and motion
+
+- **Colour.** The public site overrides three tokens in `app/globals.css` so every text colour passes WCAG AA on the grounds it is used on: `earth` (light grounds and under white text), `earth-bright` (the same hue for dark ink grounds), and `muted-foreground`. Use `text-earth-bright` on `bg-ink`, never `text-earth`.
+- **Checked on every page.** `e2e/accessibility.spec.ts` runs axe (WCAG 2.1 A/AA and best practices) on every published page in both languages; it needs no fixtures, so it runs against any address with `E2E_BASE_URL`.
+- **Speed.** Hero photos are fetched first (`fetchPriority="high"`), CSS is inlined into the HTML (`experimental.inlineCss`), and the body font loads three weights only. Most of what a first visit downloads is the two typefaces (about 390 KB), cached after that.
+- **Page transitions.** `app/[locale]/template.tsx` wraps each page in React's `<ViewTransition>`: the old page fades out and the new one rises into place, with the header held still (styles under "Page transitions" in `globals.css`). Browsers without view transitions, and visitors who prefer reduced motion, get an instant swap.
+
 ## Photographs
 
 The site's own photos of Ghormu are in `frontend/public/images/ghormu` and are listed in `frontend/content/photos.ts`. Each entry records the photo's size, a description in both languages, and its source. They are used with their owners' permission (Plein Leurs Yeux and Little World Nepal France), and every use shows a credit through `PhotoImage` / `PhotoCredit`. They are served through `next/image`, so visitors get resized AVIF/WebP files.

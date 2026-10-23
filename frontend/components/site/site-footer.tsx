@@ -29,7 +29,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
           <p className="max-w-2xl font-display text-3xl leading-snug font-semibold text-balance sm:text-4xl">{dict.footer.closing}</p>
           <Link
             href={localizePath(locale, "/support")}
-            className="inline-flex h-12 shrink-0 items-center gap-2 self-start rounded-full bg-earth px-6 font-semibold text-white transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth lg:self-auto"
+            className="inline-flex h-12 shrink-0 items-center gap-2 self-start rounded-full bg-earth px-6 font-semibold text-white transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth-bright lg:self-auto"
           >
             <Heart aria-hidden="true" className="size-4" />
             {dict.header.support}
@@ -42,7 +42,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
             <Link
               href={localizePath(locale, "/")}
               aria-label={dict.header.homeLink}
-              className="inline-flex items-center gap-2.5 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-earth"
+              className="inline-flex items-center gap-2.5 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-earth-bright"
             >
               <LogoMark />
               <span className="font-display text-xl font-bold tracking-tight">{dict.site.name}</span>
@@ -60,7 +60,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
                   <li key={link.key}>
                     <Link
                       href={hrefFor(locale, link)}
-                      className="text-[0.95rem] text-ink-foreground/65 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth"
+                      className="text-[0.95rem] text-ink-foreground/65 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth-bright"
                     >
                       {dict.nav[link.key]}
                     </Link>
@@ -76,7 +76,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
           <LanguageSwitcher
             locale={locale}
             label={dict.header.switchLanguage}
-            className="border-ink-foreground/20 text-ink-foreground hover:border-earth hover:text-earth focus-visible:outline-earth"
+            className="border-ink-foreground/20 text-ink-foreground hover:border-earth-bright hover:text-earth-bright focus-visible:outline-earth-bright"
           />
         </div>
       </div>

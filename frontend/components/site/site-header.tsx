@@ -74,6 +74,8 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
   return (
     <header
       data-transparent={transparent}
+      // Held still while pages crossfade beneath it (globals.css, "Page transitions").
+      style={{ viewTransitionName: "site-header" }}
       className={cn(
         "group/header top-0 z-40 border-b transition-[background-color,border-color,color,box-shadow] duration-300",
         overHero ? "fixed inset-x-0" : "sticky",

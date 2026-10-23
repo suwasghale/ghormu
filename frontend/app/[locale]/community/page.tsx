@@ -76,7 +76,7 @@ export default async function CommunityPage({ params }: PageProps) {
             {t.overview.features.map((feature, index) => {
               return (
                 <li key={feature.title} className="reveal bg-ink p-7">
-                  <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
+                  <span className="font-display text-sm text-earth-bright">{formatIndex(locale, index + 1)}</span>
                   <h3 className="mt-6 font-display text-xl font-semibold">{feature.title}</h3>
                   <p className="mt-2 leading-relaxed text-ink-foreground/70">{feature.body}</p>
                 </li>
