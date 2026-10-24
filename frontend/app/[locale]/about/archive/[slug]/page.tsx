@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, ShieldQuestion } from "lucide-react"
 
 import { ContentImage } from "@/components/site/content-ui"
+import { ShareButtons } from "@/components/site/share-buttons"
 import { JsonLd } from "@/components/site/json-ld"
 import { Container } from "@/components/site/section"
 import { site } from "@/config/site"
@@ -116,6 +117,12 @@ export default async function ArchiveItemPage({ params }: PageProps) {
             {date && <p className="text-sm font-semibold text-earth">{date}</p>}
             <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-balance sm:text-5xl">{item.title}</h1>
             {item.description && <p className="mt-6 text-lg leading-relaxed whitespace-pre-line text-muted-foreground">{item.description}</p>}
+            <ShareButtons
+              url={new URL(localizePath(locale, `/about/archive/${item.slug}`), site.url).toString()}
+              title={item.title}
+              strings={dict.share}
+              className="mt-8"
+            />
             <Link href={localizePath(locale, "/about/archive")} className="mt-10 inline-flex items-center gap-2 font-semibold text-brand hover:underline">
               <ArrowLeft aria-hidden="true" className="size-4" />
               {t.item.back}

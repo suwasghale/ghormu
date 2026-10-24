@@ -82,16 +82,37 @@ const en: Dictionary = {
   },
 
   notFound: {
-    code: "Error 404",
-    title: "Page not found",
-    body: "The page you are looking for may have moved or no longer exists.",
+    code: "404 · Page not found",
+    title: "This path doesn't lead anywhere",
+    body: "The page you're looking for may have moved or no longer exists. Start again from here.",
     backHome: "Back to home",
+    elsewhere: "Other places",
+  },
+
+  offline: {
+    notice: "You're offline. Pages you've opened before still work.",
+    eyebrow: "Offline",
+    title: "No internet connection right now",
+    body: "In the hills, the signal comes and goes. Pages you've opened before are saved on this device; they're listed below. Try again once the signal is back.",
+    retry: "Try again",
+    savedTitle: "Pages you can open without internet",
+    savedNone: "No pages are saved yet. Pages you open while online will appear here.",
+  },
+
+  share: {
+    label: "Share this page",
+    prompt: "Share this page with friends",
+    native: "Share",
+    whatsapp: "WhatsApp",
+    facebook: "Facebook",
+    copy: "Copy link",
+    copied: "Link copied",
   },
 
   error: {
     code: "Unexpected error",
     title: "Something went wrong",
-    body: "An error occurred while loading this page. Try again or go back to the home page.",
+    body: "Something broke on our side, not yours. Please try again in a moment.",
     retry: "Try again",
     backHome: "Back to home",
     reference: "Ref",

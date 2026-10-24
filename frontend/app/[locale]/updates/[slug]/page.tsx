@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, Download } from "lucide-react"
 
 import { ContentImage, Prose } from "@/components/site/content-ui"
+import { ShareButtons } from "@/components/site/share-buttons"
 import { JsonLd } from "@/components/site/json-ld"
 import { PageHero } from "@/components/site/page-hero"
 import { buttonStyles, Container } from "@/components/site/section"
@@ -11,7 +12,7 @@ import { site } from "@/config/site"
 import updates from "@/content/updates"
 import { getPost } from "@/lib/api/content"
 import { getDictionary, localizePath } from "@/lib/i18n"
-import { formatDate } from "@/lib/i18n/format"
+import { formatDate } from "@/lib/i18n/dates"
 import { alternatesFor } from "@/lib/i18n/metadata"
 import { crumbs, defaultSharePhoto, pageLocale, shareCard, shareMetadata } from "@/lib/i18n/page"
 import { cn } from "@/lib/utils"
@@ -110,7 +111,14 @@ export default async function PostPage({ params }: PageProps) {
             </a>
           )}
 
-          <footer className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-sm text-muted-foreground">
+          <ShareButtons
+            url={new URL(localizePath(locale, `/updates/${post.slug}`), site.url).toString()}
+            title={post.title}
+            strings={dict.share}
+            className="mt-12"
+          />
+
+          <footer className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-sm text-muted-foreground">
             <Link href={localizePath(locale, listPath)} className="inline-flex items-center gap-2 font-semibold text-brand hover:underline">
               <ArrowLeft aria-hidden="true" className="size-4" />
               {isNotice ? t.article.backNotices : t.article.back}

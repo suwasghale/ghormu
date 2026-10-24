@@ -71,6 +71,13 @@ export default bilingual({
       creditsTitle: "तस्बिर सौजन्य",
       creditsBody: "यी तस्बिरहरू तिनका मालिकको अनुमतिमा प्रयोग गरिएका हुन्। पुनः प्रयोग गर्नुअघि उहाँहरूसँग अनुमति लिनुहोस्।",
       archiveTitle: "अभिलेखबाट थप तस्बिर",
+      viewer: {
+        open: "ठूलो पारेर हेर्नुहोस्",
+        close: "बन्द गर्नुहोस्",
+        previous: "अघिल्लो तस्बिर",
+        next: "अर्को तस्बिर",
+        position: "{n} / {total}",
+      },
     },
   },
   en: {
@@ -142,6 +149,13 @@ export default bilingual({
       creditsTitle: "Photo credits",
       creditsBody: "These photographs are used with their owners' permission. Please ask them before reusing any.",
       archiveTitle: "More photos from the archive",
+      viewer: {
+        open: "View full size",
+        close: "Close",
+        previous: "Previous photo",
+        next: "Next photo",
+        position: "{n} of {total}",
+      },
     },
   },
 })

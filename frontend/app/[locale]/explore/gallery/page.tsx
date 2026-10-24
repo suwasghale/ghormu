@@ -3,7 +3,7 @@ import { ExternalLink } from "lucide-react"
 
 import { ContentImage, LoadFailed } from "@/components/site/content-ui"
 import { PageHero } from "@/components/site/page-hero"
-import { PhotoCredit, PhotoImage } from "@/components/site/photo"
+import { PhotoGallery } from "@/components/site/photo-viewer"
 import { Section, SectionHeader } from "@/components/site/section"
 import archive from "@/content/archive"
 import { galleryOrder, photos, photoSources } from "@/content/photos"
@@ -49,28 +49,7 @@ export default async function GalleryPage({ params }: PageProps) {
       />
 
       <Section className="pt-12 sm:pt-16">
-        <ul className="columns-1 gap-4 sm:columns-2 lg:columns-3">
-          {galleryOrder.map((name) => {
-            const photo = photos[name]
-            return (
-              <li key={name} className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-muted">
-                <figure>
-                  <PhotoImage
-                    photo={photo}
-                    locale={locale}
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    credit="none"
-                    className="transition duration-700 group-hover:scale-[1.02]"
-                  />
-                  <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 pt-14 text-white">
-                    <span className="text-sm leading-snug opacity-0 transition group-hover:opacity-100">{photo.alt[locale]}</span>
-                    <PhotoCredit photo={photo} locale={locale} className="shrink-0 bg-black/30" />
-                  </figcaption>
-                </figure>
-              </li>
-            )
-          })}
-        </ul>
+        <PhotoGallery photos={galleryOrder.map((name) => photos[name])} locale={locale} strings={t.gallery.viewer} />
 
         <aside className="mt-10 rounded-2xl bg-muted p-6 text-sm text-muted-foreground">
           <p className="font-semibold text-foreground">{t.gallery.creditsTitle}</p>

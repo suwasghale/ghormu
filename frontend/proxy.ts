@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { ACCESS_COOKIE, REFRESH_COOKIE } from '@/lib/auth/cookies'
-import { defaultLocale, isLocale, LOCALE_COOKIE, localizePath } from '@/lib/i18n/config'
+import { defaultLocale, isLocale, LOCALE_COOKIE, locales, localizePath } from '@/lib/i18n/config'
 
 /**
  * Route protection at the edge, before any admin page renders.
@@ -61,6 +61,47 @@ function isDocumentNavigation(request: NextRequest): boolean {
   return true
 }
 
+/**
+ * The first path segment of every address the app answers: the two
+ * languages, the account and admin screens, the API, and the folders under
+ * public/. A test keeps it in step with app/ and public/.
+ */
+export const KNOWN_ROOTS: ReadonlySet<string> = new Set([
+  ...locales,
+  '_next',
+  'api',
+  'admin',
+  'auth',
+  'profile',
+  'login',
+  'register',
+  'registration-success',
+  'forgot-password',
+  'reset-password',
+  'verify-email',
+  'change-email',
+  'resend-verification',
+  'icons',
+  'images',
+  'vendor',
+])
+
+/**
+ * Where an unknown address (`/fr`, `/fr/about`, `/xyz`) is sent, unseen.
+ *
+ * Next 16 answers some of these with its bare built-in error document
+ * instead of app/global-not-found.tsx: an unknown "language" in front of a
+ * prebuilt page (`/fr/about`) has no fallback. This address always reaches
+ * the catch-all page, whose layout turns it down with the designed 404.
+ */
+const UNKNOWN_ADDRESS = '/__unknown/address'
+
+function isUnknownAddress(pathname: string): boolean {
+  const first = pathname.split('/')[1] ?? ''
+  // Files (sw.js, robots.txt) and Next's own __ paths are not ours to judge.
+  return !KNOWN_ROOTS.has(first) && !first.includes('.') && !first.startsWith('__')
+}
+
 export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl
   const access = request.cookies.get(ACCESS_COOKIE)?.value
@@ -73,6 +114,10 @@ export function proxy(request: NextRequest) {
     const preferred = request.cookies.get(LOCALE_COOKIE)?.value
     const locale = isLocale(preferred) ? preferred : defaultLocale
     return NextResponse.redirect(new URL(localizePath(locale, '/') + search, request.url))
+  }
+
+  if (isUnknownAddress(pathname)) {
+    return NextResponse.rewrite(new URL(UNKNOWN_ADDRESS, request.url))
   }
 
   if ((pathname === '/admin' || pathname.startsWith('/admin/') || pathname === '/profile' || pathname.startsWith('/profile/'))) {
@@ -112,6 +157,7 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   /* Only the routes that need it. Matching everything would put this in front
-     of all 46 static pages for no benefit. */
-  matcher: ['/', '/admin/:path*', '/profile/:path*', '/login'],
+     of all the static pages under /ne and /en for no benefit; the last entry
+     takes everything else, for `isUnknownAddress`. */
+  matcher: ['/', '/admin/:path*', '/profile/:path*', '/login', '/((?!ne/|en/|_next/|api/).*)'],
 }

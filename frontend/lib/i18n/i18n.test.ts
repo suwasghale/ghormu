@@ -1,9 +1,10 @@
-import { existsSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
+import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { NextRequest } from 'next/server'
 
 import { footerColumns, linkedPages, mainNav, placeholderPages, publishedPages } from '@/config/navigation'
-import { proxy } from '@/proxy'
+import { KNOWN_ROOTS, proxy } from '@/proxy'
 import { defaultLocale, isLocale, localizePath, otherLocale, stripLocale } from './config'
 import en from './dictionaries/en'
 import ne from './dictionaries/ne'
@@ -97,5 +98,32 @@ describe('root redirect', () => {
 
   it('ignores a language the site does not have', () => {
     expect(visit('locale=fr').headers.get('location')).toBe('https://ghormu.com/ne?utm_source=qr')
+  })
+})
+
+describe('unknown addresses', () => {
+  const rewrite = (path: string) => proxy(new NextRequest(`https://ghormu.com${path}`)).headers.get('x-middleware-rewrite')
+
+  it('sends them to the designed 404', () => {
+    for (const path of ['/fr', '/fr/about', '/nothing-here']) {
+      expect(rewrite(path)).toBe('https://ghormu.com/__unknown/address')
+    }
+  })
+
+  it('leaves real routes and files alone', () => {
+    for (const path of ['/ne', '/register', '/sw.js', '/manifest.webmanifest']) {
+      expect(rewrite(path)).toBeNull()
+    }
+  })
+
+  it('knows every top-level route in app/ and folder in public/', () => {
+    const folders = (dir: string): string[] =>
+      readdirSync(dir, { withFileTypes: true })
+        .filter((entry) => entry.isDirectory())
+        .flatMap((entry) => (entry.name.startsWith('(') ? folders(join(dir, entry.name)) : [entry.name]))
+
+    const roots = [...folders('app'), ...folders('public')].filter((name) => !name.startsWith('[') && name !== 'components')
+
+    expect(roots.filter((name) => !KNOWN_ROOTS.has(name))).toEqual([])
   })
 })

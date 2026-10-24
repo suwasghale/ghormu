@@ -57,6 +57,22 @@ Content that changes over time is managed in the admin at `/admin`, not written 
 - **Speed.** Hero photos are fetched first (`fetchPriority="high"`), CSS is inlined into the HTML (`experimental.inlineCss`), and the body font loads three weights only. Most of what a first visit downloads is the two typefaces (about 390 KB), cached after that.
 - **Page transitions.** `app/[locale]/template.tsx` wraps each page in React's `<ViewTransition>`: the old page fades out and the new one rises into place, with the header held still (styles under "Page transitions" in `globals.css`). Browsers without view transitions, and visitors who prefer reduced motion, get an instant swap.
 
+## Dates, sharing and the home-screen app
+
+- **Calendar.** Nepali pages print dates in Bikram Sambat (७ कात्तिक २०८३), English pages in the Gregorian calendar. `lib/i18n/dates.ts` converts with `nepali-date-converter`, which `dates.test.ts` pins to known new-year dates. It is kept apart from `lib/i18n/format.ts` so its conversion table never reaches the browser bundles that only format numbers.
+- **Sharing.** `components/site/share-buttons.tsx` offers the phone's share sheet where there is one, WhatsApp, Facebook and copy-link, on news stories, archive items and the Support page.
+- **Gallery viewer.** `components/site/photo-viewer.tsx` opens each gallery photo full screen in a native modal `<dialog>`: arrow keys and swipes move between photos, Escape closes it, and focus returns to the photo that opened it.
+- **Home-screen app.** `app/manifest.ts` lets visitors install the site; its icons and `app/apple-icon.png` are drawn by `node scripts/app-icons.mjs` from the Ghormu mark.
+
+## Offline and weak signal
+
+- **Service worker.** `public/sw.js`, registered in production by `components/site/service-worker.tsx`, keeps the public pages a visitor opens, their build files and photos on the device. Pages come from the network first; with a saved copy the network gets 4 seconds, after which the saved copy is shown and refreshed in the background. Offline, a saved page opens as normal and any other shows `/ne/offline` or `/en/offline`, which list what is saved. The admin, sign-in, the API and Next's in-page navigation data are never cached. Change `VERSION` in `sw.js` when its rules change.
+- **Notice.** A small "you're offline" note appears while the browser reports no connection.
+
+## Not found and errors
+
+`app/[locale]/not-found.tsx` and `error.tsx` share `components/site/lost-page.tsx`: a photograph, a short message and a few places to go next. `app/global-not-found.tsx` answers in both languages where the address names no language. Next 16 would answer some of those (an unknown language in front of a prebuilt page, such as `/fr/about`) with its bare built-in page, so `proxy.ts` rewrites every address whose first segment is not a known route (`KNOWN_ROOTS`, checked against `app/` and `public/` by a test) to one that reaches the designed page.
+
 ## Photographs
 
 The site's own photos of Ghormu are in `frontend/public/images/ghormu` and are listed in `frontend/content/photos.ts`. Each entry records the photo's size, a description in both languages, and its source. They are used with their owners' permission (Plein Leurs Yeux and Little World Nepal France), and every use shows a credit through `PhotoImage` / `PhotoCredit`. They are served through `next/image`, so visitors get resized AVIF/WebP files.

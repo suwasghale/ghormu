@@ -2,7 +2,7 @@ import { MapPin } from "lucide-react"
 
 import type { ContentEvent } from "@/lib/api/content"
 import type { Locale } from "@/lib/i18n/config"
-import { formatDay, formatDayRange } from "@/lib/i18n/format"
+import { formatDay, formatDayRange } from "@/lib/i18n/dates"
 import { cn } from "@/lib/utils"
 
 /** The date, or the date range written the way each language writes ranges. */

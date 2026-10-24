@@ -1,9 +1,11 @@
 import { Check } from "lucide-react"
 
 import { ContactForm } from "@/components/site/contact-form"
+import { ShareButtons } from "@/components/site/share-buttons"
 import { PageHero } from "@/components/site/page-hero"
 import { PhotoImage } from "@/components/site/photo"
 import { ArrowLink, Section } from "@/components/site/section"
+import { site } from "@/config/site"
 import contact from "@/content/contact"
 import { photos } from "@/content/photos"
 import support from "@/content/support"
@@ -122,6 +124,10 @@ export default async function SupportPage({ params }: PageProps) {
             </li>
           ))}
         </ol>
+        <div className="reveal mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-display text-xl font-semibold">{dict.share.prompt}</p>
+          <ShareButtons url={new URL(localizePath(locale, "/support"), site.url).toString()} title={t.title} strings={dict.share} />
+        </div>
       </Section>
 
       {/* Promise and form */}

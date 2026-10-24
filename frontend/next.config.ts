@@ -34,6 +34,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders() },
+      // The service worker must be re-checked on every visit, or a fixed
+      // caching rule would only reach visitors after the browser's own cache
+      // expired.
+      { source: "/sw.js", headers: [{ key: "Cache-Control", value: "no-cache, no-store, must-revalidate" }] },
       // Administrative image previews can reference external HTTPS images.
       { source: "/admin/:path*", headers: securityHeaders({ anyImageHost: true }) },
     ];

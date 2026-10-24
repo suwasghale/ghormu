@@ -22,7 +22,8 @@ import {
 
 import type travelGuide from "@/content/travel-guide"
 import type { Locale } from "@/lib/i18n/config"
-import { formatClock, formatDay, formatNumber } from "@/lib/i18n/format"
+import { formatDay } from "@/lib/i18n/dates"
+import { formatClock, formatNumber } from "@/lib/i18n/format"
 import { cn } from "@/lib/utils"
 import { conditionFor, type Condition, type Forecast } from "@/lib/weather"
 

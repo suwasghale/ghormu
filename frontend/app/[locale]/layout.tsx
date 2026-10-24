@@ -1,34 +1,15 @@
 import type { Metadata } from "next"
-import { Mukta, Noto_Serif_Devanagari } from "next/font/google"
 import { notFound } from "next/navigation"
 
 import "../globals.css"
 import { SiteFooter } from "@/components/site/site-footer"
+import { OfflineNotice, ServiceWorker } from "@/components/site/service-worker"
 import { SiteHeader } from "@/components/site/site-header"
 import { site } from "@/config/site"
 import { photos } from "@/content/photos"
+import { fontVariables } from "@/lib/fonts"
 import { getDictionary, isLocale, locales } from "@/lib/i18n"
 import { shareCard, siteOpenGraph } from "@/lib/i18n/page"
-
-/**
- * Body text. Three weights: every file here is preloaded on every page, so
- * each one competes with the hero photo on a slow connection. Bold (700)
- * text falls back to 600 without faux-bolding; headings use the serif.
- */
-const mukta = Mukta({
-  subsets: ["devanagari", "latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-mukta",
-  display: "swap",
-})
-
-/** Headings only; one variable file covers every weight. */
-const notoSerif = Noto_Serif_Devanagari({
-  subsets: ["devanagari", "latin"],
-  weight: "variable",
-  variable: "--font-noto-serif",
-  display: "swap",
-})
 
 /**
  * Both languages are built ahead of time. Not `dynamicParams = false`: that
@@ -77,7 +58,7 @@ export default async function PublicLayout({ children, params }: LayoutProps) {
   const dict = getDictionary(locale)
 
   return (
-    <html lang={locale} data-site="public" className={`${mukta.variable} ${notoSerif.variable} h-full scroll-smooth antialiased`}>
+    <html lang={locale} data-site="public" className={`${fontVariables} h-full scroll-smooth antialiased`}>
       <body className="flex min-h-full flex-col">
         <a
           href="#main"
@@ -90,6 +71,8 @@ export default async function PublicLayout({ children, params }: LayoutProps) {
           {children}
         </main>
         <SiteFooter locale={locale} dict={dict} />
+        <OfflineNotice message={dict.offline.notice} />
+        <ServiceWorker />
       </body>
     </html>
   )

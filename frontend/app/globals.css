@@ -651,3 +651,20 @@ html[data-site="public"] {
     animation-delay: 0s !important;
   }
 }
+
+/* Gallery viewer (components/site/photo-viewer.tsx): fades in when opened. */
+.photo-viewer[open] {
+  animation: photo-viewer-in 220ms ease-out;
+}
+
+@keyframes photo-viewer-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-viewer[open] {
+    animation: none;
+  }
+}

@@ -3,7 +3,8 @@ import { ArrowUpRight, Paperclip, Pin } from "lucide-react"
 
 import type { Post } from "@/lib/api/content"
 import { localizePath, type Locale } from "@/lib/i18n/config"
-import { formatDate, formatNumber } from "@/lib/i18n/format"
+import { formatDate } from "@/lib/i18n/dates"
+import { formatNumber } from "@/lib/i18n/format"
 import { cn } from "@/lib/utils"
 
 import { ContentImage } from "./content-ui"
