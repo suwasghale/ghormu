@@ -18,23 +18,31 @@ function formatYear(locale: Locale, year: number): string {
 }
 
 /**
- * Every page ends the same way: one plain sentence and a way to help, then
- * the site's map. Dark, so it reads as the ground the page stands on.
+ * Every page ends the same way: a plain invitation to write in or to help,
+ * then the site's map. Dark, so it reads as the ground the page stands on.
  */
 export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   return (
     <footer className="bg-ink text-ink-foreground">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col gap-8 border-b border-ink-foreground/10 py-14 sm:py-20 lg:flex-row lg:items-end lg:justify-between">
-          <p className="max-w-2xl font-display text-3xl leading-snug font-semibold text-balance sm:text-4xl">{dict.footer.closing}</p>
-          <Link
-            href={localizePath(locale, "/support")}
-            className="inline-flex h-12 shrink-0 items-center gap-2 self-start rounded-full bg-earth px-6 font-semibold text-white transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth-bright lg:self-auto"
-          >
-            <Heart aria-hidden="true" className="size-4" />
-            {dict.header.support}
-            <ArrowRight aria-hidden="true" className="size-4" />
-          </Link>
+          <p className="max-w-xl font-display text-2xl leading-snug font-semibold text-balance sm:text-3xl">{dict.footer.closing}</p>
+          <div className="flex shrink-0 flex-wrap gap-3">
+            <Link
+              href={localizePath(locale, "/contact")}
+              className="inline-flex h-12 items-center gap-2 rounded-full border border-ink-foreground/30 px-6 font-semibold transition-colors hover:border-earth-bright hover:text-earth-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth-bright"
+            >
+              {dict.nav.contactUs}
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
+            <Link
+              href={localizePath(locale, "/support")}
+              className="inline-flex h-12 items-center gap-2 rounded-full bg-earth px-6 font-semibold text-white transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth-bright"
+            >
+              <Heart aria-hidden="true" className="size-4" />
+              {dict.header.support}
+            </Link>
+          </div>
         </div>
 
         <div className="grid gap-10 py-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
