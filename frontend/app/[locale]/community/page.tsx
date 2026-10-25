@@ -7,7 +7,6 @@ import { ArrowLink, buttonStyles, Section, SectionHeader } from "@/components/si
 import community from "@/content/community"
 import { listEvents } from "@/lib/api/content"
 import { getDictionary, localizePath } from "@/lib/i18n"
-import { formatIndex } from "@/lib/i18n/config"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
 import { cn } from "@/lib/utils"
 import { photos } from "@/content/photos"
@@ -34,7 +33,6 @@ export default async function CommunityPage({ params }: PageProps) {
         photo={{ photo: photos.hillsideChildren, locale }}
         crumbs={crumbs(locale, [[t.overview.title, "/community"]])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.overview.title}
         lead={t.overview.lead}
       />
@@ -72,17 +70,14 @@ export default async function CommunityPage({ params }: PageProps) {
       <section aria-labelledby="portal-title" className="relative isolate overflow-hidden bg-ink text-ink-foreground">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
           <SectionHeader id="portal-title" tone="ink" title={t.overview.portalTitle} lead={t.overview.portalLead} />
-          <ol className="mt-12 grid gap-px overflow-hidden rounded-3xl bg-ink-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
-            {t.overview.features.map((feature, index) => {
-              return (
-                <li key={feature.title} className="reveal bg-ink p-7">
-                  <span className="font-display text-sm text-earth-bright">{formatIndex(locale, index + 1)}</span>
-                  <h3 className="mt-6 font-display text-xl font-semibold">{feature.title}</h3>
-                  <p className="mt-2 leading-relaxed text-ink-foreground/70">{feature.body}</p>
-                </li>
-              )
-            })}
-          </ol>
+          <ul className="mt-12 grid gap-px overflow-hidden rounded-3xl bg-ink-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
+            {t.overview.features.map((feature) => (
+              <li key={feature.title} className="reveal bg-ink p-7">
+                <h3 className="font-display text-xl font-semibold">{feature.title}</h3>
+                <p className="mt-2 leading-relaxed text-ink-foreground/70">{feature.body}</p>
+              </li>
+            ))}
+          </ul>
           <div className="reveal mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <Link href="/login" className={buttonStyles.onInk}>
               {t.overview.portalCta}

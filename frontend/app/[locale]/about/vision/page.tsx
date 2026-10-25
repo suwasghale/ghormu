@@ -29,7 +29,6 @@ export default async function VisionPage({ params }: PageProps) {
           [t.title, "/about/vision"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
       />
@@ -42,17 +41,14 @@ export default async function VisionPage({ params }: PageProps) {
 
       <Section tone="mist" labelledBy="why-title">
         <SectionHeader id="why-title" title={t.whyTitle} />
-        <ol className="mt-12 grid gap-6 lg:grid-cols-3">
-          {t.why.map((item, index) => (
-            <li key={item.title} className="reveal rounded-2xl bg-background p-7 ring-1 ring-border">
-              <span className="font-display text-4xl font-bold text-earth/80">
-                {new Intl.NumberFormat(locale === "ne" ? "ne-NP" : "en").format(index + 1)}
-              </span>
-              <h3 className="mt-4 font-display text-xl font-semibold">{item.title}</h3>
+        <ul className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-3">
+          {t.why.map((item) => (
+            <li key={item.title} className="reveal border-t border-border pt-6">
+              <h3 className="font-display text-xl font-semibold">{item.title}</h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">{item.body}</p>
             </li>
           ))}
-        </ol>
+        </ul>
       </Section>
 
       <Section labelledBy="promises-title">

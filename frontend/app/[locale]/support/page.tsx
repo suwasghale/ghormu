@@ -12,7 +12,6 @@ import support from "@/content/support"
 import updates from "@/content/updates"
 import { listProjects } from "@/lib/api/content"
 import { getDictionary, localizePath } from "@/lib/i18n"
-import { formatIndex } from "@/lib/i18n/config"
 import { formatNumber, formatRupees } from "@/lib/i18n/format"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
 
@@ -41,7 +40,6 @@ export default async function SupportPage({ params }: PageProps) {
         photo={{ photo: photos.khata, locale }}
         crumbs={crumbs(locale, [[t.title, "/support"]])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
       />
@@ -115,15 +113,14 @@ export default async function SupportPage({ params }: PageProps) {
         <h2 id="ways-title" className={`${headingClass} reveal`}>
           {t.ways.title}
         </h2>
-        <ol className="mt-12 grid border-t border-border md:grid-cols-2">
-          {t.ways.items.map((way, index) => (
+        <ul className="mt-12 grid border-t border-border md:grid-cols-2">
+          {t.ways.items.map((way) => (
             <li key={way.title} className="reveal border-b border-border py-8 md:odd:border-r md:odd:pr-10 md:even:pl-10">
-              <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
-              <h3 className="mt-2 font-display text-2xl font-semibold">{way.title}</h3>
+              <h3 className="font-display text-2xl font-semibold">{way.title}</h3>
               <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">{way.body}</p>
             </li>
           ))}
-        </ol>
+        </ul>
         <div className="reveal mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-display text-xl font-semibold">{dict.share.prompt}</p>
           <ShareButtons url={new URL(localizePath(locale, "/support"), site.url).toString()} title={t.title} strings={dict.share} />

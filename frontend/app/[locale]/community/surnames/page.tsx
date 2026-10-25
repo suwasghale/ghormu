@@ -4,7 +4,6 @@ import { PageHero } from "@/components/site/page-hero"
 import { buttonStyles, Section } from "@/components/site/section"
 import community from "@/content/community"
 import { getDictionary, localizePath } from "@/lib/i18n"
-import { formatIndex } from "@/lib/i18n/config"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
 import { cn } from "@/lib/utils"
 import { photos } from "@/content/photos"
@@ -31,22 +30,20 @@ export default async function SurnamesPage({ params }: PageProps) {
           [t.surnames.title, "/community/surnames"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.surnames.title}
         lead={t.surnames.lead}
       />
 
       <Section>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {t.surnames.clans.map((clan, index) => (
+          {t.surnames.clans.map((clan) => (
             <li
               key={clan.name}
               className={cn(
-                "reveal relative isolate flex min-h-56 flex-col justify-between overflow-hidden rounded-3xl p-8",
+                "reveal relative isolate flex min-h-48 flex-col justify-end overflow-hidden rounded-3xl p-8",
                 clan.first ? "bg-ink text-ink-foreground" : "bg-brand-muted",
               )}
             >
-              <span className={cn("font-display text-sm", clan.first ? "text-earth-bright" : "text-earth")}>{formatIndex(locale, index + 1)}</span>
               <div>
                 <p className="font-display text-4xl font-semibold">{clan.name}</p>
                 <p lang={locale === "ne" ? "en" : "ne"} className={cn("mt-1", clan.first ? "text-ink-foreground/60" : "text-muted-foreground")}>

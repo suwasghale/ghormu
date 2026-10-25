@@ -1,18 +1,5 @@
 import Link from "next/link"
-import {
-  ArrowUpRight,
-  Camera,
-  Check,
-  CloudRain,
-  Flower,
-  Footprints,
-  Landmark,
-  Leaf,
-  PartyPopper,
-  ShieldAlert,
-  Snowflake,
-  UtensilsCrossed,
-} from "lucide-react"
+import { ArrowUpRight, Check } from "lucide-react"
 
 import { JsonLd } from "@/components/site/json-ld"
 import { ArrowLink, Section, SectionHeader } from "@/components/site/section"
@@ -33,8 +20,6 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const WHY_PHOTOS: PhotoName[] = ["forest", "chorten", "trail", "welcome"]
-const SEASON_ICONS = [Flower, CloudRain, Leaf, Snowflake]
-const EXPERIENCE_ICONS = [Footprints, Landmark, UtensilsCrossed, PartyPopper, Camera]
 
 export default async function TourismPage({ params }: PageProps) {
   const locale = await pageLocale(params)
@@ -58,7 +43,6 @@ export default async function TourismPage({ params }: PageProps) {
           [dict.nav.explore, "/explore"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
       />
@@ -92,8 +76,7 @@ export default async function TourismPage({ params }: PageProps) {
       <Section tone="mist" labelledBy="seasons-title">
         <SectionHeader id="seasons-title" title={t.seasonsTitle} lead={t.seasonsLead} />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {t.seasons.map((season, index) => {
-            const Icon = SEASON_ICONS[index]
+          {t.seasons.map((season) => {
             return (
               <li
                 key={season.name}
@@ -107,8 +90,7 @@ export default async function TourismPage({ params }: PageProps) {
                     {t.recommended}
                   </span>
                 )}
-                <Icon aria-hidden="true" className="size-6 text-earth" />
-                <h3 className="mt-4 font-display text-2xl font-semibold">{season.name}</h3>
+                <h3 className="font-display text-2xl font-semibold">{season.name}</h3>
                 <p className="mt-1 text-sm font-medium text-brand">{season.months}</p>
                 <p className="mt-3 leading-relaxed text-muted-foreground">{season.body}</p>
               </li>
@@ -121,18 +103,12 @@ export default async function TourismPage({ params }: PageProps) {
       <Section labelledBy="experiences-title">
         <SectionHeader id="experiences-title" title={t.experiencesTitle} />
         <ul className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-          {t.experiences.map((item, index) => {
-            const Icon = EXPERIENCE_ICONS[index]
-            return (
-              <li key={item.title} className="reveal flex gap-4">
-                <Icon aria-hidden="true" className="mt-1 size-6 shrink-0 text-brand" />
-                <div>
-                  <h3 className="font-display text-xl font-semibold">{item.title}</h3>
-                  <p className="mt-1.5 leading-relaxed text-muted-foreground">{item.body}</p>
-                </div>
-              </li>
-            )
-          })}
+          {t.experiences.map((item) => (
+            <li key={item.title} className="reveal border-t border-border pt-5">
+              <h3 className="font-display text-xl font-semibold">{item.title}</h3>
+              <p className="mt-1.5 leading-relaxed text-muted-foreground">{item.body}</p>
+            </li>
+          ))}
         </ul>
       </Section>
 
@@ -153,12 +129,11 @@ export default async function TourismPage({ params }: PageProps) {
             </ul>
           </div>
           <div className="reveal rounded-3xl bg-ink p-8 text-ink-foreground sm:p-10">
-            <ShieldAlert aria-hidden="true" className="size-7 text-earth" />
-            <h2 className="mt-5 font-display text-2xl font-semibold sm:text-3xl">{t.safetyTitle}</h2>
+            <h2 className="font-display text-2xl font-semibold sm:text-3xl">{t.safetyTitle}</h2>
             <ul className="mt-6 flex flex-col gap-3.5">
               {t.safety.map((item) => (
                 <li key={item} className="flex items-start gap-3 leading-relaxed text-ink-foreground/85">
-                  <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-earth" />
+                  <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-earth-bright" />
                   {item}
                 </li>
               ))}
