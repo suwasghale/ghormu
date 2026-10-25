@@ -89,7 +89,7 @@ export default async function PostPage({ params }: PageProps) {
           [post.title, `/updates/${post.slug}`],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={`${t.article.kinds[post.kind]} · ${formatDate(locale, post.published_at)}`}
+        meta={`${t.article.kinds[post.kind]} · ${formatDate(locale, post.published_at)}`}
         title={post.title}
         lead={post.summary}
       />

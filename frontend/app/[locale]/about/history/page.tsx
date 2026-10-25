@@ -38,7 +38,6 @@ export default async function HistoryPage({ params }: PageProps) {
           [t.history.title, "/about/history"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.history.eyebrow}
         title={t.history.title}
         lead={t.history.lead}
       />

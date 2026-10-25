@@ -65,7 +65,6 @@ export default async function TravelGuidePage({ params }: PageProps) {
           [t.title, "/explore/travel-guide"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
       />

@@ -41,7 +41,6 @@ export default async function FaqPage({ params }: PageProps) {
       <PageHero
         crumbs={crumbs(locale, [[t.title, "/faq"]])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
       />

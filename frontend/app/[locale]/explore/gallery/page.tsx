@@ -43,7 +43,6 @@ export default async function GalleryPage({ params }: PageProps) {
           [t.gallery.title, "/explore/gallery"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.gallery.eyebrow}
         title={t.gallery.title}
         lead={t.gallery.lead}
       />

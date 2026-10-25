@@ -50,7 +50,6 @@ export default async function DevelopmentPage({ params }: PageProps) {
           [t.development.title, "/updates/development"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.development.title}
         lead={t.development.lead}
       />

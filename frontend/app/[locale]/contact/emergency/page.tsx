@@ -48,7 +48,6 @@ export default async function EmergencyPage({ params }: PageProps) {
           [t.emergency.title, "/contact/emergency"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.emergency.title}
         lead={t.emergency.lead}
       />

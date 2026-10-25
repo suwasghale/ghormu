@@ -63,7 +63,6 @@ export default async function EventsPage({ params }: PageProps) {
           [t.events.title, "/community/events"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.events.title}
         lead={t.events.lead}
       />

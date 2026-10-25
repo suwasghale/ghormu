@@ -39,7 +39,6 @@ export default async function SitemapPage({ params }: PageProps) {
       <PageHero
         crumbs={crumbs(locale, [[t.title, "/sitemap"]])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
       />

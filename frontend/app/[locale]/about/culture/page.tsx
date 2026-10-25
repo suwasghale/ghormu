@@ -29,7 +29,6 @@ export default async function CulturePage({ params }: PageProps) {
           [t.title, "/about/culture"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
       />

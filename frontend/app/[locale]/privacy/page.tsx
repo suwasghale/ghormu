@@ -20,7 +20,6 @@ export default async function PrivacyPage({ params }: PageProps) {
     <PolicyPage
       crumbs={crumbs(locale, [[t.privacy.title, "/privacy"]])}
       breadcrumbLabel={dict.header.breadcrumb}
-      eyebrow={t.privacy.eyebrow}
       title={t.privacy.title}
       lead={t.privacy.lead}
       updated={t.updated}

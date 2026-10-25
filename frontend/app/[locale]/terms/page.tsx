@@ -20,7 +20,6 @@ export default async function TermsPage({ params }: PageProps) {
     <PolicyPage
       crumbs={crumbs(locale, [[t.terms.title, "/terms"]])}
       breadcrumbLabel={dict.header.breadcrumb}
-      eyebrow={t.terms.eyebrow}
       title={t.terms.title}
       lead={t.terms.lead}
       updated={t.updated}

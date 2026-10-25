@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 
 import { JsonLd } from "./json-ld"
 import { PhotoCredit, PhotoImage } from "./photo"
-import { Container, Eyebrow } from "./section"
+import { Container } from "./section"
 
 export type Crumb = { label: string; href: string }
 
@@ -16,23 +16,24 @@ export type Crumb = { label: string; href: string }
  * Header for every inner page: breadcrumbs, title and a short lead.
  *
  * With a `photo`, the text sits on a darkened photograph of Ghormu, credited
- * in the corner, and the bottom edge curves into the page below. Without
- * one it is quiet on purpose: type on a plain ground, for pages people come
- * to read (policies, notices, help).
+ * in the corner. Without one it is quiet on purpose: type on a plain ground,
+ * for pages people come to read (policies, notices, help). No label above
+ * the title: the breadcrumbs already say which section this is.
  *
  * The last crumb is the page itself. Breadcrumbs are also emitted as
  * BreadcrumbList structured data, which search results show as the path.
  */
 export function PageHero({
   crumbs,
-  eyebrow,
+  meta,
   title,
   lead,
   breadcrumbLabel,
   photo,
 }: {
   crumbs: Crumb[]
-  eyebrow?: string
+  /** Facts about the page shown above its title, e.g. a story's kind and date. */
+  meta?: string
   title: string
   lead: string
   /** Accessible name for the breadcrumb trail, in the page's language. */
@@ -51,7 +52,7 @@ export function PageHero({
         </>
       ) : null}
 
-      <Container className={cn("relative pt-10 sm:pt-14", onPhoto ? "pb-32 sm:pb-44" : "pb-16 sm:pb-24")}>
+      <Container className={cn("relative pt-10 sm:pt-14", onPhoto ? "pb-24 sm:pb-36" : "pb-16 sm:pb-24")}>
         <nav aria-label={breadcrumbLabel}>
           <ol className={cn("flex flex-wrap items-center gap-1 text-sm", onPhoto ? "text-ink-foreground/70" : "text-muted-foreground")}>
             {crumbs.map((crumb, index) => {
@@ -77,8 +78,8 @@ export function PageHero({
         </nav>
 
         <div className={cn("rise max-w-3xl", onPhoto ? "mt-14 sm:mt-20" : "mt-10")}>
-          {eyebrow && <Eyebrow tone={onPhoto ? "ink" : "default"}>{eyebrow}</Eyebrow>}
-          <h1 className="mt-3 font-display text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-6xl">
+          {meta && <p className={cn("text-sm", onPhoto ? "text-ink-foreground/75" : "text-muted-foreground")}>{meta}</p>}
+          <h1 className="mt-2 font-display text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-6xl">
             {title}
           </h1>
           <p className={cn("mt-6 text-lg leading-relaxed sm:text-xl", onPhoto ? "text-ink-foreground/85" : "text-muted-foreground")}>
@@ -88,12 +89,7 @@ export function PageHero({
       </Container>
 
       {photo ? (
-        <>
-          <PhotoCredit photo={photo.photo} locale={photo.locale} className="absolute right-4 bottom-16 sm:right-6 sm:bottom-24" />
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" className="absolute inset-x-0 bottom-0 block h-12 w-full sm:h-16">
-            <path d="M0 48 Q240 14 480 40 T960 30 T1440 36 V80 H0 Z" fill="var(--background)" />
-          </svg>
-        </>
+        <PhotoCredit photo={photo.photo} locale={photo.locale} className="absolute right-4 bottom-4 sm:right-6 sm:bottom-6" />
       ) : null}
 
       <JsonLd

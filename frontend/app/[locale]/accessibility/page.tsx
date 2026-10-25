@@ -25,7 +25,6 @@ export default async function AccessibilityPage({ params }: PageProps) {
       <PageHero
         crumbs={crumbs(locale, [[t.accessibility.title, "/accessibility"]])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.accessibility.eyebrow}
         title={t.accessibility.title}
         lead={t.accessibility.lead}
       />

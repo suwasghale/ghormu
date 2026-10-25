@@ -28,7 +28,6 @@ export default async function ContactPage({ params }: PageProps) {
         photo={{ photo: photos.welcome, locale }}
         crumbs={crumbs(locale, [[t.contact.title, "/contact"]])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.contact.title}
         lead={t.contact.lead}
       />

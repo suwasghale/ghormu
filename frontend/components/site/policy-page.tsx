@@ -5,7 +5,6 @@ import { Container } from "./section"
 export function PolicyPage({
   crumbs,
   breadcrumbLabel,
-  eyebrow,
   title,
   lead,
   updated,
@@ -13,7 +12,6 @@ export function PolicyPage({
 }: {
   crumbs: Crumb[]
   breadcrumbLabel: string
-  eyebrow: string
   title: string
   lead: string
   updated: string
@@ -21,7 +19,7 @@ export function PolicyPage({
 }) {
   return (
     <>
-      <PageHero crumbs={crumbs} breadcrumbLabel={breadcrumbLabel} eyebrow={eyebrow} title={title} lead={lead} />
+      <PageHero crumbs={crumbs} breadcrumbLabel={breadcrumbLabel} title={title} lead={lead} />
       <Container className="py-16 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <p className="text-sm text-muted-foreground">{updated}</p>

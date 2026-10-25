@@ -35,7 +35,6 @@ export default async function NewsPage({ params }: PageProps) {
         photo={{ photo: photos.play, locale }}
         crumbs={crumbs(locale, [[t.news.title, "/updates"]])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.news.title}
         lead={t.news.lead}
       />

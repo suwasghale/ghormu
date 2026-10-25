@@ -44,7 +44,6 @@ export default async function MapPage({ params }: PageProps) {
           [dict.nav.map, "/explore/map"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
       />

@@ -35,7 +35,6 @@ export default async function AnnouncementsPage({ params }: PageProps) {
           [t.announcements.title, "/updates/announcements"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.announcements.title}
         lead={t.announcements.lead}
       />

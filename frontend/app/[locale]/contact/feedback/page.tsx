@@ -30,7 +30,6 @@ export default async function FeedbackPage({ params }: PageProps) {
           [t.feedback.title, "/contact/feedback"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.feedback.title}
         lead={t.feedback.lead}
       />

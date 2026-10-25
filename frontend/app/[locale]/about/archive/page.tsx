@@ -40,7 +40,6 @@ export default async function ArchivePage({ params }: PageProps) {
           [t.archive.title, "/about/archive"],
         ])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.archive.eyebrow}
         title={t.archive.title}
         lead={t.archive.lead}
       />

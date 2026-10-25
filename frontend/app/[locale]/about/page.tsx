@@ -28,7 +28,6 @@ export default async function AboutPage({ params }: PageProps) {
         photo={{ photo: photos.terraces, locale }}
         crumbs={crumbs(locale, [[t.title, "/about"]])}
         breadcrumbLabel={dict.header.breadcrumb}
-        eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
       />
