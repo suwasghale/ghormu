@@ -20,7 +20,7 @@ export default bilingual({
           items: [
             {
               q: "ghormu.com किन बनाइएको हो?",
-              a: "घोर्मुको इतिहास र संस्कृति जोगाउन, गाउँ र विदेशमा रहेका घोर्मुवासीलाई जोड्न, र समुदायका कार्यक्रम तथा सहयोगको अभिलेख सुरक्षित राख्न।",
+              a: "गाउँका कथा र तस्बिर एउटा सुरक्षित ठाउँमा राख्न, र टाढा बस्ने घोर्मुवासीले घरमा के भइरहेछ थाहा पाऊन् भनेर। पछि यसमा कार्यक्रम र सहयोगको हिसाब पनि रहनेछ।",
             },
             { q: "वेबसाइट कुन-कुन भाषामा छ?", a: "अहिले नेपाली र अंग्रेजीमा। पछि अन्य भाषा पनि थपिनेछन्।" },
             {
@@ -211,7 +211,7 @@ export default bilingual({
           items: [
             {
               q: "Why was ghormu.com created?",
-              a: "To preserve Ghormu's history and culture, to connect people from Ghormu in the village and abroad, and to keep a safe record of community events and contributions.",
+              a: "So the village's stories and photos are kept somewhere safe, and so people from Ghormu who live far away can follow what happens at home. Later it will also keep the records of events and contributions.",
             },
             { q: "Which languages is the website in?", a: "Nepali and English for now. More languages will be added later." },
             {

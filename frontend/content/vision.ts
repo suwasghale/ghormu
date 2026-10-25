@@ -5,7 +5,7 @@ export default bilingual({
   ne: {
     eyebrow: "परिचय",
     title: "हाम्रो दृष्टि",
-    lead: "घोर्मुको इतिहास, संस्कृति र सम्बन्धलाई आउँदा पुस्ताका लागि जोगाउँदै, गाउँ र संसारभर छरिएका घोर्मुवासीलाई एउटै ठाउँमा जोड्ने।",
+    lead: "गाउँका कथा, तस्बिर र हिसाब सुरक्षित राख्ने, र घोर्मुवासी जहाँ भए पनि गाउँसँग जोडिइरहून्।",
     statement: "बीस वर्षपछि घोर्मुमा जन्मने बच्चाले पनि आफ्ना हजुरबा-हजुरआमा कसरी बाँचे भनेर हेर्न सकोस्, र गाउँको कथामा आफ्नो परिवारको ठाउँ भेटोस्। हामी त्यसैका लागि यो काम गर्दैछौँ।",
     whyTitle: "किन ghormu.com?",
     why: [
@@ -24,10 +24,10 @@ export default bilingual({
     ],
     promisesTitle: "हाम्रा प्रतिबद्धता",
     promises: [
-      { title: "संरक्षण", body: "संस्कृति र इतिहासलाई पहिले नेपालीमा, आफ्नै शब्दमा अभिलेख गर्ने।" },
-      { title: "जोडाइ", body: "गाउँमा बस्ने र विदेशमा रहेका घोर्मुवासीलाई एकै ठाउँमा जोड्ने।" },
-      { title: "गोपनीयता", body: "परिवारका व्यक्तिगत विवरण सुरक्षित राख्ने; अधिकार पाएका व्यक्तिले मात्र हेर्न पाउने।" },
-      { title: "दिगोपन", body: "कम खर्चमा चल्ने र भविष्यमा अरूले पनि सम्हाल्न सक्ने गरी बनाउने।" },
+      { title: "पहिले नेपालीमा", body: "संस्कृति र इतिहासलाई पहिले नेपालीमा, आफ्नै शब्दमा अभिलेख गर्ने।" },
+      { title: "सबैका लागि एउटै ठाउँ", body: "गाउँमा बस्ने र विदेशमा रहेका घोर्मुवासीलाई एकै ठाउँमा जोड्ने।" },
+      { title: "परिवारको विवरण गोप्य", body: "परिवारका व्यक्तिगत विवरण सुरक्षित राख्ने; अधिकार पाएका व्यक्तिले मात्र हेर्न पाउने।" },
+      { title: "सस्तो, र अरूले चलाउन सक्ने", body: "कम खर्चमा चल्ने र भविष्यमा अरूले पनि सम्हाल्न सक्ने गरी बनाउने।" },
     ],
     helpTitle: "तपाईं कसरी सहभागी हुन सक्नुहुन्छ",
     help: [
@@ -41,7 +41,7 @@ export default bilingual({
   en: {
     eyebrow: "About",
     title: "Our Vision",
-    lead: "To preserve Ghormu's history, culture and relationships for generations to come, and to bring together everyone from Ghormu, in the village and across the world.",
+    lead: "To keep the village's stories, photos and records safe, and to keep people from Ghormu connected to it wherever they live.",
     statement: "We want a child born in Ghormu twenty years from now to be able to see how their grandparents lived, and to find their family's place in the village's story. That is what this work is for.",
     whyTitle: "Why ghormu.com?",
     why: [
@@ -60,10 +60,10 @@ export default bilingual({
     ],
     promisesTitle: "Our commitments",
     promises: [
-      { title: "Preserve", body: "Record our culture and history in Nepali first, in our own words." },
-      { title: "Connect", body: "Bring together people from Ghormu, at home and abroad, in one place." },
-      { title: "Privacy", body: "Keep family details safe, visible only to people with permission." },
-      { title: "Lasting", body: "Built to run at low cost and to be maintainable by others in the future." },
+      { title: "Nepali first", body: "Record our culture and history in Nepali first, in our own words." },
+      { title: "One place for everyone", body: "Bring together people from Ghormu, at home and abroad, in one place." },
+      { title: "Family details stay private", body: "Keep family details safe, visible only to people with permission." },
+      { title: "Cheap to run, easy to hand on", body: "Built to run at low cost and to be maintainable by others in the future." },
     ],
     helpTitle: "How you can take part",
     help: [

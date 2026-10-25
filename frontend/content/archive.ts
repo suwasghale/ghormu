@@ -16,7 +16,7 @@ export default bilingual({
     archive: {
       eyebrow: "परिचय",
       title: "डिजिटल अभिलेख",
-      lead: "पुराना तस्बिर, कागजात र नक्साहरूको संग्रह, जसले घोर्मुको इतिहासलाई आउँदा पुस्तासम्म पुर्‍याउँछ।",
+      lead: "घोर्मुका पुराना तस्बिर, कागजात र नक्सा, दराज वा पुरानो फोनमा हराउन नदिन यहाँ राखिएका।",
       collectionTitle: "संग्रह",
       all: "सबै",
       kinds: { photo: "तस्बिर", document: "कागजात", map: "नक्सा", satellite: "भू-उपग्रह तस्बिर" },
@@ -64,7 +64,7 @@ export default bilingual({
     gallery: {
       eyebrow: "घुमफिर",
       title: "तस्बिर संग्रह",
-      lead: "घोर्मुका दृश्य, मानिस र क्षणहरू।",
+      lead: "घोर्मु र यहाँका मानिसका तस्बिर, गाउँ घुम्न आएका साथीहरूले खिचेका।",
       emptyTitle: "तस्बिरहरू छिट्टै आउँदैछन्",
       emptyBody: "गाउँका तस्बिर संकलन भइरहेका छन्। तपाईंले खिचेका तस्बिर साझा गर्न चाहनुहुन्छ भने हामीलाई सम्पर्क गर्नुहोस्।",
       emptyAction: "तस्बिर साझा गर्नुहोस्",
@@ -94,7 +94,7 @@ export default bilingual({
     archive: {
       eyebrow: "About",
       title: "Digital Archive",
-      lead: "A collection of old photographs, documents and maps that carries Ghormu's history to future generations.",
+      lead: "Old photographs, papers and maps from Ghormu, kept here so they don't get lost in a drawer or an old phone.",
       collectionTitle: "Collection",
       all: "All",
       kinds: { photo: "Photos", document: "Documents", map: "Maps", satellite: "Satellite images" },
@@ -142,7 +142,7 @@ export default bilingual({
     gallery: {
       eyebrow: "Explore",
       title: "Gallery",
-      lead: "Views, people and moments from Ghormu.",
+      lead: "Photographs of Ghormu and its people, taken by friends who visited and let us use them.",
       emptyTitle: "Photos are coming soon",
       emptyBody: "Photos of the village are being collected. If you'd like to share yours, please get in touch.",
       emptyAction: "Share your photos",

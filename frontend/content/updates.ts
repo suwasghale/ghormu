@@ -7,7 +7,7 @@ export default bilingual({
     loadFailed: "सामग्री अहिले लोड हुन सकेन। केही समयपछि फेरि हेर्नुहोस्।",
     news: {
       title: "समाचार",
-      lead: "घोर्मुमा भइरहेका गतिविधि, कार्यक्रम र उपलब्धिका ताजा खबर।",
+      lead: "घोर्मुमा के भइरहेको छ।",
       emptyTitle: "अहिलेसम्म कुनै समाचार छैन",
       emptyBody: "गाउँका खबरहरू यहाँ प्रकाशित हुनेछन्। तपाईंसँग साझा गर्न लायक खबर छ भने हामीलाई पठाउनुहोस्।",
       emptyAction: "खबर पठाउनुहोस्",
@@ -49,7 +49,7 @@ export default bilingual({
     loadFailed: "Content could not be loaded right now. Please check again shortly.",
     news: {
       title: "News",
-      lead: "The latest on activities, events and achievements in Ghormu.",
+      lead: "What's been happening in Ghormu.",
       emptyTitle: "No news yet",
       emptyBody: "Village news will be published here. If you have a story worth sharing, send it to us.",
       emptyAction: "Send us news",

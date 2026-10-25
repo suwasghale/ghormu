@@ -31,7 +31,7 @@ export default bilingual({
         title: "एकअर्काको साथ",
         body: [
           "विवाह, छेवर, गुफा बस्ने जस्ता संस्कारमा गाउँका परिवारहरू एकअर्काको घरमा सहयोग लिएर पुग्छन्।",
-          "यो लेनदेन केवल हिसाब होइन; यो सम्बन्ध, सम्मान र भरोसाको अभिव्यक्ति हो, जसले घोर्मुलाई एउटै परिवारझैँ बाँधेर राखेको छ।",
+          "कसले के ल्यायो भन्ने कुरा सम्झिएर राखिन्छ, र त्यो परिवारको पालो आउँदा सहयोग फर्काइन्छ।",
         ],
       },
       {
@@ -42,10 +42,10 @@ export default bilingual({
         ],
       },
     ],
-    moreTitle: "थप जान्नुहोस्",
+    moreTitle: "गाउँबारे अरू कुरा",
     more: [
-      { title: "इतिहास", href: "/about/history", body: "गाउँको उत्पत्तिदेखि आजसम्मको यात्रा।" },
-      { title: "हाम्रो दृष्टि", href: "/about/vision", body: "ghormu.com किन बनाइयो र यसको लक्ष्य के हो।" },
+      { title: "इतिहास", href: "/about/history", body: "गाउँ कसरी बस्यो, र कसरी फेरिँदै आयो।" },
+      { title: "हाम्रो दृष्टि", href: "/about/vision", body: "हामीले यो वेबसाइट किन बनायौँ, र यसबाट के आशा गर्छौँ।" },
       { title: "संस्कृति र सम्पदा", href: "/about/culture", body: "भाषा, भेषभूषा, गीत, नाच र संस्कार।" },
       { title: "डिजिटल अभिलेख", href: "/about/archive", body: "पुराना तस्बिर, कागजात र मौखिक इतिहास।" },
     ],
@@ -53,7 +53,7 @@ export default bilingual({
     faq: [
       {
         q: "ghormu.com किन बनाइएको हो?",
-        a: "घोर्मुको इतिहास र संस्कृति जोगाउन, गाउँ र विदेशमा रहेका घोर्मुवासीलाई जोड्न, र समुदायका कार्यक्रम तथा सहयोगको अभिलेख सुरक्षित राख्न।",
+        a: "गाउँका कथा र तस्बिर एउटा सुरक्षित ठाउँमा राख्न, र टाढा बस्ने घोर्मुवासीले घरमा के भइरहेछ थाहा पाऊन् भनेर। पछि यसमा कार्यक्रम र सहयोगको हिसाब पनि रहनेछ।",
       },
       {
         q: "वेबसाइट कुन-कुन भाषामा छ?",
@@ -93,7 +93,7 @@ export default bilingual({
         title: "Standing by one another",
         body: [
           "At weddings, Chhewar, Gufa Basne and other rites, families arrive at each other's homes bringing their support.",
-          "This exchange is not mere bookkeeping; it is an expression of relationship, respect and trust that binds Ghormu together like one family.",
+          "People remember who came and what they brought, and the help goes back when it is the other family's turn.",
         ],
       },
       {
@@ -104,10 +104,10 @@ export default bilingual({
         ],
       },
     ],
-    moreTitle: "Learn more",
+    moreTitle: "More about the village",
     more: [
-      { title: "History", href: "/about/history", body: "The village's journey from its origins to today." },
-      { title: "Our Vision", href: "/about/vision", body: "Why ghormu.com was built and what it aims for." },
+      { title: "History", href: "/about/history", body: "How the village began, and how it has changed." },
+      { title: "Our Vision", href: "/about/vision", body: "Why we built this website, and what we hope it does." },
       { title: "Culture & Heritage", href: "/about/culture", body: "Language, dress, songs, dances and rites." },
       { title: "Digital Archive", href: "/about/archive", body: "Old photos, documents and oral history." },
     ],
@@ -115,7 +115,7 @@ export default bilingual({
     faq: [
       {
         q: "Why was ghormu.com created?",
-        a: "To preserve Ghormu's history and culture, to connect people from Ghormu in the village and abroad, and to keep a safe record of community events and contributions.",
+        a: "So the village's stories and photos are kept somewhere safe, and so people from Ghormu who live far away can follow what happens at home. Later it will also keep the records of events and contributions.",
       },
       {
         q: "Which languages is the website in?",

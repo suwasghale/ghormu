@@ -30,7 +30,7 @@ export default bilingual({
     },
     day: {
       title: "घोर्मुको एक दिन",
-      lead: "ठूलो कुरा केही छैन। तर यही सानो दिनचर्यामा हाम्रो गाउँ बाँचेको छ।",
+      lead: "ठूलो कुरा केही छैन। एउटा साधारण दिन यस्तो हुन्छ।",
       moments: [
         { label: "बिहान", caption: "दिनको पहिलो डोको उकालो लाग्छ।" },
         { label: "दिउँसो", caption: "गोरुले गरा जोत्छन्, घाँसको भारी घर फर्कन्छ।" },
@@ -41,7 +41,7 @@ export default bilingual({
     },
     traditions: {
       title: "हाम्रा चाडपर्व र संस्कार",
-      lead: "जन्मदेखि विवाहसम्मका संस्कारमा पूरै गाउँ जुट्छ। तिनैले हामीलाई एक-अर्कासँग बाँधेर राखेका छन्।",
+      lead: "बच्चाको पहिलो कपाल काट्नेदेखि विवाहसम्म, पूरै गाउँ जुट्छ।",
       items: [
         { name: "ल्होसार", body: "नयाँ वर्ष। नाचगान, भेटघाट र घरघरमा मीठा परिकार।" },
         { name: "छेवर", body: "बालकको पहिलो पटक कपाल काट्ने दिन, आफन्त र गाउँले आशीर्वाद दिन आउँछन्।" },
@@ -59,7 +59,7 @@ export default bilingual({
     },
     support: {
       title: "घोर्मुको भविष्यमा साथ दिनुहोस्",
-      body: "गाउँका आयोजना गाउँलेकै मेहनत र साथीहरूको सहयोगले अघि बढ्छन्। हामी हरेक सहयोगको हिसाब खुला राख्छौँ, ताकि तपाईंले आफ्नो सहयोग कहाँ पुग्यो देख्न सक्नुहोस्।",
+      body: "गाउँका धेरैजसो काम हामी आफैँ गर्छौँ; टाढाका साथीहरूको सहयोगले त्यसलाई अझ अघि पुर्‍याउँछ। के आयो र कहाँ खर्च भयो, यहीँ राखिन्छ।",
       primary: "सहयोग गर्ने तरिका",
       secondary: "विकास आयोजनाहरू हेर्नुहोस्",
     },
@@ -94,7 +94,7 @@ export default bilingual({
     },
     day: {
       title: "A day in Ghormu",
-      lead: "Nothing grand. But this is the everyday life that keeps our village alive.",
+      lead: "Nothing grand. This is what an ordinary day looks like.",
       moments: [
         { label: "Morning", caption: "The first doko of the day heads uphill." },
         { label: "Midday", caption: "Oxen plough the terraces; fodder comes home." },
@@ -105,7 +105,7 @@ export default bilingual({
     },
     traditions: {
       title: "Our festivals and rites",
-      lead: "From a child's first haircut to a wedding, the whole village gathers. These are the moments that hold us together.",
+      lead: "From a child's first haircut to a wedding, the whole village turns up.",
       items: [
         { name: "Lhosar", body: "New year. Song and dance, visits, and festive food in every home." },
         { name: "Chhewar", body: "A boy's first haircut, when relatives and villagers come to give their blessings." },
@@ -123,7 +123,7 @@ export default bilingual({
     },
     support: {
       title: "Stand with Ghormu",
-      body: "Village projects move forward on our own work and the help of friends. We keep every contribution accounted for in the open, so you can see where your help went.",
+      body: "We do most of the work in the village ourselves, and help from friends far away takes it further. What comes in, and where it goes, is posted here.",
       primary: "Ways to help",
       secondary: "See our development projects",
     },

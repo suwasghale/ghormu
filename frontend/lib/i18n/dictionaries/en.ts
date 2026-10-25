@@ -64,13 +64,13 @@ const en: Dictionary = {
     discover: "Discover",
     community: "Community",
     help: "Help",
-    closing: "Ghormu's story is still being written. Help us write the next chapter.",
+    closing: "Have an old photo, a story, or something we got wrong? Write to us.",
     copyright: "© {year} Ghormu. All rights reserved.",
   },
 
   home: {
     title: "Welcome to Ghormu",
-    lead: "A digital home that keeps and shares our village's history, culture and community in one place.",
+    lead: "Pages are being added one at a time, as the village writes them.",
     primaryCta: "About Ghormu",
     secondaryCta: "Explore Ghormu",
   },
@@ -112,7 +112,7 @@ const en: Dictionary = {
   error: {
     code: "Unexpected error",
     title: "Something went wrong",
-    body: "Something broke on our side, not yours. Please try again in a moment.",
+    body: "Something went wrong at our end. Please try again in a moment.",
     retry: "Try again",
     backHome: "Back to home",
     reference: "Ref",

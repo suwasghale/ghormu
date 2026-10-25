@@ -9,7 +9,7 @@ export default bilingual({
     eyebrow: "समुदाय",
     overview: {
       title: "समुदायको परिचय",
-      lead: "घोर्मुका थर-थरका समुदाय, तिनका परम्परा, र परिवार तथा कार्यक्रमको अभिलेख राख्ने हाम्रो साझा प्रणाली।",
+      lead: "घोर्मुका परिवार र थरहरू, र तिनका कार्यक्रम तथा सहयोगको हिसाब राख्न हामीले बनाउँदै गरेको प्रणाली।",
       introTitle: "एउटै गाउँ, धेरै समुदाय",
       intro: [
         "घोर्मुमा घले, तामाङ, गुरुङलगायत विभिन्न समुदाय पुस्तौँदेखि सँगै बस्दै आएका छन्। हरेक थरको आफ्नै इतिहास र जिम्मेवारी छ, र विवाह, छेवर, गुफा बस्नेजस्ता संस्कारमा सबै एकअर्काको साथमा उभिन्छन्।",
@@ -69,7 +69,7 @@ export default bilingual({
     eyebrow: "Community",
     overview: {
       title: "Community Overview",
-      lead: "Ghormu's clan communities, their traditions, and the shared system that keeps the record of families and events.",
+      lead: "The families and clans of Ghormu, and the system we are building to keep the record of their events and contributions.",
       introTitle: "One village, many communities",
       intro: [
         "Ghale, Tamang, Gurung and other communities have lived together in Ghormu for generations. Each clan has its own history and responsibilities, and at weddings, Chhewar, Gufa Basne and other rites, everyone stands by one another.",

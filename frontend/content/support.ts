@@ -13,12 +13,12 @@ export default bilingual({
   ne: {
     eyebrow: "सहयोग",
     title: "घोर्मुलाई सहयोग गर्नुहोस्",
-    lead: "गाउँका धेरै काम गाउँलेकै श्रमदान र टाढाका साथीहरूको सहयोगले सम्भव हुन्छन्। तपाईंको सानो सहयोगले पनि फरक पार्छ।",
+    lead: "गाउँका धेरै काम गाउँलेकै श्रमदान र टाढाका साथीहरूको सहयोगले सम्भव हुन्छन्।",
     why: {
       title: "किन सहयोग?",
       paragraphs: [
         "घोर्मुमा परिवारहरू एकअर्काको काममा साथ दिन्छन्। विवाहमा, छेवरमा, घर बनाउँदा। गाउँको विकास पनि यसरी नै हुँदै आएको छ: सबैले आ-आफ्नो गर्छन्, र साथीहरूले थप्छन्।",
-        "तपाईं गाउँकै हुनुहुन्छ वा कहिल्यै घोर्मु आउनुभएको छैन, दुवैको सहयोगको उत्तिकै मूल्य छ। पैसा मात्र होइन, सीप, समय र गाउँको कथा फैलाउनु पनि सहयोग हो।",
+        "सहयोग गर्न घोर्मुकै हुनुपर्दैन। पैसाले मद्दत गर्छ, तर सीप, समय र गाउँबारे अरूलाई सुनाउनुले पनि उत्तिकै मद्दत गर्छ।",
       ],
     },
     needs: {
@@ -38,7 +38,7 @@ export default bilingual({
         },
         {
           title: "सीप र समय",
-          body: "अनुवाद, फोटोग्राफी, पढाउने काम, स्वास्थ्य वा प्राविधिक सीप। तपाईंले जानेको कुरा गाउँका लागि ठूलो सहयोग हुन सक्छ।",
+          body: "अनुवाद, फोटोग्राफी, पढाउने काम, स्वास्थ्य वा प्राविधिक सीप। के गर्न सक्नुहुन्छ, लेखेर पठाउनुहोस्।",
         },
         {
           title: "कथा र तस्बिर",
@@ -46,7 +46,7 @@ export default bilingual({
         },
         {
           title: "कुरा फैलाउनुहोस्",
-          body: "यो वेबसाइट साथीभाइ, परिवार र संस्थाहरूसँग साझा गर्नुहोस्। धेरै मानिसले घोर्मु चिने भने धेरै ढोका खुल्छन्।",
+          body: "यो वेबसाइट साथीभाइ, परिवार वा यसमा चासो राख्न सक्ने संस्थालाई पठाउनुहोस्।",
         },
       ],
     },
@@ -66,12 +66,12 @@ export default bilingual({
   en: {
     eyebrow: "Support",
     title: "Support Ghormu",
-    lead: "Much of what gets done in the village is done by the villagers' own labour and the help of friends far away. Even a small contribution makes a difference.",
+    lead: "Most of what gets done in Ghormu is done by the villagers themselves, with help from friends far away.",
     why: {
       title: "Why help?",
       paragraphs: [
         "In Ghormu, families help each other: at weddings, at a Chhewar, when a house goes up. The village has always moved forward the same way: everyone does their part, and friends add to it.",
-        "Whether you are from the village or have never been to Ghormu, your help counts the same. Not only money: skills, time and telling others about the village all help too.",
+        "You don't need to be from Ghormu to help. Money helps, and so do skills, time and telling people about the village.",
       ],
     },
     needs: {
@@ -91,7 +91,7 @@ export default bilingual({
         },
         {
           title: "Skills and time",
-          body: "Translation, photography, teaching, health or technical skills. What you know could be a real help to the village.",
+          body: "Translation, photography, teaching, health or technical skills. Tell us what you can do.",
         },
         {
           title: "Stories and photos",
@@ -99,7 +99,7 @@ export default bilingual({
         },
         {
           title: "Spread the word",
-          body: "Share this website with friends, family and organisations. The more people know Ghormu, the more doors open.",
+          body: "Send this site to friends, family, or an organisation that might care.",
         },
       ],
     },

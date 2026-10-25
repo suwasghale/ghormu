@@ -11,7 +11,7 @@ export default bilingual({
   ne: {
     eyebrow: "घुमफिर",
     title: "यात्रा निर्देशिका",
-    lead: "घोर्मु आउने योजना बनाउँदै हुनुहुन्छ? यहाँ अहिलेको मौसम, बाटो, तयारी र उपयोगी सुझाव एकै ठाउँमा छन्।",
+    lead: "आजको मौसम, गाउँ कसरी पुग्ने, र झोलामा के राख्ने।",
 
     weather: {
       eyebrow: "प्रत्यक्ष मौसम",
@@ -127,7 +127,7 @@ export default bilingual({
   en: {
     eyebrow: "Explore",
     title: "Travel Guide",
-    lead: "Planning a trip to Ghormu? Current weather, directions, what to bring and practical tips, all in one place.",
+    lead: "Today's weather, how to find the village, and what to pack.",
 
     weather: {
       eyebrow: "Live weather",
