@@ -34,7 +34,7 @@ export default async function AboutPage({ params }: PageProps) {
 
       <Section>
         <div className="grid gap-14 lg:grid-cols-[1fr_20rem] lg:gap-20">
-          <div className="flex flex-col gap-14">
+          <div className="flex flex-col gap-12">
             {t.story.map((part, index) => (
               <article key={part.title} className="reveal" aria-labelledby={`story-${index}`}>
                 <h2 id={`story-${index}`} className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
