@@ -8,7 +8,6 @@ import { bilingual } from "./bilingual"
  */
 export default bilingual({
   ne: {
-    eyebrow: "घुमफिर",
     attractions: {
       title: "मुख्य आकर्षण",
       lead: "गाउँ वरपर कहाँ हिँड्ने र के हेर्ने।",
@@ -40,7 +39,6 @@ export default bilingual({
     },
   },
   en: {
-    eyebrow: "Explore",
     attractions: {
       title: "Attractions",
       lead: "Where to walk and what to see around the village.",

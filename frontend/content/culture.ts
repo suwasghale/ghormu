@@ -7,7 +7,6 @@ import { bilingual } from "./bilingual"
  */
 export default bilingual({
   ne: {
-    eyebrow: "परिचय",
     title: "संस्कृति र सम्पदा",
     lead: "हाम्रो संस्कृति संग्रहालयमा होइन, घरघरमा छ: बोलीमा, लुगामा, गीतमा, र जन्मदेखि मृत्युसम्मका संस्कारमा।",
     communitiesTitle: "समुदाय र परम्परा",
@@ -68,7 +67,6 @@ export default bilingual({
     },
   },
   en: {
-    eyebrow: "About",
     title: "Culture & Heritage",
     lead: "Our culture is not in a museum. It is in every home: in how we speak and dress, in our songs, and in the rites that mark a life.",
     communitiesTitle: "Communities and traditions",

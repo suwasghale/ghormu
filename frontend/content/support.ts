@@ -11,7 +11,6 @@ import { bilingual } from "./bilingual"
  */
 export default bilingual({
   ne: {
-    eyebrow: "सहयोग",
     title: "घोर्मुलाई सहयोग गर्नुहोस्",
     lead: "गाउँका धेरै काम गाउँलेकै श्रमदान र टाढाका साथीहरूको सहयोगले सम्भव हुन्छन्।",
     why: {
@@ -64,7 +63,6 @@ export default bilingual({
     },
   },
   en: {
-    eyebrow: "Support",
     title: "Support Ghormu",
     lead: "Most of what gets done in Ghormu is done by the villagers themselves, with help from friends far away.",
     why: {

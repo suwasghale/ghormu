@@ -9,7 +9,6 @@ import { bilingual } from "./bilingual"
  */
 export default bilingual({
   ne: {
-    eyebrow: "घुमफिर",
     title: "यात्रा निर्देशिका",
     lead: "आजको मौसम, गाउँ कसरी पुग्ने, र झोलामा के राख्ने।",
 
@@ -125,7 +124,6 @@ export default bilingual({
     },
   },
   en: {
-    eyebrow: "Explore",
     title: "Travel Guide",
     lead: "Today's weather, how to find the village, and what to pack.",
 

@@ -5,7 +5,6 @@ export default bilingual({
   ne: {
     loadFailed: "सामग्री अहिले लोड हुन सकेन। केही समयपछि फेरि हेर्नुहोस्।",
     throughTime: {
-      eyebrow: "भू-उपग्रहबाट",
       title: "समयसँगै घोर्मु",
       lead: "फरक-फरक वर्षमा खिचिएका भू-उपग्रह तस्बिरहरू तुलना गरेर गाउँ कसरी फेरिँदै आयो हेर्नुहोस्।",
       before: "पहिले",
@@ -14,7 +13,6 @@ export default bilingual({
       credits: "तस्बिर स्रोत",
     },
     archive: {
-      eyebrow: "परिचय",
       title: "डिजिटल अभिलेख",
       lead: "घोर्मुका पुराना तस्बिर, कागजात र नक्सा, दराज वा पुरानो फोनमा हराउन नदिन यहाँ राखिएका।",
       collectionTitle: "संग्रह",
@@ -45,7 +43,6 @@ export default bilingual({
       removalCta: "हटाउन वा सच्याउन अनुरोध गर्नुहोस्",
     },
     history: {
-      eyebrow: "परिचय",
       title: "इतिहास",
       lead: "घोर्मुको इतिहास गाउँका बुढापाकाको सम्झना, पुराना कागजात र तस्बिरबाट लेखिँदैछ।",
       introTitle: "हाम्रो इतिहास, हाम्रै शब्दमा",
@@ -62,7 +59,6 @@ export default bilingual({
       oralCta: "सम्पर्क गर्नुहोस्",
     },
     gallery: {
-      eyebrow: "घुमफिर",
       title: "तस्बिर संग्रह",
       lead: "घोर्मु र यहाँका मानिसका तस्बिर, गाउँ घुम्न आएका साथीहरूले खिचेका।",
       emptyTitle: "तस्बिरहरू छिट्टै आउँदैछन्",
@@ -83,7 +79,6 @@ export default bilingual({
   en: {
     loadFailed: "Content could not be loaded right now. Please check again shortly.",
     throughTime: {
-      eyebrow: "From above",
       title: "Ghormu through time",
       lead: "Compare satellite images taken in different years and see how the village has changed.",
       before: "Before",
@@ -92,7 +87,6 @@ export default bilingual({
       credits: "Image credits",
     },
     archive: {
-      eyebrow: "About",
       title: "Digital Archive",
       lead: "Old photographs, papers and maps from Ghormu, kept here so they don't get lost in a drawer or an old phone.",
       collectionTitle: "Collection",
@@ -123,7 +117,6 @@ export default bilingual({
       removalCta: "Request removal or a correction",
     },
     history: {
-      eyebrow: "About",
       title: "History",
       lead: "Ghormu's history is being written from our elders' memories, old documents and photographs.",
       introTitle: "Our history, in our own words",
@@ -140,7 +133,6 @@ export default bilingual({
       oralCta: "Get in touch",
     },
     gallery: {
-      eyebrow: "Explore",
       title: "Gallery",
       lead: "Photographs of Ghormu and its people, taken by friends who visited and let us use them.",
       emptyTitle: "Photos are coming soon",

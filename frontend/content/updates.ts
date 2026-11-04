@@ -3,7 +3,6 @@ import { bilingual } from "./bilingual"
 /** Labels for the Updates pages. The posts and projects themselves come from the admin. */
 export default bilingual({
   ne: {
-    eyebrow: "सूचना",
     loadFailed: "सामग्री अहिले लोड हुन सकेन। केही समयपछि फेरि हेर्नुहोस्।",
     news: {
       title: "समाचार",
@@ -45,7 +44,6 @@ export default bilingual({
     },
   },
   en: {
-    eyebrow: "Updates",
     loadFailed: "Content could not be loaded right now. Please check again shortly.",
     news: {
       title: "News",

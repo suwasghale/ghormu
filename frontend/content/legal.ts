@@ -11,7 +11,6 @@ export default bilingual({
   ne: {
     updated: "अन्तिम पटक अद्यावधिक: २०२६ अक्टोबर १८",
     faq: {
-      eyebrow: "सहायता",
       title: "बारम्बार सोधिने प्रश्न",
       lead: "ghormu.com, घोर्मु घुम्न आउने र समुदाय पोर्टलबारे प्रायः सोधिने प्रश्नहरू।",
       groups: [
@@ -72,7 +71,6 @@ export default bilingual({
       ],
     },
     privacy: {
-      eyebrow: "सहायता",
       title: "गोपनीयता नीति",
       lead: "ghormu.com ले कुन जानकारी राख्छ, किन राख्छ, र तपाईंका अधिकार के-के हुन्।",
       sections: [
@@ -128,7 +126,6 @@ export default bilingual({
       ],
     },
     terms: {
-      eyebrow: "सहायता",
       title: "प्रयोगका सर्तहरू",
       lead: "ghormu.com प्रयोग गर्दा लागू हुने सर्तहरू।",
       sections: [
@@ -169,7 +166,6 @@ export default bilingual({
       ],
     },
     accessibility: {
-      eyebrow: "सहायता",
       title: "पहुँचयोग्यता",
       lead: "ghormu.com सबैका लागि—बुढापाका, दृष्टिविहीन, र कमजोर इन्टरनेट भएका प्रयोगकर्तासमेत—सजिलो होस् भन्ने हाम्रो लक्ष्य हो।",
       goal: "हामी WCAG 2.2 को AA स्तर पूरा गर्ने लक्ष्य राख्छौँ।",
@@ -193,7 +189,6 @@ export default bilingual({
       feedbackCta: "प्रतिक्रिया दिनुहोस्",
     },
     sitemap: {
-      eyebrow: "सहायता",
       title: "साइट नक्सा",
       lead: "ghormu.com का सबै पृष्ठहरू एकै ठाउँमा।",
       other: "अन्य",
@@ -202,7 +197,6 @@ export default bilingual({
   en: {
     updated: "Last updated: 18 October 2026",
     faq: {
-      eyebrow: "Help",
       title: "Frequently Asked Questions",
       lead: "Common questions about ghormu.com, visiting Ghormu and the community portal.",
       groups: [
@@ -263,7 +257,6 @@ export default bilingual({
       ],
     },
     privacy: {
-      eyebrow: "Help",
       title: "Privacy Policy",
       lead: "What ghormu.com keeps, why it keeps it, and your rights.",
       sections: [
@@ -319,7 +312,6 @@ export default bilingual({
       ],
     },
     terms: {
-      eyebrow: "Help",
       title: "Terms of Use",
       lead: "The terms that apply when you use ghormu.com.",
       sections: [
@@ -358,7 +350,6 @@ export default bilingual({
       ],
     },
     accessibility: {
-      eyebrow: "Help",
       title: "Accessibility",
       lead: "We want ghormu.com to work for everyone, including elders, people using screen readers, and people on slow internet.",
       goal: "We aim to meet WCAG 2.2 at level AA.",
@@ -382,7 +373,6 @@ export default bilingual({
       feedbackCta: "Send feedback",
     },
     sitemap: {
-      eyebrow: "Help",
       title: "Sitemap",
       lead: "Every page on ghormu.com in one place.",
       other: "More",

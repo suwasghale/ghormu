@@ -22,7 +22,6 @@ export const emergencyNumbers = [
 
 export default bilingual({
   ne: {
-    eyebrow: "सम्पर्क",
     contact: {
       title: "सम्पर्क गर्नुहोस्",
       lead: "प्रश्न, सुझाव, पुराना तस्बिर वा यात्राबारे जिज्ञासा—जे भए पनि हामीलाई लेख्नुहोस्।",
@@ -106,7 +105,6 @@ export default bilingual({
     },
   },
   en: {
-    eyebrow: "Contact",
     contact: {
       title: "Contact Us",
       lead: "Questions, suggestions, old photos or plans to visit: whatever it is, write to us.",

@@ -6,7 +6,6 @@ import { bilingual } from "./bilingual"
  */
 export default bilingual({
   ne: {
-    eyebrow: "समुदाय",
     overview: {
       title: "समुदायको परिचय",
       lead: "घोर्मुका परिवार र थरहरू, र तिनका कार्यक्रम तथा सहयोगको हिसाब राख्न हामीले बनाउँदै गरेको प्रणाली।",
@@ -66,7 +65,6 @@ export default bilingual({
     },
   },
   en: {
-    eyebrow: "Community",
     overview: {
       title: "Community Overview",
       lead: "The families and clans of Ghormu, and the system we are building to keep the record of their events and contributions.",

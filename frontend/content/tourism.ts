@@ -7,7 +7,6 @@ import { bilingual } from "./bilingual"
  */
 export default bilingual({
   ne: {
-    eyebrow: "घुमफिर",
     title: "पर्यटन",
     lead: "घोर्मु गाउँलेहरू बस्ने र काम गर्ने गाउँ हो। यहाँ आउने पाहुना पैदल बाटो हिँड्छन्, आँगनमा बसेर चिया खान्छन्, र गाउँको दिन कसरी बित्छ नजिकबाट देख्छन्।",
     whyTitle: "किन घोर्मु?",
@@ -59,7 +58,6 @@ export default bilingual({
     ],
   },
   en: {
-    eyebrow: "Explore",
     title: "Tourism",
     lead: "Ghormu is a working village. Visitors walk the trails, have tea in a courtyard and see how the day goes here.",
     whyTitle: "Why Ghormu?",

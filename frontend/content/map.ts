@@ -9,7 +9,6 @@ import { bilingual } from "./bilingual"
  */
 export default bilingual({
   ne: {
-    eyebrow: "घुमफिर",
     title: "घोर्मु ३D मा",
     lead: "डाँडा घुमाउनुहोस्, झुकाउनुहोस् र नजिक गएर हेर्नुहोस्। विद्यालय, बाटो र गाउँका सार्वजनिक ठाउँहरू नक्सामा छन्।",
     village: "घोर्मु",
@@ -87,7 +86,6 @@ export default bilingual({
     },
   },
   en: {
-    eyebrow: "Explore",
     title: "Ghormu in 3D",
     lead: "Turn the hills, tilt them and look closer. The school, the trails and the village's public places are on the map.",
     village: "Ghormu",

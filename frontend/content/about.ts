@@ -8,7 +8,6 @@ import { bilingual } from "./bilingual"
  */
 export default bilingual({
   ne: {
-    eyebrow: "परिचय",
     title: "घोर्मुको परिचय",
     lead: "घोर्मु पहाडको भिरमा बसेको सानो गाउँ हो। यहाँका परिवारहरू पुस्तौँदेखि एकअर्काका छिमेकी, आफन्त र सहारा बनेर बस्दै आएका छन्।",
     factsTitle: "एक नजरमा",
@@ -70,7 +69,6 @@ export default bilingual({
     ],
   },
   en: {
-    eyebrow: "About",
     title: "About Ghormu",
     lead: "Ghormu is a small village on a hillside. Its families have lived here for generations as neighbours, relatives and each other's support.",
     factsTitle: "At a glance",
