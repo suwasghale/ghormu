@@ -5,7 +5,7 @@
 # Must match requires-python in pyproject.toml. On 3.13 the
 # `uv sync --locked` below fails outright: the lockfile was
 # resolved for 3.14.
-FROM python:3.14-slim
+FROM python:3.15-slim
 
 # ==============================================================================
 # Environment
