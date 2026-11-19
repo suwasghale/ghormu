@@ -33,10 +33,12 @@ jobs:
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
-            const sha = context.eventName === 'workflow_dispatch'
+            // A pasted SHA often carries a trailing space or line break.
+            const raw = context.eventName === 'workflow_dispatch'
               ? context.payload.inputs.release_sha
               : context.payload.workflow_run.head_sha;
-            if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error('A full commit SHA is required');
+            const sha = String(raw).trim().toLowerCase();
+            if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error(`A full 40-character commit SHA is required (received: ${JSON.stringify(raw)})`);
             const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
               ...context.repo, workflow_id: 'publish.yml', head_sha: sha, status: 'success', per_page: 100,
             });
@@ -53,25 +55,36 @@ jobs:
               throw new Error('All three release images must have been published; skipped publication is not a release');
             }
             core.setOutput('sha', sha);
+      - name: Check out the release's site identity
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ steps.release.outputs.sha }}
+          persist-credentials: false
+          sparse-checkout: |
+            deploy
+            scripts
+      - name: Read the site identity
+        # Server path and origin come from deploy/site.env at the release
+        # itself, the file deploy.sh will read on the server.
+        id: site
+        run: python3 scripts/site_config.py --strict --github-output
       - name: Check deployment connection settings
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
           VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           VPS_HOST_FINGERPRINT: ${{ secrets.VPS_HOST_FINGERPRINT }}
-          DEPLOY_DIR: ${{ vars.DEPLOY_DIR }}
-          SITE_URL: ${{ vars.SITE_URL }}
         run: |
-          for name in VPS_HOST VPS_USER VPS_SSH_KEY VPS_HOST_FINGERPRINT DEPLOY_DIR SITE_URL; do
-            if [ -z "${!name}" ]; then echo "Configure $name before enabling deployment" >&2; exit 1; fi
+          for name in VPS_HOST VPS_USER VPS_SSH_KEY VPS_HOST_FINGERPRINT; do
+            if [ -z "${!name}" ]; then echo "Configure the $name secret (python3 scripts/server.py github prints it)" >&2; exit 1; fi
           done
       - name: Deploy the verified revision over SSH
         uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1
         env:
           RELEASE_SHA: ${{ steps.release.outputs.sha }}
           IMAGE_NAMESPACE: ghcr.io/${{ github.repository }}
-          DEPLOY_DIR: ${{ vars.DEPLOY_DIR }}
-          DEPLOY_SITE_URL: ${{ vars.SITE_URL }}
+          DEPLOY_DIR: ${{ steps.site.outputs.deploy_dir }}
+          DEPLOY_SITE_URL: ${{ steps.site.outputs.site_url }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}

@@ -58,7 +58,11 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Types
-        run: pnpm typecheck
+        # next-env.d.ts imports .next/types (LayoutProps, RouteContext, typed
+        # routes), which a fresh checkout does not have; generate it first.
+        run: |
+          pnpm exec next typegen
+          pnpm typecheck
 
       - name: Dependency vulnerabilities
         run: pnpm audit --audit-level=high

@@ -65,13 +65,14 @@ jobs:
         run: |
           uv run python -m unittest discover -s ../infra/tests -p 'test_*.py'
           bash -n ../deploy.sh
-          for script in ../infra/backup/*.sh; do sh -n "$script"; done
+          bash -n ../infra/server/bootstrap.sh
+          for script in ../infra/backup/*.sh ../infra/nginx/site/start.sh ../infra/certbot/certbot.sh; do sh -n "$script"; done
 
       - name: Validate GitHub Actions workflows
         working-directory: ${{ github.workspace }}
         run: |
           docker run --rm -v "$PWD:/repo:ro" --workdir /repo rhysd/actionlint:1.7.7
-          docker run --rm -v "$PWD:/repo:ro" --workdir /repo --entrypoint shellcheck rhysd/actionlint:1.7.7 -x deploy.sh infra/backup/*.sh
+          docker run --rm -v "$PWD:/repo:ro" --workdir /repo --entrypoint shellcheck rhysd/actionlint:1.7.7 -x deploy.sh infra/backup/*.sh infra/server/bootstrap.sh infra/nginx/site/start.sh infra/certbot/certbot.sh
 
       - name: Audit frozen production dependencies
         run: |

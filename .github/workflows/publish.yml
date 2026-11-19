@@ -48,14 +48,24 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+      - name: Read the site identity
+        # Origin, name and media host are compiled into the frontend, so they
+        # come from the committed deploy/site.env, the same file the server
+        # deploys with; placeholders are refused.
+        id: site
+        run: python3 scripts/site_config.py --strict --github-output
       - name: Validate release configuration
         id: image
         env:
           REPOSITORY: ${{ github.repository }}
-          SITE_URL: ${{ vars.SITE_URL }}
+          SITE_NAMESPACE: ${{ steps.site.outputs.image_namespace }}
         run: |
-          python -c "import os; from urllib.parse import urlsplit; u=urlsplit(os.environ['SITE_URL']); assert u.scheme == 'https' and u.hostname and u.path in ('', '/') and not u.query and not u.fragment, 'Set SITE_URL to the production HTTPS origin'"
-          echo "namespace=ghcr.io/${REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+          namespace="ghcr.io/${REPOSITORY,,}"
+          if [ -n "$SITE_NAMESPACE" ] && [ "$SITE_NAMESPACE" != "$namespace" ]; then
+            echo "deploy/site.env names $SITE_NAMESPACE, but this repository publishes to $namespace" >&2
+            exit 1
+          fi
+          echo "namespace=$namespace" >> "$GITHUB_OUTPUT"
       - name: Log in to GHCR
         uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
         with:
@@ -73,9 +83,9 @@ jobs:
           sbom: true
           tags: ${{ steps.image.outputs.namespace }}-${{ matrix.service }}:${{ github.sha }}
           build-args: |
-            NEXT_PUBLIC_SITE_URL=${{ vars.SITE_URL }}
-            NEXT_PUBLIC_APP_NAME=${{ vars.APP_NAME || 'Ghormu' }}
-            MEDIA_HOST=${{ vars.MEDIA_HOST }}
+            NEXT_PUBLIC_SITE_URL=${{ steps.site.outputs.site_url }}
+            NEXT_PUBLIC_APP_NAME=${{ steps.site.outputs.app_name }}
+            MEDIA_HOST=${{ steps.site.outputs.media_host }}
           labels: |
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.source=https://github.com/${{ github.repository }}

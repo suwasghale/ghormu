@@ -1,0 +1,86 @@
+name: Uptime
+
+# Every 15 minutes, check the live site the way a visitor and a crawler
+# would. GitHub emails a failed run to whoever maintains this workflow, so an
+# outage or a failing certificate renewal is noticed within the quarter hour.
+#
+# Idle until the site is live: it runs once the ENABLE_DEPLOYMENTS variable
+# is true, and reads the site from deploy/site.env.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: uptime
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    if: ${{ vars.ENABLE_DEPLOYMENTS == 'true' }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            deploy
+            scripts
+
+      - name: Read the site identity
+        id: site
+        run: python3 scripts/site_config.py --strict --github-output
+
+      - name: Pages, API and health
+        env:
+          SITE_URL: ${{ steps.site.outputs.site_url }}
+          SITE_ALIASES: ${{ steps.site.outputs.site_aliases }}
+        run: |
+          set -u
+          failed=0
+          check() {
+            local url="$1" expect="$2" out code
+            # Two attempts, so one dropped packet is not an outage.
+            for _ in 1 2; do
+              out=$(curl -sS -o /dev/null -w '%{http_code} %{time_total}' --max-time 20 "$url") || out="000 0"
+              code=${out%% *}
+              [ "$code" = "$expect" ] && break
+              sleep 10
+            done
+            if [ "$code" = "$expect" ]; then
+              echo "ok    $code  ${out#* }s  $url"
+            else
+              echo "FAIL  $code  $url (expected $expect)"
+              failed=1
+            fi
+          }
+          check "$SITE_URL/" 200
+          check "$SITE_URL/login" 200
+          check "$SITE_URL/health/" 200
+          check "$SITE_URL/health/ready/" 200
+          check "$SITE_URL/robots.txt" 200
+          check "$SITE_URL/sitemap.xml" 200
+          # Every alias redirects to the one canonical origin.
+          for alias in ${SITE_ALIASES//,/ }; do
+            check "https://$alias/" 301
+          done
+          exit "$failed"
+
+      - name: Certificate expiry
+        env:
+          SITE_DOMAIN: ${{ steps.site.outputs.site_domain }}
+        run: |
+          end=$(echo | openssl s_client -servername "$SITE_DOMAIN" -connect "$SITE_DOMAIN:443" 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
+          days=$(( ( $(date -d "$end" +%s) - $(date +%s) ) / 86400 ))
+          echo "TLS certificate for $SITE_DOMAIN expires in $days days ($end)"
+          # Renewal runs from 30 days out, so under 14 means it has been
+          # failing for over two weeks.
+          if [ "$days" -lt 14 ]; then
+            echo "::error::The TLS certificate expires in $days days; renewal is failing (docker compose logs certbot)."
+            exit 1
+          fi
