@@ -18,8 +18,8 @@ def check_google_oauth_configuration(app_configs=None, **kwargs):
     mistake for a frontend bug.
     """
 
-    client_id = bool(settings.GOOGLE_OAUTH_CLIENT_ID)
-    client_secret = bool(settings.GOOGLE_OAUTH_CLIENT_SECRET)
+    client_id = bool(getattr(settings, "GOOGLE_OAUTH_CLIENT_ID", ""))
+    client_secret = bool(getattr(settings, "GOOGLE_OAUTH_CLIENT_SECRET", ""))
 
     if client_id == client_secret:
         return []

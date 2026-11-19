@@ -209,3 +209,31 @@ def test_auth_app_boots_without_the_profiles_app():
     assert result.returncode == 0, (
         f"authentication does not stand alone:\n{result.stdout}\n{result.stderr}"
     )
+
+
+def test_the_image_build_settings_still_start_django():
+    """
+    Regression: the backend image runs collectstatic with the minimal
+    config.settings.build, which defines no runtime settings. App start-up
+    code that read one directly (the Google provider registration) crashed
+    the image build, which only the production validation caught.
+    """
+
+    import os
+    import subprocess
+    import sys
+
+    result = subprocess.run(
+        [sys.executable, "-c", "import django; django.setup()"],
+        cwd=BACKEND,
+        env={
+            **os.environ,
+            "DJANGO_SETTINGS_MODULE": "config.settings.build",
+            "DJANGO_ENV_FILE": "/nonexistent",
+        },
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+
+    assert result.returncode == 0, result.stderr

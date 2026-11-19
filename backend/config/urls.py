@@ -90,6 +90,20 @@ urlpatterns += [
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+# Production with uploads on local disk. nginx serves /media/ to visitors,
+# but Next's image optimizer fetches originals from inside the Docker
+# network (the /api/media rewrite to http://web:8000/media/), which never
+# passes through nginx. Without this route every next/image of an upload
+# answered 500. Only the optimizer reaches it, and it caches the results.
+if not settings.DEBUG and not settings.USE_CLOUD_STORAGE:
+    from django.urls import re_path
+    from django.views.static import serve
+
+    def serve_media(request, path):
+        return serve(request, path, document_root=settings.MEDIA_ROOT)
+
+    urlpatterns += [re_path(r"^media/(?P<path>.+)$", serve_media)]
+
 
 if settings.ENABLE_API_DOCS:
     urlpatterns += [

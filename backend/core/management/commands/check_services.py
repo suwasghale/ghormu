@@ -206,7 +206,9 @@ class Command(BaseCommand):
     def check_worker(self) -> bool:
         from config.celery import app
 
-        if settings.CELERY_TASK_ALWAYS_EAGER:
+        # Only test settings define it; production simply runs a worker.
+        # Reading it unguarded crashed the check on a production server.
+        if getattr(settings, "CELERY_TASK_ALWAYS_EAGER", False):
             self.stdout.write(
                 f"{OK}worker    eager mode (tasks run inline)",
             )

@@ -423,13 +423,13 @@ def test_nginx_configuration_is_not_empty():
 
     assert main.exists() and main.stat().st_size > 0, "nginx.conf is empty"
 
-    sites = list((root / "infra/nginx/sites").glob("*.conf"))
+    templates = list((root / "infra/nginx/site").glob("*.conf.template"))
 
-    assert sites, "no server block in infra/nginx/sites"
-    assert all(path.stat().st_size > 0 for path in sites)
+    assert templates, "no server block template in infra/nginx/site"
+    assert all(path.stat().st_size > 0 for path in templates)
 
     content = main.read_text(encoding="utf-8")
-    site = sites[0].read_text(encoding="utf-8")
+    site = (root / "infra/nginx/site/https.conf.template").read_text(encoding="utf-8")
 
     # Without these Django cannot resolve the client IP or know the
     # request arrived over TLS, and SECURE_SSL_REDIRECT loops.
@@ -452,3 +452,23 @@ def test_celery_broker_and_cache_use_different_redis_databases():
         pytest.skip("cache is not Redis in this environment")
 
     assert broker != cache_location.rsplit("/", 1)[-1]
+
+
+def test_uploads_on_local_disk_are_served_to_the_image_optimizer(
+    client, settings, tmp_path
+):
+    """
+    Regression: with uploads on local disk, every next/image of an upload
+    answered 500. Next's optimizer fetches originals from
+    http://web:8000/media/ inside the Docker network, which never passes
+    through nginx, and Django had no /media/ route outside DEBUG.
+    """
+
+    settings.MEDIA_ROOT = tmp_path
+    (tmp_path / "avatars").mkdir()
+    (tmp_path / "avatars" / "face.webp").write_bytes(b"RIFF-test")
+
+    response = client.get("/media/avatars/face.webp")
+
+    assert response.status_code == 200
+    assert b"".join(response.streaming_content) == b"RIFF-test"

@@ -138,8 +138,11 @@ class GoogleProvider(SocialProvider):
 
 
 def is_configured() -> bool:
+    # getattr: minimal settings modules (config.settings.build, which runs
+    # collectstatic inside the image build) define no provider settings.
     return bool(
-        settings.GOOGLE_OAUTH_CLIENT_ID and settings.GOOGLE_OAUTH_CLIENT_SECRET,
+        getattr(settings, "GOOGLE_OAUTH_CLIENT_ID", "")
+        and getattr(settings, "GOOGLE_OAUTH_CLIENT_SECRET", ""),
     )
 
 

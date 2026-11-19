@@ -27,7 +27,10 @@ if not ALLOWED_HOSTS:
 
 SECURE_SSL_REDIRECT = True
 # Only dependency-free/status probes may use the private container's plain HTTP.
-SECURE_REDIRECT_EXEMPT = [r"^health/(?:ready/)?$"]
+# Only status probes and Next's image optimizer (fetching originals from
+# /media/ inside the Docker network, see config/urls.py) may use the private
+# container's plain HTTP. Visitors' /media/ requests are served by nginx.
+SECURE_REDIRECT_EXEMPT = [r"^health/(?:ready/)?$", r"^media/"]
 
 SESSION_COOKIE_SECURE = True
 
