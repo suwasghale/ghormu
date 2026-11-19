@@ -82,10 +82,12 @@ export default function DeleteAccountDialog({
     setBusy(true)
     setError("")
 
+    const submitted = code
+
     try {
       const response = await deleteAccount({
         password,
-        code: needsCode ? code : undefined,
+        code: needsCode ? submitted : undefined,
       })
 
       // The server has already revoked every session; this clears the
@@ -100,7 +102,7 @@ export default function DeleteAccountDialog({
       }
 
       if (hasErrorCode(caught, ErrorCode.InvalidOtp)) {
-        setCode("")
+        setCode((current) => (current === submitted ? "" : current))
       }
 
       setError(apiErrorMessage(caught, "Unable to delete your account."))

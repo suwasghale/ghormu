@@ -96,7 +96,7 @@ test('large image passes through nginx and Next into object storage', async ({ p
 })
 
 test('private backup can be restored into a scratch database', async () => {
-  const anonymousStatus = compose('exec', '-T', 'frontend', 'node', '-e', "fetch('http://minio:9000/private-backups/').then(r => console.log(r.status))")
+  const anonymousStatus = compose('exec', '-T', 'frontend', 'node', '-e', "fetch('http://s3:9000/private-backups/').then(r => console.log(r.status))")
   expect(anonymousStatus).toBe('403')
   compose('run', '--rm', '--no-deps', '--entrypoint', '/usr/local/bin/backup', 'backup')
   const count = snapshot().accounts

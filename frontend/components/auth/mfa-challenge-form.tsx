@@ -60,8 +60,10 @@ export default function MfaChallengeForm({
     setLoading(true)
     setError("")
 
+    const submitted = code
+
     try {
-      onAuthenticated(await verifyMFA(challenge.ticket, code))
+      onAuthenticated(await verifyMFA(challenge.ticket, submitted))
     } catch (caught) {
       const message =
         caught instanceof ApiError
@@ -74,7 +76,11 @@ export default function MfaChallengeForm({
         return
       }
 
-      if (hasErrorCode(caught, ErrorCode.InvalidOtp)) setCode("")
+      // Clear only the rejected code: if the person already typed the next
+      // one while this request was in flight, keep it.
+      if (hasErrorCode(caught, ErrorCode.InvalidOtp)) {
+        setCode((current) => (current === submitted ? "" : current))
+      }
 
       setError(message)
     } finally {

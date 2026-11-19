@@ -89,4 +89,25 @@ describe("second-factor step", () => {
     expect(input).toHaveValue("")
     expect(onRestart).not.toHaveBeenCalled()
   })
+
+  it("keeps the next code typed while a rejected one was being checked", async () => {
+    // Regression: the field was cleared when the wrong code came back,
+    // wiping the recovery code already typed, so the next submit was empty.
+    const user = userEvent.setup()
+    let reject: (error: unknown) => void = () => {}
+    verifyMFA.mockReturnValueOnce(new Promise((_, rejectWith) => { reject = rejectWith }))
+
+    renderForm()
+
+    const input = screen.getByLabelText("Authentication or recovery code")
+    await user.type(input, "000000")
+    await user.click(screen.getByRole("button", { name: "Verify code" }))
+    await user.clear(input)
+    await user.type(input, "A1B2-C3D4")
+
+    reject(new ApiError("Unauthorized", 401, { message: "Invalid one-time password.", code: "invalid_otp" }))
+
+    expect(await screen.findByRole("alert")).toHaveTextContent("Invalid one-time password.")
+    expect(input).toHaveValue("A1B2-C3D4")
+  })
 })

@@ -107,12 +107,18 @@ export default function TwoFactorCard() {
     setError("")
     setNotice("")
 
+    const submitted = code
+
     try {
       await action()
     } catch (caught) {
       // A rejected code is spent or wrong either way; clear it so the next
-      // attempt starts from an empty field instead of an edit of the old one.
-      if (hasErrorCode(caught, ErrorCode.InvalidOtp)) setCode("")
+      // attempt starts from an empty field instead of an edit of the old
+      // one, unless the next code was already typed while this one was
+      // being checked.
+      if (hasErrorCode(caught, ErrorCode.InvalidOtp)) {
+        setCode((current) => (current === submitted ? "" : current))
+      }
 
       setError(apiErrorMessage(caught, fallback))
     } finally {
