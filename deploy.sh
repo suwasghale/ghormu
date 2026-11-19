@@ -1,20 +1,16 @@
 #!/bin/bash
 set -euo pipefail
 
-# Manual deployment remains available: ./deploy.sh <tested full commit SHA>.
+# Manual deployment: bash deploy.sh <tested full commit SHA>
 # CI verifies that all required validation jobs published this exact release.
-RELEASE_SHA="${1:-${RELEASE_SHA:-}}"
+# Everything else (image namespace, origin, ports) comes from deploy/site.env.
+RELEASE_SHA="$(printf '%s' "${1:-${RELEASE_SHA:-}}" | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')"
 if [[ ! "$RELEASE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
-    echo "Usage: ./deploy.sh <validated 40-character commit SHA>" >&2
+    echo "Usage: bash deploy.sh <validated 40-character commit SHA>" >&2
     exit 2
 fi
-IMAGE_NAMESPACE="${IMAGE_NAMESPACE:?Set the GHCR repository namespace, e.g. ghcr.io/owner/repository}"
-if [[ ! "$IMAGE_NAMESPACE" =~ ^ghcr\.io/[a-z0-9][a-z0-9-]*/[a-z0-9][a-z0-9._-]*$ ]]; then
-    echo "Invalid image registry namespace" >&2
-    exit 2
-fi
-: "${DEPLOY_SITE_URL:?Set the production HTTPS origin}"
-cd "${DEPLOY_DIR:-$PWD}"
+cd "${DEPLOY_DIR:-$(dirname "$0")}"
+
 mkdir -p .deployment
 exec 9>.deployment/deploy.lock
 flock -n 9 || { echo "Another deployment is running" >&2; exit 1; }
@@ -27,7 +23,13 @@ git merge-base --is-ancestor "$RELEASE_SHA" origin/main || {
     echo "Release must belong to the main branch" >&2; exit 1;
 }
 
-dc() { docker compose --env-file backend/.env.production -f docker-compose.prod.yml "$@"; }
+dc() {
+    # deploy/site.env names the site; a checkout from before it existed has
+    # none, which only matters for the read-only snapshot below.
+    local site=()
+    [[ -f deploy/site.env ]] && site=(--env-file deploy/site.env)
+    docker compose "${site[@]}" --env-file backend/.env.production -f docker-compose.prod.yml "$@"
+}
 # Every `dc run` below is `-T ... </dev/null`: a container run reads stdin by
 # default, and when this script is itself fed through stdin that read eats
 # the rest of the script -- the deploy then stops after the backup and
@@ -59,14 +61,34 @@ fi
 
 trap 'echo "Deployment failed. Review .deployment/previous-images.env and docs/DEPLOYMENT.md; no database rollback was attempted." >&2' ERR
 git checkout --detach "$RELEASE_SHA"
+# The release's own site identity, validated: no placeholder domain, no
+# missing email. Read after the checkout, so a release that changes
+# deploy/site.env is checked against its new values.
+site_values="$(python3 scripts/site_config.py --strict --shell)" || exit 2
+while IFS='=' read -r key value; do
+    case "$key" in
+        SITE_URL|IMAGE_NAMESPACE|SITE_DOMAIN|APP_SLUG) printf -v "SITE_$key" '%s' "$value" ;;
+    esac
+done <<< "$site_values"
+# CI passes the namespace it published to; it must be the one site.env names.
+if [[ -n "${IMAGE_NAMESPACE:-}" && "$IMAGE_NAMESPACE" != "$SITE_IMAGE_NAMESPACE" ]]; then
+    echo "Images were published to $IMAGE_NAMESPACE but deploy/site.env names $SITE_IMAGE_NAMESPACE" >&2
+    exit 2
+fi
+IMAGE_NAMESPACE="$SITE_IMAGE_NAMESPACE"
+DEPLOY_SITE_URL="${DEPLOY_SITE_URL:-$SITE_SITE_URL}"
+if [[ "${DEPLOY_SITE_URL%/}" != "$SITE_SITE_URL" ]]; then
+    echo "SITE_URL $DEPLOY_SITE_URL does not match deploy/site.env ($SITE_SITE_URL)" >&2
+    exit 2
+fi
 export BACKEND_IMAGE="${IMAGE_NAMESPACE}-backend:${RELEASE_SHA}"
 export FRONTEND_IMAGE="${IMAGE_NAMESPACE}-frontend:${RELEASE_SHA}"
 export BACKUP_IMAGE="${IMAGE_NAMESPACE}-backup:${RELEASE_SHA}"
+# Also checks backend/.env.production against deploy/site.env: the origin is
+# compiled into the frontend, so the two must never disagree.
 python3 scripts/tasks.py check-env --require-backup
-# Site identity is compiled into the frontend; do not deploy with a different origin.
-python3 -c 'import os; from pathlib import Path; values=dict(line.split("=",1) for line in Path("backend/.env.production").read_text().splitlines() if "=" in line and not line.startswith("#")); assert values["NEXT_PUBLIC_SITE_URL"].rstrip("/") == os.environ["DEPLOY_SITE_URL"].rstrip("/"), "SITE_URL must match NEXT_PUBLIC_SITE_URL"'
 dc config --quiet
-dc pull web frontend backup nginx postgres redis
+dc pull web frontend backup nginx postgres redis certbot
 dc stop backup-scheduler
 
 # Inspect the real database after starting stores. Existing volumes can outlive
@@ -97,8 +119,16 @@ python3 infra/release_env.py --images "$candidate_file"
 
 dc run --rm --no-deps -T web python manage.py check --deploy --fail-level WARNING </dev/null
 dc up -d --no-build --wait --wait-timeout 240 web worker beat frontend nginx
-# Recreate nginx after upstream containers change so DNS and mounted config refresh.
+# Route this site's hostnames through the shared edge that owns ports 80 and
+# 443, installing, upgrading or migrating it first if needed (docs/EDGE.md).
+python3 scripts/edge.py ensure </dev/null
+# Issue the certificate on the first release, or add names after SITE_ALIASES
+# changed; a no-op while the current one is valid.
+dc run --rm --no-deps -T certbot ensure </dev/null
+# Recreate nginx after upstream containers change so DNS and mounted config
+# refresh, and so it starts with HTTPS now that the certificate exists.
 dc up -d --no-deps --force-recreate nginx
+dc --profile tls up -d --no-build --no-deps certbot
 python3 infra/smoke.py --site "$DEPLOY_SITE_URL" --api "$DEPLOY_SITE_URL"
 # Prove private off-host recovery also works on a fresh installation.
 dc run --rm --no-deps -T --entrypoint /usr/local/bin/backup backup </dev/null

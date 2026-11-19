@@ -134,7 +134,33 @@ def validate_environment(values: dict[str, str], *, require_backup=False) -> lis
     return errors
 
 
-def check_file(path: Path, *, require_backup=False):
+def validate_site(values: dict[str, str], site) -> list[str]:
+    """
+    The secrets file must describe the same site as deploy/site.env.
+
+    The origin is compiled into the frontend and checked by Django on every
+    request, so a mismatch fails in production rather than at deploy time.
+    """
+
+    errors = []
+    origin = site.url
+
+    for key in ("NEXT_PUBLIC_SITE_URL", "FRONTEND_URL"):
+        if values.get(key, "").rstrip("/") != origin:
+            errors.append(f"{key}: must be {origin}, from deploy/site.env.")
+    hosts = [host.strip() for host in values.get("ALLOWED_HOSTS", "").split(",")]
+    if site.domain not in hosts:
+        errors.append(f"ALLOWED_HOSTS: include {site.domain}, from deploy/site.env.")
+    if values.get("APP_SLUG") != site.app_slug:
+        errors.append(f"APP_SLUG: must be {site.app_slug}, from deploy/site.env.")
+    if values.get("MEDIA_HOST", "") != site.media_host and (values.get("MEDIA_HOST") or site.media_host):
+        errors.append("MEDIA_HOST: must match deploy/site.env.")
+    return errors
+
+
+def check_file(path: Path, *, require_backup=False, site=None):
     errors = validate_environment(read_environment(path), require_backup=require_backup)
+    if site is not None:
+        errors += validate_site(read_environment(path), site)
     if errors:
         raise ValueError("Production configuration is incomplete:\n- " + "\n- ".join(errors))

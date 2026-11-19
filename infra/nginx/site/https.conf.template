@@ -1,0 +1,101 @@
+# Rendered by start.sh from deploy/site.env once a certificate exists. Edit the
+# template, not the output.
+
+# ------------------------------------------------------------------------------
+# Shared proxy headers
+# ------------------------------------------------------------------------------
+
+# $proxy_add_x_forwarded_for APPENDS to whatever the client sent, so
+# the chain contains attacker-controlled entries on the left. That is
+# exactly why Django's TRUSTED_PROXY_COUNT reads from the right - set
+# it to 1 when this is the only proxy.
+proxy_set_header  Host               $host;
+proxy_set_header  X-Real-IP          $remote_addr;
+proxy_set_header  X-Forwarded-For    $proxy_add_x_forwarded_for;
+proxy_set_header  X-Forwarded-Proto  $scheme;
+proxy_set_header  X-Forwarded-Host   $host;
+proxy_set_header  X-Forwarded-Port   $server_port;
+
+# Required for upstream keepalive to take effect.
+proxy_http_version  1.1;
+proxy_set_header    Connection  "";
+
+proxy_connect_timeout  5s;
+proxy_send_timeout     60s;
+proxy_read_timeout     60s;
+
+proxy_buffering    on;
+proxy_buffer_size  8k;
+proxy_buffers      16 8k;
+
+# ------------------------------------------------------------------------------
+# The visitor's address
+# ------------------------------------------------------------------------------
+#
+# In production every site sits behind the shared edge (infra/edge), which
+# forwards HTTPS still encrypted and announces the visitor's address with
+# PROXY protocol. Only the edge can connect (Compose publishes this nginx on
+# 127.0.0.1), and it arrives through Docker's bridge, hence the private
+# ranges. Rate limits and Django then see the visitor, not the edge.
+set_real_ip_from  127.0.0.1;
+set_real_ip_from  10.0.0.0/8;
+set_real_ip_from  172.16.0.0/12;
+set_real_ip_from  192.168.0.0/16;
+real_ip_header    ${REAL_IP_HEADER};
+
+# ------------------------------------------------------------------------------
+# HTTPS
+# ------------------------------------------------------------------------------
+
+server {
+    listen       443 ssl ${LISTEN_PROXY_PROTOCOL};
+    listen       [::]:443 ssl ${LISTEN_PROXY_PROTOCOL};
+    http2        on;
+
+    server_name  ${SITE_DOMAIN};
+
+    ssl_certificate      ${CERT_DIR}/fullchain.pem;
+    ssl_certificate_key  ${CERT_DIR}/privkey.pem;
+
+    # No OCSP stapling: Let's Encrypt stopped running OCSP in 2025, so its
+    # certificates carry no responder URL and nginx would only warn.
+
+    # Next.js sends its own security headers; HSTS is added here because it
+    # belongs to the HTTPS origin as a whole, Django and media included.
+    add_header  Strict-Transport-Security  "max-age=63072000; includeSubDomains"  always;
+
+    client_max_body_size  20m;
+
+    location /api/schema/    { proxy_pass http://backend; }
+    location /api/v1/        { proxy_pass http://backend; }
+    location /health/        { proxy_pass http://backend; }
+    location /django-admin/  { proxy_pass http://backend; }
+    location /static/        { proxy_pass http://backend; }
+
+    # Uploads on local disk, straight from the volume. add_header in a
+    # location replaces the server's, hence HSTS repeated.
+    location /api/media/ {
+        alias  /var/www/media/;
+        add_header  X-Content-Type-Options  nosniff;
+        add_header  Strict-Transport-Security  "max-age=63072000; includeSubDomains"  always;
+    }
+    location /media/ {
+        alias  /var/www/media/;
+        add_header  X-Content-Type-Options  nosniff;
+        add_header  Strict-Transport-Security  "max-age=63072000; includeSubDomains"  always;
+    }
+
+    # Sign-in: a first wall in front of Django's own throttle and lockout.
+    location = /api/auth/login {
+        limit_req         zone=auth burst=10 nodelay;
+        limit_req_status  429;
+        proxy_pass        http://frontend:3000;
+    }
+    location = /api/auth/mfa {
+        limit_req         zone=auth burst=10 nodelay;
+        limit_req_status  429;
+        proxy_pass        http://frontend:3000;
+    }
+
+    location / { proxy_pass http://frontend:3000; }
+}

@@ -15,7 +15,7 @@ args = parser.parse_args()
 extra = []
 if args.local_validation:
     assert args.site == "https://starter.test:8446" and args.api == "https://starter.test:8446"
-    extra = ["--cacert", str(Path(__file__).resolve().parent / "e2e/generated/fullchain.pem"),
+    extra = ["--cacert", str(Path(__file__).resolve().parent / "e2e/generated/tls/fullchain.pem"),
              "--resolve", "starter.test:8446:127.0.0.1", "--noproxy", "*"]
 for base in (args.site, args.api):
     if urlsplit(base).scheme != "https":

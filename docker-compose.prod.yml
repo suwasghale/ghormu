@@ -4,14 +4,17 @@
 # mistake: the periodic jobs then never run and both UserSession and
 # OutstandingToken grow without bound.
 #
-# Secrets come from an env file that is never committed. Create it from
-# backend/.env.production.example and keep it out of the image:
+# Two env files feed it, and deploy.sh always passes both:
 #
-#   docker compose -f docker-compose.prod.yml --env-file ./secrets.env up -d
+#   docker compose --env-file deploy/site.env --env-file backend/.env.production #       -f docker-compose.prod.yml ...
 #
-# This file assumes TLS is terminated by the nginx service. If you
-# terminate elsewhere (a cloud load balancer, Cloudflare), drop that
-# service and set TRUSTED_PROXY_COUNT to the real number of hops.
+# deploy/site.env is committed and names the site (domain, ports); the
+# ignored backend/.env.production holds the secrets and is written on the
+# server by `python3 scripts/server.py init-env`.
+#
+# TLS ends at this stack's nginx, behind the shared edge that owns ports 80
+# and 443 on the server (infra/edge, docs/EDGE.md). Certificates are issued
+# and renewed by the certbot service; nothing is copied by hand.
 
 name: ${APP_SLUG:-app}
 
@@ -256,6 +259,7 @@ services:
         NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://example.com}
         NEXT_PUBLIC_APP_NAME: ${APP_NAME:-Ghormu}
         MEDIA_HOST: ${MEDIA_HOST:-}
+        API_INTERNAL_URL: http://web:8000
     restart: unless-stopped
     environment:
       API_INTERNAL_URL: http://web:8000
@@ -326,19 +330,32 @@ services:
       frontend:
         condition: service_healthy
 
+    # Server blocks are rendered from these values at start-up
+    # (infra/nginx/site/start.sh); HTTPS switches on by itself once the
+    # certificate exists, and reloads when it is renewed.
+    entrypoint: [sh, /etc/nginx/site/start.sh]
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:?Set SITE_DOMAIN in deploy/site.env}
+      SITE_ALIASES: ${SITE_ALIASES:-}
+      # The edge announces each visitor with PROXY protocol. Validation,
+      # which connects directly, turns both off.
+      LISTEN_PROXY_PROTOCOL: ${LISTEN_PROXY_PROTOCOL-proxy_protocol}
+      REAL_IP_HEADER: ${REAL_IP_HEADER:-proxy_protocol}
+
+    # Loopback only. Ports 80 and 443 belong to the edge, which forwards
+    # this site's hostnames here (scripts/edge.py registers them).
     ports:
-      - "80:80"
-      - "443:443"
+      - "127.0.0.1:${EDGE_HTTP_PORT:?Set EDGE_HTTP_PORT in deploy/site.env}:80"
+      - "127.0.0.1:${EDGE_HTTPS_PORT:?Set EDGE_HTTPS_PORT in deploy/site.env}:443"
 
     volumes:
       - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./infra/nginx/sites:/etc/nginx/conf.d:ro
-      - ./infra/nginx/certs:/etc/nginx/certs:ro
+      - ./infra/nginx/site:/etc/nginx/site:ro
+      - letsencrypt:/etc/letsencrypt:ro
       - media_data:/var/www/media:ro
       # Certbot writes the ACME challenge here and nginx serves it over
-      # plain HTTP. Without this volume renewal fails silently and the
-      # certificate expires.
-      - certbot_webroot:/var/www/certbot
+      # plain HTTP.
+      - certbot_webroot:/var/www/certbot:ro
 
     logging:
       driver: json-file
@@ -346,8 +363,36 @@ services:
         max-size: "10m"
         max-file: "5"
 
+  # ---------------------------------------------------------------------------
+  # Let's Encrypt. deploy.sh runs `certbot.sh ensure` once per release, which
+  # issues the certificate the first time and adds names when SITE_ALIASES
+  # changes; this service then renews it twice a day. Nothing to install on
+  # the server and no renewal hook: nginx notices the new files itself.
+  # ---------------------------------------------------------------------------
+  certbot:
+    image: certbot/certbot:v5.10.0
+    profiles: [tls]
+    restart: unless-stopped
+    entrypoint: [sh, /opt/certbot/certbot.sh]
+    command: [renew-loop]
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:?Set SITE_DOMAIN in deploy/site.env}
+      SITE_ALIASES: ${SITE_ALIASES:-}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-}
+      LETSENCRYPT_STAGING: ${LETSENCRYPT_STAGING:-0}
+    volumes:
+      - ./infra/certbot:/opt/certbot:ro
+      - letsencrypt:/etc/letsencrypt
+      - certbot_webroot:/var/www/certbot
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
 volumes:
   media_data:
   postgres_data:
   redis_data:
   certbot_webroot:
+  letsencrypt:

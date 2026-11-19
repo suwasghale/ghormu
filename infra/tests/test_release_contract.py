@@ -101,14 +101,21 @@ class WorkflowGateTests(unittest.TestCase):
 class DeploymentFailureTests(unittest.TestCase):
     """Exercise the real script without SSH, Git mutation, Docker or network access."""
 
-    def run_release(self, *, failure="", fresh=False):
+    def run_release(self, *, failure="", fresh=False, namespace="ghcr.io/test/starter"):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         root = Path(temporary.name)
-        for folder in ("bin", "backend", "scripts", "infra", ".deployment"):
-            (root / folder).mkdir()
-        for name in ("deploy.sh", "scripts/tasks.py", "scripts/production_env.py", "infra/release_env.py"):
+        for folder in ("bin", "backend", "scripts", "infra/edge", "deploy", ".deployment", "edge"):
+            (root / folder).mkdir(parents=True)
+        for name in ("deploy.sh", "scripts/tasks.py", "scripts/production_env.py", "scripts/site_config.py",
+                     "scripts/edge.py", "infra/release_env.py", "infra/edge/nginx.conf", "infra/edge/compose.yml"):
             shutil.copy2(ROOT / name, root / name)
+        (root / "deploy/site.env").write_text("\n".join([
+            "APP_NAME=Release Test", "APP_SLUG=release-test", "SITE_DOMAIN=release.test",
+            "SITE_ALIASES=www.release.test", "LETSENCRYPT_EMAIL=ops@release.test",
+            "DEPLOY_DIR=/srv/release-test", "EDGE_HTTP_PORT=21080", "EDGE_HTTPS_PORT=21443",
+            "IMAGE_NAMESPACE=ghcr.io/test/starter", "MEDIA_HOST=", "",
+        ]))
         (root / ".deployment/current-sha").write_text("old-release\n")
         (root / ".deployment/current-images.env").write_text("BACKEND_IMAGE=ghcr.io/test/verified-backend:old\nFRONTEND_IMAGE=ghcr.io/test/verified-frontend:old\nBACKUP_IMAGE=ghcr.io/test/verified-backup:old\n")
         environment = "\n".join([
@@ -155,8 +162,8 @@ if name == "docker":
             executable.write_text(f"#!{sys.executable}\n" + mock)
             executable.chmod(0o755)
         env = {**os.environ, "PATH": str(root / "bin") + os.pathsep + os.environ["PATH"],
-               "DEPLOY_DIR": str(root), "DEPLOY_SITE_URL": "https://release.test",
-               "IMAGE_NAMESPACE": "ghcr.io/test/starter", "MOCK_LOG": str(root / "calls.jsonl"),
+               "DEPLOY_DIR": str(root), "DEPLOY_SITE_URL": "https://release.test", "EDGE_DIR": str(root / "edge"),
+               "IMAGE_NAMESPACE": namespace, "MOCK_LOG": str(root / "calls.jsonl"),
                "MOCK_FAIL": failure, "MOCK_SCHEMA": "0" if fresh else "30"}
         result = subprocess.run(["bash", str(root / "deploy.sh"), "b" * 40], cwd=root,
                                 env=env, stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=30)
@@ -193,6 +200,21 @@ if name == "docker":
                 self.assertEqual(sum("--entrypoint /usr/local/bin/restore" in call for call in calls), 1 if fresh else 2)
                 self.assertIn("SECRET_KEY=django-", (root / "backend/.env.production").read_text())
                 self.assertTrue(any("--wait-timeout 180 backup-scheduler" in call for call in calls))
+                # The site is routed through the edge and has a certificate
+                # before the smoke test looks at it.
+                routes = (root / "edge/sites/release-test.https.map").read_text()
+                self.assertIn("release.test 127.0.0.1:21443;", routes)
+                self.assertIn("www.release.test 127.0.0.1:21443;", routes)
+                order = [index for index, call in enumerate(calls) if "certbot ensure" in call or "infra/smoke.py" in call]
+                self.assertEqual(len(order), 2)
+                self.assertIn("certbot ensure", calls[order[0]])
+
+    def test_a_namespace_other_than_site_env_is_refused_before_any_change(self):
+        root, result, calls = self.run_release(namespace="ghcr.io/someone/else")
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("deploy/site.env names", result.stderr)
+        self.assertFalse(any(call.startswith("docker compose") and " pull " in call for call in calls))
+        self.assertEqual((root / ".deployment/current-sha").read_text().strip(), "old-release")
 
 
 if __name__ == "__main__":

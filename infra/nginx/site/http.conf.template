@@ -1,0 +1,20 @@
+# Rendered by start.sh from deploy/site.env. Edit the template, not the output.
+#
+# Plain HTTP only answers certbot's challenge and sends everything else to
+# the canonical HTTPS origin, so www and http:// never serve a second copy.
+
+server {
+    listen       80  default_server;
+    listen       [::]:80  default_server;
+    server_name  ${SITE_DOMAIN} ${SITE_SERVER_ALIASES};
+
+    # Certbot must reach this over plain HTTP, before and after the
+    # certificate exists, so it is never redirected.
+    location /.well-known/acme-challenge/ {
+        root  /var/www/certbot;
+    }
+
+    location / {
+        return  301  https://${SITE_DOMAIN}$request_uri;
+    }
+}

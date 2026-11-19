@@ -1,0 +1,20 @@
+# Rendered by start.sh when SITE_ALIASES is set. Edit the template, not the
+# output.
+#
+# HTTPS on another name (www, an old domain) redirects to the one canonical
+# origin. Without it https://www.… would fall through to the main server and
+# serve the site twice: duplicate pages for search engines, separate cookies.
+# The certificate covers these names too (infra/certbot/certbot.sh).
+
+server {
+    listen       443 ssl ${LISTEN_PROXY_PROTOCOL};
+    listen       [::]:443 ssl ${LISTEN_PROXY_PROTOCOL};
+    http2        on;
+
+    server_name  ${SITE_SERVER_ALIASES};
+
+    ssl_certificate      ${CERT_DIR}/fullchain.pem;
+    ssl_certificate_key  ${CERT_DIR}/privkey.pem;
+
+    return  301  https://${SITE_DOMAIN}$request_uri;
+}

@@ -59,7 +59,7 @@ def main():
         raise SystemExit("Production images omit development tools. Use validate-production for runtime checks.")
     compose = ["docker", "compose", "-f", f"docker-compose.{'prod' if production else 'dev'}.yml"]
     if production:
-        compose += ["--env-file", "backend/.env.production"]
+        compose += ["--env-file", "deploy/site.env", "--env-file", "backend/.env.production"]
         if args.command in {"down", "logs"}:
             compose += ["--profile", "backup-scheduler"]
     service = "web" if production else "backend"
@@ -72,10 +72,14 @@ def main():
     if args.command == "check-env":
         path = ROOT / "backend/.env.production"
         if not path.exists():
-            raise SystemExit("Create backend/.env.production from its example first.")
+            raise SystemExit("Create backend/.env.production first: python3 scripts/server.py init-env")
+        # Imported here so bootstrap still works in a partial copy.
+        from site_config import SITE_FILE, SiteConfigError, load as load_site
+
         try:
-            check_file(path, require_backup=args.require_backup)
-        except ValueError as exc:
+            site = load_site(SITE_FILE) if SITE_FILE.exists() else None
+            check_file(path, require_backup=args.require_backup, site=site)
+        except (ValueError, SiteConfigError) as exc:
             raise SystemExit(str(exc)) from exc
         print("Required production environment values are configured.")
         return

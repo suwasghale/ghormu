@@ -33,6 +33,12 @@ ENV NEXT_PUBLIC_APP_NAME=$NEXT_PUBLIC_APP_NAME
 ENV MEDIA_HOST=$MEDIA_HOST
 ARG NEXT_PUBLIC_SITE_URL
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+# Rewrites are fixed at build time, so the image optimizer's /api/media
+# rewrite needs the Compose address of Django here, not only at runtime.
+# Without it the rewrite kept the development 127.0.0.1 address and every
+# uploaded image on the site failed through next/image.
+ARG API_INTERNAL_URL=http://web:8000
+ENV API_INTERNAL_URL=$API_INTERNAL_URL
 COPY frontend/ .
 
 ENV NEXT_TELEMETRY_DISABLED=1

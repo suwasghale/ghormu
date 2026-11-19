@@ -1,20 +1,35 @@
 # Overlay on docker-compose.prod.yml; changes only test services, ports and fixtures.
 services:
-  minio:
-    # quay.io, not Docker Hub: MinIO withdrew its images from Docker Hub, so
-    # `minio/minio` no longer pulls at all -- and it failed only in CI,
-    # because every machine that had run this before still had it cached.
-    # Same release tag, same image, from MinIO's own registry.
-    image: quay.io/minio/minio:RELEASE.2025-04-22T22-12-26Z
-    command: server /data
+  s3:
+    # RustFS stands in for R2. MinIO withdrew its images from Docker Hub and
+    # then from quay.io (401 Unauthorized), so they no longer pull. RustFS is
+    # an open-source S3 server that, like R2, enforces credentials and bucket
+    # policies: the tests rely on the private bucket refusing anonymous reads.
+    image: rustfs/rustfs:1.0.4
+    command: [/data]
     environment:
-      MINIO_ROOT_USER: validation-storage
-      MINIO_ROOT_PASSWORD: validation-storage-password
-    volumes: ["validation_objects:/data"]
+      RUSTFS_ACCESS_KEY: validation-storage
+      RUSTFS_SECRET_KEY: validation-storage-password
+    # Its own volume: RustFS runs as uid 10001 and cannot write to the
+    # root-owned volume a previous MinIO run left behind.
+    volumes: ["validation_s3:/data"]
   buckets:
-    image: quay.io/minio/mc:RELEASE.2025-04-16T18-13-26Z
-    depends_on: [minio]
-    entrypoint: [sh, -ec, 'until mc alias set local http://minio:9000 validation-storage validation-storage-password; do sleep 2; done; mc mb --ignore-existing local/media local/private-backups; mc anonymous set download local/media']
+    # Creates both buckets and makes only `media` publicly readable, as on R2.
+    image: amazon/aws-cli:2.39.5
+    depends_on: [s3]
+    environment:
+      AWS_ACCESS_KEY_ID: validation-storage
+      AWS_SECRET_ACCESS_KEY: validation-storage-password
+      AWS_DEFAULT_REGION: us-east-1
+    entrypoint:
+      - sh
+      - -ec
+      - |
+        until aws s3api list-buckets --endpoint-url http://s3:9000 >/dev/null 2>&1; do sleep 2; done
+        for bucket in media private-backups; do
+          aws s3api head-bucket --bucket $$bucket --endpoint-url http://s3:9000 2>/dev/null || aws s3api create-bucket --bucket $$bucket --endpoint-url http://s3:9000
+        done
+        aws s3api put-bucket-policy --bucket media --endpoint-url http://s3:9000 --policy '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"AWS":["*"]},"Action":["s3:GetObject"],"Resource":["arn:aws:s3:::media/*"]}]}'
   mailpit:
     image: axllent/mailpit:v1.27
     ports: ["127.0.0.1:8036:8025"]
@@ -24,12 +39,17 @@ services:
       buckets: {condition: service_completed_successfully}
       mailpit: {condition: service_started}
   nginx:
+    # The production templates and start-up script, with the generated test
+    # certificate where Let's Encrypt would put one. The browser connects
+    # directly, so there is no edge and no PROXY protocol (test.env).
     ports: !override ["127.0.0.1:8446:443", "127.0.0.1:8086:80"]
     volumes: !override
       - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./infra/e2e/generated/app.conf:/etc/nginx/conf.d/app.conf:ro
-      - ./infra/e2e/generated:/etc/nginx/certs:ro
-      - certbot_webroot:/var/www/certbot
+      - ./infra/nginx/site:/etc/nginx/site:ro
+      - ./infra/e2e/generated/tls:/etc/letsencrypt/live/starter.test:ro
+      - ./infra/e2e/generated/media.conf:/etc/nginx/conf.d/media.conf:ro
+      - media_data:/var/www/media:ro
+      - certbot_webroot:/var/www/certbot:ro
     networks:
       default:
         aliases: [media.starter.test]
@@ -37,4 +57,4 @@ services:
     depends_on:
       buckets: {condition: service_completed_successfully}
 volumes:
-  validation_objects:
+  validation_s3:
