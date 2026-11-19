@@ -1,5 +1,24 @@
 # Validation record
 
+## Reusable deployment — 14 November 2026
+
+Deployment was reworked from the first deployments of suwasghale.com, sajjanghale.com and aucoeurdunepal.com: one committed `deploy/site.env`, nginx rendered from templates, Let's Encrypt in a container, a shared edge for several sites per server, and server/bootstrap scripts. Verified locally on Windows/Docker Desktop, with Linux-only checks in disposable containers.
+
+| Check | Result |
+| --- | --- |
+| Backend suite | 234 passed, 1 skipped; Ruff lint and format passed |
+| Frontend types, ESLint, Vitest | Passed; 61 unit and component tests |
+| Release and deployment-tool tests (Linux) | 31 passed, including the real `deploy.sh` against mocked Docker/Git: edge routes written and certificate ensured before the smoke test, foreign image namespace refused |
+| nginx templates | `nginx -t` passed for: no certificate yet, certificate with aliases, and direct (no PROXY protocol) mode; HTTPS enabled itself within seconds of a certificate appearing |
+| Edge | Generic config passed `nginx -t` with zero and two sites; the hand-written Contabo edge config migrated to per-site route files with every hostname and port kept |
+| certbot script | Domain, every alias and staging flag passed to certbot; missing email refused |
+| Workflow / shell validation | actionlint and ShellCheck passed for all workflows and scripts |
+| Production images and HTTPS smoke | Built from the production Dockerfiles; smoke passed through the templated nginx |
+| Playwright against production containers | 9 passed: MFA recovery, invalid refresh, two-tab renewal, API outage, large image upload, private backup/restore, login limit, image-failure caching, and enable-2FA-then-delete-account |
+| Scheduled private backup | Dump uploaded to RustFS (MinIO's images no longer pull), restored into a scratch database; scheduler healthy |
+
+Not exercised: a real Let's Encrypt issuance (needs public DNS), the edge on a real server, SSH deployment from GitHub Actions. The first release of a project on the server proves those; `scripts/server.py doctor` checks their prerequisites beforehand.
+
 ## Deployment completion — 22 September 2026
 
 The Au Coeur release, production-testing and backup files were copied and adapted, then verified locally on Windows/Docker Desktop. Linux-only release behavior was exercised inside a disposable container.
