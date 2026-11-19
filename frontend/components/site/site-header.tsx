@@ -160,7 +160,7 @@ export function SiteHeader({ locale, siteName, nav, ui }: SiteHeaderProps) {
           <Link
             href={support}
             aria-current={path === "/support" ? "page" : undefined}
-            className="hidden h-10 items-center gap-2 rounded-full bg-earth px-4 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth sm:inline-flex"
+            className="hidden h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-earth px-4 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-earth sm:inline-flex"
           >
             <Heart aria-hidden="true" className="size-4" />
             {ui.support}
