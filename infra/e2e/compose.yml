@@ -31,7 +31,7 @@ services:
         done
         aws s3api put-bucket-policy --bucket media --endpoint-url http://s3:9000 --policy '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"AWS":["*"]},"Action":["s3:GetObject"],"Resource":["arn:aws:s3:::media/*"]}]}'
   mailpit:
-    image: axllent/mailpit:v1.27
+    image: axllent/mailpit:v1.30
     ports: ["127.0.0.1:8036:8025"]
   web:
     volumes: ["./infra/e2e:/fixtures:ro"]
