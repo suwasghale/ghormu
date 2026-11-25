@@ -437,6 +437,33 @@ html[data-site="public"][lang="ne"] .tracking-tight {
   box-shadow: 0 2px 4px rgb(0 0 0 / 0.3);
 }
 
+/* Place names on the history page's satellite map: white on the photograph,
+   with a halo so they read over fields and forest alike, as on Google Earth. */
+.history-place {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  pointer-events: none;
+  color: #fff;
+  font-family: var(--font-mukta), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.85),
+    0 0 8px rgb(0 0 0 / 0.6);
+}
+
+.history-place::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  flex: none;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 0.45);
+}
+
 .village-label {
   pointer-events: none;
   padding: 0.3rem 0.85rem;
@@ -454,6 +481,14 @@ html[data-site="public"][lang="ne"] .tracking-tight {
 .maplibregl-map .maplibregl-ctrl-attrib a {
   color: #1f2a26;
   text-decoration: underline;
+}
+
+/* MapLibre draws the credits in grey on half-transparent white, which over
+   a satellite photograph can fall below readable contrast. Solid ground,
+   dark text: readable over any picture. */
+.maplibregl-map .maplibregl-ctrl.maplibregl-ctrl-attrib {
+  background: rgb(255 255 255 / 0.96);
+  color: #1f2a26;
 }
 
 .maplibregl-popup-content {

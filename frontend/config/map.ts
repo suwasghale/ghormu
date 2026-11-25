@@ -28,8 +28,27 @@ export const mapAttribution = {
     '<a href="https://s2maps.eu" target="_blank" rel="noopener">Sentinel-2 cloudless</a> by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2024)',
 }
 
+/**
+ * Ghormu's old satellite photographs, on the history page: Esri World
+ * Imagery Wayback, every past version of Esri's World Imagery map since
+ * 2014 as ordinary tiles, free to show with credit to Esri and the
+ * satellite company. Which release shows which photograph is worked out by
+ * scripts/historical-imagery.mjs (content/historical-imagery.ts).
+ */
+export function waybackTiles(release: number): string {
+  return `https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/${release}/{z}/{y}/{x}`
+}
+
+export const waybackAttribution =
+  'Imagery: <a href="https://livingatlas.arcgis.com/wayback/" target="_blank" rel="noopener">Esri World Imagery Wayback</a>'
+
 /** Hosts the map fetches from, for the Content-Security-Policy. */
-export const mapTileOrigins = ["https://s3.amazonaws.com", "https://tiles.maps.eox.at", "https://tile.googleapis.com"]
+export const mapTileOrigins = [
+  "https://s3.amazonaws.com",
+  "https://tiles.maps.eox.at",
+  "https://tile.googleapis.com",
+  "https://wayback.maptiles.arcgis.com",
+]
 
 /** Where scripts/copy-map-assets.mjs puts CesiumJS's prebuilt files. */
 export const cesiumBaseUrl = "/vendor/cesium/"

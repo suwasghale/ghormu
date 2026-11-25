@@ -21,7 +21,7 @@ export default bilingual({
       items: [
         { href: "/updates", title: "सूचना र समाचार", body: "गाउँका सूचना, बैठक र खबर।" },
         { href: "/community/events", title: "कार्यक्रम पात्रो", body: "आउँदै गरेका चाडपर्व, बैठक र जमघट, मितिसहित।" },
-        { href: "/about/history", title: "गाउँको इतिहास", body: "पुर्खाका कथा, पुराना तस्बिर र कागजात।" },
+        { href: "/about/history", title: "गाउँको इतिहास", body: "पुर्खाका कथा, पुराना तस्बिर, र वर्षअनुसार माथिबाट खिचिएको गाउँ।" },
         { href: "#songs", title: "गीत र नाच", body: "घोर्मुका स्याब्रु र तामाङ गीत-नाचका भिडियो।" },
         { href: "/explore/travel-guide", title: "बाटो र मौसम", body: "घोर्मु आउने बाटो, अहिलेको अवस्था र मौसम।" },
         { href: "/contact/emergency", title: "आपतकालीन सम्पर्क", body: "बिरामी, दुर्घटना वा प्रकोप पर्दा कसलाई खबर गर्ने।" },
@@ -99,7 +99,7 @@ export default bilingual({
       items: [
         { href: "/updates", title: "Notices and news", body: "Village notices, meetings and news." },
         { href: "/community/events", title: "Events calendar", body: "Festivals, meetings and gatherings coming up, with dates." },
-        { href: "/about/history", title: "Village history", body: "Our ancestors' stories, old photos and papers." },
+        { href: "/about/history", title: "Village history", body: "Our ancestors' stories, old photos, and the village seen from above over the years." },
         { href: "#songs", title: "Songs and dances", body: "Videos of Ghormu's Syabru and Tamang songs and dances." },
         { href: "/explore/travel-guide", title: "Road and weather", body: "The way to Ghormu, how the road is now, and the weather." },
         { href: "/contact/emergency", title: "Emergency contacts", body: "Who to call for illness, an accident or a disaster." },

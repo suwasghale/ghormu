@@ -91,7 +91,7 @@ export function MapOverlay({
       <button
         type="button"
         onClick={onReset}
-        className="pointer-events-auto inline-flex min-h-10 items-center gap-2 rounded-full bg-background/95 px-4 text-sm font-medium shadow-md ring-1 ring-black/5 transition-colors hover:bg-background"
+        className="pointer-events-auto inline-flex min-h-10 items-center gap-2 rounded-full bg-background/95 px-4 text-sm font-medium text-foreground shadow-md ring-1 ring-black/5 transition-colors hover:bg-background"
       >
         <RotateCcw aria-hidden="true" className="size-4" />
         {strings.reset}

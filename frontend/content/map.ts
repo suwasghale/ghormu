@@ -21,6 +21,7 @@ export default bilingual({
     unsupported:
       "यो ब्राउजरमा ३D नक्सा खुल्न सकेन। ठाउँहरू तलको सूचीबाट Google Maps मा हेर्न सक्नुहुन्छ।",
     hint: "घुमाउन वा झुकाउन दायाँ क्लिक गरेर तान्नुहोस्। फोनमा दुई औँलाले।",
+    hintFlat: "सार्न तान्नुहोस्। नजिक जान + थिच्नुहोस्, वा फोनमा दुई औँलाले फैलाउनुहोस्।",
     googleHint: "सार्न तान्नुहोस्, नजिक-टाढा गर्न स्क्रोल गर्नुहोस्, घुमाउन वा झुकाउन Ctrl थिचेर तान्नुहोस्।",
     close: "बन्द गर्नुहोस्",
     reset: "सुरुको दृश्य",
@@ -98,6 +99,7 @@ export default bilingual({
     unsupported:
       "The 3D map could not open in this browser. You can still open each place in Google Maps from the list below.",
     hint: "Right-click and drag to turn or tilt. On a phone, use two fingers.",
+    hintFlat: "Drag to move. Press + to zoom in, or spread two fingers on a phone.",
     googleHint: "Drag to move, scroll to zoom, and hold Ctrl while dragging to turn or tilt.",
     close: "Close",
     reset: "Starting view",

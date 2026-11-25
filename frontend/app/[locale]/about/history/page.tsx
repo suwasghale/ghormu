@@ -2,12 +2,15 @@ import Link from "next/link"
 
 import { ContentImage } from "@/components/site/content-ui"
 import { PageHero } from "@/components/site/page-hero"
-import { ArrowLink, buttonStyles, Section, SectionHeader } from "@/components/site/section"
+import { HistoricalMap } from "@/components/site/historical-map"
+import { ArrowLink, buttonStyles, Container, Section, SectionHeader } from "@/components/site/section"
 import { ThroughTimeSection } from "@/components/site/through-time-section"
 import archive from "@/content/archive"
 import home from "@/content/home"
-import { listArchive } from "@/lib/api/content"
+import mapContent from "@/content/map"
+import { listArchive, listPlaces } from "@/lib/api/content"
 import { itemDate } from "@/lib/archive"
+import { historicalFrames } from "@/lib/historical-imagery"
 import { getDictionary, localizePath } from "@/lib/i18n"
 import { crumbs, pageLocale, pageMetadata } from "@/lib/i18n/page"
 import { photos } from "@/content/photos"
@@ -27,7 +30,7 @@ export default async function HistoryPage({ params }: PageProps) {
   const t = archive[locale]
   const ask = home[locale].history
   const dict = getDictionary(locale)
-  const { items } = await listArchive(locale)
+  const [{ items }, { items: places }] = await Promise.all([listArchive(locale), listPlaces(locale)])
   const oldest = items.filter((item) => item.year).slice(0, 3)
 
   return (
@@ -71,6 +74,26 @@ export default async function HistoryPage({ params }: PageProps) {
           </div>
         )}
       </Section>
+
+      <section id="from-above" aria-labelledby="history-map-title" className="scroll-mt-16 bg-ink py-20 text-ink-foreground sm:py-24">
+        <Container>
+          <div className="max-w-2xl">
+            <h2 id="history-map-title" className="font-display text-3xl leading-tight font-bold text-balance sm:text-4xl">
+              {t.historyMap.title}
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-ink-foreground/80">{t.historyMap.lead}</p>
+          </div>
+          <div className="mt-10">
+            <HistoricalMap
+              frames={historicalFrames(locale)}
+              places={places.map(({ id, name, latitude, longitude }) => ({ id, name, latitude, longitude }))}
+              mapStrings={mapContent[locale]}
+              strings={t.throughTime}
+            />
+          </div>
+          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-ink-foreground/65">{t.historyMap.note}</p>
+        </Container>
+      </section>
 
       <ThroughTimeSection locale={locale} />
 
