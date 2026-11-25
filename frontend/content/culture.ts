@@ -8,7 +8,7 @@ import { bilingual } from "./bilingual"
 export default bilingual({
   ne: {
     title: "संस्कृति र सम्पदा",
-    lead: "हाम्रो संस्कृति संग्रहालयमा होइन, घरघरमा छ: बोलीमा, लुगामा, गीतमा, र जन्मदेखि मृत्युसम्मका संस्कारमा।",
+    lead: "हाम्रो संस्कृति घरघरमै छ: बोलीमा, लुगामा, गीतमा, र जन्मदेखि मृत्युसम्मका संस्कारमा।",
     communitiesTitle: "समुदाय र परम्परा",
     communitiesLead: "घोर्मुमा घले, तामाङ, गुरुङ र अरू परिवार छिमेकी भएर बस्छन्। हरेकको आफ्नै चलन छ, तर एकअर्काको ठूलो दिनमा सबै आइपुग्छन्।",
     communities: [
@@ -21,6 +21,8 @@ export default bilingual({
         body: "तामाङ भाषा, ताम्बा गीत, डम्फुको तालमा नाच र बौद्ध चलन यहाँको दैनिक जीवनकै हिस्सा हुन्।",
       },
     ],
+    songsTitle: "गीत र नाच",
+    songsLead: "स्याब्रु र अरू तामाङ गीत-नाचमा घोर्मुका दिदीबहिनी र दाजुभाइको आसपासका गाउँमा पनि नाम छ।",
     ritesTitle: "जीवन संस्कार",
     ritesLead: "जीवनका महत्त्वपूर्ण चरणमा गरिने संस्कारमा पूरै समुदाय जुट्छ, र सबैले आ-आफ्नो सहयोग पुर्‍याउँछन्।",
     rites: [
@@ -68,7 +70,7 @@ export default bilingual({
   },
   en: {
     title: "Culture & Heritage",
-    lead: "Our culture is not in a museum. It is in every home: in how we speak and dress, in our songs, and in the rites that mark a life.",
+    lead: "Our culture is lived at home: in how we speak and dress, in our songs, and in the rites that mark a life.",
     communitiesTitle: "Communities and traditions",
     communitiesLead: "Ghale, Tamang, Gurung and other families live next to each other here. Each keeps its own customs, and everyone turns up for each other's big days.",
     communities: [
@@ -81,6 +83,8 @@ export default bilingual({
         body: "The Tamang language, Tamba songs, dancing to the damphu drum and Buddhist practice are part of everyday life here.",
       },
     ],
+    songsTitle: "Songs and dances",
+    songsLead: "Ghormu's singers and dancers are known in the villages around for Syabru and other Tamang songs and dances.",
     ritesTitle: "Rites of passage",
     ritesLead: "The whole community gathers for the rites that mark life's important stages, and everyone contributes their share.",
     rites: [

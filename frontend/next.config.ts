@@ -75,7 +75,8 @@ function contentSecurityPolicy({ anyImageHost = false } = {}): string {
     "connect-src": ["'self'", apiOrigin(), ...mapTileOrigins].filter(Boolean),
     // MapLibre starts its renderer from /vendor and from blob: URLs.
     "worker-src": ["'self'", "blob:"],
-    "frame-src": ["'none'"],
+    // The songs-and-dances player on /about/culture (privacy-enhanced YouTube).
+    "frame-src": ["https://www.youtube-nocookie.com"],
     "frame-ancestors": ["'none'"],
 
     "base-uri": ["'self'"],
