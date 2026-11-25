@@ -53,7 +53,7 @@ x-backend: &backend
 
 services:
   mailpit:
-    image: axllent/mailpit:v1.27
+    image: axllent/mailpit:v1.30
     restart: unless-stopped
     ports:
       - "127.0.0.1:${SG_MAIL_PORT:-8030}:8025"
