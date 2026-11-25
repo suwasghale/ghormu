@@ -3,7 +3,7 @@ import type { Dictionary } from "./ne"
 const en: Dictionary = {
   site: {
     name: "Ghormu",
-    tagline: "A hill village in Nepal, in its own words",
+    tagline: "A hill village in Nepal",
     description: "History, culture, tourism and community life of Ghormu village, Nepal.",
   },
 
@@ -61,7 +61,7 @@ const en: Dictionary = {
   },
 
   footer: {
-    discover: "Discover",
+    discover: "The village",
     community: "Community",
     help: "Help",
     closing: "Have an old photo, a story, or something we got wrong? Write to us.",

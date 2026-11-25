@@ -23,7 +23,7 @@ export default bilingual({
         title: "हाम्रो गाउँ",
         body: [
           "घोर्मु नेपालको पहाडी भेगमा रहेको गाउँ हो, जहाँ घले, तामाङ, गुरुङलगायत विभिन्न समुदाय पुस्तौँदेखि सँगै बस्दै आएका छन्।",
-          "चाडपर्वमा सबै भेला हुन्छन्, संस्कारमा सबै जुट्छन्, र कसैको घरमा काम पर्दा छिमेकी आइपुग्छन्। गाउँ यसरी नै चल्दै आएको छ।",
+          "चाडपर्वमा सबै भेला हुन्छन्, संस्कारमा सबै जुट्छन्, र कसैको घरमा काम पर्दा छिमेकी आइपुग्छन्।",
         ],
       },
       {
@@ -84,7 +84,7 @@ export default bilingual({
         title: "Our village",
         body: [
           "Ghormu is a village in the hills of Nepal, where Ghale, Tamang, Gurung and other communities have lived together for generations.",
-          "Everyone gathers for festivals and rites, and when a family has work to do, the neighbours turn up. That is how the village has always worked.",
+          "Everyone gathers for festivals and rites, and when a family has work to do, the neighbours turn up.",
         ],
       },
       {

@@ -11,7 +11,7 @@ export default function manifest(): MetadataRoute.Manifest {
     id: "/",
     name: "घोर्मु · Ghormu",
     short_name: "घोर्मु",
-    description: "नेपालको एउटा पहाडी गाउँ, गाउँलेकै शब्दमा · A hill village in Nepal, in its own words",
+    description: "घोर्मु गाउँको वेबसाइट · Ghormu village website",
     lang: "ne",
     dir: "ltr",
     start_url: "/",

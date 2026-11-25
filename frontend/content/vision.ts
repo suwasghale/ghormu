@@ -5,7 +5,7 @@ export default bilingual({
   ne: {
     title: "हाम्रो दृष्टि",
     lead: "गाउँका कथा, तस्बिर र हिसाब सुरक्षित राख्ने, र घोर्मुवासी जहाँ भए पनि गाउँसँग जोडिइरहून्।",
-    statement: "बीस वर्षपछि घोर्मुमा जन्मने बच्चाले पनि आफ्ना हजुरबा-हजुरआमा कसरी बाँचे भनेर हेर्न सकोस्, र गाउँको कथामा आफ्नो परिवारको ठाउँ भेटोस्। हामी त्यसैका लागि यो काम गर्दैछौँ।",
+    statement: "बीस वर्षपछि घोर्मुमा जन्मने बच्चाले पनि आफ्ना हजुरबा-हजुरआमा कसरी बाँचे भनेर हेर्न सकोस्, र गाउँको कथामा आफ्नो परिवारको ठाउँ भेटोस्।",
     whyTitle: "किन ghormu.com?",
     why: [
       {
@@ -40,7 +40,7 @@ export default bilingual({
   en: {
     title: "Our Vision",
     lead: "To keep the village's stories, photos and records safe, and to keep people from Ghormu connected to it wherever they live.",
-    statement: "We want a child born in Ghormu twenty years from now to be able to see how their grandparents lived, and to find their family's place in the village's story. That is what this work is for.",
+    statement: "We want a child born in Ghormu twenty years from now to be able to see how their grandparents lived, and to find their family's place in the village's story.",
     whyTitle: "Why ghormu.com?",
     why: [
       {
