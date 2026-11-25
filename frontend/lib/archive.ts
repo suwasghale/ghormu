@@ -22,6 +22,7 @@ export function timeFrames(locale: Locale, items: ArchiveItem[]): TimeFrame[] {
       id: item.id,
       year: item.year!,
       yearLabel: yearLabel(locale, item.year!),
+      dateLabel: item.date_label || yearLabel(locale, item.year!),
       title: item.title,
       image: item.image_url,
       credit: item.credit,
