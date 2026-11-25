@@ -39,7 +39,7 @@ export default async function AttractionsPage({ params }: PageProps) {
         {t.attractions.places.length > 0 ? (
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {t.attractions.places.map((place) => (
-              <li key={place.name} className="reveal rounded-3xl border border-border p-6">
+              <li key={place.name} className="rounded-xl border border-border p-6">
                 <Mountain aria-hidden="true" className="size-6 text-earth" />
                 <p className="mt-4 text-sm font-semibold text-brand">{place.kind}</p>
                 <h2 className="mt-1 font-display text-xl font-semibold">{place.name}</h2>
@@ -56,7 +56,7 @@ export default async function AttractionsPage({ params }: PageProps) {
           />
         )}
 
-        <div className="reveal mt-16 grid overflow-hidden rounded-[2rem] bg-brand text-brand-foreground lg:grid-cols-2">
+        <div className="mt-16 grid overflow-hidden rounded-xl bg-brand text-brand-foreground lg:grid-cols-2">
           <div className="flex flex-col justify-center p-8 sm:p-12">
             <h2 className="font-display text-3xl font-semibold">{t.attractions.mapTitle}</h2>
             <p className="mt-4 text-lg leading-relaxed text-brand-foreground/80">{t.attractions.mapBody}</p>

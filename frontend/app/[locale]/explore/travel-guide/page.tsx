@@ -71,7 +71,7 @@ export default async function TravelGuidePage({ params }: PageProps) {
 
       {/* Live weather */}
       <Section labelledBy="weather-title" className="pt-12 sm:pt-16">
-        <div className="reveal">
+        <div >
           <WeatherPanel locale={locale} forecast={forecast} t={t.weather} />
         </div>
       </Section>
@@ -79,7 +79,7 @@ export default async function TravelGuidePage({ params }: PageProps) {
       {/* Where it is, and whether the road is open */}
       <Section labelledBy="location-title" className="pt-0 sm:pt-0">
         <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-          <div className="reveal relative isolate overflow-hidden rounded-3xl bg-brand-muted p-8 sm:p-10">
+          <div className="relative isolate overflow-hidden rounded-xl bg-brand-muted p-8 sm:p-10">
             <MapPin aria-hidden="true" className="size-8 text-earth" />
             <h2 id="location-title" className="mt-5 font-display text-2xl font-semibold sm:text-3xl">
               {t.location.title}
@@ -100,7 +100,7 @@ export default async function TravelGuidePage({ params }: PageProps) {
             </div>
           </div>
 
-          <div className="reveal flex flex-col rounded-3xl border border-border p-8 sm:p-10">
+          <div className="flex flex-col rounded-xl border border-border p-8 sm:p-10">
             <h2 className="font-display text-2xl font-semibold">{t.road.title}</h2>
             <span className={cn("mt-5 inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ring-1", ROAD_STYLES[roadStatus.level])}>
               <span aria-hidden="true" className="size-2 rounded-full bg-current" />
@@ -124,7 +124,7 @@ export default async function TravelGuidePage({ params }: PageProps) {
           <div>
             <SectionHeader id="route-title" title={t.route.title} />
             {t.route.steps.length > 0 ? (
-              <ol className="reveal mt-8 flex flex-col gap-6">
+              <ol className="mt-8 flex flex-col gap-6">
                 {t.route.steps.map((step, index) => (
                   <li key={step.title} className="flex gap-4">
                     <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand font-display text-brand-foreground">
@@ -138,7 +138,7 @@ export default async function TravelGuidePage({ params }: PageProps) {
                 ))}
               </ol>
             ) : (
-              <div className="reveal mt-8 rounded-2xl bg-background p-6 ring-1 ring-border">
+              <div className="mt-8 rounded-2xl bg-background p-6 ring-1 ring-border">
                 <p className="leading-relaxed text-muted-foreground">{t.route.pending}</p>
                 <Link href={localizePath(locale, "/contact")} className="mt-4 inline-flex items-center gap-2 font-semibold text-brand hover:underline">
                   {t.route.contact}
@@ -147,7 +147,7 @@ export default async function TravelGuidePage({ params }: PageProps) {
               </div>
             )}
           </div>
-          <div className="reveal lg:pt-16">
+          <div className="lg:pt-16">
             <h3 className="font-display text-xl font-semibold">{t.route.tipsTitle}</h3>
             <ul className="mt-5 flex flex-col gap-4">
               {t.route.tips.map((tip) => (
@@ -168,7 +168,7 @@ export default async function TravelGuidePage({ params }: PageProps) {
           {t.pack.items.map((item, index) => {
             const Icon = PACK_ICONS[index]
             return (
-              <li key={item.title} className="reveal rounded-2xl border border-border p-5 sm:p-6">
+              <li key={item.title} className="rounded-2xl border border-border p-5 sm:p-6">
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-brand-muted text-brand">
                   <Icon aria-hidden="true" className="size-5" />
                 </span>
@@ -183,11 +183,11 @@ export default async function TravelGuidePage({ params }: PageProps) {
       {/* Stay, and questions */}
       <Section tone="brand" labelledBy="faq-title">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
-          <div className="reveal">
+          <div >
             <h2 className="font-display text-2xl font-semibold sm:text-3xl">{t.stay.title}</h2>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{t.stay.body}</p>
           </div>
-          <div className="reveal">
+          <div >
             <h2 id="faq-title" className="font-display text-2xl font-semibold sm:text-3xl">
               {t.faqTitle}
             </h2>
@@ -199,7 +199,7 @@ export default async function TravelGuidePage({ params }: PageProps) {
       </Section>
 
       <Section labelledBy="cta-title">
-        <div className="reveal mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <h2 id="cta-title" className="font-display text-3xl leading-tight font-semibold tracking-tight sm:text-4xl">
             {t.cta.title}
           </h2>

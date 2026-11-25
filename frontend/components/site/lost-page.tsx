@@ -40,7 +40,7 @@ export function LostPage({
   return (
     <Container className="py-12 sm:py-20">
       <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] lg:order-last lg:aspect-[4/5]">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl lg:order-last lg:aspect-[4/5]">
           <PhotoImage photo={photo} locale={locale} fill sizes="(min-width: 1024px) 45vw, 100vw" />
         </div>
 

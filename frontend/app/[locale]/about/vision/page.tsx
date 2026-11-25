@@ -34,7 +34,7 @@ export default async function VisionPage({ params }: PageProps) {
       />
 
       <Section>
-        <blockquote className="reveal mx-auto max-w-4xl border-l-4 border-earth pl-6 font-display text-2xl leading-relaxed font-medium text-balance sm:pl-10 sm:text-3xl">
+        <blockquote className="mx-auto max-w-4xl border-l-4 border-earth pl-6 font-display text-2xl leading-relaxed font-medium text-balance sm:pl-10 sm:text-3xl">
           {t.statement}
         </blockquote>
       </Section>
@@ -43,7 +43,7 @@ export default async function VisionPage({ params }: PageProps) {
         <SectionHeader id="why-title" title={t.whyTitle} />
         <ul className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-3">
           {t.why.map((item) => (
-            <li key={item.title} className="reveal border-t border-border pt-6">
+            <li key={item.title} className="border-t border-border pt-6">
               <h3 className="font-display text-xl font-semibold">{item.title}</h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">{item.body}</p>
             </li>
@@ -55,7 +55,7 @@ export default async function VisionPage({ params }: PageProps) {
         <SectionHeader id="promises-title" title={t.promisesTitle} align="center" />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {t.promises.map((item) => (
-            <li key={item.title} className="reveal border-t-2 border-brand pt-6">
+            <li key={item.title} className="border-t-2 border-brand pt-6">
               <h3 className="font-display text-xl font-semibold">{item.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">{item.body}</p>
             </li>
@@ -66,7 +66,7 @@ export default async function VisionPage({ params }: PageProps) {
       <section aria-labelledby="help-title" className="relative isolate overflow-hidden bg-ink text-ink-foreground">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:items-center">
           <SectionHeader id="help-title" tone="ink" title={t.helpTitle} />
-          <div className="reveal">
+          <div >
             <ul className="flex flex-col gap-4">
               {t.help.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-lg">

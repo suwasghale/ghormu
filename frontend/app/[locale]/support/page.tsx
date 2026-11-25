@@ -47,7 +47,7 @@ export default async function SupportPage({ params }: PageProps) {
       {/* Why */}
       <Section labelledBy="why-title" className="py-24 sm:py-32">
         <div className="grid items-center gap-12 lg:grid-cols-[6fr_5fr] lg:gap-20">
-          <div className="reveal max-w-xl">
+          <div className="max-w-xl">
             <h2 id="why-title" className={headingClass}>
               {t.why.title}
             </h2>
@@ -57,7 +57,7 @@ export default async function SupportPage({ params }: PageProps) {
               </p>
             ))}
           </div>
-          <div className="reveal relative aspect-[4/3] overflow-hidden rounded-[2rem]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
             <PhotoImage photo={photos.play} locale={locale} fill sizes="(min-width: 1024px) 40vw, 100vw" />
           </div>
         </div>
@@ -66,13 +66,13 @@ export default async function SupportPage({ params }: PageProps) {
       {/* Where help is needed */}
       <Section tone="mist" labelledBy="needs-title">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div className="reveal max-w-xl">
+          <div className="max-w-xl">
             <h2 id="needs-title" className={headingClass}>
               {t.needs.title}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{t.needs.lead}</p>
           </div>
-          <ArrowLink href={localizePath(locale, "/updates/development")} className="reveal shrink-0">
+          <ArrowLink href={localizePath(locale, "/updates/development")} className="shrink-0">
             {t.needs.all}
           </ArrowLink>
         </div>
@@ -80,7 +80,7 @@ export default async function SupportPage({ params }: PageProps) {
         {needs.length > 0 ? (
           <ul className="mt-10 grid gap-4 md:grid-cols-2">
             {needs.map((project) => (
-              <li key={project.id} className="reveal rounded-2xl bg-background p-6 ring-1 ring-border sm:p-8">
+              <li key={project.id} className="rounded-2xl bg-background p-6 ring-1 ring-border sm:p-8">
                 <p className="text-sm font-semibold text-earth">{updates[locale].development.stages[project.stage]}</p>
                 <h3 className="mt-2 font-display text-xl font-semibold text-balance">{project.title}</h3>
                 {project.summary && <p className="mt-2 line-clamp-3 leading-relaxed text-muted-foreground">{project.summary}</p>}
@@ -102,7 +102,7 @@ export default async function SupportPage({ params }: PageProps) {
             ))}
           </ul>
         ) : (
-          <p className="reveal mt-10 max-w-2xl rounded-2xl bg-background p-6 leading-relaxed text-muted-foreground ring-1 ring-border">
+          <p className="mt-10 max-w-2xl rounded-2xl bg-background p-6 leading-relaxed text-muted-foreground ring-1 ring-border">
             {t.needs.empty}
           </p>
         )}
@@ -110,18 +110,18 @@ export default async function SupportPage({ params }: PageProps) {
 
       {/* Ways to help */}
       <Section labelledBy="ways-title" className="py-24 sm:py-32">
-        <h2 id="ways-title" className={`${headingClass} reveal`}>
+        <h2 id="ways-title" className={`${headingClass} `}>
           {t.ways.title}
         </h2>
         <ul className="mt-12 grid border-t border-border md:grid-cols-2">
           {t.ways.items.map((way) => (
-            <li key={way.title} className="reveal border-b border-border py-8 md:odd:border-r md:odd:pr-10 md:even:pl-10">
+            <li key={way.title} className="border-b border-border py-8 md:odd:border-r md:odd:pr-10 md:even:pl-10">
               <h3 className="font-display text-2xl font-semibold">{way.title}</h3>
               <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">{way.body}</p>
             </li>
           ))}
         </ul>
-        <div className="reveal mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-display text-xl font-semibold">{dict.share.prompt}</p>
           <ShareButtons url={new URL(localizePath(locale, "/support"), site.url).toString()} title={t.title} strings={dict.share} />
         </div>
@@ -130,7 +130,7 @@ export default async function SupportPage({ params }: PageProps) {
       {/* Promise and form */}
       <section aria-labelledby="form-title" className="bg-ink py-24 text-ink-foreground sm:py-32">
         <div className="mx-auto grid max-w-6xl gap-14 px-4 sm:px-6 lg:grid-cols-[5fr_6fr] lg:gap-20">
-          <div className="reveal">
+          <div >
             <h2 className={headingClass}>{t.promises.title}</h2>
             <ul className="mt-8 flex flex-col gap-5">
               {t.promises.items.map((promise) => (
@@ -141,7 +141,7 @@ export default async function SupportPage({ params }: PageProps) {
               ))}
             </ul>
           </div>
-          <div className="reveal rounded-3xl bg-background p-6 text-foreground sm:p-10">
+          <div className="rounded-xl bg-background p-6 text-foreground sm:p-10">
             <h2 id="form-title" className="font-display text-2xl font-semibold">
               {t.form.title}
             </h2>

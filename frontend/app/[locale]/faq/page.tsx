@@ -48,7 +48,7 @@ export default async function FaqPage({ params }: PageProps) {
       <Section>
         <div className="mx-auto flex max-w-3xl flex-col gap-14">
           {t.groups.map((group) => (
-            <section key={group.title} className="reveal">
+            <section key={group.title} >
               <h2 className="font-display text-2xl font-semibold">{group.title}</h2>
               <div className="mt-6">
                 <Faq items={group.items} />
@@ -56,7 +56,7 @@ export default async function FaqPage({ params }: PageProps) {
             </section>
           ))}
 
-          <div className="reveal rounded-3xl bg-brand-muted p-8 text-center">
+          <div className="rounded-xl bg-brand-muted p-8 text-center">
             <p className="font-display text-xl font-semibold">{contact[locale].contact.lead}</p>
             <Link href={localizePath(locale, "/contact")} className={`${buttonStyles.primary} mt-6`}>
               {dict.nav.contactUs}

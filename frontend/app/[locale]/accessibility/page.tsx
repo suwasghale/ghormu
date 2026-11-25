@@ -54,7 +54,7 @@ export default async function AccessibilityPage({ params }: PageProps) {
             ))}
           </ul>
 
-          <div className="mt-14 rounded-3xl border border-border p-8">
+          <div className="mt-14 rounded-xl border border-border p-8">
             <h2 className="font-display text-2xl font-semibold">{t.accessibility.feedbackTitle}</h2>
             <p className="mt-3 text-lg leading-relaxed text-muted-foreground">{t.accessibility.feedbackBody}</p>
             <Link href={localizePath(locale, "/contact/feedback")} className={`${buttonStyles.primary} mt-6`}>

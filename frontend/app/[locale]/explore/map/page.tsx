@@ -63,7 +63,7 @@ export default async function MapPage({ params }: PageProps) {
             <SectionHeader id="accuracy-title" title={t.accuracy.title} lead={t.accuracy.lead} />
             <div>
               <MapAccuracy google={t.accuracy.google} basic={t.accuracy.basic} always={[t.accuracy.places]} />
-              <p className="reveal mt-8 max-w-xl leading-relaxed">{t.accuracy.next}</p>
+              <p className="mt-8 max-w-xl leading-relaxed">{t.accuracy.next}</p>
               <Link href={`${localizePath(locale, "/contact")}?topic=correction`} className={`${buttonStyles.secondary} mt-8`}>
                 {t.accuracy.cta}
               </Link>

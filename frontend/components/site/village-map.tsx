@@ -40,7 +40,7 @@ export function MapAccuracy({ google, basic, always }: { google: AccuracyItem[];
   return (
     <dl className="border-t border-border">
       {[...(engine === "google" ? google : basic), ...always].map((item) => (
-        <div key={item.title} className="reveal grid gap-2 border-b border-border py-7 sm:grid-cols-[10rem_1fr] sm:gap-8">
+        <div key={item.title} className="grid gap-2 border-b border-border py-7 sm:grid-cols-[10rem_1fr] sm:gap-8">
           <dt className="font-display text-xl font-semibold">{item.title}</dt>
           <dd className="leading-relaxed text-muted-foreground">{item.body}</dd>
         </div>
@@ -92,7 +92,7 @@ export function VillageMap({ locale, places, village, strings, googleApiKey }: P
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_20rem] lg:gap-10">
       <div>
-        <div ref={frame} className="relative isolate h-[70vh] min-h-[26rem] overflow-hidden rounded-[2rem] bg-mist ring-1 ring-border">
+        <div ref={frame} className="relative isolate h-[70vh] min-h-[26rem] overflow-hidden rounded-xl bg-mist ring-1 ring-border">
           {engine === "google" && googleApiKey ? (
             <GoogleVillageMap key="google" ref={map} apiKey={googleApiKey} onFail={fallBack} {...engineProps} />
           ) : (

@@ -60,7 +60,7 @@ export function WeatherPanel({
 
   if (!forecast) {
     return (
-      <div className="rounded-[2rem] bg-ink p-8 text-ink-foreground sm:p-10">
+      <div className="rounded-xl bg-ink p-8 text-ink-foreground sm:p-10">
         <Eyebrow tone="ink">{t.eyebrow}</Eyebrow>
         <h2 id="weather-title" className="mt-4 font-display text-3xl font-semibold">
           {t.title}
@@ -93,7 +93,7 @@ export function WeatherPanel({
   ]
 
   return (
-    <div className="grid overflow-hidden rounded-[2rem] bg-ink text-ink-foreground lg:grid-cols-[1.15fr_1fr]">
+    <div className="grid overflow-hidden rounded-xl bg-ink text-ink-foreground lg:grid-cols-[1.15fr_1fr]">
       {/* Now */}
       <div className="flex flex-col p-8 sm:p-10">
         <Eyebrow tone="ink">

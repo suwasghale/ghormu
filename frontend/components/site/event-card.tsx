@@ -27,7 +27,7 @@ export function EventCard({
   compact?: boolean
 }) {
   return (
-    <article className={cn("flex gap-5", !compact && "rounded-3xl border border-border p-5 sm:p-6")}>
+    <article className={cn("flex gap-5", !compact && "rounded-xl border border-border p-5 sm:p-6")}>
       <div
         aria-hidden="true"
         className={cn(

@@ -99,7 +99,7 @@ function ProjectCard({ project, locale, t }: { project: Project; locale: Locale;
   const day = (date: string) => formatDay(locale, date, { day: "numeric", month: "long", year: "numeric" })
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-3xl border border-border sm:flex-row">
+    <article className="flex flex-col overflow-hidden rounded-xl border border-border sm:flex-row">
       {project.image_url && (
         <div className="aspect-[16/10] sm:aspect-auto sm:w-48 sm:shrink-0">
           <ContentImage src={project.image_url} alt="" className="h-full w-full" />

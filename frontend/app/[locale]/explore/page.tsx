@@ -53,7 +53,7 @@ export default async function TourismPage({ params }: PageProps) {
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {t.why.map((item, index) => {
             return (
-              <li key={item.title} className="reveal overflow-hidden rounded-2xl border border-border">
+              <li key={item.title} className="overflow-hidden rounded-2xl border border-border">
                 <div className="relative aspect-[4/3]">
                   <PhotoImage photo={photos[WHY_PHOTOS[index]]} locale={locale} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" />
                 </div>
@@ -81,7 +81,7 @@ export default async function TourismPage({ params }: PageProps) {
               <li
                 key={season.name}
                 className={cn(
-                  "reveal relative flex flex-col rounded-2xl bg-background p-6 ring-1",
+                  "relative flex flex-col rounded-2xl bg-background p-6 ring-1",
                   season.best ? "ring-2 ring-brand" : "ring-border",
                 )}
               >
@@ -104,7 +104,7 @@ export default async function TourismPage({ params }: PageProps) {
         <SectionHeader id="experiences-title" title={t.experiencesTitle} />
         <ul className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
           {t.experiences.map((item) => (
-            <li key={item.title} className="reveal border-t border-border pt-5">
+            <li key={item.title} className="border-t border-border pt-5">
               <h3 className="font-display text-xl font-semibold">{item.title}</h3>
               <p className="mt-1.5 leading-relaxed text-muted-foreground">{item.body}</p>
             </li>
@@ -115,7 +115,7 @@ export default async function TourismPage({ params }: PageProps) {
       {/* Responsible travel and safety */}
       <Section tone="brand" labelledBy="tips-title">
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <div className="reveal rounded-3xl bg-background p-8 ring-1 ring-brand/10 sm:p-10">
+          <div className="rounded-xl bg-background p-8 ring-1 ring-brand/10 sm:p-10">
             <h2 id="tips-title" className="font-display text-2xl font-semibold sm:text-3xl">
               {t.tipsTitle}
             </h2>
@@ -128,7 +128,7 @@ export default async function TourismPage({ params }: PageProps) {
               ))}
             </ul>
           </div>
-          <div className="reveal rounded-3xl bg-ink p-8 text-ink-foreground sm:p-10">
+          <div className="rounded-xl bg-ink p-8 text-ink-foreground sm:p-10">
             <h2 className="font-display text-2xl font-semibold sm:text-3xl">{t.safetyTitle}</h2>
             <ul className="mt-6 flex flex-col gap-3.5">
               {t.safety.map((item) => (
@@ -150,7 +150,7 @@ export default async function TourismPage({ params }: PageProps) {
         <SectionHeader id="more-title" title={t.moreTitle} />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {t.more.map((item) => (
-            <li key={item.href} className="reveal">
+            <li key={item.href} >
               <Link
                 href={localizePath(locale, item.href)}
                 className="group flex h-full flex-col justify-between gap-6 rounded-2xl border border-border p-6 transition hover:border-brand/40 hover:shadow-lg hover:shadow-brand/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"

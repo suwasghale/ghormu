@@ -66,14 +66,14 @@ export default async function ArchivePage({ params }: PageProps) {
         <SectionHeader id="contribute-title" title={t.archive.contributeTitle} />
         <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {t.archive.steps.map((step, index) => (
-            <li key={step.title} className="reveal rounded-2xl bg-background p-6 ring-1 ring-brand/10">
+            <li key={step.title} className="rounded-2xl bg-background p-6 ring-1 ring-brand/10">
               <span className="font-display text-sm text-earth">{formatIndex(locale, index + 1)}</span>
               <h3 className="mt-3 font-display text-lg font-semibold">{step.title}</h3>
               <p className="mt-2 text-[0.95rem] leading-relaxed text-muted-foreground">{step.body}</p>
             </li>
           ))}
         </ol>
-        <Link href={contribute} className={`${buttonStyles.primary} reveal mt-10`}>
+        <Link href={contribute} className={`${buttonStyles.primary} mt-10`}>
           {t.archive.contributeCta}
         </Link>
       </Section>

@@ -13,7 +13,7 @@ import { ContentImage } from "./content-ui"
 export function PostCard({ post, locale, featured = false, featuredLabel }: { post: Post; locale: Locale; featured?: boolean; featuredLabel?: string }) {
   return (
     <article className={cn("group relative", featured && "grid gap-8 lg:grid-cols-[1.25fr_1fr] lg:items-center")}>
-      <div className="aspect-[16/10] overflow-hidden rounded-3xl">
+      <div className="aspect-[16/10] overflow-hidden rounded-xl">
         <ContentImage src={post.image_url} alt="" className="h-full w-full transition duration-700 group-hover:scale-[1.03]" priority={featured} />
       </div>
       <div className={cn(!featured && "mt-5")}>

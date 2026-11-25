@@ -42,7 +42,7 @@ export default async function ExperiencesPage({ params }: PageProps) {
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
           {t.experiences.ideas.map((idea, index) => {
             return (
-              <li key={idea.title} className="reveal grid overflow-hidden rounded-3xl border border-border sm:grid-cols-[2fr_3fr]">
+              <li key={idea.title} className="grid overflow-hidden rounded-xl border border-border sm:grid-cols-[2fr_3fr]">
                 <div className="relative aspect-[4/3] sm:aspect-auto sm:min-h-56">
                   <PhotoImage photo={photos[IDEA_PHOTOS[index]]} locale={locale} fill sizes="(min-width: 640px) 20vw, 100vw" />
                 </div>
@@ -58,7 +58,7 @@ export default async function ExperiencesPage({ params }: PageProps) {
 
       <Section tone="mist" labelledBy="hosts-title">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="reveal">
+          <div >
             <h2 id="hosts-title" className="font-display text-2xl font-semibold sm:text-3xl">
               {t.experiences.hostsTitle}
             </h2>
@@ -81,7 +81,7 @@ export default async function ExperiencesPage({ params }: PageProps) {
               </>
             )}
           </div>
-          <div className="reveal rounded-3xl bg-background p-8 ring-1 ring-border">
+          <div className="rounded-xl bg-background p-8 ring-1 ring-border">
             <HeartHandshake aria-hidden="true" className="size-7 text-earth" />
             <h2 className="mt-4 font-display text-2xl font-semibold">{t.experiences.respectTitle}</h2>
             <p className="mt-3 leading-relaxed text-muted-foreground">{t.experiences.respectBody}</p>

@@ -36,7 +36,7 @@ export default async function FeedbackPage({ params }: PageProps) {
 
       <Section className="pt-12 sm:pt-16">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
-          <aside className="reveal">
+          <aside >
             <h2 className="font-display text-xl font-semibold">{t.feedback.helpsTitle}</h2>
             <ul className="mt-5 flex flex-col gap-3.5">
               {t.feedback.helps.map((item) => (
@@ -47,7 +47,7 @@ export default async function FeedbackPage({ params }: PageProps) {
               ))}
             </ul>
           </aside>
-          <div className="reveal rounded-3xl border border-border p-6 sm:p-10">
+          <div className="rounded-xl border border-border p-6 sm:p-10">
             <ContactForm locale={locale} strings={t.form} defaultTopic="feedback" privacyHref={localizePath(locale, "/privacy")} />
           </div>
         </div>

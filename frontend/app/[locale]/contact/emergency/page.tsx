@@ -63,7 +63,7 @@ export default async function EmergencyPage({ params }: PageProps) {
               <li key={key}>
                 <a
                   href={`tel:${number}`}
-                  className="group flex items-center gap-5 rounded-3xl border border-border p-5 transition hover:border-red-300 hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                  className="group flex items-center gap-5 rounded-xl border border-border p-5 transition hover:border-red-300 hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                 >
                   <span className="inline-flex size-14 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-700 group-hover:bg-red-100">
                     <Icon aria-hidden="true" className="size-6" />
@@ -84,7 +84,7 @@ export default async function EmergencyPage({ params }: PageProps) {
 
       <Section tone="mist" labelledBy="local-title">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="reveal">
+          <div >
             <h2 id="local-title" className="font-display text-2xl font-semibold">
               {t.emergency.localTitle}
             </h2>
@@ -108,7 +108,7 @@ export default async function EmergencyPage({ params }: PageProps) {
               </p>
             )}
           </div>
-          <div className="reveal">
+          <div >
             <h2 className="font-display text-2xl font-semibold">{t.emergency.tipsTitle}</h2>
             <ol className="mt-6 flex flex-col gap-4">
               {t.emergency.tips.map((tip, index) => (

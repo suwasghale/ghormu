@@ -74,7 +74,7 @@ export function SectionHeader({
   const onInk = tone === "ink"
 
   return (
-    <div className={cn("reveal max-w-2xl", align === "center" && "mx-auto text-center", className)}>
+    <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && <Eyebrow tone={tone} className={align === "center" ? "justify-center" : undefined}>{eyebrow}</Eyebrow>}
       <h2 id={id} className="mt-3 font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl">
         {title}

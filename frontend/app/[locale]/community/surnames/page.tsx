@@ -40,7 +40,7 @@ export default async function SurnamesPage({ params }: PageProps) {
             <li
               key={clan.name}
               className={cn(
-                "reveal relative isolate flex min-h-48 flex-col justify-end overflow-hidden rounded-3xl p-8",
+                "relative isolate flex min-h-48 flex-col justify-end overflow-hidden rounded-xl p-8",
                 clan.first ? "bg-ink text-ink-foreground" : "bg-brand-muted",
               )}
             >
@@ -58,7 +58,7 @@ export default async function SurnamesPage({ params }: PageProps) {
           ))}
         </ul>
 
-        <div className="reveal mt-16 rounded-3xl border border-border p-8 sm:p-12 lg:flex lg:items-center lg:justify-between lg:gap-12">
+        <div className="mt-16 rounded-xl border border-border p-8 sm:p-12 lg:flex lg:items-center lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
             <h2 className="font-display text-2xl font-semibold sm:text-3xl">{t.surnames.helpTitle}</h2>
             <p className="mt-3 text-lg leading-relaxed text-muted-foreground">{t.surnames.helpBody}</p>

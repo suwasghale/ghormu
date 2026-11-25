@@ -40,7 +40,7 @@ export default async function CommunityPage({ params }: PageProps) {
       {/* One village, many communities */}
       <Section labelledBy="intro-title">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-          <div className="reveal">
+          <div >
             <h2 id="intro-title" className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
               {t.overview.introTitle}
             </h2>
@@ -50,7 +50,7 @@ export default async function CommunityPage({ params }: PageProps) {
               </p>
             ))}
           </div>
-          <div className="reveal">
+          <div >
             <h3 className="text-sm font-semibold text-muted-foreground">{t.overview.surnamesTitle}</h3>
             <ul className="mt-4 flex flex-wrap gap-3">
               {t.surnames.clans.map((clan) => (
@@ -70,15 +70,15 @@ export default async function CommunityPage({ params }: PageProps) {
       <section aria-labelledby="portal-title" className="relative isolate overflow-hidden bg-ink text-ink-foreground">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
           <SectionHeader id="portal-title" tone="ink" title={t.overview.portalTitle} lead={t.overview.portalLead} />
-          <ul className="mt-12 grid gap-px overflow-hidden rounded-3xl bg-ink-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-12 grid gap-px overflow-hidden rounded-xl bg-ink-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
             {t.overview.features.map((feature) => (
-              <li key={feature.title} className="reveal bg-ink p-7">
+              <li key={feature.title} className="bg-ink p-7">
                 <h3 className="font-display text-xl font-semibold">{feature.title}</h3>
                 <p className="mt-2 leading-relaxed text-ink-foreground/70">{feature.body}</p>
               </li>
             ))}
           </ul>
-          <div className="reveal mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <Link href="/login" className={buttonStyles.onInk}>
               {t.overview.portalCta}
               <ArrowRight aria-hidden="true" className="size-4" />

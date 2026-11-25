@@ -178,82 +178,22 @@ html[data-site="public"] {
   --earth: oklch(0.54 0.13 50);
   --muted-foreground: oklch(0.51 0.012 170);
   --font-geist-sans: var(--font-mukta), ui-sans-serif, system-ui, sans-serif;
-  /* Headings: a Devanagari serif with matching Latin, for an editorial voice. */
-  --font-display-family: var(--font-noto-serif), Georgia, serif;
+  /* Headings use the same family, heavier: one face throughout. */
+  --font-display-family: var(--font-mukta), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Negative tracking pulls Devanagari letters into each other and breaks the
+   headline bar, so Nepali text keeps its natural spacing. */
+html[data-site="public"][lang="ne"] .tracking-tight {
+  letter-spacing: normal;
 }
 
 /* ============================================================================
    Motion
    ============================================================================ */
 
-/* Public site: sections fade up as they scroll into view. Browsers without
-   scroll-driven animations, and anyone who prefers less motion, simply see
-   the content. */
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(1.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 35%;
-    }
-  }
-
-  .rise {
-    animation: rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: var(--rise-delay, 0ms);
-  }
-
-  /* The homepage photo settles in slowly as the page opens. */
-  .hero-zoom {
-    animation: hero-zoom 2.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  /* Hero layers drift at different speeds as the page scrolls: depth. */
-  @supports (animation-timeline: scroll()) {
-    .drift {
-      animation: drift linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 100vh;
-    }
-  }
-}
-
-@keyframes hero-zoom {
-  from {
-    transform: scale(1.08);
-  }
-  to {
-    transform: none;
-  }
-}
-
-@keyframes drift {
-  to {
-    transform: translateY(var(--drift, 0px));
-  }
-}
+/* The public site keeps motion to what explains something: the menu opening,
+   the page changing, the photo viewer. Content does not fade or slide in. */
 
 @media (prefers-reduced-motion: reduce) {
   *,

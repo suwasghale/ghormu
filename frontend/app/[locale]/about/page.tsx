@@ -36,7 +36,7 @@ export default async function AboutPage({ params }: PageProps) {
         <div className="grid gap-14 lg:grid-cols-[1fr_20rem] lg:gap-20">
           <div className="flex flex-col gap-12">
             {t.story.map((part, index) => (
-              <article key={part.title} className="reveal" aria-labelledby={`story-${index}`}>
+              <article key={part.title}  aria-labelledby={`story-${index}`}>
                 <h2 id={`story-${index}`} className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                   {part.title}
                 </h2>
@@ -50,7 +50,7 @@ export default async function AboutPage({ params }: PageProps) {
           </div>
 
           {facts.length > 0 && (
-            <aside aria-labelledby="facts-title" className="reveal h-fit rounded-2xl bg-brand-muted p-6 lg:sticky lg:top-24">
+            <aside aria-labelledby="facts-title" className="h-fit rounded-2xl bg-brand-muted p-6 lg:sticky lg:top-24">
               <h2 id="facts-title" className="font-display text-xl font-semibold">
                 {t.factsTitle}
               </h2>
@@ -71,7 +71,7 @@ export default async function AboutPage({ params }: PageProps) {
         <SectionHeader id="more-title" title={t.moreTitle} />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
           {t.more.map((item) => (
-            <li key={item.href} className="reveal">
+            <li key={item.href} >
               <Link
                 href={localizePath(locale, item.href)}
                 className="group flex h-full items-start justify-between gap-4 rounded-2xl border border-border bg-background p-6 transition hover:border-brand/40 hover:shadow-lg hover:shadow-brand/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
@@ -90,7 +90,7 @@ export default async function AboutPage({ params }: PageProps) {
       <Section labelledBy="faq-title">
         <div className="mx-auto max-w-3xl">
           <SectionHeader id="faq-title" title={t.faqTitle} align="center" />
-          <div className="reveal mt-10">
+          <div className="mt-10">
             <Faq items={t.faq} />
           </div>
         </div>

@@ -34,13 +34,13 @@ export default async function ContactPage({ params }: PageProps) {
 
       <Section className="pt-12 sm:pt-16">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
-          <div className="reveal rounded-3xl border border-border p-6 sm:p-10">
+          <div className="rounded-xl border border-border p-6 sm:p-10">
             <h2 className="font-display text-2xl font-semibold">{t.contact.formTitle}</h2>
             <p className="mt-2 mb-8 text-muted-foreground">{t.contact.reply}</p>
             <ContactForm locale={locale} strings={t.form} privacyHref={localizePath(locale, "/privacy")} />
           </div>
 
-          <aside className="reveal">
+          <aside >
             <h2 className="font-display text-xl font-semibold">{t.contact.otherTitle}</h2>
             <ul className="mt-5 flex flex-col gap-3">
               {t.contact.other.map((item) => (

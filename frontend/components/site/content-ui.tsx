@@ -24,7 +24,7 @@ export function EmptyState({
   className?: string
 }) {
   return (
-    <div className={cn("relative isolate overflow-hidden rounded-3xl border border-dashed border-border px-6 py-14 text-center sm:py-20", className)}>
+    <div className={cn("relative isolate overflow-hidden rounded-xl border border-dashed border-border px-6 py-14 text-center sm:py-20", className)}>
       <span className="mx-auto inline-flex size-14 items-center justify-center rounded-full bg-brand-muted text-brand">
         <Icon aria-hidden="true" className="size-6" />
       </span>

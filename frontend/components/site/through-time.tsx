@@ -48,7 +48,7 @@ export function ThroughTime({ frames, strings }: { frames: TimeFrame[]; strings:
         <YearPicker label={strings.after} frames={sorted} selected={after.id} onSelect={setAfterId} className="sm:justify-end" />
       </div>
 
-      <div className="relative mt-6 aspect-[16/10] overflow-hidden rounded-3xl bg-ink ring-1 ring-border select-none">
+      <div className="relative mt-6 aspect-[16/10] overflow-hidden rounded-xl bg-ink ring-1 ring-border select-none">
         {/* eslint-disable-next-line @next/next/no-img-element -- archive uploads are already optimised */}
         <img src={after.image} alt={after.title} className="absolute inset-0 h-full w-full object-cover" draggable={false} />
         {/* eslint-disable-next-line @next/next/no-img-element -- archive uploads are already optimised */}

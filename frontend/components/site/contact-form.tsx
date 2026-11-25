@@ -125,7 +125,7 @@ function Form({ locale, strings, defaultTopic = "general", privacyHref, about }:
 
   if (status === "sent") {
     return (
-      <div role="status" className="rounded-3xl bg-brand-muted p-8 text-center sm:p-12">
+      <div role="status" className="rounded-xl bg-brand-muted p-8 text-center sm:p-12">
         <CheckCircle2 aria-hidden="true" className="mx-auto size-12 text-brand" />
         <p className="mt-4 font-display text-2xl font-semibold">{strings.successTitle}</p>
         <p className="mt-2 text-muted-foreground">{strings.successBody}</p>

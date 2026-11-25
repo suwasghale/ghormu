@@ -97,7 +97,7 @@ export default async function PostPage({ params }: PageProps) {
       <Container className="pb-24 sm:pb-32">
         <article className="mx-auto max-w-3xl">
           {post.image_url && (
-            <div className="-mt-4 mb-12 aspect-[16/9] overflow-hidden rounded-3xl">
+            <div className="-mt-4 mb-12 aspect-[16/9] overflow-hidden rounded-xl">
               <ContentImage src={post.image_url} alt="" className="h-full w-full" priority />
             </div>
           )}

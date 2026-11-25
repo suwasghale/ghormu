@@ -77,7 +77,7 @@ export function PageHero({
           </ol>
         </nav>
 
-        <div className={cn("rise max-w-3xl", onPhoto ? "mt-14 sm:mt-20" : "mt-10")}>
+        <div className={cn("max-w-3xl", onPhoto ? "mt-14 sm:mt-20" : "mt-10")}>
           {meta && <p className={cn("text-sm", onPhoto ? "text-ink-foreground/75" : "text-muted-foreground")}>{meta}</p>}
           <h1 className="mt-2 font-display text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-6xl">
             {title}
