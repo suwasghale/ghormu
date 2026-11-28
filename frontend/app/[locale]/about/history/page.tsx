@@ -89,6 +89,7 @@ export default async function HistoryPage({ params }: PageProps) {
               places={places.map(({ id, name, latitude, longitude }) => ({ id, name, latitude, longitude }))}
               mapStrings={mapContent[locale]}
               strings={t.throughTime}
+              viewStrings={t.historyMap.views}
             />
           </div>
           <p className="mt-6 max-w-2xl text-sm leading-relaxed text-ink-foreground/65">{t.historyMap.note}</p>

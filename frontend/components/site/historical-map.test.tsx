@@ -18,16 +18,17 @@ const frames = historicalFrames("en", [
 
 function renderMap() {
   return render(
-    <HistoricalMap frames={frames} places={[]} mapStrings={mapContent.en} strings={strings} />,
+    <HistoricalMap frames={frames} places={[]} mapStrings={mapContent.en} strings={strings} viewStrings={archive.en.historyMap.views} />,
   )
 }
 
 // jsdom has no WebGL, so the map itself says it cannot open: what a phone
 // without WebGL shows. The timeline and its credits still work.
 describe("the historical map", () => {
-  it("says plainly when the device cannot draw the map", async () => {
+  it("says plainly when the device cannot draw the map, and offers no 3D switch", async () => {
     renderMap()
     expect(await screen.findByText(mapContent.en.unsupported)).toBeInTheDocument()
+    expect(screen.queryByRole("group", { name: archive.en.historyMap.views.label })).not.toBeInTheDocument()
   })
 
   it("opens on the newest photograph, credited", () => {

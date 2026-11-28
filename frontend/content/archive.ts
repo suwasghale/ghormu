@@ -6,11 +6,12 @@ export default bilingual({
     loadFailed: "सामग्री अहिले लोड हुन सकेन। केही समयपछि फेरि हेर्नुहोस्।",
     historyMap: {
       title: "माथिबाट घोर्मु, वर्षअनुसार",
-      lead: "भू-उपग्रहले फरक-फरक वर्षमा खिचेका घोर्मुका तस्बिर, नक्सामै। मिति छान्नुहोस्, नक्सा सार्नुहोस् र नजिक जानुहोस्, अनि गाउँ कसरी फेरियो हेर्नुहोस्।",
+      lead: "भू-उपग्रहले फरक-फरक वर्षमा खिचेका घोर्मुका तस्बिर, नक्सामै। मिति छान्नुहोस्, नक्सा सार्नुहोस् र नजिक जानुहोस्, अनि गाउँ कसरी फेरियो हेर्नुहोस्। ३D मा उही तस्बिर डाँडाकाँडामाथि देखिन्छ।",
+      views: { label: "दृश्य", flat: "2D", relief: "3D" },
       taken: "खिचिएको",
       perPixel: "एक पिक्सेलमा करिब {m} मिटर",
       credit: "Esri World Imagery Wayback",
-      note: "यी तस्बिर Esri को World Imagery Wayback संग्रहबाट आउँछन्, जुन जो कोहीले निःशुल्क हेर्न सक्छ। यसमा घोर्मुमाथि अहिलेसम्म यिनै मितिका तस्बिर छन्। नयाँ तस्बिर आएपछि यहाँ थपिन्छ।",
+      note: "यी तस्बिर Esri को World Imagery Wayback संग्रहबाट आउँछन्, जुन जो कोहीले निःशुल्क हेर्न सक्छ। यसमा घोर्मुमाथि अहिलेसम्म यिनै मितिका तस्बिर छन्। नयाँ तस्बिर आएपछि यहाँ थपिन्छ। ३D को उचाइ खुला तथ्याङ्कबाट आउँछ, करिब ३० मिटरको दूरीमा नापिएको: डाँडाको आकार मिल्छ, गरा र घर भने देखिँदैनन्।",
     },
     throughTime: {
       title: "समयसँगै घोर्मु",
@@ -96,11 +97,12 @@ export default bilingual({
     loadFailed: "Content could not be loaded right now. Please check again shortly.",
     historyMap: {
       title: "Ghormu from above, year by year",
-      lead: "Satellite photographs of Ghormu taken in different years, on a map you can move and zoom. Pick a date and see how the village has changed.",
+      lead: "Satellite photographs of Ghormu taken in different years, on a map you can move and zoom. Pick a date and see how the village has changed. In 3D the same photograph lies over the hills.",
+      views: { label: "View", flat: "2D", relief: "3D" },
       taken: "Taken",
       perPixel: "about {m} m per pixel",
       credit: "Esri World Imagery Wayback",
-      note: "These photographs come from Esri's World Imagery Wayback archive, which anyone can view for free. It has these dates for Ghormu so far; new photographs are added here when they appear.",
+      note: "These photographs come from Esri's World Imagery Wayback archive, which anyone can view for free. It has these dates for Ghormu so far; new photographs are added here when they appear. Heights in 3D come from open elevation data measured about every 30 m: true to the shape of the hills, too coarse for terraces or houses.",
     },
     throughTime: {
       title: "Ghormu through time",
